@@ -16,7 +16,6 @@ mkdir -p "$DATA_DIR"
 
 #CONTAINER_IMAGE="/d/hpc/projects/FRI/cb17769/lwe_container.sif"
 CONTAINER_IMAGE="/vol/csedu-nobackup/project/cbassotto/lwe_container.sif"
-ATTACK_FILE="/vol/csedu-nobackup/project/cbassotto/thesis/project/src/cluster/attack.py"
 
 # Counter for job numbering
 JOB_COUNTER=1
@@ -72,7 +71,7 @@ PARAMS_JSON='{
 
 export PYTHONUNBUFFERED=1
 
-singularity exec ${CONTAINER_IMAGE} python $ATTACK_FILE \
+singularity exec ${CONTAINER_IMAGE} python attack.py \
   --params "\$PARAMS_JSON" \
   --num_attacks 1 \
   --attack_strategy "tour" \
