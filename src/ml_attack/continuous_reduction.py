@@ -167,8 +167,7 @@ class ContinuousReduction(object):
         out, _ = p.communicate(input=fplll_Ap_encoded)  # output from the flatter run.
 
         t_str = out.rstrip().decode()[1:-1]
-        Ap = np.array([np.array(line[1:-1].split(" ")).astype(int) for line in t_str.split("\n")[:-1]])
-
+        Ap = np.array([np.array(line[1:-1].split(" ")).astype(int) for line in t_str.split("\n")[:-1]]).astype(int)
         return Ap
     
     def run_bkz2_once(self, Ap):
@@ -199,7 +198,7 @@ class ContinuousReduction(object):
                     print(f"Error running bkz2.0. No more float types to upgrade to.")
                     break
 
-        Ap = np.zeros((Ap.shape[0], Ap.shape[1]), dtype=np.int64)
+        Ap = np.zeros((Ap.shape[0], Ap.shape[1]), dtype=int)
         fplll_Ap.to_matrix(Ap)
         return Ap
 
@@ -324,7 +323,7 @@ class ContinuousReduction(object):
             raise ValueError("Initial matrix has already been set.")
         
         # Set the initial matrix and its dimensions
-        self.initial_matrix = initial_matrix.copy()
+        self.initial_matrix = initial_matrix.copy().astype(int)
         self.m, self.n = initial_matrix.shape
         self.bkz_block_sizes = [blocksize for blocksize in self.bkz_block_sizes if blocksize < self.m + self.n]
 
@@ -339,8 +338,8 @@ class ContinuousReduction(object):
         if self.use_priority:
             self.saved_reduced.initialize(vectors, priorities)
         else:
-            self.saved_reduced = vectors
-            self.saved_stds = priorities
+            self.saved_reduced = vectors.astype(int)
+            self.saved_stds = priorities.astype(int)
 
     def reduce(self, matrix_to_reduce, times=1):
         """ 

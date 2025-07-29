@@ -778,19 +778,19 @@ def pad_vectors_to_max(vectors_list):
     min_len = min(v.shape[0] for v in vectors_list)
 
     if max_len == min_len:
-        return np.stack(vectors_list)
+        return np.stack(vectors_list).astype(int)
     
     padded = []
     for v in vectors_list:
         pad_size = max_len - v.shape[0]
         if pad_size > 0:
-            padding = np.zeros((pad_size, v.shape[1]))
-            v_padded = np.vstack((v, padding))
+            padding = np.zeros((pad_size, v.shape[1]), dtype=int)
+            v_padded = np.vstack((v, padding)).astype(int)
         else:
             v_padded = v
         padded.append(v_padded)
 
-    return np.stack(padded) 
+    return np.stack(padded).astype(int)
 
 def parse_output_file(output_file):
     """Parse the output file and extract relevant statistics."""

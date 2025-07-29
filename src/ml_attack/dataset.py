@@ -28,7 +28,7 @@ import time
 
 import pickle
 
-from concurrent.futures import ProcessPoolExecutor
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 
 class LWEDataset():
     def __init__(self, params: dict):
@@ -383,7 +383,7 @@ class LWEDataset():
         n_jobs = get_slurm_cpu_count()
         n_jobs = min(n_jobs, num_matrices)  # Limit the number of jobs to the number of matrices
         current_time = start_time
-        with ProcessPoolExecutor(max_workers=n_jobs) as executor:
+        with ThreadPoolExecutor(max_workers=n_jobs) as executor:
             while True:
                 tour += 1
 
@@ -395,12 +395,12 @@ class LWEDataset():
                     R_reduced.append(R)
                     RC_reduced.append(arg[1])
 
-                self.R = pad_vectors_to_max(R_reduced)
-                self.RC = np.stack(RC_reduced)
+                self.R = pad_vectors_to_max(R_reduced).astype(int)
+                self.RC = np.stack(RC_reduced).astype(int)
 
                 if is_rlwe:
                     # Reduction was made using the RLWE/MLWE structure, so we can use the reduction circulants
-                    self.R = np.stack([np.stack([neg_circ(row).T for row in reduced_matrix]) for reduced_matrix in self.R])
+                    self.R = np.stack([np.stack([neg_circ(row).T for row in reduced_matrix]) for reduced_matrix in self.R]).astype(int)
                     
                 current_time = time.time()
 
@@ -408,9 +408,9 @@ class LWEDataset():
                 if save_strategy == "time" and current_time - last_save_time >= save_every:
                     # Save the reduced matrices and best matrices for further reduction
                     if self.params['reduction_max_size'] > 0:
-                        self.best_RC = pad_vectors_to_max([np.stack([item[2] for item in arg[0]['priority_queue']['heap']]) for arg in args])
+                        self.best_RC = pad_vectors_to_max([np.stack([item[2] for item in arg[0]['priority_queue']['heap']]) for arg in args]).astype(int)
                     else:
-                        self.best_RC = np.stack([arg[0]['best_matrix'] for arg in args])
+                        self.best_RC = np.stack([arg[0]['best_matrix'] for arg in args]).astype(int)
 
                     self.reduction_time = previous_reduction_time + current_time - start_time
 
@@ -419,15 +419,15 @@ class LWEDataset():
                 elif save_strategy == "tour" and tour % save_every == 0:
                     # Save the reduced matrices and best matrices for further reduction
                     if self.params['reduction_max_size'] > 0:
-                        self.best_RC = pad_vectors_to_max([np.stack([item[2] for item in arg[0]['priority_queue']['heap']]) for arg in args])
+                        self.best_RC = pad_vectors_to_max([np.stack([item[2] for item in arg[0]['priority_queue']['heap']]) for arg in args]).astype(int)
                     else:
-                        self.best_RC = np.stack([arg[0]['best_matrix'] for arg in args])
+                        self.best_RC = np.stack([arg[0]['best_matrix'] for arg in args]).astype(int)
 
                     self.reduction_time = previous_reduction_time + current_time - start_time
 
                     self.save_reduced(postfix=f'_{tour // save_every}')
 
-                self.RA = cmod(self.R @ A_to_reduce, self.mlwe.q)
+                self.RA = cmod(self.R @ A_to_reduce, self.mlwe.q).astype(int)
 
                 self.non_zero_indices = np.any(self.RA != 0, axis=2)
 
@@ -442,7 +442,7 @@ class LWEDataset():
                     if attack_strategy == "time":
                         last_attack_time = current_time
 
-                    self.RB = cmod(self.R @ B_to_reduce[..., np.newaxis], self.mlwe.q)
+                    self.RB = cmod(self.R @ B_to_reduce[..., np.newaxis], self.mlwe.q).astype(int)
                     self.RB = np.squeeze(self.RB, axis=-1)
 
                     found, guessed_secret = self.train()
@@ -456,9 +456,9 @@ class LWEDataset():
                             self.RC = np.stack([arg[1] for arg in args])
 
                             if self.params['reduction_max_size'] > 0:
-                                self.best_RC = pad_vectors_to_max([np.stack([item[2] for item in arg[0]['priority_queue']['heap']]) for arg in args])
+                                self.best_RC = pad_vectors_to_max([np.stack([item[2] for item in arg[0]['priority_queue']['heap']]) for arg in args]).astype(int)
                             else:
-                                self.best_RC = np.stack([arg[0]['best_matrix'] for arg in args])
+                                self.best_RC = np.stack([arg[0]['best_matrix'] for arg in args]).astype(int)
 
                             self.reduction_time = previous_reduction_time + current_time - start_time
                             self.save_reduced()
@@ -482,9 +482,9 @@ class LWEDataset():
             self.RC = np.stack([arg[1] for arg in args])
             
             if self.params['reduction_max_size'] > 0:
-                self.best_RC = pad_vectors_to_max([np.stack([item[2] for item in arg[0]['priority_queue']['heap']]) for arg in args])
+                self.best_RC = pad_vectors_to_max([np.stack([item[2] for item in arg[0]['priority_queue']['heap']]) for arg in args]).astype(int)
             else:
-                self.best_RC = np.stack([arg[0]['best_matrix'] for arg in args])
+                self.best_RC = np.stack([arg[0]['best_matrix'] for arg in args]).astype(int)
 
             self.reduction_time = previous_reduction_time + current_time - start_time
 
