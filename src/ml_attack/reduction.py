@@ -4,7 +4,7 @@ from fpylll import FPLLL, LLL, BKZ, GSO, IntegerMatrix
 from fpylll.algorithms.bkz2 import BKZReduction as BKZ2
 from subprocess import Popen, PIPE
 
-from ml_attack.utils import get_b_distribution
+from ml_attack.utils import get_b_distribution, polish
 
 FLOAT_UPGRADE = {
     "double": "long double",
@@ -14,49 +14,12 @@ FLOAT_UPGRADE = {
 }
 MAX_TIME_BKZ = 60  # 1 minute
 
-def polish(X, longtype=False):
-    if longtype:
-        X = X.astype(np.longdouble)
-    g, old = np.inner(X, X), np.inf  # Initialize the Gram matrix
-    while np.std(X) < old:
-        old = np.std(X)
-        # Calculate the projection coefficients
-        c = np.round(g / np.diag(g)).T.astype(int)
-        c[np.diag_indices(len(X))] = 0
-        c[np.diag(g) == 0] = 0
-
-        sq = np.diag(g) + c * ((c.T * np.diag(g)).T - 2 * g)  # doing l2 norm here
-        s = np.sum(sq, axis=1)  # Sum the squares. Can do other powers of norms
-        it = np.argmin(s)  # Determine which index minimizes the sum
-        X -= np.outer(c[it], X[it])  # Project off the it-th vector
-        g += np.outer(c[it], g[it][it] * c[it] - g[it]) - np.outer(
-            g[:, it], c[it]
-        )  # Update the Gram matrix
-    return X
-
 
 def calc_std(X, Q, m):
     # mat is in right half of matrix
     mat = X[:, m:] % Q
     mat[mat > Q // 2] -= Q
     return np.sqrt(12) * np.std(mat[np.any(mat != 0, axis=1)]) / Q
-
-
-# flatter functions
-def encode_intmat(intmat):
-    """will put in expected format for flatter input."""
-    fplll_Ap_encode = "[" + intmat.__str__() + "]"
-    fplll_Ap_encode = fplll_Ap_encode.encode()
-    return fplll_Ap_encode
-
-
-def decode_intmat(out):
-    """Decodes output intmat from flatter and puts it back in np.array form."""
-    t_str = out.rstrip().decode()[1:-1]
-    Ap = np.array(
-        [np.array(line[1:-1].split(" ")).astype(int) for line in t_str.split("\n")[:-1]]
-    )
-    return Ap
 
 
 class Reduction(object):
@@ -233,15 +196,18 @@ class Reduction(object):
         """
         self.log(f"Starting new flatter run.")
         fplll_Ap = IntegerMatrix.from_matrix(Ap.tolist())
-        fplll_Ap_encoded = encode_intmat(fplll_Ap)
+        fplll_Ap_encoded = "[" + fplll_Ap.__str__() + "]"
+        fplll_Ap_encoded = fplll_Ap_encoded.encode()
+        
         try:
             env = {**os.environ, "OMP_NUM_THREADS": "1"}
             p = Popen(["flatter", "-alpha", str(self.alpha)], stdin=PIPE, stdout=PIPE, env=env)
         except Exception as e:
             print(f"flatter failed with error {e}")
         out, _ = p.communicate(input=fplll_Ap_encoded)  # output from the flatter run.
-        Ap = decode_intmat(out)
 
+        t_str = out.rstrip().decode()[1:-1]
+        Ap = np.array([np.array(line[1:-1].split(" ")).astype(int) for line in t_str.split("\n")[:-1]])
         return Ap
 
     def run_bkz_once(self, Ap):
@@ -272,7 +238,6 @@ class Reduction(object):
         fplll_Ap = IntegerMatrix.from_matrix(Ap.tolist())
         bkz_params = BKZ.Param(self.bkz_block_size, delta=self.bkz_delta, max_time=MAX_TIME_BKZ)
         
-        # Run once.
         while True:
             try:
                 M = GSO.Mat(fplll_Ap, float_type=self.float_type, update=True)
@@ -281,8 +246,6 @@ class Reduction(object):
                 break
             except Exception as e:
                 print(e)
-                # for bkz2.0, this would catch the case where it needs more precision for floating point arithmetic
-                # for bkz, the package does not throw the error properly. Make sure to start with enough precision
                 if self.float_type in FLOAT_UPGRADE:
                     self.set_float_type(FLOAT_UPGRADE[self.float_type])
                     print(f"Upgrading float type to {self.float_type}")
@@ -294,10 +257,6 @@ class Reduction(object):
         fplll_Ap.to_matrix(Ap)
 
         return Ap
-
-    def run_lll_once(self, Ap):
-        # TODO this should run the LLL algo from fpylll
-        raise NotImplementedError("This is not implemented yet.")
     
     def solvable(self, A_red, A):
         """
