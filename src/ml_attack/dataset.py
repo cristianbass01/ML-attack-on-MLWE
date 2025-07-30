@@ -19,7 +19,8 @@ from ml_attack.utils import (
   get_optimal_sample_size,
   get_optimal_vector_norm,
   pad_vectors_to_max,
-  get_error_distribution
+  get_error_distribution,
+  std_to_prob
 )
 from ml_attack.lwe import neg_circ
 
@@ -383,7 +384,7 @@ class LWEDataset():
         n_jobs = get_slurm_cpu_count()
         n_jobs = min(n_jobs, num_matrices)  # Limit the number of jobs to the number of matrices
         current_time = start_time
-        with ThreadPoolExecutor(max_workers=n_jobs) as executor:
+        with ProcessPoolExecutor(max_workers=n_jobs) as executor:
             while True:
                 tour += 1
 
@@ -433,7 +434,9 @@ class LWEDataset():
 
                 if self.params['verbose']:
                     reduction_factor = np.mean(np.std(self.RA[self.non_zero_indices], axis=-1)) / np.mean(np.std(A_to_reduce, axis=-1))
-                    print(f"Tour {tour} | Time: {current_time - start_time:.2f}s | Mean std_B: {np.mean(self.get_b_distribution()[2]):.2f} | Reduction Factor: {reduction_factor:.4f}")
+                    std_b = np.mean(self.get_b_distribution()[2])
+                    prob = std_to_prob(std_b, self.mlwe.q)
+                    print(f"Tour {tour} | Time: {current_time - start_time:.2f}s | Mean std_B: {std_b:.2f} | Reduction Factor: {reduction_factor:.4f} | Prob: {prob:.4f}")
 
                 # Check if it's time to attack
                 if attack_strategy == "time" and current_time - last_attack_time >= attack_every or \

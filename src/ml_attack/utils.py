@@ -1,12 +1,13 @@
 from sympy import binomial, Integer
 from scipy.stats import binom
-from scipy.special import comb, erf
+from scipy.special import comb, erf, erfinv
 import hashlib
 import json
 import numpy as np
 from collections import defaultdict, Counter
 import re
 import ast
+import math 
 
 from typing import Optional, List, Dict, Any
 import os 
@@ -660,7 +661,7 @@ def get_train_default_params(
         lr: float = 0.0001,
         c_factor: float = 1.0,
         epsilon: float = 1.1,
-        max_iter: int = 20000,
+        max_iter: int = 15000,
         alpha: float = 0.0001,
         warm_start: bool = False,
         fit_intercept: bool = True,
@@ -772,6 +773,35 @@ def get_optimal_vector_norm(n, m, q, w, b):
     delta_0 = get_hermite_root_factor(b)
     d = n + m
     return (delta_0 ** d) * np.exp((n * np.log(q) + m * np.log(w)) / d)
+
+def prob_to_std(p: float, q: float) -> float:
+    """
+    Compute the minimum standard deviation of LWE noise (e)
+    such that Pr[|e| < q/2] = p, where e ~ N(0, sigma^2).
+    
+    Parameters:
+    - p: desired success probability (0 < p < 1)
+    - q: modulus (positive number)
+    
+    Returns:
+    - sigma: minimum standard deviation
+    """
+    if not (0 < p < 1):
+        raise ValueError("Probability p must be between 0 and 1 (exclusive).")
+    if q <= 0:
+        raise ValueError("Modulus q must be positive.")
+
+    sigma = q / (2 * math.sqrt(2) * erfinv(p))
+    return sigma
+
+def std_to_prob(sigma: float, q: float) -> float:
+    if sigma <= 0:
+        raise ValueError("Standard deviation sigma must be positive.")
+    if q <= 0:
+        raise ValueError("Modulus q must be positive.")
+
+    p = erf(q / (2 * math.sqrt(2) * sigma))
+    return p
 
 def pad_vectors_to_max(vectors_list):
     max_len = max(v.shape[0] for v in vectors_list)
