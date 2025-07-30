@@ -30,6 +30,7 @@ import time
 import pickle
 
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
+from pathlib import Path
 
 class LWEDataset():
     def __init__(self, params: dict):
@@ -185,18 +186,20 @@ class LWEDataset():
         n = self.params['n']
         k = self.params['k']
 
-        if self.params['reduction_factor'] is None:
+        if self.params['reduction_samples'] is None:
             block_sizes = self.params['bkz_block_sizes']
             if isinstance(block_sizes, str):
                 block_sizes = parse_range(block_sizes)
             last_block_size = block_sizes[-1]
             delta_0 = get_hermite_root_factor(last_block_size)
             m = get_optimal_sample_size(n * k, self.mlwe.q, self.params['penalty'], delta_0)
-        else:
-            m = int(self.params['reduction_factor'] * n * k)
+        elif 0 <= self.params['reduction_samples'] <= 1:
+            m = int(self.params['reduction_samples'] * n * k)
             if m == 0:
                 # Special case where need to process a row at a time
                 m = 1
+        else:
+            m = self.params['reduction_samples']
 
         n_rows_matrix = m + n * k
 
@@ -323,7 +326,7 @@ class LWEDataset():
 
         num_matrices = A_to_reduce.shape[0]
 
-        is_rlwe = self.params['k'] == 1 and self.params['reduction_factor'] == 1 and not self.params['reduction_resampling']
+        is_rlwe = self.params['k'] == 1 and self.params['reduction_samples'] == 1 and not self.params['reduction_resampling']
 
         # Use ThreadPoolExecutor to parallelize the reduction process
         if self.params['verbose']:
@@ -666,7 +669,6 @@ class LWEDataset():
 
             if 'RC' in loaded_data:
                 dataset.RC = loaded_data['RC']
-
                 try:
                     dataset.best_RC = loaded_data['best_RC']
                 
@@ -677,7 +679,7 @@ class LWEDataset():
                         n = A_to_reduce.shape[2]
                         dataset.R = np.stack([reduced_matrix[:, n:] / loaded_data['params']['penalty'] for reduced_matrix in dataset.best_RC])
 
-                    if not dataset.params['reduction_resampling'] and dataset.params['reduction_factor'] == 1:
+                    if dataset.params['k'] == 1 and dataset.params['reduction_samples'] == 1 and not dataset.params['reduction_resampling']:
                         dataset.R = np.stack([np.stack([neg_circ(row).T for row in reduced_matrix]) for reduced_matrix in dataset.R])
                         A_to_reduce = A_to_reduce[:, np.newaxis, :, :]
                 except:
@@ -689,8 +691,6 @@ class LWEDataset():
                     else:
                         n = A_to_reduce.shape[2]
                         dataset.R = np.stack([reduced_matrix[:, n:] / loaded_data['params']['penalty'] for reduced_matrix in dataset.RC])
-
-
             else:
                 dataset.R = loaded_data['R']
 
@@ -699,11 +699,11 @@ class LWEDataset():
             
             dataset.RA = cmod(dataset.R @ A_to_reduce, dataset.mlwe.q)
 
-            dataset.non_zero_indices = np.any(dataset.RA != 0, axis=2)
+            dataset.non_zero_indices = np.any(dataset.RA != 0, axis=-1)
 
             if dataset.B is not None:
                 B_to_reduce = np.stack([dataset.B[ind] for ind in dataset.indices])
-                if not dataset.params['reduction_resampling'] and dataset.params['reduction_factor'] == 1:
+                if dataset.params['k'] == 1 and dataset.params['reduction_samples'] == 1 and not dataset.params['reduction_resampling']:
                     B_to_reduce = B_to_reduce[:, np.newaxis, :]
 
                 dataset.RB = cmod(dataset.R @ B_to_reduce[..., np.newaxis], dataset.mlwe.q)
@@ -722,3 +722,71 @@ class LWEDataset():
             loaded_data = pickle.load(f)
 
         return loaded_data['params']
+
+    @classmethod
+    def load_reduced_from_salsa(cls, data_path, max_size=None):
+        """
+        Loads the dataset from a Salsa directory with:
+        - params.pkl: parameters of the dataset
+        - origA_n.._logq...npy: original A matrix
+        - data.prefix: reduced matrices
+        """
+        data_path = Path(data_path)
+
+        with open(data_path / "params.pkl", 'rb') as f:
+            loaded_params = pickle.load(f)
+
+        params = get_default_params()
+        
+        params['k'] = loaded_params['rlwe']
+        params['n'] = loaded_params['N'] // loaded_params['rlwe']
+        params['q'] = loaded_params['Q']
+        params['seed'] = loaded_params['seed']
+        params['secret_type'] = 'cbd' if loaded_params['secret_type'] == 'binomial' else loaded_params['secret_type']
+        params['eta'] = loaded_params['gamma']
+        params['gaussian_std'] = loaded_params['sigma']
+        params['hw'] = loaded_params['max_hamming']
+        params['error_type'] = 'cbd' if loaded_params['secret_type'] == 'binomial' else 'gaussian'
+        params['reduction_samples'] = loaded_params['m'] if loaded_params['m'] > 0 else 1
+        m = loaded_params['m'] if loaded_params['m'] > 0 else loaded_params['N']
+        params['reduction_resampling'] = True
+
+        # Create a new instance of the class
+        dataset = cls(params)
+
+        if params['k'] != 1:
+            orig_A_path = data_path / f"origA_n{params['n']}_k{params['k']}_logq{int(np.round(np.log2(params['q'])))}.npy"
+        else:
+            orig_A_path = data_path / f"origA_n{params['n']}_logq{int(np.round(np.log2(params['q'])))}.npy"
+
+        dataset.A = np.load(orig_A_path)
+        dataset.params['num_gen'] = dataset.A.shape[0] // (params['n'] * params['k'])
+
+        full_R = []
+        full_indices = []
+        with open(data_path / "data.prefix") as fd:
+            indices, RT = [], []
+            for line in fd:
+                if not line:
+                    continue
+
+                ind, r = line.strip().split(";")
+                indices.append(int(ind.strip()))
+                RT.append(np.array(r.split(), dtype=np.int64))
+                if len(indices) == m:
+                    full_indices.append(indices)
+                    full_R.append(np.array(RT).T)
+                    indices, RT = [], []
+                    if max_size is not None and len(full_R) >= max_size:
+                        break
+
+        dataset.R = np.stack(full_R)
+        dataset.indices = np.stack(full_indices)
+
+        A_to_reduce = np.stack([dataset.A[ind] for ind in dataset.indices])
+        dataset.RA = cmod(dataset.R @ A_to_reduce, dataset.mlwe.q)
+        dataset.non_zero_indices = np.any(dataset.RA != 0, axis=-1)
+
+        dataset.reduced = True
+
+        return dataset
