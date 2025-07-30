@@ -99,7 +99,7 @@ def get_vector_distribution(params : dict, vector_type : str, hw : int = -1) -> 
     - std: standard deviation of the distribution
     """
     n = params['n']
-    eta = params.get('eta', 2)  # used only for CBD
+    eta = params['eta']  # used only for CBD
 
     match vector_type:
         case 'binary':
@@ -117,6 +117,12 @@ def get_vector_distribution(params : dict, vector_type : str, hw : int = -1) -> 
                 var = 2.0 / 3.0
             else:
                 var = hw / n
+        
+        case 'gaussian':
+            mean = 0.0
+            var = params['gaussian_std'] ** 2
+            if hw > 0:
+                var *= hw / n
 
         case 'cbd':
             mean = 0.0
@@ -152,8 +158,6 @@ def get_b_distribution(params : dict, matrix, R = None) -> tuple:
     - var_b: variance of the distribution
     - std_b: standard deviation of the distribution
     """
-    n = params['n'] * params['k']
-
     if 'error_type' in params:
         mean_e, var_e, _ = get_vector_distribution(params, params['error_type'])
         if R is not None:
@@ -169,6 +173,7 @@ def get_b_distribution(params : dict, matrix, R = None) -> tuple:
         # In the binary case I have to take into account also the covariance matrix because 
         # the distribution does not have zero-mean (and so it is not simmetric)
         h = params['hw']
+        n = params['n'] * params['k']
         mean_b = (h / n) * matrix_sum + mean_e 
         scaling = (h * (n - h)) / (n * (n-1))
         var_b = scaling * (matrix_sq_sum - ((matrix_sum**2) / n)) + var_e
@@ -617,7 +622,7 @@ def get_continuous_reduction_default_params(
             # Parameters for the reduction algorithm
             float_type: str = 'd',
             matrix_config: str = 'dual',
-            reduction_factor: Optional[int] = None,
+            reduction_samples: Optional[int] = None,
             reduction_resampling: bool = True,
             min_samples: int = 0,
             num_matrices: int = 0,
@@ -637,7 +642,7 @@ def get_continuous_reduction_default_params(
     # Parameters for the reduction algorithm
     'float_type': float_type,
     'matrix_config': matrix_config,
-    'reduction_factor': reduction_factor,
+    'reduction_samples': reduction_samples,
     'reduction_resampling': reduction_resampling,
     'min_samples': min_samples,
     'num_matrices': num_matrices,
@@ -689,7 +694,8 @@ def get_train_default_params(
 
 def get_default_params():
     params = get_lwe_default_params()
-    params.update(get_reduction_default_params())
+    params.update(get_continuous_reduction_default_params())
+    params.update(get_train_default_params())
     return params
 
 def prob_all_seen(n, m, k):
