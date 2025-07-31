@@ -19,7 +19,8 @@ from ml_attack.utils import (
   get_optimal_sample_size,
   get_optimal_vector_norm,
   pad_vectors_to_max,
-  get_error_distribution
+  get_error_distribution,
+  std_to_prob
 )
 from ml_attack.lwe import neg_circ
 
@@ -386,7 +387,7 @@ class LWEDataset():
         n_jobs = get_slurm_cpu_count()
         n_jobs = min(n_jobs, num_matrices)  # Limit the number of jobs to the number of matrices
         current_time = start_time
-        with ThreadPoolExecutor(max_workers=n_jobs) as executor:
+        with ProcessPoolExecutor(max_workers=n_jobs) as executor:
             while True:
                 tour += 1
 
@@ -436,7 +437,9 @@ class LWEDataset():
 
                 if self.params['verbose']:
                     reduction_factor = np.mean(np.std(self.RA[self.non_zero_indices], axis=-1)) / np.mean(np.std(A_to_reduce, axis=-1))
-                    print(f"Tour {tour} | Time: {current_time - start_time:.2f}s | Mean std_B: {np.mean(self.get_b_distribution()[2]):.2f} | Reduction Factor: {reduction_factor:.4f}")
+                    std_b = np.mean(self.get_b_distribution()[2])
+                    prob = std_to_prob(std_b, self.mlwe.q)
+                    print(f"Tour {tour} | Time: {current_time - start_time:.2f}s | Mean std_B: {std_b:.2f} | Reduction Factor: {reduction_factor:.4f} | Prob: {prob:.4f}")
 
                 # Check if it's time to attack
                 if attack_strategy == "time" and current_time - last_attack_time >= attack_every or \
@@ -721,7 +724,7 @@ class LWEDataset():
         return loaded_data['params']
 
     @classmethod
-    def load_reduced_from_salsa(cls, data_path, max_size=None):
+    def load_reduced_from_salsa(cls, data_path, top_percent=1.0):
         """
         Loads the dataset from a Salsa directory with:
         - params.pkl: parameters of the dataset
@@ -758,6 +761,7 @@ class LWEDataset():
 
         dataset.A = np.load(orig_A_path)
         dataset.params['num_gen'] = dataset.A.shape[0] // (params['n'] * params['k'])
+        dataset.reduced = True
 
         full_R = []
         full_indices = []
@@ -771,11 +775,19 @@ class LWEDataset():
                 indices.append(int(ind.strip()))
                 RT.append(np.array(r.split(), dtype=np.int64))
                 if len(indices) == m:
+                    R = np.array(RT).T
+                    if top_percent < 1.0:
+                        # Select only the top percent of the rows
+                        num_rows = int(len(R) * top_percent)
+                        RA = cmod(R @ dataset.A[indices], dataset.mlwe.q)
+                        non_zero_indices = np.any(RA != 0, axis=-1)
+                        _, _, std_B = get_b_distribution(dataset.params, RA[non_zero_indices], R[non_zero_indices])
+                        sorted_indices = np.argsort(std_B)[:num_rows]
+                        R = R[sorted_indices]
+
                     full_indices.append(indices)
-                    full_R.append(np.array(RT).T)
+                    full_R.append(R)
                     indices, RT = [], []
-                    if max_size is not None and len(full_R) >= max_size:
-                        break
 
         dataset.R = np.stack(full_R)
         dataset.indices = np.stack(full_indices)
@@ -783,7 +795,5 @@ class LWEDataset():
         A_to_reduce = np.stack([dataset.A[ind] for ind in dataset.indices])
         dataset.RA = cmod(dataset.R @ A_to_reduce, dataset.mlwe.q)
         dataset.non_zero_indices = np.any(dataset.RA != 0, axis=-1)
-
-        dataset.reduced = True
 
         return dataset
