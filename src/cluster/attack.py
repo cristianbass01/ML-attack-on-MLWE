@@ -73,12 +73,13 @@ def main(updated_params, args):
         else:
             filename = get_filename_from_params(params)
         
-        if args.reload_from_salsa:
-            dataset = LWEDataset.load_reduced_from_salsa(filename, top_percent=0.1)
+        if args.reload_from_salsa is not None:
+            dataset = LWEDataset.load_reduced_from_salsa(filename, top_percent=args.reload_from_salsa)
         else:
             dataset = LWEDataset.load_reduced(filename)
         
         dataset.params.update(updated_params)
+        print(f"Dataset loaded with parameters: {dataset.params}")
 
     if len(args.train_secret_types) > 0:
         print("Performing attack on all secret types.")
@@ -86,7 +87,6 @@ def main(updated_params, args):
         print(f"Preprocessing time: {preprocessed_time:.2f} seconds")
 
         n = dataset.params['n']
-        num_repeats = 2
 
         for secret_type in args.train_secret_types:
             dataset.params['secret_type'] = secret_type
@@ -104,13 +104,13 @@ def main(updated_params, args):
             for hw in choosen_hw:
                 dataset.params['hw'] = hw
                 count = 0
-                for _ in range(num_repeats):
+                for _ in range(args.num_training_repeats):
                     dataset.initialize_secret()
                     found, _ = dataset.train()
                     if found:
                         count += 1
                 success_counter[hw] = count
-                print(f"Success rate for {secret_type} with hw={hw}: {count}/{num_repeats}")
+                print(f"Success rate for {secret_type} with hw={hw}: {count}/{args.num_training_repeats}")
             print(f"Success rates for {secret_type} secrets: {dict(success_counter)}")
 
 
@@ -128,7 +128,8 @@ if __name__ == "__main__":
     parser.add_argument('--reload', action='store_true', help='Reload the dataset from disk if it exists')
     parser.add_argument('--reload_from', type=str, default=None, help='Reload dataset from a specific file if it exists')
     parser.add_argument('--train_secret_types', nargs='+', default=[], help='Secret types to train on')
-    parser.add_argument('--reload_from_salsa', action='store_true', help='Reload dataset from Salsa if it exists')
+    parser.add_argument('--reload_from_salsa', type=float, default=1.0, help='Reload dataset from Salsa with top 1% of samples')
+    parser.add_argument('--num_training_repeats', type=int, default=10, help='Number of training repeats for each hw of each secret type')
 
     args = parser.parse_args()
 

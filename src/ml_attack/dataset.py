@@ -563,6 +563,9 @@ class LWEDataset():
                                                 error_std = error_std[selected_indices])
             if found:
                 return True, guessed_secret
+            elif np.all(guessed_secret == self.secret):
+                print("Warning: Guessed secret is equal to the real secret, but it is not checked correctly.")
+                return True, guessed_secret
             
         return False, None
 
