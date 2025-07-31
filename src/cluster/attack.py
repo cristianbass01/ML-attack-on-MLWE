@@ -60,15 +60,6 @@ def main(updated_params, args):
         if 'seed' in params and params['seed'] is not None and args.num_attacks > 1:
             params['seed'] += 1  # Increment seed for each attack
 
-    if args.num_attacks == 0:
-        if args.reload_from:
-            filename = args.reload_from
-        else:
-            filename = get_filename_from_params(params)
-        
-        dataset = LWEDataset.load_reduced(filename)
-        dataset.params.update(updated_params)
-
     if len(attack_times) > 1:
         mean_attack_time = np.mean(attack_times)
         std_attack_time = np.std(attack_times)
@@ -76,14 +67,26 @@ def main(updated_params, args):
         print(f"Mean attack time: {mean_attack_time}")
         print(f"Standard deviation of attack time: {std_attack_time}")
 
+    if args.num_attacks == 0:
+        if args.reload_from is not None:
+            filename = args.reload_from
+        else:
+            filename = get_filename_from_params(params)
+        
+        if args.reload_from_salsa:
+            dataset = LWEDataset.load_reduced_from_salsa(filename, top_percent=0.1)
+        else:
+            dataset = LWEDataset.load_reduced(filename)
+        
+        dataset.params.update(updated_params)
+
     if len(args.train_secret_types) > 0:
         print("Performing attack on all secret types.")
         preprocessed_time = dataset.reduction_time
         print(f"Preprocessing time: {preprocessed_time:.2f} seconds")
 
         n = dataset.params['n']
-        dataset.params['verbose'] = False
-        num_repeats = 10
+        num_repeats = 2
 
         for secret_type in args.train_secret_types:
             dataset.params['secret_type'] = secret_type
@@ -107,6 +110,7 @@ def main(updated_params, args):
                     if found:
                         count += 1
                 success_counter[hw] = count
+                print(f"Success rate for {secret_type} with hw={hw}: {count}/{num_repeats}")
             print(f"Success rates for {secret_type} secrets: {dict(success_counter)}")
 
 
@@ -124,6 +128,7 @@ if __name__ == "__main__":
     parser.add_argument('--reload', action='store_true', help='Reload the dataset from disk if it exists')
     parser.add_argument('--reload_from', type=str, default=None, help='Reload dataset from a specific file if it exists')
     parser.add_argument('--train_secret_types', nargs='+', default=[], help='Secret types to train on')
+    parser.add_argument('--reload_from_salsa', action='store_true', help='Reload dataset from Salsa if it exists')
 
     args = parser.parse_args()
 
