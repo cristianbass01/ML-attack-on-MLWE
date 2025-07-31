@@ -442,6 +442,15 @@ def check_secret(guessed_secret, A, B, params):
             return np.allclose(e, np.zeros_like(e) + 0.5, atol=0.5)
         case 'ternary':
             return np.allclose(e, np.zeros_like(e), atol=1)
+        case 'gaussian':
+            expected_std = params['gaussian_std']
+            actual_mean = np.mean(e)
+            actual_std = np.std(e)
+
+            mean_close = np.abs(actual_mean) < expected_std * 0.1
+            std_close = np.abs(actual_std - expected_std) < expected_std * 0.2
+
+            return mean_close and std_close
         case 'cbd':
             return np.allclose(e, np.zeros_like(e), atol=params['eta'])
         case _:

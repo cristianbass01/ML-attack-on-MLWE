@@ -721,7 +721,7 @@ class LWEDataset():
         return loaded_data['params']
 
     @classmethod
-    def load_reduced_from_salsa(cls, data_path, max_size=None):
+    def load_reduced_from_salsa(cls, data_path, top_percent=1.0):
         """
         Loads the dataset from a Salsa directory with:
         - params.pkl: parameters of the dataset
@@ -758,6 +758,7 @@ class LWEDataset():
 
         dataset.A = np.load(orig_A_path)
         dataset.params['num_gen'] = dataset.A.shape[0] // (params['n'] * params['k'])
+        dataset.reduced = True
 
         full_R = []
         full_indices = []
@@ -771,11 +772,19 @@ class LWEDataset():
                 indices.append(int(ind.strip()))
                 RT.append(np.array(r.split(), dtype=np.int64))
                 if len(indices) == m:
+                    R = np.array(RT).T
+                    if top_percent < 1.0:
+                        # Select only the top percent of the rows
+                        num_rows = int(len(R) * top_percent)
+                        RA = cmod(R @ dataset.A[indices], dataset.mlwe.q)
+                        non_zero_indices = np.any(RA != 0, axis=-1)
+                        _, _, std_B = get_b_distribution(dataset.params, RA[non_zero_indices], R[non_zero_indices])
+                        sorted_indices = np.argsort(std_B)[:num_rows]
+                        R = R[sorted_indices]
+
                     full_indices.append(indices)
-                    full_R.append(np.array(RT).T)
+                    full_R.append(R)
                     indices, RT = [], []
-                    if max_size is not None and len(full_R) >= max_size:
-                        break
 
         dataset.R = np.stack(full_R)
         dataset.indices = np.stack(full_indices)
@@ -783,7 +792,5 @@ class LWEDataset():
         A_to_reduce = np.stack([dataset.A[ind] for ind in dataset.indices])
         dataset.RA = cmod(dataset.R @ A_to_reduce, dataset.mlwe.q)
         dataset.non_zero_indices = np.any(dataset.RA != 0, axis=-1)
-
-        dataset.reduced = True
 
         return dataset
