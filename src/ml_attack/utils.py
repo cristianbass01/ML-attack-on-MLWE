@@ -13,7 +13,6 @@ from typing import Optional, List, Dict, Any
 import os 
 from sklearn.linear_model import HuberRegressor, RANSACRegressor
 from sklearn.metrics import confusion_matrix, classification_report
-from sklearnex import patch_sklearn
 from sklearn.preprocessing import StandardScaler
 
 import time
@@ -300,25 +299,20 @@ class TukeyRegressor:
         self.tol = tol
         self.max_iter = max_iter
         self.fit_intercept = fit_intercept
-
+    
     def tukey_loss_derivative(self, r):
-        abs_r = np.abs(r)
-        mask = abs_r <= self.c
-        grad = np.zeros_like(r)
-        grad[mask] = r[mask] * (1 - (r[mask]/self.c)**2)**2
-        return -grad
+        return -np.where(np.abs(r) <= self.c, r * (1 - (r/self.c)**2)**2, 0.0)
     
     def fit(self, X, y):
         if self.fit_intercept:
-            X = np.c_[np.ones(X.shape[0]), X] # Add intercept
-        
+            X = np.c_[np.ones(X.shape[0]), X]
+
         self.coef_ = np.zeros(X.shape[1])
 
-        for i in range(self.max_iter):
-            y_pred = X @ self.coef_
-            residuals = y - y_pred
-            grad = X.T @ self.tukey_loss_derivative(residuals)
-            self.coef_ -= self.lr * grad / len(y)
+        for _ in range(self.max_iter):
+            residuals = y - X @ self.coef_
+            grad = X.T @ self.tukey_loss_derivative(residuals) / len(y)
+            self.coef_ -= self.lr * grad
             if np.max(np.abs(grad)) <= self.tol:
                 break
 
@@ -328,8 +322,6 @@ class TukeyRegressor:
         return self
     
 def train_model(dataset, A, b, error_std=None):
-    patch_once()
-
     if dataset.params['model'] == 'tukey':
         c_q = dataset.params['q'] / 2
         c_r = dataset.params['c_factor'] * np.mean(error_std)
@@ -340,6 +332,8 @@ def train_model(dataset, A, b, error_std=None):
                                max_iter=dataset.params['max_iter'],
                                fit_intercept=dataset.params['fit_intercept'])
     elif dataset.params['model'] == 'huber':
+        patch_once()
+
         # Scale
         scaler = StandardScaler()
         A_scaled = scaler.fit_transform(A)
@@ -376,6 +370,7 @@ def train_model(dataset, A, b, error_std=None):
         if dataset.params['verbose']:
             print(f"Using RANSAC with min_samples={min_samples}, residual_threshold={residual_threshold}, max_trials={optimal_max_trials}")
 
+        patch_once()
         model = RANSACRegressor(model, 
                                 min_samples=min_samples, 
                                 residual_threshold=residual_threshold,
@@ -678,7 +673,7 @@ def get_train_default_params(
         max_iter: int = 15000,
         alpha: float = 0.0001,
         warm_start: bool = False,
-        fit_intercept: bool = True,
+        fit_intercept: bool = False,
         tol: float = 0.0001,
         use_ransac: bool = False,
         residual_factor: Optional[float] = 1.5,
