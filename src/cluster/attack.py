@@ -107,6 +107,7 @@ def main(updated_params, args):
                     if found:
                         count += 1
                 success_counter[hw] = count
+                print(f"Success for hw: {hw} = {count}/{num_repeats}")
             print(f"Success rates for {secret_type} secrets: {dict(success_counter)}")
 
 
