@@ -13,8 +13,11 @@ from typing import Optional, List, Dict, Any
 import os 
 from sklearn.linear_model import HuberRegressor, RANSACRegressor
 from sklearn.metrics import confusion_matrix, classification_report
-from sklearnex import patch_sklearn
 from sklearn.preprocessing import StandardScaler
+
+from statsmodels.robust.norms import TukeyBiweight, TrimmedMean
+from statsmodels.robust.robust_linear_model import RLM
+import statsmodels.api as sm
 
 import time
 
@@ -293,53 +296,22 @@ def compute_max_trials(confidence, p, min_samples, max_cap=10000):
     except:
         return max_cap
     
-class TukeyRegressor:
-    def __init__(self, c = 4.685, lr = 0.0001, tol=0.00001, max_iter=1000, fit_intercept=True):
-        self.c = c
-        self.lr = lr
-        self.tol = tol
-        self.max_iter = max_iter
-        self.fit_intercept = fit_intercept
-
-    def tukey_loss_derivative(self, r):
-        abs_r = np.abs(r)
-        mask = abs_r <= self.c
-        grad = np.zeros_like(r)
-        grad[mask] = r[mask] * (1 - (r[mask]/self.c)**2)**2
-        return -grad
-    
-    def fit(self, X, y):
-        if self.fit_intercept:
-            X = np.c_[np.ones(X.shape[0]), X] # Add intercept
-        
-        self.coef_ = np.zeros(X.shape[1])
-
-        for i in range(self.max_iter):
-            y_pred = X @ self.coef_
-            residuals = y - y_pred
-            grad = X.T @ self.tukey_loss_derivative(residuals)
-            self.coef_ -= self.lr * grad / len(y)
-            if np.max(np.abs(grad)) <= self.tol:
-                break
-
-        if self.fit_intercept:
-            self.intercept_ = self.coef_[0]
-            self.coef_ = self.coef_[1:]
-        return self
     
 def train_model(dataset, A, b, error_std=None):
-    patch_once()
-
     if dataset.params['model'] == 'tukey':
-        c_q = dataset.params['q'] / 2
-        c_r = dataset.params['c_factor'] * np.mean(error_std)
-        best_c = min(c_q, c_r)
-        model = TukeyRegressor(c=best_c,
-                               lr=dataset.params['lr'], 
-                               tol=dataset.params['tol'],
-                               max_iter=dataset.params['max_iter'],
-                               fit_intercept=dataset.params['fit_intercept'])
+        #model = TukeyRegressor(c=best_c,
+        #                       lr=dataset.params['lr'], 
+        #                       tol=dataset.params['tol'],
+        #                       max_iter=dataset.params['max_iter'],
+        #                       fit_intercept=dataset.params['fit_intercept'])
+        if dataset.params['fit_intercept']:
+            A = sm.add_constant(A)
+
+        model = RLM(b, A, M=TukeyBiweight(c=dataset.params['c_factor']))
+
     elif dataset.params['model'] == 'huber':
+        patch_once()
+
         # Scale
         scaler = StandardScaler()
         A_scaled = scaler.fit_transform(A)
@@ -376,6 +348,7 @@ def train_model(dataset, A, b, error_std=None):
         if dataset.params['verbose']:
             print(f"Using RANSAC with min_samples={min_samples}, residual_threshold={residual_threshold}, max_trials={optimal_max_trials}")
 
+        patch_once()
         model = RANSACRegressor(model, 
                                 min_samples=min_samples, 
                                 residual_threshold=residual_threshold,
@@ -386,7 +359,19 @@ def train_model(dataset, A, b, error_std=None):
         raw_secret = raw_secret_scaled / scaler.scale_
     else:
         if dataset.params['model'] == 'tukey':
-            raw_secret = model.fit(A, b).coef_
+            #raw_secret = model.fit(A, b).coef_
+            expected_s, _, std_s = get_vector_distribution(dataset.params, dataset.params['secret_type'], dataset.params['hw'])
+            start_params = np.random.normal(loc=expected_s, scale=std_s, size=A.shape[1])
+            results = model.fit(maxiter=dataset.params['max_iter'], 
+                                tol=dataset.params['tol'], 
+                                start_params=start_params,
+                                conv='coefs')
+
+            if dataset.params['fit_intercept']:
+                raw_secret = results.params[1:]
+            else:
+                raw_secret = results.params
+
         elif dataset.params['model'] == 'huber':
             raw_secret_scaled = model.fit(A_scaled, b).coef_
             raw_secret = raw_secret_scaled / scaler.scale_
@@ -678,7 +663,7 @@ def get_train_default_params(
         max_iter: int = 15000,
         alpha: float = 0.0001,
         warm_start: bool = False,
-        fit_intercept: bool = True,
+        fit_intercept: bool = False,
         tol: float = 0.0001,
         use_ransac: bool = False,
         residual_factor: Optional[float] = 1.5,
