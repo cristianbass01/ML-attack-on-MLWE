@@ -150,3 +150,31 @@ class TukeyLinearRegressor(nn.Module):
 
         return self
     
+class TukeyRegressor:
+    def __init__(self, c = 4.685, lr = 0.0001, tol=0.00001, max_iter=1000, fit_intercept=True):
+        self.c = c
+        self.lr = lr
+        self.tol = tol
+        self.max_iter = max_iter
+        self.fit_intercept = fit_intercept
+    
+    def tukey_loss_derivative(self, r):
+        return -np.where(np.abs(r) <= self.c, r * (1 - (r/self.c)**2)**2, 0.0)
+    
+    def fit(self, X, y):
+        if self.fit_intercept:
+            X = np.c_[np.ones(X.shape[0]), X]
+
+        self.coef_ = np.zeros(X.shape[1])
+
+        for _ in range(self.max_iter):
+            residuals = y - X @ self.coef_
+            grad = X.T @ self.tukey_loss_derivative(residuals) / len(y)
+            self.coef_ -= self.lr * grad
+            if np.max(np.abs(grad)) <= self.tol:
+                break
+
+        if self.fit_intercept:
+            self.intercept_ = self.coef_[0]
+            self.coef_ = self.coef_[1:]
+        return self
