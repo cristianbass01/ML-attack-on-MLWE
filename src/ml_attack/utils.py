@@ -297,7 +297,7 @@ def compute_max_trials(confidence, p, min_samples, max_cap=10000):
         return max_cap
     
     
-def train_model(dataset, A, b, error_std=None):
+def train_model(dataset, A, b):
     if dataset.params['model'] == 'tukey':
         #model = TukeyRegressor(c=best_c,
         #                       lr=dataset.params['lr'], 

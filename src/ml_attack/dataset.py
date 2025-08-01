@@ -534,7 +534,6 @@ class LWEDataset():
 
         A_reduced = self.get_A()
         best_b = self.best_b
-        error_std = self.get_error_distribution()[2]
 
         if self.params['verbose']:
             b_real = get_no_mod(self.params, A_reduced, self.secret, self.get_B())
@@ -547,20 +546,11 @@ class LWEDataset():
             if self.params['verbose']:
                 exact_candidates = np.sum(best_b[selected_indices] == b_real[selected_indices])
                 total_selection = len(selected_indices)
+                print(f"[BEST {int(p*100)}% STD] True B is the best candidate: {exact_candidates} / {total_selection} ({100 * exact_candidates / total_selection:.2f}%)")
 
-                expected_success_rate = np.mean([max(probs) for i, probs in enumerate(self.b_probs) if i in selected_indices])
-
-                if p == 1:
-                    print(f"True B is the best candidate: {exact_candidates} / {total_selection} ({100 * exact_candidates / total_selection:.2f}%)")
-                    print(f"Expected true B is best candidate: {100 * expected_success_rate:.2f}%")
-                else:
-                    print(f"[BEST {int(p*100)}% STD] True B is the best candidate: {exact_candidates} / {total_selection} ({100 * exact_candidates / total_selection:.2f}%)")
-                    print(f"[BEST {int(p*100)}% STD] Expected true B is best candidate: {100 * expected_success_rate:.2f}%")
-                
-            found, guessed_secret = train_model(self, 
+            found, guessed_secret = train_model(self,
                                                 A = A_reduced[selected_indices],
-                                                b = best_b[selected_indices],
-                                                error_std = error_std[selected_indices])
+                                                b = best_b[selected_indices])
             if found:
                 return True, guessed_secret
             elif np.all(guessed_secret == self.secret):
