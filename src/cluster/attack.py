@@ -5,10 +5,21 @@ import numpy as np
 sys.path.append(os.path.abspath(os.path.join(os.getcwd(), '..')))
 
 from ml_attack.dataset import LWEDataset
-from ml_attack.utils import get_lwe_default_params, get_continuous_reduction_default_params, get_filename_from_params, get_train_default_params
+from ml_attack.utils import get_lwe_default_params, get_continuous_reduction_default_params, get_filename_from_params, get_train_default_params, parse_range
 
 from collections import Counter
 
+def get_hw_range(n, secret_type, args):
+    if args.hw_range:
+        return parse_range(args.hw_range)
+    if secret_type == 'binary':
+        return range(1, n // 2 + 1)
+    elif secret_type == 'ternary':
+        return range(1, n // 3 + 1)
+    elif secret_type == 'cbd':
+        return range(1, int(n * 0.3125) + 1)
+    else:
+        return []
 
 def main(updated_params, args):
     params = get_lwe_default_params()
@@ -92,13 +103,7 @@ def main(updated_params, args):
             dataset.params['secret_type'] = secret_type
             dataset.params['seed'] = None
             dataset.params['eta'] = 2 if secret_type == 'cbd' else 3
-
-            if secret_type == 'binary':
-                choosen_hw = range(1, n // 2 + 1)
-            elif secret_type == 'ternary':
-                choosen_hw = range(1, n // 3 + 1)
-            elif secret_type == 'cbd':
-                choosen_hw = range(1, int(n * 0.3125) + 1)
+            choosen_hw = get_hw_range(n, secret_type, args)
 
             success_counter = Counter()
             for hw in choosen_hw:
@@ -130,6 +135,7 @@ if __name__ == "__main__":
     parser.add_argument('--train_secret_types', nargs='+', default=[], help='Secret types to train on')
     parser.add_argument('--reload_from_salsa', type=float, default=1.0, help='Reload dataset from Salsa with top 1% of samples')
     parser.add_argument('--num_training_repeats', type=int, default=10, help='Number of training repeats for each hw of each secret type')
+    parser.add_argument('--hw_range', type=str, default=None, help='Specific range of hw to try, formatted as start:end:step (e.g., "1:10:1")')
 
     args = parser.parse_args()
 
