@@ -312,7 +312,7 @@ class ContinuousReduction(object):
                     self.log(f"- Updating BKZ block size from {self.bkz_block_sizes[self.bkz_block_size_idx]} to {self.bkz_block_sizes[new_idx]}.")
                     updated = True
                 elif self.no_improvements > self.lookback:
-                    self.block_sizes[self.bkz_block_size_idx] += 1
+                    self.bkz_block_sizes[self.bkz_block_size_idx] += 1
                     self.log(f"- No improvements for {self.no_improvements} steps, increasing block size to {self.bkz_block_sizes[self.bkz_block_size_idx]}.")
                     updated = True
 
