@@ -256,10 +256,10 @@ class ContinuousReduction(object):
     
     def control(self, Ap):
         """ Save the best lines of the reduced matrix to a checkpoint file. """
-        R = self.get_R(self.initial_matrix)
+        R = self.get_R(Ap)
 
         # Compute RA
-        RA = cmod(np.tensordot(R, Ap, axes=1), self.q)
+        RA = cmod(np.tensordot(R, self.initial_matrix, axes=1), self.q)
 
         _, _, std_b = get_b_distribution(self.params, RA, R)
         
