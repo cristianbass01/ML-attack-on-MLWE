@@ -254,9 +254,9 @@ class ContinuousReduction(object):
     #    fplll_Ap.to_matrix(Ap)
     #    return Ap
     
-    def control(self, Ap):
+    def control(self, A_red):
         """ Save the best lines of the reduced matrix to a checkpoint file. """
-        R = self.get_R(Ap)
+        R = self.get_R(A_red)
 
         # Compute RA
         RA = cmod(np.tensordot(R, self.initial_matrix, axes=1), self.q)
@@ -268,10 +268,10 @@ class ContinuousReduction(object):
         algo_name = "flatter" if self.flatter_countdown > 0 else f"bkz2.0_{self.bkz_block_sizes[self.bkz_block_size_idx]}"
         
         if self.use_priority:
-            num_updates = self.saved_reduced.add_batch(self.initial_matrix[non_zero_indiced], std_b[non_zero_indiced])
+            num_updates = self.saved_reduced.add_batch(A_red[non_zero_indiced], std_b[non_zero_indiced])
         elif self.saved_stds is None:
             self.saved_stds = std_b
-            self.saved_reduced = self.initial_matrix
+            self.saved_reduced = A_red
             num_updates = len(std_b)
         else:
             # Identify indices where std_b < self.saved_stds, ignoring std_b items that are 0.
@@ -284,7 +284,7 @@ class ContinuousReduction(object):
             better_indices = np.unique(np.concatenate((better_indices, zero_best_indices)))
             num_updates = len(better_indices)
             if num_updates > 0:
-                self.saved_reduced[better_indices] = self.initial_matrix[better_indices]
+                self.saved_reduced[better_indices] = A_red[better_indices]
                 self.saved_stds[better_indices] = std_b[better_indices]
 
         self.log(f"- Algo: {algo_name} | Updated {num_updates}/{len(non_zero_indiced)} | Mean std_B: {np.mean(std_b[non_zero_indiced]):.2f}")
