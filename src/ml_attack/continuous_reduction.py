@@ -42,6 +42,7 @@ class ContinuousReduction(object):
         self.set_float_type(self.params["float_type"])
 
         self.no_improvements = 0
+        self.n_stall = 0
         self.lookback = self.params["lookback"]
 
         # Warm-up using flatter
@@ -90,6 +91,7 @@ class ContinuousReduction(object):
         if self.flatter_countdown > 0:
             self.flatter_countdown -= 1
             if self.flatter_countdown == 0:
+                self.n_stall = 0
                 self.no_improvements = 0
                 self.steps_same_algo = 0
                 
@@ -251,13 +253,13 @@ class ContinuousReduction(object):
     #    Ap = np.zeros((Ap.shape[0], Ap.shape[1]), dtype=np.int64)
     #    fplll_Ap.to_matrix(Ap)
     #    return Ap
-
-    def save_best_std(self, A_red, A):
+    
+    def control(self, Ap):
         """ Save the best lines of the reduced matrix to a checkpoint file. """
-        R = self.get_R(A_red)
+        R = self.get_R(self.initial_matrix)
 
         # Compute RA
-        RA = cmod(np.tensordot(R, A, axes=1), self.q)
+        RA = cmod(np.tensordot(R, Ap, axes=1), self.q)
 
         _, _, std_b = get_b_distribution(self.params, RA, R)
         
@@ -266,10 +268,10 @@ class ContinuousReduction(object):
         algo_name = "flatter" if self.flatter_countdown > 0 else f"bkz2.0_{self.bkz_block_sizes[self.bkz_block_size_idx]}"
         
         if self.use_priority:
-            num_updates = self.saved_reduced.add_batch(A_red[non_zero_indiced], std_b[non_zero_indiced])
+            num_updates = self.saved_reduced.add_batch(self.initial_matrix[non_zero_indiced], std_b[non_zero_indiced])
         elif self.saved_stds is None:
             self.saved_stds = std_b
-            self.saved_reduced = A_red
+            self.saved_reduced = self.initial_matrix
             num_updates = len(std_b)
         else:
             # Identify indices where std_b < self.saved_stds, ignoring std_b items that are 0.
@@ -282,37 +284,48 @@ class ContinuousReduction(object):
             better_indices = np.unique(np.concatenate((better_indices, zero_best_indices)))
             num_updates = len(better_indices)
             if num_updates > 0:
-                self.saved_reduced[better_indices] = A_red[better_indices]
+                self.saved_reduced[better_indices] = self.initial_matrix[better_indices]
                 self.saved_stds[better_indices] = std_b[better_indices]
 
         self.log(f"- Algo: {algo_name} | Updated {num_updates}/{len(non_zero_indiced)} | Mean std_B: {np.mean(std_b[non_zero_indiced]):.2f}")
         
         if num_updates/len(non_zero_indiced) >= 0.1:
-            return True
-        else:
-            return False
-    
-    def control(self, Ap):
-        # Check if it got better and save the checkpoint
-        if self.save_best_std(Ap, self.initial_matrix):
+            self.n_stall = 0
             self.no_improvements = 0
         else:
-            self.no_improvements += 1
+            self.n_stall += 1
+            if num_updates <= 1:
+                self.no_improvements += 1
+            else:
+                self.no_improvements = 0
 
         # If we stalled for too long, update the algorithm.
-        if self.steps_same_algo > self.lookback and self.no_improvements > self.lookback:
-            self.steps_same_algo = 0
-            self.no_improvements = 0
+        if self.steps_same_algo > self.lookback and self.n_stall > self.lookback:
+            updated = False
             if self.flatter_countdown > 0:
                 self.log(f"- Flatter stall after: {self.flatter_countdown}, updating...")
                 self.flatter_countdown = 0
+                updated = True
             else:
                 new_idx = min(self.bkz_block_size_idx + 1, len(self.bkz_block_sizes) - 1)
                 if new_idx != self.bkz_block_size_idx:
                     self.log(f"- Updating BKZ block size from {self.bkz_block_sizes[self.bkz_block_size_idx]} to {self.bkz_block_sizes[new_idx]}.")
+                    updated = True
+                elif self.no_improvements > self.lookback:
+                    self.block_sizes[self.bkz_block_size_idx] += 1
+                    self.log(f"- No improvements for {self.no_improvements} steps, increasing block size to {self.bkz_block_sizes[self.bkz_block_size_idx]}.")
+                    updated = True
+
                 self.bkz_block_size_idx = new_idx
 
-                self.flatter_countdown = self.interleaved_steps
+                if self.interleaved_steps > 0:
+                    self.flatter_countdown = self.interleaved_steps
+                    updated = True
+
+            if updated:
+                self.steps_same_algo = 0
+                self.n_stall = 0
+                self.no_improvements = 0
 
     def initialize_matrix(self, initial_matrix):
         """
@@ -379,6 +392,7 @@ class ContinuousReduction(object):
         return {
             "params": self.params,
             "float_type": self.float_type,
+            "n_stall": self.n_stall,
             "no_improvements": self.no_improvements,
             "warmup_countdown": self.flatter_countdown,
             "bkz_block_size_idx": self.bkz_block_size_idx,
@@ -398,6 +412,7 @@ class ContinuousReduction(object):
         """
         obj = cls(state["params"])
         obj.set_float_type(state["float_type"])
+        obj.n_stall = state["n_stall"]
         obj.no_improvements = state["no_improvements"]
         obj.flatter_countdown = state["warmup_countdown"]
         obj.bkz_block_size_idx = state["bkz_block_size_idx"]
