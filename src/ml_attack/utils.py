@@ -103,7 +103,6 @@ def get_vector_distribution(params : dict, vector_type : str, hw : int = -1) -> 
     - std: standard deviation of the distribution
     """
     n = params['n']
-    eta = params['eta']  # used only for CBD
 
     match vector_type:
         case 'binary':
@@ -129,6 +128,7 @@ def get_vector_distribution(params : dict, vector_type : str, hw : int = -1) -> 
                 var *= hw / n
 
         case 'cbd':
+            eta = params['eta']  # used only for CBD
             mean = 0.0
             if hw <= 0:
                 var = eta / 2
