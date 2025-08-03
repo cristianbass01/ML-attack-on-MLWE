@@ -363,6 +363,15 @@ class LWEDataset():
         start_time = time.time()
         previous_reduction_time = self.reduction_time
 
+        if attack_strategy == "hour":
+            attack_every *= 3600
+            attack_strategy = "time"
+        elif attack_strategy == "minute":
+            attack_every *= 60
+            attack_strategy = "time"
+        elif attack_strategy == "second":
+            attack_strategy = "time"
+
         if save_strategy == "hour":
             save_every *= 3600
             save_strategy = "time"
