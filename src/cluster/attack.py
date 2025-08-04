@@ -5,19 +5,20 @@ import numpy as np
 sys.path.append(os.path.abspath(os.path.join(os.getcwd(), '..')))
 
 from ml_attack.dataset import LWEDataset
-from ml_attack.utils import get_lwe_default_params, get_continuous_reduction_default_params, get_filename_from_params, get_train_default_params, parse_range
+from ml_attack.utils import get_lwe_default_params, get_continuous_reduction_default_params, get_filename_from_params, get_train_default_params, parse_range, cbd_expected_hamming_weight
 
 from collections import Counter
 
-def get_hw_range(n, secret_type, args):
+def get_hw_range(params, args):
+    n = params['n']
     if args.hw_range:
         return parse_range(args.hw_range)
-    if secret_type == 'binary':
+    if params['secret_type'] == 'binary':
         return range(1, n // 2 + 1)
-    elif secret_type == 'ternary':
-        return range(1, n // 3 + 1)
-    elif secret_type == 'cbd':
-        return range(1, int(n * 0.3125) + 1)
+    elif params['secret_type'] == 'ternary':
+        return range(1, 2 * (n // 3) + 1)
+    elif params['secret_type'] == 'cbd':
+        return range(1, cbd_expected_hamming_weight(n, params['eta']) + 1)
     else:
         return []
 
