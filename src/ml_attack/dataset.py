@@ -193,6 +193,7 @@ class LWEDataset():
             last_block_size = block_sizes[-1]
             delta_0 = get_hermite_root_factor(last_block_size)
             m = get_optimal_sample_size(n * k, self.mlwe.q, self.params['penalty'], delta_0)
+            m = max(m, int(0.5 * n * k)) # Ensure at least 50% of the rows are sampled
         elif 0 <= self.params['reduction_samples'] <= 1:
             m = int(self.params['reduction_samples'] * n * k)
             if m == 0:

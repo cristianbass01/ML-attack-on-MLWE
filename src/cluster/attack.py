@@ -123,6 +123,8 @@ def main(updated_params, args):
                     found, _ = dataset.train()
                     if found:
                         success_counter[real_hw] += 1
+                        if real_hw == hw:
+                            break
 
                 success_rates = [
                     f"{hw}: {success_counter[hw]}/{train_counter[hw]} ({success_counter[hw] / train_counter[hw] if train_counter[hw] > 0 else 0:.2f})"

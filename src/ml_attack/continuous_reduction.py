@@ -6,6 +6,7 @@ from subprocess import Popen, PIPE
 
 from ml_attack.utils import get_b_distribution, parse_range, polish, get_optimal_vector_norm, cmod
 from ml_attack.priority_queue import BoundedPriorityQueue
+import time
 
 FLOAT_UPGRADE = {
     "d": "ld",
@@ -294,7 +295,7 @@ class ContinuousReduction(object):
             self.no_improvements = 0
         else:
             self.n_stall += 1
-            if num_updates <= 1:
+            if num_updates/len(non_zero_indiced) <= 0.02:
                 self.no_improvements += 1
             else:
                 self.no_improvements = 0
@@ -312,7 +313,7 @@ class ContinuousReduction(object):
                     self.log(f"- Updating BKZ block size from {self.bkz_block_sizes[self.bkz_block_size_idx]} to {self.bkz_block_sizes[new_idx]}.")
                     updated = True
                 elif self.no_improvements > self.lookback:
-                    self.bkz_block_sizes[self.bkz_block_size_idx] += 1
+                    self.bkz_block_sizes[self.bkz_block_size_idx] += 2
                     self.log(f"- No improvements for {self.no_improvements} steps, increasing block size to {self.bkz_block_sizes[self.bkz_block_size_idx]}.")
                     updated = True
 
@@ -366,7 +367,13 @@ class ContinuousReduction(object):
             matrix_to_reduce = self.arrange_reduction_matrix(matrix_to_reduce)
             
         # Run the reduction
+        start_time = time.time()
         for _ in range(times):
+            # Check if the time limit has been exceeded
+            if time.time() - start_time > 30 * 60:  # 30 minutes
+                self.log("Time limit exceeded. Breaking out of the reduction loop.")
+                break
+
             # Run the current algorithm.
             matrix_to_reduce = self.run_algo(matrix_to_reduce)
             self.steps_same_algo += 1
