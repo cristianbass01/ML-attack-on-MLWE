@@ -589,6 +589,13 @@ class LWEDataset():
         
         return self.secret
 
+    def get_hamming_weight(self):
+        """ Returns the Hamming weight of the secret vector. """
+        if self.secret is None:
+            raise ValueError("Secret vector is not initialized. Please run initialize_secret() first.")
+        
+        return np.sum(self.secret != 0)
+
     def get_error_distribution(self):
         if self.reduced:
             return get_error_distribution(self.params, self.R[self.non_zero_indices])
