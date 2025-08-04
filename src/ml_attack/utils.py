@@ -764,9 +764,9 @@ def get_hermite_root_factor(b):
     """
     return ((b / (2 * np.pi * np.e)) * ((b * np.pi ) ** (1 / b))) ** (1/(2*(b-1)))
 
-def get_optimal_sample_size(n, q, w, delta_0):
+def get_optimal_sample_size(nk, q, w, delta_0):
     """ Computes the optimal sample size m. """
-    return int(np.sqrt(n* (np.log(q) - np.log(w)) / np.log(delta_0)) - n)
+    return int(np.sqrt(nk* (np.log(q) - np.log(w)) / np.log(delta_0)) - nk)
 
 def get_optimal_vector_norm(n, m, q, w, b):
     """ Computes the optimal vector norm v. """
@@ -802,6 +802,14 @@ def std_to_prob(sigma: float, q: float) -> float:
 
     p = erf(q / (2 * math.sqrt(2) * sigma))
     return p
+
+def cbd_expected_hamming_weight(n, eta):
+    """
+    Fast approximation of expected Hamming weight for CBD_eta samples.
+    """
+    p_zero = 1 / np.sqrt(np.pi * eta)
+    p_non_zero = 1 - p_zero
+    return int(n * p_non_zero)
 
 def pad_vectors_to_max(vectors_list):
     max_len = max(v.shape[0] for v in vectors_list)
