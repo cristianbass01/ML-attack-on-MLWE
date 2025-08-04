@@ -111,16 +111,23 @@ def main(updated_params, args):
             choosen_hw = get_hw_range(n, secret_type, args)
 
             success_counter = Counter()
+            train_counter = Counter()
             for hw in choosen_hw:
                 dataset.params['hw'] = hw
-                count = 0
                 for _ in range(args.num_training_repeats):
                     dataset.initialize_secret()
+                    real_hw = dataset.get_hamming_weight()
+                    train_counter[real_hw] += 1
+
                     found, _ = dataset.train()
                     if found:
-                        count += 1
-                success_counter[hw] = count
-                print(f"Success rate for {secret_type} with hw={hw}: {count}/{args.num_training_repeats}")
+                        success_counter[real_hw] += 1
+                        
+                success_rates = [
+                    f"{hw}: {success_counter[hw]}/{train_counter[hw]} ({success_counter[hw] / train_counter[hw] if train_counter[hw] > 0 else 0:.2f})"
+                    for hw in train_counter.keys()
+                ]
+                print(", ".join(success_rates))
             print(f"Success rates for {secret_type} secrets: {dict(success_counter)}")
 
 
