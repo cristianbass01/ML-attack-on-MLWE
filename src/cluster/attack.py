@@ -10,15 +10,14 @@ from ml_attack.utils import get_lwe_default_params, get_continuous_reduction_def
 from collections import Counter
 
 def get_hw_range(params, args):
-    n = params['n']
     if args.hw_range:
         return parse_range(args.hw_range)
     if params['secret_type'] == 'binary':
-        return range(1, n // 2 + 1)
+        return range(1, params['n'] // 2 + 1)
     elif params['secret_type'] == 'ternary':
-        return range(1, 2 * (n // 3) + 1)
+        return range(1, 2 * (params['n'] // 3) + 1)
     elif params['secret_type'] == 'cbd':
-        return range(1, cbd_expected_hamming_weight(n, params['eta']) + 1)
+        return range(1, cbd_expected_hamming_weight(params['n'], params['eta']) + 1)
     else:
         return []
 
@@ -97,8 +96,6 @@ def main(updated_params, args):
         print("Performing attack on all secret types.")
         preprocessed_time = dataset.reduction_time
         print(f"Preprocessing time: {preprocessed_time:.2f} seconds")
-
-        n = dataset.params['n']
 
         for secret_type in args.train_secret_types:
             dataset.params['secret_type'] = secret_type
