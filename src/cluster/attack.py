@@ -109,7 +109,7 @@ def main(updated_params, args):
             else:
                 dataset.params['error_type'] = 'gaussian'
 
-            choosen_hw = get_hw_range(n, secret_type, args)
+            choosen_hw = get_hw_range(dataset.params, args)
 
             success_counter = Counter()
             train_counter = Counter()
@@ -126,7 +126,7 @@ def main(updated_params, args):
 
                 success_rates = [
                     f"{hw}: {success_counter[hw]}/{train_counter[hw]} ({success_counter[hw] / train_counter[hw] if train_counter[hw] > 0 else 0:.2f})"
-                    for hw in train_counter.keys()
+                    for hw in sorted(train_counter.keys())
                 ]
                 print(", ".join(success_rates))
 
