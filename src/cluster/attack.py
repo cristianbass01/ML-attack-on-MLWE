@@ -91,7 +91,7 @@ def main(updated_params, args):
             dataset = LWEDataset.load_reduced(filename)
         
         dataset.params.update(updated_params)
-        print(f"Dataset loaded with parameters: {dataset.params}")
+        print(f"Reloaded dataset from {filename} with parameters: {dataset.params}")
 
     if len(args.train_secret_types) > 0:
         print("Performing attack on all secret types.")
@@ -103,8 +103,13 @@ def main(updated_params, args):
         for secret_type in args.train_secret_types:
             dataset.params['secret_type'] = secret_type
             dataset.params['seed'] = None
-            dataset.params['eta'] = 2 if secret_type == 'cbd' else 3
-            choosen_hw = get_hw_range(dataset.params, args)
+            dataset.params['eta'] = 2
+            if secret_type == 'cbd':
+                dataset.params['error_type'] = 'cbd'
+            else:
+                dataset.params['error_type'] = 'gaussian'
+
+            choosen_hw = get_hw_range(n, secret_type, args)
 
             success_counter = Counter()
             for hw in choosen_hw:
@@ -134,7 +139,7 @@ if __name__ == "__main__":
     parser.add_argument('--reload', action='store_true', help='Reload the dataset from disk if it exists')
     parser.add_argument('--reload_from', type=str, default=None, help='Reload dataset from a specific file if it exists')
     parser.add_argument('--train_secret_types', nargs='+', default=[], help='Secret types to train on')
-    parser.add_argument('--reload_from_salsa', type=float, default=1.0, help='Reload dataset from Salsa with top 1% of samples')
+    parser.add_argument('--reload_from_salsa', type=float, default=None, help='Reload dataset from Salsa with top 1% of samples')
     parser.add_argument('--num_training_repeats', type=int, default=10, help='Number of training repeats for each hw of each secret type')
     parser.add_argument('--hw_range', type=str, default=None, help='Specific range of hw to try, formatted as start:end:step (e.g., "1:10:1")')
 
