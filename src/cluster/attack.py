@@ -123,13 +123,12 @@ def main(updated_params, args):
                     found, _ = dataset.train()
                     if found:
                         success_counter[real_hw] += 1
-                        
+
                 success_rates = [
                     f"{hw}: {success_counter[hw]}/{train_counter[hw]} ({success_counter[hw] / train_counter[hw] if train_counter[hw] > 0 else 0:.2f})"
                     for hw in train_counter.keys()
                 ]
                 print(", ".join(success_rates))
-            print(f"Success rates for {secret_type} secrets: {dict(success_counter)}")
 
 
 if __name__ == "__main__":
