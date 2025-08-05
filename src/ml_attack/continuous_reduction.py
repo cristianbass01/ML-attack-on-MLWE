@@ -65,6 +65,7 @@ class ContinuousReduction(object):
 
         # if pnjBKZ is used
         # self.crossover = params["crossover"]
+        # self._first_pnj_bkz = True
 
         self.initial_matrix = None
         if self.params['reduction_max_size'] > 0:
@@ -79,7 +80,6 @@ class ContinuousReduction(object):
         self.verbose = self.params["verbose"]
 
         self.steps_same_algo = 0
-        self._first_pnj_bkz = True
         self._first_bkz = True
         self.m = None  # Number of rows in the input matrix
         self.n = None  # Number of columns in the input matrix
@@ -403,6 +403,8 @@ class ContinuousReduction(object):
             "no_improvements": self.no_improvements,
             "warmup_countdown": self.flatter_countdown,
             "bkz_block_size_idx": self.bkz_block_size_idx,
+            "max_bkz_block_size": self.bkz_block_sizes[-1],
+            "_first_bkz": self._first_bkz,
             "initial_matrix": self.initial_matrix.tolist() if self.initial_matrix is not None else None,
             "priority_queue": self.saved_reduced.to_state_dict() if self.use_priority else None,
             "best_matrix": self.saved_reduced.tolist() if not self.use_priority and self.saved_reduced is not None else None,
@@ -423,6 +425,8 @@ class ContinuousReduction(object):
         obj.no_improvements = state["no_improvements"]
         obj.flatter_countdown = state["warmup_countdown"]
         obj.bkz_block_size_idx = state["bkz_block_size_idx"]
+        obj.bkz_block_sizes[-1] = state["max_bkz_block_size"]
+        obj._first_bkz = state["_first_bkz"]
         obj.steps_same_algo = state["steps_same_algo"]
         obj.m = state["m"]
         obj.n = state["n"]
