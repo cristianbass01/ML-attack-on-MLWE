@@ -50,13 +50,13 @@ def cmod(A, q):
 
 def mod_mult(mat1, mat2, q):
     if np.log2(q) <= 32:
-        return np.tensordot(mat1, mat2, axes=-1) % q
+        return cmod(mat1 @ mat2, q)
 
     # Use 128-bit floats and scale the matrix slightly
     frac = 10_000
     mat1 = mat1.astype(np.float128)
-    out = np.tensordot((mat1 // frac), (mat2 * frac % q), axes=-1)
-    out += np.tensordot((mat1 % frac), mat2, axes=-1)
+    out = (mat1 // frac) @ (mat2 * frac % q)
+    out += (mat1 % frac) @ mat2
     return cmod(out, q).astype(np.int64)
 
 def time_execution(func):
