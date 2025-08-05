@@ -12,6 +12,9 @@ FLOAT_UPGRADE = {
     "d": "ld",
     "ld": "dd",
     "dd": "qd",
+    "qd": "mpfr_150",
+    "mpfr_150": "mpfr_200",
+    "mpfr_200": "mpfr_250",
     "mpfr_250": "mpfr_300",
     "mpfr_300": "mpfr_350"
 }
@@ -111,10 +114,7 @@ class ContinuousReduction(object):
     
     def get_R(self, matrix_to_reduce):
         """ Get the R matrix from the reduction. """    
-        if self.matrix_config == "salsa": 
-            # Matrix in the form [wR, RA + qC]
-            return cmod(matrix_to_reduce[:, :self.m] / self.penalty, self.q)
-        elif self.matrix_config == "dual":
+        if self.matrix_config in ["salsa", "dual"]:
             # Matrix in the form [wR, RA + qC]
             return cmod(matrix_to_reduce[:, :self.m] / self.penalty, self.q)
         elif self.matrix_config == "original":
@@ -301,7 +301,7 @@ class ContinuousReduction(object):
                 self.no_improvements = 0
 
         # If we stalled for too long, update the algorithm.
-        if self.steps_same_algo > self.lookback and self.n_stall > self.lookback:
+        if self.steps_same_algo > self.lookback and self.n_stall >= self.lookback:
             updated = False
             if self.flatter_countdown > 0:
                 self.log(f"- Flatter stall after: {self.flatter_countdown}, updating...")
@@ -312,7 +312,7 @@ class ContinuousReduction(object):
                 if new_idx != self.bkz_block_size_idx:
                     self.log(f"- Updating BKZ block size from {self.bkz_block_sizes[self.bkz_block_size_idx]} to {self.bkz_block_sizes[new_idx]}.")
                     updated = True
-                elif self.no_improvements > self.lookback:
+                elif self.no_improvements >= self.lookback:
                     self.bkz_block_sizes[self.bkz_block_size_idx] += 2
                     self.log(f"- No improvements for {self.no_improvements} steps, increasing block size to {self.bkz_block_sizes[self.bkz_block_size_idx]}.")
                     updated = True
