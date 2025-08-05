@@ -4,7 +4,7 @@ from fpylll import FPLLL, LLL, BKZ, GSO, IntegerMatrix
 from fpylll.algorithms.bkz2 import BKZReduction as BKZ2
 from subprocess import Popen, PIPE
 
-from ml_attack.utils import get_b_distribution, parse_range, polish, get_optimal_vector_norm, cmod
+from ml_attack.utils import get_b_distribution, parse_range, polish, get_optimal_vector_norm, cmod, mod_mult
 from ml_attack.priority_queue import BoundedPriorityQueue
 import time
 
@@ -260,7 +260,7 @@ class ContinuousReduction(object):
         R = self.get_R(A_red)
 
         # Compute RA
-        RA = cmod(np.tensordot(R, self.initial_matrix, axes=1), self.q)
+        RA = mod_mult(R, self.initial_matrix, self.q)
 
         _, _, std_b = get_b_distribution(self.params, RA, R)
         
@@ -288,8 +288,10 @@ class ContinuousReduction(object):
                 self.saved_reduced[better_indices] = A_red[better_indices]
                 self.saved_stds[better_indices] = std_b[better_indices]
 
-        self.log(f"- Algo: {algo_name} | Updated {num_updates}/{len(non_zero_indiced)} | Mean std_B: {np.mean(std_b[non_zero_indiced]):.2f}")
-        
+        mean_std_b = np.mean(std_b[non_zero_indiced]) if len(non_zero_indiced) > 1 else 0
+
+        self.log(f"- Algo: {algo_name} | Updated {num_updates}/{len(non_zero_indiced)} | Mean std_B: {mean_std_b:.2f}")
+
         if num_updates/len(non_zero_indiced) >= 0.1:
             self.n_stall = 0
             self.no_improvements = 0

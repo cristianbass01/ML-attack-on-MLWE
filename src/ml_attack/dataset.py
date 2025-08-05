@@ -14,6 +14,7 @@ from ml_attack.utils import (
   get_filename_from_params,
   get_no_mod,
   cmod,
+  mod_mult,
   parse_range,
   get_hermite_root_factor,
   get_optimal_sample_size,
@@ -172,9 +173,9 @@ class LWEDataset():
             A_to_reduce = np.stack([self.A[ind] for ind in self.indices])
             B_to_reduce = np.stack([self.B[ind] for ind in self.indices])
 
-            self.RA = cmod(self.R @ A_to_reduce, self.mlwe.q)
+            self.RA = mod_mult(self.R, A_to_reduce, self.mlwe.q)
 
-            self.RB = cmod(self.R @ B_to_reduce[:, :, np.newaxis], self.mlwe.q)
+            self.RB = mod_mult(self.R, B_to_reduce[:, :, np.newaxis], self.mlwe.q)
             self.RB = np.squeeze(self.RB, axis=-1)
 
             self.non_zero_indices = np.any(self.RA != 0, axis=2)
@@ -268,11 +269,11 @@ class LWEDataset():
             self.R = np.stack(list(executor.map(LWEDataset.reduce_wrapper, args)))
 
         # Compute reduced A and B with a single call
-        self.RA = cmod(self.R @ A_to_reduce, self.mlwe.q)
+        self.RA = mod_mult(self.R, A_to_reduce, self.mlwe.q)
 
         if self.B is not None:
             B_to_reduce = np.stack([self.B[ind] for ind in self.indices])
-            self.RB = cmod(self.R @ B_to_reduce[:, :, np.newaxis], self.mlwe.q)
+            self.RB = mod_mult(self.R, B_to_reduce[:, :, np.newaxis], self.mlwe.q)
             self.RB = np.squeeze(self.RB, axis=-1)
 
         self.non_zero_indices = np.any(self.RA != 0, axis=2) 
@@ -335,7 +336,7 @@ class LWEDataset():
 
         args = []
         if self.R is not None:
-            RA = cmod(self.R @ A_to_reduce, self.mlwe.q)
+            RA = mod_mult(self.R, A_to_reduce, self.mlwe.q)
 
         for i in range(num_matrices):
             reduction = ContinuousReduction(self.params)
@@ -441,7 +442,7 @@ class LWEDataset():
 
                     self.save_reduced(postfix=f'_{tour // save_every}')
 
-                self.RA = cmod(self.R @ A_to_reduce, self.mlwe.q).astype(int)
+                self.RA = mod_mult(self.R, A_to_reduce, self.mlwe.q).astype(int)
 
                 self.non_zero_indices = np.any(self.RA != 0, axis=2)
 
@@ -458,7 +459,7 @@ class LWEDataset():
                     if attack_strategy == "time":
                         last_attack_time = current_time
 
-                    self.RB = cmod(self.R @ B_to_reduce[..., np.newaxis], self.mlwe.q).astype(int)
+                    self.RB = mod_mult(self.R, B_to_reduce[..., np.newaxis], self.mlwe.q).astype(int)
                     self.RB = np.squeeze(self.RB, axis=-1)
 
                     found, guessed_secret = self.train()
@@ -706,8 +707,8 @@ class LWEDataset():
 
             if 'reduction_time' in loaded_data:
                 dataset.reduction_time = loaded_data['reduction_time']
-            
-            dataset.RA = cmod(dataset.R @ A_to_reduce, dataset.mlwe.q)
+
+            dataset.RA = mod_mult(dataset.R, A_to_reduce, dataset.mlwe.q)
 
             dataset.non_zero_indices = np.any(dataset.RA != 0, axis=-1)
 
@@ -716,7 +717,7 @@ class LWEDataset():
                 if dataset.params['k'] == 1 and dataset.params['reduction_samples'] == 1 and not dataset.params['reduction_resampling']:
                     B_to_reduce = B_to_reduce[:, np.newaxis, :]
 
-                dataset.RB = cmod(dataset.R @ B_to_reduce[..., np.newaxis], dataset.mlwe.q)
+                dataset.RB = mod_mult(dataset.R, B_to_reduce[..., np.newaxis], dataset.mlwe.q)
                 dataset.RB = np.squeeze(dataset.RB, axis=-1)
 
         dataset.reduced = True
@@ -789,7 +790,7 @@ class LWEDataset():
                     if top_percent < 1.0:
                         # Select only the top percent of the rows
                         num_rows = int(len(R) * top_percent)
-                        RA = cmod(R @ dataset.A[indices], dataset.mlwe.q)
+                        RA = mod_mult(R, dataset.A[indices], dataset.mlwe.q)
                         non_zero_indices = np.any(RA != 0, axis=-1)
                         _, _, std_B = get_b_distribution(dataset.params, RA[non_zero_indices], R[non_zero_indices])
                         sorted_indices = np.argsort(std_B)[:num_rows]
@@ -803,7 +804,7 @@ class LWEDataset():
         dataset.indices = np.stack(full_indices)
 
         A_to_reduce = np.stack([dataset.A[ind] for ind in dataset.indices])
-        dataset.RA = cmod(dataset.R @ A_to_reduce, dataset.mlwe.q)
+        dataset.RA = mod_mult(dataset.R, A_to_reduce, dataset.mlwe.q)
         dataset.non_zero_indices = np.any(dataset.RA != 0, axis=-1)
 
         return dataset
