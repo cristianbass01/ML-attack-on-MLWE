@@ -1,0 +1,45 @@
+Parameters: {'n': 256, 'q': 179067461, 'k': 2, 'secret_type': 'cbd', 'eta': 2, 'gaussian_std': 3, 'hw': -1, 'error_type': 'cbd', 'num_gen': 4, 'add_noise': True, 'mod_q': True, 'seed': 42, 'approximation_std': 3, 'approximation_threshold': 0.01, 'save_to': '../data', 'float_type': 'qd', 'matrix_config': 'dual', 'reduction_samples': 448, 'reduction_resampling': True, 'min_samples': None, 'num_matrices': 63, 'reduction_max_size': 1500, 'lookback': 3, 'warmup_steps': 10, 'flatter_alpha': 0.001, 'bkz_delta': 0.99, 'bkz_block_sizes': '20:40:10', 'use_polish': True, 'interleaved_steps': 0, 'penalty': 4, 'verbose': True, 'train_percentages': [0.1, 0.3, 0.6, 1.0], 'model': 'tukey', 'lr': 0.0001, 'c_factor': 1.0, 'epsilon': 1.1, 'max_iter': 15000, 'alpha': 0.0001, 'warm_start': False, 'fit_intercept': False, 'tol': 0.001, 'use_ransac': False, 'residual_factor': 1.5, 'max_trials': 100}
+Arguments: {'num_attacks': 1, 'attack_strategy': 'no', 'attack_every': 0, 'save_strategy': 'hour', 'save_every': 40, 'stop_strategy': 'hour', 'stop_after': 46, 'save_at_the_end': True, 'reload': False, 'reload_from': None, 'train_secret_types': ['cbd'], 'reload_from_salsa': None, 'num_training_repeats': 10, 'hw_range': None}
+Attacking 63 matrices using 64 threads.
+concurrent.futures.process._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/concurrent/futures/process.py", line 246, in _process_worker
+    r = call_item.fn(*call_item.args, **call_item.kwargs)
+  File "/usr/lib/python3.10/concurrent/futures/process.py", line 205, in _process_chunk
+    return [fn(*args) for args in chunk]
+  File "/usr/lib/python3.10/concurrent/futures/process.py", line 205, in <listcomp>
+    return [fn(*args) for args in chunk]
+  File "/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/dataset.py", line 518, in continuous_reduction_wrapper
+    R, matrix_to_reduce = reduction.reduce(matrix_to_reduce, times=times)
+  File "/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/continuous_reduction.py", line 388, in reduce
+    self.control(matrix_to_reduce)
+  File "/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/continuous_reduction.py", line 263, in control
+    RA = mod_mult(R, self.initial_matrix, self.q)
+  File "/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py", line 53, in mod_mult
+    return cmod(mat1 @ mat2, q)
+  File "/usr/local/lib/python3.10/dist-packages/numpy/_core/numeric.py", line 1177, in tensordot
+    res = dot(at, bt)
+numpy._core._exceptions._ArrayMemoryError: Unable to allocate 735. GiB for an array with shape (430080, 229376) and data type float64
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/d/hpc/home/cb17769/ML-attack-on-MLWE/src/cluster/attack.py", line 155, in <module>
+    main(updated_params, args)
+  File "/d/hpc/home/cb17769/ML-attack-on-MLWE/src/cluster/attack.py", line 56, in main
+    _, attack_time = dataset.attack(
+  File "/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/dataset.py", line 408, in attack
+    for i, (R, arg) in enumerate(executor.map(LWEDataset.continuous_reduction_wrapper, args)):
+  File "/usr/lib/python3.10/concurrent/futures/process.py", line 575, in _chain_from_iterable_of_lists
+    for element in iterable:
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 621, in result_iterator
+    yield _result_or_cancel(fs.pop())
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 319, in _result_or_cancel
+    return fut.result(timeout)
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 458, in result
+    return self.__get_result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 403, in __get_result
+    raise self._exception
+numpy._core._exceptions._ArrayMemoryError: Unable to allocate 735. GiB for an array with shape (430080, 229376) and data type float64

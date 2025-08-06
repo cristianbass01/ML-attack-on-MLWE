@@ -1,0 +1,2563 @@
+Parameters: {'n': 256, 'q': 179067461, 'k': 2, 'secret_type': 'cbd', 'eta': 2, 'gaussian_std': 3, 'hw': -1, 'error_type': 'cbd', 'num_gen': 4, 'add_noise': True, 'mod_q': True, 'seed': 42, 'approximation_std': 3, 'approximation_threshold': 0.01, 'save_to': '../data', 'float_type': 'd', 'matrix_config': 'dual', 'reduction_samples': 448, 'reduction_resampling': True, 'min_samples': None, 'num_matrices': 63, 'reduction_max_size': 1000, 'lookback': 3, 'warmup_steps': 5, 'flatter_alpha': 0.001, 'bkz_delta': 0.99, 'bkz_block_sizes': '20:40:10', 'use_polish': True, 'interleaved_steps': 0, 'penalty': 4, 'verbose': True, 'train_percentages': [0.1, 0.3, 0.6, 1.0], 'model': 'tukey', 'lr': 0.0001, 'c_factor': 1.0, 'epsilon': 1.1, 'max_iter': 15000, 'alpha': 0.0001, 'warm_start': False, 'fit_intercept': False, 'tol': 0.001, 'use_ransac': False, 'residual_factor': 1.5, 'max_trials': 100}
+Arguments: {'num_attacks': 1, 'attack_strategy': 'hour', 'attack_every': 12, 'save_strategy': 'hour', 'save_every': 12, 'stop_strategy': 'hour', 'stop_after': 40, 'save_at_the_end': True, 'reload': False, 'reload_from': None, 'train_secret_types': ['cbd'], 'reload_from_salsa': 1.0, 'num_training_repeats': 10, 'hw_range': None}
+Attacking 63 matrices using 64 threads.
+- Algo: flatter | Updated 720/720 | Mean std_B: 803778912.04
+- Algo: flatter | Updated 720/720 | Mean std_B: 801133654.74
+- Algo: flatter | Updated 720/720 | Mean std_B: 804596515.47
+- Algo: flatter | Updated 720/720 | Mean std_B: 804520193.41
+- Algo: flatter | Updated 720/720 | Mean std_B: 802329361.33
+- Algo: flatter | Updated 720/720 | Mean std_B: 806406572.44
+- Algo: flatter | Updated 720/720 | Mean std_B: 804591740.45
+- Algo: flatter | Updated 720/720 | Mean std_B: 803258108.13
+- Algo: flatter | Updated 720/720 | Mean std_B: 801528649.36
+- Algo: flatter | Updated 720/720 | Mean std_B: 804062699.58
+- Algo: flatter | Updated 720/720 | Mean std_B: 801856889.76
+- Algo: flatter | Updated 720/720 | Mean std_B: 803059580.51
+- Algo: flatter | Updated 720/720 | Mean std_B: 801990441.82
+- Algo: flatter | Updated 720/720 | Mean std_B: 802535560.90
+- Algo: flatter | Updated 720/720 | Mean std_B: 801755127.90
+- Algo: flatter | Updated 720/720 | Mean std_B: 803010242.26
+- Algo: flatter | Updated 720/720 | Mean std_B: 802772862.78
+- Algo: flatter | Updated 720/720 | Mean std_B: 805362058.79
+- Algo: flatter | Updated 720/720 | Mean std_B: 803673072.52
+- Algo: flatter | Updated 720/720 | Mean std_B: 802625528.82
+- Algo: flatter | Updated 720/720 | Mean std_B: 801797436.36
+- Algo: flatter | Updated 720/720 | Mean std_B: 803146650.14
+- Algo: flatter | Updated 720/720 | Mean std_B: 804011392.36
+- Algo: flatter | Updated 720/720 | Mean std_B: 804781982.11
+- Algo: flatter | Updated 720/720 | Mean std_B: 802235529.22
+- Algo: flatter | Updated 720/720 | Mean std_B: 803829004.47
+- Algo: flatter | Updated 720/720 | Mean std_B: 802986708.16
+- Algo: flatter | Updated 720/720 | Mean std_B: 803510580.48
+- Algo: flatter | Updated 720/720 | Mean std_B: 803831219.16
+- Algo: flatter | Updated 720/720 | Mean std_B: 802334189.23
+- Algo: flatter | Updated 720/720 | Mean std_B: 802361429.51
+- Algo: flatter | Updated 720/720 | Mean std_B: 802322637.55
+- Algo: flatter | Updated 720/720 | Mean std_B: 803086246.79
+- Algo: flatter | Updated 720/720 | Mean std_B: 802827782.26
+- Algo: flatter | Updated 720/720 | Mean std_B: 804741722.67
+- Algo: flatter | Updated 720/720 | Mean std_B: 802855561.75
+- Algo: flatter | Updated 720/720 | Mean std_B: 803054062.21
+- Algo: flatter | Updated 720/720 | Mean std_B: 803952108.22
+- Algo: flatter | Updated 720/720 | Mean std_B: 802400036.56
+- Algo: flatter | Updated 720/720 | Mean std_B: 803975344.78
+- Algo: flatter | Updated 720/720 | Mean std_B: 800739369.98
+- Algo: flatter | Updated 720/720 | Mean std_B: 803545007.52
+- Algo: flatter | Updated 720/720 | Mean std_B: 802479163.27
+- Algo: flatter | Updated 720/720 | Mean std_B: 803582622.28
+- Algo: flatter | Updated 720/720 | Mean std_B: 802393651.26
+- Algo: flatter | Updated 720/720 | Mean std_B: 803204984.09
+- Algo: flatter | Updated 720/720 | Mean std_B: 803600644.54
+- Algo: flatter | Updated 720/720 | Mean std_B: 803714077.38
+- Algo: flatter | Updated 720/720 | Mean std_B: 804005439.55
+- Algo: flatter | Updated 720/720 | Mean std_B: 802600311.46
+- Algo: flatter | Updated 720/720 | Mean std_B: 803114710.64
+- Algo: flatter | Updated 720/720 | Mean std_B: 802194525.02
+- Algo: flatter | Updated 720/720 | Mean std_B: 802813307.79
+- Algo: flatter | Updated 720/720 | Mean std_B: 803544416.81
+- Algo: flatter | Updated 720/720 | Mean std_B: 802677652.71
+- Algo: flatter | Updated 720/720 | Mean std_B: 801933501.33
+- Algo: flatter | Updated 720/720 | Mean std_B: 802823157.45
+- Algo: flatter | Updated 720/720 | Mean std_B: 803282814.48
+- Algo: flatter | Updated 720/720 | Mean std_B: 802733945.66
+- Algo: flatter | Updated 720/720 | Mean std_B: 802926119.26
+- Algo: flatter | Updated 720/720 | Mean std_B: 803197898.71
+- Algo: flatter | Updated 720/720 | Mean std_B: 801880490.44
+- Algo: flatter | Updated 720/720 | Mean std_B: 803708542.00
+Tour 1 | Time: 9980.07s | Mean std_B: 803104535.73 | Reduction Factor: 0.6884 | Prob: 0.0888
+- Algo: flatter | Updated 594/720 | Mean std_B: 804043552.27
+- Algo: flatter | Updated 610/720 | Mean std_B: 804622770.21
+- Algo: flatter | Updated 602/720 | Mean std_B: 806586997.96
+- Algo: flatter | Updated 607/720 | Mean std_B: 806720404.71
+- Algo: flatter | Updated 595/720 | Mean std_B: 806887765.56
+- Algo: flatter | Updated 594/720 | Mean std_B: 807108602.89
+- Algo: flatter | Updated 598/720 | Mean std_B: 806104466.33
+- Algo: flatter | Updated 599/720 | Mean std_B: 804090406.57
+- Algo: flatter | Updated 605/720 | Mean std_B: 805958681.00
+- Algo: flatter | Updated 601/720 | Mean std_B: 805664450.90
+- Algo: flatter | Updated 599/720 | Mean std_B: 805148044.49
+- Algo: flatter | Updated 617/720 | Mean std_B: 808050971.65
+- Algo: flatter | Updated 610/720 | Mean std_B: 806833992.77
+- Algo: flatter | Updated 603/720 | Mean std_B: 804181327.23
+- Algo: flatter | Updated 612/720 | Mean std_B: 805995241.46
+- Algo: flatter | Updated 600/720 | Mean std_B: 805393726.41
+- Algo: flatter | Updated 609/720 | Mean std_B: 806970115.31
+- Algo: flatter | Updated 605/720 | Mean std_B: 806599839.78
+- Algo: flatter | Updated 605/720 | Mean std_B: 805974874.64
+- Algo: flatter | Updated 606/720 | Mean std_B: 807114322.88
+- Algo: flatter | Updated 612/720 | Mean std_B: 805819827.77
+- Algo: flatter | Updated 596/720 | Mean std_B: 806118551.96
+- Algo: flatter | Updated 594/720 | Mean std_B: 805326013.88
+- Algo: flatter | Updated 622/720 | Mean std_B: 807474671.21
+- Algo: flatter | Updated 600/720 | Mean std_B: 806274129.80
+- Algo: flatter | Updated 595/720 | Mean std_B: 806003812.21
+- Algo: flatter | Updated 601/720 | Mean std_B: 806771788.86
+- Algo: flatter | Updated 616/720 | Mean std_B: 805069018.31
+- Algo: flatter | Updated 601/720 | Mean std_B: 805517916.63
+- Algo: flatter | Updated 601/720 | Mean std_B: 805983854.70
+- Algo: flatter | Updated 584/720 | Mean std_B: 806063506.54
+- Algo: flatter | Updated 597/720 | Mean std_B: 805507476.66
+- Algo: flatter | Updated 601/720 | Mean std_B: 806077062.32
+- Algo: flatter | Updated 605/720 | Mean std_B: 804270084.16
+- Algo: flatter | Updated 607/720 | Mean std_B: 804247675.15
+- Algo: flatter | Updated 582/720 | Mean std_B: 804238672.32
+- Algo: flatter | Updated 605/720 | Mean std_B: 807364098.18
+- Algo: flatter | Updated 598/720 | Mean std_B: 803961463.44
+- Algo: flatter | Updated 608/720 | Mean std_B: 806493476.22
+- Algo: flatter | Updated 595/720 | Mean std_B: 804044893.44
+- Algo: flatter | Updated 613/720 | Mean std_B: 804835044.29
+- Algo: flatter | Updated 582/720 | Mean std_B: 808460255.74
+- Algo: flatter | Updated 615/720 | Mean std_B: 806210913.07
+- Algo: flatter | Updated 601/720 | Mean std_B: 807688101.23
+- Algo: flatter | Updated 612/720 | Mean std_B: 805529699.65
+- Algo: flatter | Updated 579/720 | Mean std_B: 806719469.13
+- Algo: flatter | Updated 608/720 | Mean std_B: 806974157.34
+- Algo: flatter | Updated 605/720 | Mean std_B: 805546620.75
+- Algo: flatter | Updated 607/720 | Mean std_B: 806399456.66
+- Algo: flatter | Updated 582/720 | Mean std_B: 806179787.99
+- Algo: flatter | Updated 608/720 | Mean std_B: 804336048.82
+- Algo: flatter | Updated 611/720 | Mean std_B: 807559417.97
+- Algo: flatter | Updated 606/720 | Mean std_B: 804197283.30
+- Algo: flatter | Updated 604/720 | Mean std_B: 806035638.20
+- Algo: flatter | Updated 605/720 | Mean std_B: 802937422.54
+- Algo: flatter | Updated 608/720 | Mean std_B: 805148425.41
+- Algo: flatter | Updated 600/720 | Mean std_B: 803971072.36
+- Algo: flatter | Updated 589/720 | Mean std_B: 804457830.38
+- Algo: flatter | Updated 593/720 | Mean std_B: 807254199.87
+- Algo: flatter | Updated 595/720 | Mean std_B: 806540723.28
+- Algo: flatter | Updated 609/720 | Mean std_B: 805289001.18
+- Algo: flatter | Updated 586/720 | Mean std_B: 807194328.40
+- Algo: flatter | Updated 609/720 | Mean std_B: 806019464.47
+Tour 2 | Time: 11740.40s | Mean std_B: 794311540.11 | Reduction Factor: 0.6808 | Prob: 0.0897
+- Algo: flatter | Updated 247/720 | Mean std_B: 816247075.24
+- Algo: flatter | Updated 243/720 | Mean std_B: 816751770.73
+- Algo: flatter | Updated 184/720 | Mean std_B: 822753906.22
+- Algo: flatter | Updated 254/720 | Mean std_B: 814847500.03
+- Algo: flatter | Updated 247/720 | Mean std_B: 816688446.97
+- Algo: flatter | Updated 225/720 | Mean std_B: 818292197.91
+- Algo: flatter | Updated 284/720 | Mean std_B: 814826699.71
+- Algo: flatter | Updated 261/720 | Mean std_B: 817807503.49
+- Algo: flatter | Updated 235/720 | Mean std_B: 818724997.82
+- Algo: flatter | Updated 240/720 | Mean std_B: 816713861.19
+- Algo: flatter | Updated 292/720 | Mean std_B: 814854317.89
+- Algo: flatter | Updated 237/720 | Mean std_B: 818279111.96
+- Algo: flatter | Updated 253/720 | Mean std_B: 813877019.06
+- Algo: flatter | Updated 239/720 | Mean std_B: 815928513.67
+- Algo: flatter | Updated 252/720 | Mean std_B: 816316413.34
+- Algo: flatter | Updated 239/720 | Mean std_B: 819368737.54
+- Algo: flatter | Updated 242/720 | Mean std_B: 816363838.40
+- Algo: flatter | Updated 256/720 | Mean std_B: 817732444.42
+- Algo: flatter | Updated 254/720 | Mean std_B: 818348556.68
+- Algo: flatter | Updated 228/720 | Mean std_B: 819780748.84
+- Algo: flatter | Updated 263/720 | Mean std_B: 815605457.64
+- Algo: flatter | Updated 293/720 | Mean std_B: 813323916.88
+- Algo: flatter | Updated 260/720 | Mean std_B: 815230900.50
+- Algo: flatter | Updated 257/720 | Mean std_B: 814793158.19
+- Algo: flatter | Updated 261/720 | Mean std_B: 814390632.38
+- Algo: flatter | Updated 224/720 | Mean std_B: 817065341.52
+- Algo: flatter | Updated 248/720 | Mean std_B: 817730004.84
+- Algo: flatter | Updated 251/720 | Mean std_B: 816453681.80
+- Algo: flatter | Updated 241/720 | Mean std_B: 814808833.35
+- Algo: flatter | Updated 254/720 | Mean std_B: 816651043.82
+- Algo: flatter | Updated 259/720 | Mean std_B: 816733640.83
+- Algo: flatter | Updated 260/720 | Mean std_B: 814370922.40
+- Algo: flatter | Updated 230/720 | Mean std_B: 817138770.46
+- Algo: flatter | Updated 262/720 | Mean std_B: 814814994.38
+- Algo: flatter | Updated 253/720 | Mean std_B: 815514314.17
+- Algo: flatter | Updated 229/720 | Mean std_B: 818336077.63
+- Algo: flatter | Updated 218/720 | Mean std_B: 818414663.27
+- Algo: flatter | Updated 252/720 | Mean std_B: 814905421.52
+- Algo: flatter | Updated 286/720 | Mean std_B: 812614847.82
+- Algo: flatter | Updated 247/720 | Mean std_B: 817833279.57
+- Algo: flatter | Updated 221/720 | Mean std_B: 818186135.90
+- Algo: flatter | Updated 269/720 | Mean std_B: 814465317.68
+- Algo: flatter | Updated 247/720 | Mean std_B: 816171008.74
+- Algo: flatter | Updated 239/720 | Mean std_B: 815152029.71
+- Algo: flatter | Updated 218/720 | Mean std_B: 819201382.92
+- Algo: flatter | Updated 222/720 | Mean std_B: 817307325.86
+- Algo: flatter | Updated 226/720 | Mean std_B: 819773254.45
+- Algo: flatter | Updated 233/720 | Mean std_B: 815278704.71
+- Algo: flatter | Updated 254/720 | Mean std_B: 815501519.86
+- Algo: flatter | Updated 247/720 | Mean std_B: 814800151.07
+- Algo: flatter | Updated 258/720 | Mean std_B: 812992722.96
+- Algo: flatter | Updated 205/720 | Mean std_B: 818801898.26
+- Algo: flatter | Updated 255/720 | Mean std_B: 817593119.24
+- Algo: flatter | Updated 216/720 | Mean std_B: 817358174.16
+- Algo: flatter | Updated 251/720 | Mean std_B: 815717154.45
+- Algo: flatter | Updated 246/720 | Mean std_B: 817086427.14
+- Algo: flatter | Updated 257/720 | Mean std_B: 814473816.71
+- Algo: flatter | Updated 213/720 | Mean std_B: 819857561.08
+- Algo: flatter | Updated 258/720 | Mean std_B: 814433735.63
+- Algo: flatter | Updated 225/720 | Mean std_B: 818973935.33
+- Algo: flatter | Updated 267/720 | Mean std_B: 816236072.98
+- Algo: flatter | Updated 211/720 | Mean std_B: 820624767.52
+- Algo: flatter | Updated 241/720 | Mean std_B: 815715020.85
+Tour 3 | Time: 14715.52s | Mean std_B: 789985771.70 | Reduction Factor: 0.6769 | Prob: 0.0902
+- Algo: flatter | Updated 56/720 | Mean std_B: 842886258.69
+- Algo: flatter | Updated 51/720 | Mean std_B: 840181687.71
+- Algo: flatter | Updated 51/720 | Mean std_B: 841536619.88
+- Algo: flatter | Updated 47/720 | Mean std_B: 841962326.17
+- Algo: flatter | Updated 48/720 | Mean std_B: 839719028.39
+- Algo: flatter | Updated 43/720 | Mean std_B: 842633509.88
+- Algo: flatter | Updated 54/720 | Mean std_B: 840261542.23
+- Algo: flatter | Updated 51/720 | Mean std_B: 846331740.22
+- Algo: flatter | Updated 49/720 | Mean std_B: 845806247.11
+- Algo: flatter | Updated 49/720 | Mean std_B: 843372633.63
+- Algo: flatter | Updated 55/720 | Mean std_B: 843874972.14
+- Algo: flatter | Updated 46/720 | Mean std_B: 840205354.29
+- Algo: flatter | Updated 44/720 | Mean std_B: 845637433.99
+- Algo: flatter | Updated 53/720 | Mean std_B: 840305011.73
+- Algo: flatter | Updated 57/720 | Mean std_B: 842384656.01
+- Algo: flatter | Updated 59/720 | Mean std_B: 839073435.75
+- Algo: flatter | Updated 42/720 | Mean std_B: 845705468.24
+- Algo: flatter | Updated 67/720 | Mean std_B: 837507430.05
+- Algo: flatter | Updated 68/720 | Mean std_B: 839687951.28
+- Algo: flatter | Updated 59/720 | Mean std_B: 840671594.62
+- Algo: flatter | Updated 47/720 | Mean std_B: 842882847.53
+- Algo: flatter | Updated 58/720 | Mean std_B: 839028170.09
+- Algo: flatter | Updated 48/720 | Mean std_B: 844019821.89
+- Algo: flatter | Updated 60/720 | Mean std_B: 836275777.82
+- Algo: flatter | Updated 51/720 | Mean std_B: 844377690.01
+- Algo: flatter | Updated 48/720 | Mean std_B: 844339745.26
+- Algo: flatter | Updated 51/720 | Mean std_B: 840350392.23
+- Algo: flatter | Updated 77/720 | Mean std_B: 832827873.64
+- Algo: flatter | Updated 50/720 | Mean std_B: 840541762.63
+- Algo: flatter | Updated 48/720 | Mean std_B: 839034850.21
+- Algo: flatter | Updated 44/720 | Mean std_B: 843953624.02
+- Algo: flatter | Updated 56/720 | Mean std_B: 845028686.35
+- Algo: flatter | Updated 67/720 | Mean std_B: 843560273.76
+- Algo: flatter | Updated 50/720 | Mean std_B: 841928375.14
+- Algo: flatter | Updated 52/720 | Mean std_B: 841068145.37
+- Algo: flatter | Updated 50/720 | Mean std_B: 840525535.74
+- Algo: flatter | Updated 44/720 | Mean std_B: 844096611.64
+- Algo: flatter | Updated 46/720 | Mean std_B: 845343973.83
+- Algo: flatter | Updated 47/720 | Mean std_B: 846414913.07
+- Algo: flatter | Updated 63/720 | Mean std_B: 840501756.85
+- Algo: flatter | Updated 57/720 | Mean std_B: 839475769.54
+- Algo: flatter | Updated 48/720 | Mean std_B: 838658076.81
+- Algo: flatter | Updated 43/720 | Mean std_B: 841851489.93
+- Algo: flatter | Updated 43/720 | Mean std_B: 841309849.68
+- Algo: flatter | Updated 61/720 | Mean std_B: 832615519.71
+- Algo: flatter | Updated 42/720 | Mean std_B: 846336607.09
+- Algo: flatter | Updated 63/720 | Mean std_B: 839587614.73
+- Algo: flatter | Updated 40/720 | Mean std_B: 845819053.85
+- Algo: flatter | Updated 43/720 | Mean std_B: 842891491.11
+- Algo: flatter | Updated 54/720 | Mean std_B: 838628573.85
+- Algo: flatter | Updated 63/720 | Mean std_B: 840221563.58
+- Algo: flatter | Updated 66/720 | Mean std_B: 837125931.35
+- Algo: flatter | Updated 62/720 | Mean std_B: 840476895.30
+- Algo: flatter | Updated 47/720 | Mean std_B: 841477054.31
+- Algo: flatter | Updated 53/720 | Mean std_B: 843139752.84
+- Algo: flatter | Updated 55/720 | Mean std_B: 838607005.56
+- Algo: flatter | Updated 37/720 | Mean std_B: 844601833.56
+- Algo: flatter | Updated 54/720 | Mean std_B: 840783307.32
+- Algo: flatter | Updated 64/720 | Mean std_B: 838609939.10
+- Algo: flatter | Updated 53/720 | Mean std_B: 841402455.65
+- Algo: flatter | Updated 52/720 | Mean std_B: 841513865.38
+- Algo: flatter | Updated 58/720 | Mean std_B: 839740390.41
+- Algo: flatter | Updated 46/720 | Mean std_B: 839295336.16
+Tour 4 | Time: 17491.07s | Mean std_B: 789162110.44 | Reduction Factor: 0.6762 | Prob: 0.0903
+- Algo: bkz2.0_20 | Updated 26/720 | Mean std_B: 857254709.11
+- Algo: bkz2.0_20 | Updated 35/720 | Mean std_B: 853001771.46
+- Algo: bkz2.0_20 | Updated 32/720 | Mean std_B: 848168719.98
+- Algo: bkz2.0_20 | Updated 34/720 | Mean std_B: 861526909.42
+- Algo: bkz2.0_20 | Updated 33/720 | Mean std_B: 851978927.57
+- Algo: bkz2.0_20 | Updated 37/720 | Mean std_B: 847280450.91
+- Algo: bkz2.0_20 | Updated 37/720 | Mean std_B: 853483664.33
+- Algo: bkz2.0_20 | Updated 34/720 | Mean std_B: 850580399.26
+- Algo: bkz2.0_20 | Updated 31/720 | Mean std_B: 852990737.53
+- Algo: bkz2.0_20 | Updated 35/720 | Mean std_B: 854452848.13
+- Algo: bkz2.0_20 | Updated 36/720 | Mean std_B: 853812341.73
+- Algo: bkz2.0_20 | Updated 23/720 | Mean std_B: 854786249.38
+- Algo: bkz2.0_20 | Updated 31/720 | Mean std_B: 852159341.19
+- Algo: bkz2.0_20 | Updated 34/720 | Mean std_B: 860845049.64
+- Algo: bkz2.0_20 | Updated 30/720 | Mean std_B: 850230036.76
+- Algo: bkz2.0_20 | Updated 39/720 | Mean std_B: 854392048.73
+- Algo: bkz2.0_20 | Updated 38/720 | Mean std_B: 856267590.31
+- Algo: bkz2.0_20 | Updated 29/720 | Mean std_B: 852061726.43
+- Algo: bkz2.0_20 | Updated 25/720 | Mean std_B: 858545325.91
+- Algo: bkz2.0_20 | Updated 22/720 | Mean std_B: 851735374.00
+- Algo: bkz2.0_20 | Updated 32/720 | Mean std_B: 844491968.55
+- Algo: bkz2.0_20 | Updated 42/720 | Mean std_B: 851946267.74
+- Algo: bkz2.0_20 | Updated 39/720 | Mean std_B: 851489626.13
+- Algo: bkz2.0_20 | Updated 26/720 | Mean std_B: 854461422.52
+- Algo: bkz2.0_20 | Updated 35/720 | Mean std_B: 853639895.10
+- Algo: bkz2.0_20 | Updated 49/720 | Mean std_B: 844661370.18
+- Algo: bkz2.0_20 | Updated 26/720 | Mean std_B: 855147758.15
+- Algo: bkz2.0_20 | Updated 31/720 | Mean std_B: 850136434.23
+- Algo: bkz2.0_20 | Updated 34/720 | Mean std_B: 855351072.25
+- Algo: bkz2.0_20 | Updated 33/720 | Mean std_B: 849379240.88
+- Algo: bkz2.0_20 | Updated 43/720 | Mean std_B: 854217333.34
+- Algo: bkz2.0_20 | Updated 44/720 | Mean std_B: 847033603.07
+- Algo: bkz2.0_20 | Updated 48/720 | Mean std_B: 848872367.93
+- Algo: bkz2.0_20 | Updated 33/720 | Mean std_B: 854441090.00
+- Algo: bkz2.0_20 | Updated 35/720 | Mean std_B: 851552380.42
+- Algo: bkz2.0_20 | Updated 46/720 | Mean std_B: 851302484.00
+- Algo: bkz2.0_20 | Updated 42/720 | Mean std_B: 851645891.05
+- Algo: bkz2.0_20 | Updated 37/720 | Mean std_B: 846612735.31
+- Algo: bkz2.0_20 | Updated 34/720 | Mean std_B: 848603637.82
+- Algo: bkz2.0_20 | Updated 31/720 | Mean std_B: 854869528.50
+- Algo: bkz2.0_20 | Updated 36/720 | Mean std_B: 850928081.97
+- Algo: bkz2.0_20 | Updated 35/720 | Mean std_B: 856165044.41
+- Algo: bkz2.0_20 | Updated 38/720 | Mean std_B: 847207066.47
+- Algo: bkz2.0_20 | Updated 28/720 | Mean std_B: 858400039.42
+- Algo: bkz2.0_20 | Updated 38/720 | Mean std_B: 853425406.28
+- Algo: bkz2.0_20 | Updated 29/720 | Mean std_B: 858512591.97
+- Algo: bkz2.0_20 | Updated 32/720 | Mean std_B: 854019225.84
+- Algo: bkz2.0_20 | Updated 36/720 | Mean std_B: 856088820.29
+- Algo: bkz2.0_20 | Updated 37/720 | Mean std_B: 853150983.21
+- Algo: bkz2.0_20 | Updated 35/720 | Mean std_B: 852715259.58
+- Algo: bkz2.0_20 | Updated 31/720 | Mean std_B: 855909195.51
+- Algo: bkz2.0_20 | Updated 41/720 | Mean std_B: 850845950.22
+- Algo: bkz2.0_20 | Updated 27/720 | Mean std_B: 857971609.25
+- Algo: bkz2.0_20 | Updated 26/720 | Mean std_B: 851015937.07
+- Algo: bkz2.0_20 | Updated 41/720 | Mean std_B: 849195344.49
+- Algo: bkz2.0_20 | Updated 33/720 | Mean std_B: 849230907.11
+- Algo: bkz2.0_20 | Updated 34/720 | Mean std_B: 853820247.24
+- Algo: bkz2.0_20 | Updated 32/720 | Mean std_B: 845626002.58
+- Algo: bkz2.0_20 | Updated 46/720 | Mean std_B: 846566917.16
+- Algo: bkz2.0_20 | Updated 43/720 | Mean std_B: 850875245.49
+- Algo: bkz2.0_20 | Updated 30/720 | Mean std_B: 854225407.20
+- Algo: bkz2.0_20 | Updated 43/720 | Mean std_B: 856809208.26
+- Algo: bkz2.0_20 | Updated 37/720 | Mean std_B: 855611080.46
+Tour 5 | Time: 19997.90s | Mean std_B: 788595404.94 | Reduction Factor: 0.6757 | Prob: 0.0904
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+- Algo: bkz2.0_20 | Updated 322/734 | Mean std_B: 806375199.98
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+- Algo: bkz2.0_20 | Updated 311/731 | Mean std_B: 805578187.68
+- Algo: bkz2.0_20 | Updated 353/733 | Mean std_B: 801981582.28
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to qd
+- Algo: bkz2.0_20 | Updated 363/734 | Mean std_B: 800281909.03
+- Algo: bkz2.0_20 | Updated 333/733 | Mean std_B: 804350404.66
+- Algo: bkz2.0_20 | Updated 368/735 | Mean std_B: 801744540.55
+- Algo: bkz2.0_20 | Updated 327/734 | Mean std_B: 804648133.17
+- Algo: bkz2.0_20 | Updated 326/734 | Mean std_B: 806278283.87
+- Algo: bkz2.0_20 | Updated 334/733 | Mean std_B: 805162669.60
+- Algo: bkz2.0_20 | Updated 340/735 | Mean std_B: 805425466.82
+- Algo: bkz2.0_20 | Updated 294/734 | Mean std_B: 807939460.49
+- Algo: bkz2.0_20 | Updated 299/734 | Mean std_B: 806446905.75
+- Algo: bkz2.0_20 | Updated 288/731 | Mean std_B: 809534456.74
+- Algo: bkz2.0_20 | Updated 361/733 | Mean std_B: 803218605.62
+- Algo: bkz2.0_20 | Updated 372/734 | Mean std_B: 800902154.05
+- Algo: bkz2.0_20 | Updated 345/734 | Mean std_B: 803977539.32
+- Algo: bkz2.0_20 | Updated 368/736 | Mean std_B: 801436854.76
+- Algo: bkz2.0_20 | Updated 351/733 | Mean std_B: 803486537.26
+- Algo: bkz2.0_20 | Updated 307/734 | Mean std_B: 806363832.97
+- Algo: bkz2.0_20 | Updated 334/734 | Mean std_B: 804500296.45
+- Algo: bkz2.0_20 | Updated 372/734 | Mean std_B: 800921418.68
+- Algo: bkz2.0_20 | Updated 345/734 | Mean std_B: 803640300.06
+- Algo: bkz2.0_20 | Updated 357/733 | Mean std_B: 802766546.41
+- Algo: bkz2.0_20 | Updated 374/733 | Mean std_B: 803383487.27
+- Algo: bkz2.0_20 | Updated 365/735 | Mean std_B: 801777677.68
+- Algo: bkz2.0_20 | Updated 348/737 | Mean std_B: 803502890.69
+- Algo: bkz2.0_20 | Updated 351/734 | Mean std_B: 803678194.47
+- Algo: bkz2.0_20 | Updated 326/733 | Mean std_B: 804163267.91
+- Algo: bkz2.0_20 | Updated 337/731 | Mean std_B: 804214784.90
+- Algo: bkz2.0_20 | Updated 333/734 | Mean std_B: 804751164.11
+- Algo: bkz2.0_20 | Updated 288/735 | Mean std_B: 809353801.01
+- Algo: bkz2.0_20 | Updated 338/734 | Mean std_B: 803155813.01
+- Algo: bkz2.0_20 | Updated 322/735 | Mean std_B: 805222885.69
+- Algo: bkz2.0_20 | Updated 320/734 | Mean std_B: 806396929.74
+- Algo: bkz2.0_20 | Updated 325/734 | Mean std_B: 802703905.07
+- Algo: bkz2.0_20 | Updated 334/735 | Mean std_B: 805978770.21
+- Algo: bkz2.0_20 | Updated 341/734 | Mean std_B: 804111155.79
+- Algo: bkz2.0_20 | Updated 344/734 | Mean std_B: 803687894.40
+- Algo: bkz2.0_20 | Updated 346/734 | Mean std_B: 803019258.87
+- Algo: bkz2.0_20 | Updated 345/734 | Mean std_B: 804082121.91
+- Algo: bkz2.0_20 | Updated 327/733 | Mean std_B: 805567536.71
+- Algo: bkz2.0_20 | Updated 300/731 | Mean std_B: 809037042.47
+- Algo: bkz2.0_20 | Updated 380/734 | Mean std_B: 801272375.64
+- Algo: bkz2.0_20 | Updated 336/734 | Mean std_B: 804305233.17
+- Algo: bkz2.0_20 | Updated 345/734 | Mean std_B: 804782588.97
+- Algo: bkz2.0_20 | Updated 336/732 | Mean std_B: 806348565.86
+- Algo: bkz2.0_20 | Updated 337/733 | Mean std_B: 805427590.42
+- Algo: bkz2.0_20 | Updated 308/733 | Mean std_B: 807431133.05
+- Algo: bkz2.0_20 | Updated 373/732 | Mean std_B: 803243812.50
+- Algo: bkz2.0_20 | Updated 376/734 | Mean std_B: 801962255.99
+- Algo: bkz2.0_20 | Updated 335/734 | Mean std_B: 804079276.97
+- Algo: bkz2.0_20 | Updated 342/736 | Mean std_B: 803184500.28
+- Algo: bkz2.0_20 | Updated 385/736 | Mean std_B: 799504035.95
+- Algo: bkz2.0_20 | Updated 357/732 | Mean std_B: 805238828.46
+- Algo: bkz2.0_20 | Updated 296/733 | Mean std_B: 807815816.27
+- Algo: bkz2.0_20 | Updated 313/734 | Mean std_B: 807375266.10
+- Algo: bkz2.0_20 | Updated 282/731 | Mean std_B: 807947845.88
+- Algo: bkz2.0_20 | Updated 376/736 | Mean std_B: 803345268.37
+- Algo: bkz2.0_20 | Updated 320/734 | Mean std_B: 804807931.87
+- Algo: bkz2.0_20 | Updated 342/734 | Mean std_B: 802839311.81
+- Algo: bkz2.0_20 | Updated 332/731 | Mean std_B: 807007809.45
+- Algo: bkz2.0_20 | Updated 337/735 | Mean std_B: 803621401.05
+- Algo: bkz2.0_20 | Updated 332/735 | Mean std_B: 805023753.24
+Tour 6 | Time: 31857.65s | Mean std_B: 782452864.95 | Reduction Factor: 0.6703 | Prob: 0.0911
+- Algo: bkz2.0_20 | Updated 238/737 | Mean std_B: 804049185.91
+- Algo: bkz2.0_20 | Updated 268/735 | Mean std_B: 803086142.02
+- Algo: bkz2.0_20 | Updated 257/736 | Mean std_B: 803419475.05
+- Algo: bkz2.0_20 | Updated 274/736 | Mean std_B: 802761177.19
+- Algo: bkz2.0_20 | Updated 272/735 | Mean std_B: 803912703.89
+- Algo: bkz2.0_20 | Updated 276/736 | Mean std_B: 800895633.27
+- Algo: bkz2.0_20 | Updated 277/735 | Mean std_B: 801906968.33
+- Algo: bkz2.0_20 | Updated 242/732 | Mean std_B: 806482550.44
+- Algo: bkz2.0_20 | Updated 264/735 | Mean std_B: 805235333.89
+- Algo: bkz2.0_20 | Updated 284/736 | Mean std_B: 803275248.58
+- Algo: bkz2.0_20 | Updated 265/737 | Mean std_B: 801890539.60
+- Algo: bkz2.0_20 | Updated 294/737 | Mean std_B: 802150121.66
+- Algo: bkz2.0_20 | Updated 295/738 | Mean std_B: 799272601.16
+- Algo: bkz2.0_20 | Updated 283/737 | Mean std_B: 802542270.46
+- Algo: bkz2.0_20 | Updated 290/736 | Mean std_B: 800523180.01
+- Algo: bkz2.0_20 | Updated 289/734 | Mean std_B: 803961650.36
+- Algo: bkz2.0_20 | Updated 248/735 | Mean std_B: 804943284.65
+- Algo: bkz2.0_20 | Updated 273/735 | Mean std_B: 801933812.70
+- Algo: bkz2.0_20 | Updated 285/736 | Mean std_B: 801764516.70
+- Algo: bkz2.0_20 | Updated 282/737 | Mean std_B: 801231769.90
+- Algo: bkz2.0_20 | Updated 285/737 | Mean std_B: 802074564.62
+- Algo: bkz2.0_20 | Updated 281/736 | Mean std_B: 801635242.02
+- Algo: bkz2.0_20 | Updated 278/736 | Mean std_B: 802789543.37
+- Algo: bkz2.0_20 | Updated 258/736 | Mean std_B: 800531005.54
+- Algo: bkz2.0_20 | Updated 286/736 | Mean std_B: 800522761.28
+- Algo: bkz2.0_20 | Updated 262/736 | Mean std_B: 802552781.89
+- Algo: bkz2.0_20 | Updated 253/733 | Mean std_B: 804305290.66
+- Algo: bkz2.0_20 | Updated 252/736 | Mean std_B: 806255252.32
+- Algo: bkz2.0_20 | Updated 233/735 | Mean std_B: 804062714.88
+- Algo: bkz2.0_20 | Updated 276/738 | Mean std_B: 802803621.69
+- Algo: bkz2.0_20 | Updated 272/736 | Mean std_B: 804797795.58
+- Algo: bkz2.0_20 | Updated 260/735 | Mean std_B: 803280955.53
+- Algo: bkz2.0_20 | Updated 284/734 | Mean std_B: 801063850.22
+- Algo: bkz2.0_20 | Updated 266/735 | Mean std_B: 804493873.23
+- Algo: bkz2.0_20 | Updated 269/736 | Mean std_B: 804123121.48
+- Algo: bkz2.0_20 | Updated 228/735 | Mean std_B: 804220708.09
+- Algo: bkz2.0_20 | Updated 253/735 | Mean std_B: 804187362.80
+- Algo: bkz2.0_20 | Updated 246/732 | Mean std_B: 807232364.68
+- Algo: bkz2.0_20 | Updated 285/737 | Mean std_B: 799831497.12
+- Algo: bkz2.0_20 | Updated 281/735 | Mean std_B: 802293297.62
+- Algo: bkz2.0_20 | Updated 293/736 | Mean std_B: 799115915.49
+- Algo: bkz2.0_20 | Updated 272/734 | Mean std_B: 804070354.89
+- Algo: bkz2.0_20 | Updated 265/735 | Mean std_B: 803307547.89
+- Algo: bkz2.0_20 | Updated 305/738 | Mean std_B: 798998500.99
+- Algo: bkz2.0_20 | Updated 281/736 | Mean std_B: 802306635.23
+- Algo: bkz2.0_20 | Updated 291/737 | Mean std_B: 799982116.53
+- Algo: bkz2.0_20 | Updated 276/737 | Mean std_B: 801394435.76
+- Algo: bkz2.0_20 | Updated 282/736 | Mean std_B: 802876240.60
+- Algo: bkz2.0_20 | Updated 259/735 | Mean std_B: 805039358.18
+- Algo: bkz2.0_20 | Updated 235/733 | Mean std_B: 805958267.70
+- Algo: bkz2.0_20 | Updated 245/736 | Mean std_B: 805684279.90
+- Algo: bkz2.0_20 | Updated 250/735 | Mean std_B: 803402291.85
+- Algo: bkz2.0_20 | Updated 279/736 | Mean std_B: 804478393.03
+- Algo: bkz2.0_20 | Updated 278/736 | Mean std_B: 802357354.06
+- Algo: bkz2.0_20 | Updated 252/735 | Mean std_B: 806482394.02
+- Algo: bkz2.0_20 | Updated 266/734 | Mean std_B: 803455514.42
+- Algo: bkz2.0_20 | Updated 268/738 | Mean std_B: 801889068.71
+- Algo: bkz2.0_20 | Updated 272/735 | Mean std_B: 805393338.61
+- Algo: bkz2.0_20 | Updated 269/736 | Mean std_B: 803656403.45
+- Algo: bkz2.0_20 | Updated 280/736 | Mean std_B: 800550300.20
+- Algo: bkz2.0_20 | Updated 269/735 | Mean std_B: 803140560.05
+- Algo: bkz2.0_20 | Updated 250/733 | Mean std_B: 806259381.05
+- Algo: bkz2.0_20 | Updated 275/733 | Mean std_B: 802235752.38
+Tour 7 | Time: 34688.91s | Mean std_B: 778025393.19 | Reduction Factor: 0.6665 | Prob: 0.0916
+- Algo: bkz2.0_20 | Updated 250/737 | Mean std_B: 799330515.98
+- Algo: bkz2.0_20 | Updated 231/738 | Mean std_B: 801562497.31
+- Algo: bkz2.0_20 | Updated 231/737 | Mean std_B: 800547343.58
+- Algo: bkz2.0_20 | Updated 220/736 | Mean std_B: 802884021.16
+- Algo: bkz2.0_20 | Updated 222/736 | Mean std_B: 802932279.00
+- Algo: bkz2.0_20 | Updated 207/736 | Mean std_B: 801594297.06
+- Algo: bkz2.0_20 | Updated 224/737 | Mean std_B: 799498215.92
+- Algo: bkz2.0_20 | Updated 229/735 | Mean std_B: 799594949.57
+- Algo: bkz2.0_20 | Updated 217/735 | Mean std_B: 805793182.30
+- Algo: bkz2.0_20 | Updated 221/734 | Mean std_B: 801172176.62
+- Algo: bkz2.0_20 | Updated 247/738 | Mean std_B: 800582477.64
+- Algo: bkz2.0_20 | Updated 210/737 | Mean std_B: 802168512.49
+- Algo: bkz2.0_20 | Updated 241/736 | Mean std_B: 800808346.67
+- Algo: bkz2.0_20 | Updated 194/735 | Mean std_B: 807722128.77
+- Algo: bkz2.0_20 | Updated 224/737 | Mean std_B: 801617569.33
+- Algo: bkz2.0_20 | Updated 220/737 | Mean std_B: 799966819.09
+- Algo: bkz2.0_20 | Updated 193/734 | Mean std_B: 806038450.22
+- Algo: bkz2.0_20 | Updated 215/736 | Mean std_B: 803596230.08
+- Algo: bkz2.0_20 | Updated 230/734 | Mean std_B: 803331909.97
+- Algo: bkz2.0_20 | Updated 220/736 | Mean std_B: 802023857.76
+- Algo: bkz2.0_20 | Updated 192/737 | Mean std_B: 802959270.08
+- Algo: bkz2.0_20 | Updated 240/738 | Mean std_B: 798450643.61
+- Algo: bkz2.0_20 | Updated 206/736 | Mean std_B: 803569304.97
+- Algo: bkz2.0_20 | Updated 234/734 | Mean std_B: 800259913.60
+- Algo: bkz2.0_20 | Updated 215/737 | Mean std_B: 803638512.39
+- Algo: bkz2.0_20 | Updated 225/738 | Mean std_B: 799982582.79
+- Algo: bkz2.0_20 | Updated 220/736 | Mean std_B: 802729358.17
+- Algo: bkz2.0_20 | Updated 241/734 | Mean std_B: 799796074.64
+- Algo: bkz2.0_20 | Updated 237/739 | Mean std_B: 800312386.45
+- Algo: bkz2.0_20 | Updated 227/737 | Mean std_B: 801748679.44
+- Algo: bkz2.0_20 | Updated 198/735 | Mean std_B: 805935838.78
+- Algo: bkz2.0_20 | Updated 207/735 | Mean std_B: 803671875.41
+- Algo: bkz2.0_20 | Updated 230/739 | Mean std_B: 799462414.19
+- Algo: bkz2.0_20 | Updated 210/735 | Mean std_B: 803844402.61
+- Algo: bkz2.0_20 | Updated 230/736 | Mean std_B: 802975055.77
+- Algo: bkz2.0_20 | Updated 219/735 | Mean std_B: 802200293.19
+- Algo: bkz2.0_20 | Updated 248/735 | Mean std_B: 800741910.88
+- Algo: bkz2.0_20 | Updated 228/736 | Mean std_B: 802490681.43
+- Algo: bkz2.0_20 | Updated 228/735 | Mean std_B: 800995425.15
+- Algo: bkz2.0_20 | Updated 206/736 | Mean std_B: 804578354.72
+- Algo: bkz2.0_20 | Updated 226/736 | Mean std_B: 801124335.31
+- Algo: bkz2.0_20 | Updated 200/736 | Mean std_B: 802599858.53
+- Algo: bkz2.0_20 | Updated 247/737 | Mean std_B: 798406473.59
+- Algo: bkz2.0_20 | Updated 229/737 | Mean std_B: 802112923.00
+- Algo: bkz2.0_20 | Updated 200/736 | Mean std_B: 804651061.31
+- Algo: bkz2.0_20 | Updated 203/737 | Mean std_B: 802984455.89
+- Algo: bkz2.0_20 | Updated 220/735 | Mean std_B: 803354454.53
+- Algo: bkz2.0_20 | Updated 224/734 | Mean std_B: 805977528.23
+- Algo: bkz2.0_20 | Updated 184/738 | Mean std_B: 805973219.09
+- Algo: bkz2.0_20 | Updated 216/734 | Mean std_B: 802185918.52
+- Algo: bkz2.0_20 | Updated 222/734 | Mean std_B: 804117778.85
+- Algo: bkz2.0_20 | Updated 236/736 | Mean std_B: 801513855.81
+- Algo: bkz2.0_20 | Updated 221/735 | Mean std_B: 804324243.74
+- Algo: bkz2.0_20 | Updated 233/736 | Mean std_B: 802828016.19
+- Algo: bkz2.0_20 | Updated 222/735 | Mean std_B: 802598293.46
+- Algo: bkz2.0_20 | Updated 226/737 | Mean std_B: 800897488.66
+- Algo: bkz2.0_20 | Updated 227/734 | Mean std_B: 802041702.83
+- Algo: bkz2.0_20 | Updated 203/734 | Mean std_B: 804289127.83
+- Algo: bkz2.0_20 | Updated 249/737 | Mean std_B: 798634765.67
+- Algo: bkz2.0_20 | Updated 214/737 | Mean std_B: 802039492.96
+- Algo: bkz2.0_20 | Updated 210/735 | Mean std_B: 805506425.95
+- Algo: bkz2.0_20 | Updated 235/737 | Mean std_B: 800739342.68
+- Algo: bkz2.0_20 | Updated 190/736 | Mean std_B: 802451624.45
+Tour 8 | Time: 37287.25s | Mean std_B: 774708596.47 | Reduction Factor: 0.6636 | Prob: 0.0920
+- Algo: bkz2.0_20 | Updated 201/737 | Mean std_B: 798289568.00
+- Algo: bkz2.0_20 | Updated 196/738 | Mean std_B: 799720553.52
+- Algo: bkz2.0_20 | Updated 205/737 | Mean std_B: 803174674.43
+- Algo: bkz2.0_20 | Updated 200/737 | Mean std_B: 800388523.03
+- Algo: bkz2.0_20 | Updated 195/737 | Mean std_B: 800026212.01
+- Algo: bkz2.0_20 | Updated 188/739 | Mean std_B: 800047417.94
+- Algo: bkz2.0_20 | Updated 177/734 | Mean std_B: 803204206.64
+- Algo: bkz2.0_20 | Updated 183/736 | Mean std_B: 801035040.23
+- Algo: bkz2.0_20 | Updated 187/738 | Mean std_B: 798765669.94
+- Algo: bkz2.0_20 | Updated 204/737 | Mean std_B: 799730101.34
+- Algo: bkz2.0_20 | Updated 204/736 | Mean std_B: 801579008.99
+- Algo: bkz2.0_20 | Updated 178/738 | Mean std_B: 801455096.77
+- Algo: bkz2.0_20 | Updated 216/738 | Mean std_B: 797623082.97
+- Algo: bkz2.0_20 | Updated 188/738 | Mean std_B: 803002863.92
+- Algo: bkz2.0_20 | Updated 188/735 | Mean std_B: 803042269.98
+- Algo: bkz2.0_20 | Updated 182/737 | Mean std_B: 801728030.84
+- Algo: bkz2.0_20 | Updated 187/738 | Mean std_B: 797666473.26
+- Algo: bkz2.0_20 | Updated 194/735 | Mean std_B: 802583388.76
+- Algo: bkz2.0_20 | Updated 131/735 | Mean std_B: 806854484.31
+- Algo: bkz2.0_20 | Updated 171/736 | Mean std_B: 804110684.74
+- Algo: bkz2.0_20 | Updated 196/740 | Mean std_B: 801016585.01
+- Algo: bkz2.0_20 | Updated 192/734 | Mean std_B: 801007158.13
+- Algo: bkz2.0_20 | Updated 215/736 | Mean std_B: 799518044.62
+- Algo: bkz2.0_20 | Updated 184/737 | Mean std_B: 801642115.81
+- Algo: bkz2.0_20 | Updated 160/737 | Mean std_B: 803915472.52
+- Algo: bkz2.0_20 | Updated 196/738 | Mean std_B: 800042093.95
+- Algo: bkz2.0_20 | Updated 199/738 | Mean std_B: 798677446.65
+- Algo: bkz2.0_20 | Updated 167/736 | Mean std_B: 804464272.48
+- Algo: bkz2.0_20 | Updated 207/737 | Mean std_B: 801311814.49
+- Algo: bkz2.0_20 | Updated 180/736 | Mean std_B: 802283998.46
+- Algo: bkz2.0_20 | Updated 197/737 | Mean std_B: 800690913.66
+- Algo: bkz2.0_20 | Updated 174/735 | Mean std_B: 804195250.47
+- Algo: bkz2.0_20 | Updated 186/733 | Mean std_B: 802445870.28
+- Algo: bkz2.0_20 | Updated 179/736 | Mean std_B: 801533153.22
+- Algo: bkz2.0_20 | Updated 197/737 | Mean std_B: 802027050.03
+- Algo: bkz2.0_20 | Updated 193/737 | Mean std_B: 799102173.01
+- Algo: bkz2.0_20 | Updated 191/736 | Mean std_B: 801196106.50
+- Algo: bkz2.0_20 | Updated 196/737 | Mean std_B: 802126633.26
+- Algo: bkz2.0_20 | Updated 174/736 | Mean std_B: 805846335.25
+- Algo: bkz2.0_20 | Updated 195/737 | Mean std_B: 800497104.96
+- Algo: bkz2.0_20 | Updated 185/738 | Mean std_B: 801232441.37
+- Algo: bkz2.0_20 | Updated 197/736 | Mean std_B: 801099434.45
+- Algo: bkz2.0_20 | Updated 183/735 | Mean std_B: 803404212.54
+- Algo: bkz2.0_20 | Updated 228/739 | Mean std_B: 797871804.89
+- Algo: bkz2.0_20 | Updated 206/737 | Mean std_B: 798888058.54
+- Algo: bkz2.0_20 | Updated 191/737 | Mean std_B: 799855634.93
+- Algo: bkz2.0_20 | Updated 173/733 | Mean std_B: 803613534.19
+- Algo: bkz2.0_20 | Updated 179/736 | Mean std_B: 801916670.24
+- Algo: bkz2.0_20 | Updated 190/736 | Mean std_B: 799915455.08
+- Algo: bkz2.0_20 | Updated 180/734 | Mean std_B: 802993457.63
+- Algo: bkz2.0_20 | Updated 183/735 | Mean std_B: 801075533.71
+- Algo: bkz2.0_20 | Updated 210/736 | Mean std_B: 802361887.33
+- Algo: bkz2.0_20 | Updated 195/735 | Mean std_B: 802269849.34
+- Algo: bkz2.0_20 | Updated 185/736 | Mean std_B: 803542798.14
+- Algo: bkz2.0_20 | Updated 164/738 | Mean std_B: 802206157.50
+- Algo: bkz2.0_20 | Updated 180/737 | Mean std_B: 802041109.63
+- Algo: bkz2.0_20 | Updated 176/737 | Mean std_B: 800774062.24
+- Algo: bkz2.0_20 | Updated 174/734 | Mean std_B: 805452229.31
+- Algo: bkz2.0_20 | Updated 156/736 | Mean std_B: 801282369.03
+- Algo: bkz2.0_20 | Updated 184/737 | Mean std_B: 802099018.23
+- Algo: bkz2.0_20 | Updated 152/735 | Mean std_B: 802494355.41
+- Algo: bkz2.0_20 | Updated 166/735 | Mean std_B: 804851714.28
+- Algo: bkz2.0_20 | Updated 170/738 | Mean std_B: 803042092.68
+Tour 9 | Time: 40115.51s | Mean std_B: 772072682.66 | Reduction Factor: 0.6613 | Prob: 0.0923
+- Algo: bkz2.0_20 | Updated 155/738 | Mean std_B: 798674245.38
+- Algo: bkz2.0_20 | Updated 166/736 | Mean std_B: 803079237.57
+- Algo: bkz2.0_20 | Updated 154/738 | Mean std_B: 798555162.68
+- Algo: bkz2.0_20 | Updated 169/736 | Mean std_B: 800893006.18
+- Algo: bkz2.0_20 | Updated 171/736 | Mean std_B: 803481862.79
+- Algo: bkz2.0_20 | Updated 142/734 | Mean std_B: 803408010.82
+- Algo: bkz2.0_20 | Updated 185/739 | Mean std_B: 798141340.80
+- Algo: bkz2.0_20 | Updated 152/736 | Mean std_B: 803118230.44
+- Algo: bkz2.0_20 | Updated 175/737 | Mean std_B: 800311081.15
+- Algo: bkz2.0_20 | Updated 131/736 | Mean std_B: 801049883.52
+- Algo: bkz2.0_20 | Updated 146/737 | Mean std_B: 800253839.81
+- Algo: bkz2.0_20 | Updated 163/738 | Mean std_B: 799498540.76
+- Algo: bkz2.0_20 | Updated 165/737 | Mean std_B: 800712184.94
+- Algo: bkz2.0_20 | Updated 165/739 | Mean std_B: 799178826.18
+- Algo: bkz2.0_20 | Updated 161/736 | Mean std_B: 801478283.25
+- Algo: bkz2.0_20 | Updated 148/736 | Mean std_B: 803402850.70
+- Algo: bkz2.0_20 | Updated 123/735 | Mean std_B: 806909375.39
+- Algo: bkz2.0_20 | Updated 155/737 | Mean std_B: 800888060.85
+- Algo: bkz2.0_20 | Updated 143/733 | Mean std_B: 802305227.88
+- Algo: bkz2.0_20 | Updated 172/736 | Mean std_B: 800814502.43
+- Algo: bkz2.0_20 | Updated 155/737 | Mean std_B: 802636455.78
+- Algo: bkz2.0_20 | Updated 115/738 | Mean std_B: 801771697.83
+- Algo: bkz2.0_20 | Updated 169/737 | Mean std_B: 800297823.65
+- Algo: bkz2.0_20 | Updated 155/737 | Mean std_B: 803175211.11
+- Algo: bkz2.0_20 | Updated 165/738 | Mean std_B: 801073834.39
+- Algo: bkz2.0_20 | Updated 160/737 | Mean std_B: 800732270.47
+- Algo: bkz2.0_20 | Updated 160/733 | Mean std_B: 803102890.29
+- Algo: bkz2.0_20 | Updated 160/738 | Mean std_B: 799473103.70
+- Algo: bkz2.0_20 | Updated 152/734 | Mean std_B: 803081336.36
+- Algo: bkz2.0_20 | Updated 187/739 | Mean std_B: 796934406.67
+- Algo: bkz2.0_20 | Updated 158/735 | Mean std_B: 800673068.49
+- Algo: bkz2.0_20 | Updated 153/735 | Mean std_B: 801896268.23
+- Algo: bkz2.0_20 | Updated 158/736 | Mean std_B: 800970500.33
+- Algo: bkz2.0_20 | Updated 157/738 | Mean std_B: 800270763.56
+- Algo: bkz2.0_20 | Updated 160/736 | Mean std_B: 797818933.62
+- Algo: bkz2.0_20 | Updated 164/736 | Mean std_B: 802120262.84
+- Algo: bkz2.0_20 | Updated 160/737 | Mean std_B: 801092764.17
+- Algo: bkz2.0_20 | Updated 153/736 | Mean std_B: 800514191.17
+- Algo: bkz2.0_20 | Updated 175/733 | Mean std_B: 801870249.57
+- Algo: bkz2.0_20 | Updated 160/737 | Mean std_B: 799868610.06
+- Algo: bkz2.0_20 | Updated 167/739 | Mean std_B: 799018905.03
+- Algo: bkz2.0_20 | Updated 173/735 | Mean std_B: 802008442.51
+- Algo: bkz2.0_20 | Updated 173/736 | Mean std_B: 801224057.03
+- Algo: bkz2.0_20 | Updated 135/735 | Mean std_B: 801709680.16
+- Algo: bkz2.0_20 | Updated 136/737 | Mean std_B: 803606171.51
+- Algo: bkz2.0_20 | Updated 94/736 | Mean std_B: 805360840.41
+- Algo: bkz2.0_20 | Updated 165/737 | Mean std_B: 798637462.35
+- Algo: bkz2.0_20 | Updated 163/737 | Mean std_B: 798444151.04
+- Algo: bkz2.0_20 | Updated 172/736 | Mean std_B: 802150793.72
+- Algo: bkz2.0_20 | Updated 198/738 | Mean std_B: 799146701.00
+- Algo: bkz2.0_20 | Updated 116/738 | Mean std_B: 800426007.56
+- Algo: bkz2.0_20 | Updated 171/738 | Mean std_B: 802111286.00
+- Algo: bkz2.0_20 | Updated 166/736 | Mean std_B: 800827889.96
+- Algo: bkz2.0_20 | Updated 175/739 | Mean std_B: 799979569.46
+- Algo: bkz2.0_20 | Updated 133/736 | Mean std_B: 802634099.43
+- Algo: bkz2.0_20 | Updated 168/738 | Mean std_B: 800546969.12
+- Algo: bkz2.0_20 | Updated 155/737 | Mean std_B: 800817581.18
+- Algo: bkz2.0_20 | Updated 162/736 | Mean std_B: 802646876.99
+- Algo: bkz2.0_20 | Updated 163/737 | Mean std_B: 800216002.12
+- Algo: bkz2.0_20 | Updated 159/734 | Mean std_B: 805888198.20
+- Algo: bkz2.0_20 | Updated 135/737 | Mean std_B: 801695821.77
+- Algo: bkz2.0_20 | Updated 156/737 | Mean std_B: 800650967.90
+- Algo: bkz2.0_20 | Updated 173/740 | Mean std_B: 801175583.91
+Tour 10 | Time: 42539.42s | Mean std_B: 769937211.11 | Reduction Factor: 0.6594 | Prob: 0.0926
+- Algo: bkz2.0_20 | Updated 153/740 | Mean std_B: 798401219.87
+- Algo: bkz2.0_20 | Updated 136/738 | Mean std_B: 799452842.78
+- Algo: bkz2.0_20 | Updated 123/737 | Mean std_B: 797795697.36
+- Algo: bkz2.0_20 | Updated 121/738 | Mean std_B: 801277478.80
+- Algo: bkz2.0_20 | Updated 151/737 | Mean std_B: 799225532.01
+- Algo: bkz2.0_20 | Updated 128/733 | Mean std_B: 803031924.22
+- Algo: bkz2.0_20 | Updated 140/737 | Mean std_B: 802198333.40
+- Algo: bkz2.0_20 | Updated 121/736 | Mean std_B: 799053348.36
+- Algo: bkz2.0_20 | Updated 156/738 | Mean std_B: 799356298.91
+- Algo: bkz2.0_20 | Updated 126/736 | Mean std_B: 799860500.58
+- Algo: bkz2.0_20 | Updated 96/735 | Mean std_B: 803126324.71
+- Algo: bkz2.0_20 | Updated 138/737 | Mean std_B: 802123931.61
+- Algo: bkz2.0_20 | Updated 151/735 | Mean std_B: 799674567.30
+- Algo: bkz2.0_20 | Updated 125/736 | Mean std_B: 802196984.71
+- Algo: bkz2.0_20 | Updated 133/738 | Mean std_B: 803943469.50
+- Algo: bkz2.0_20 | Updated 126/738 | Mean std_B: 800966611.08
+- Algo: bkz2.0_20 | Updated 134/735 | Mean std_B: 802745298.30
+- Algo: bkz2.0_20 | Updated 135/737 | Mean std_B: 798865213.38
+- Algo: bkz2.0_20 | Updated 154/737 | Mean std_B: 799916781.16
+- Algo: bkz2.0_20 | Updated 115/735 | Mean std_B: 804050571.86
+- Algo: bkz2.0_20 | Updated 152/736 | Mean std_B: 800602699.47
+- Algo: bkz2.0_20 | Updated 144/736 | Mean std_B: 802481872.36
+- Algo: bkz2.0_20 | Updated 150/737 | Mean std_B: 800172386.96
+- Algo: bkz2.0_20 | Updated 143/737 | Mean std_B: 801106033.54
+- Algo: bkz2.0_20 | Updated 97/737 | Mean std_B: 802887471.43
+- Algo: bkz2.0_20 | Updated 156/737 | Mean std_B: 798291593.89
+- Algo: bkz2.0_20 | Updated 148/740 | Mean std_B: 799284661.40
+- Algo: bkz2.0_20 | Updated 138/740 | Mean std_B: 802222132.35
+- Algo: bkz2.0_20 | Updated 140/738 | Mean std_B: 798590619.40
+- Algo: bkz2.0_20 | Updated 137/735 | Mean std_B: 805460985.79
+- Algo: bkz2.0_20 | Updated 146/740 | Mean std_B: 799386999.70
+- Algo: bkz2.0_20 | Updated 146/737 | Mean std_B: 800265457.63
+- Algo: bkz2.0_20 | Updated 143/738 | Mean std_B: 798041841.68
+- Algo: bkz2.0_20 | Updated 133/738 | Mean std_B: 800917607.19
+- Algo: bkz2.0_20 | Updated 119/733 | Mean std_B: 802723058.26
+- Algo: bkz2.0_20 | Updated 146/737 | Mean std_B: 801017757.41
+- Algo: bkz2.0_20 | Updated 138/735 | Mean std_B: 802188990.02
+- Algo: bkz2.0_20 | Updated 109/736 | Mean std_B: 803697154.66
+- Algo: bkz2.0_20 | Updated 150/736 | Mean std_B: 802728513.94
+- Algo: bkz2.0_20 | Updated 133/737 | Mean std_B: 800497568.52
+- Algo: bkz2.0_20 | Updated 154/737 | Mean std_B: 798277174.20
+- Algo: bkz2.0_20 | Updated 104/738 | Mean std_B: 801858165.08
+- Algo: bkz2.0_20 | Updated 152/738 | Mean std_B: 799313445.70
+- Algo: bkz2.0_20 | Updated 137/736 | Mean std_B: 801595692.75
+- Algo: bkz2.0_20 | Updated 145/736 | Mean std_B: 800608864.83
+- Algo: bkz2.0_20 | Updated 170/738 | Mean std_B: 797232274.93
+- Algo: bkz2.0_20 | Updated 138/739 | Mean std_B: 800315596.92
+- Algo: bkz2.0_20 | Updated 162/739 | Mean std_B: 798341075.39
+- Algo: bkz2.0_20 | Updated 111/734 | Mean std_B: 803908023.45
+- Algo: bkz2.0_20 | Updated 140/737 | Mean std_B: 800049665.72
+- Algo: bkz2.0_20 | Updated 115/735 | Mean std_B: 803522274.95
+- Algo: bkz2.0_20 | Updated 105/736 | Mean std_B: 801559000.00
+- Algo: bkz2.0_20 | Updated 150/735 | Mean std_B: 800629251.96
+- Algo: bkz2.0_20 | Updated 135/739 | Mean std_B: 803268434.99
+- Algo: bkz2.0_20 | Updated 147/740 | Mean std_B: 801220517.22
+- Algo: bkz2.0_20 | Updated 148/737 | Mean std_B: 800252410.83
+- Algo: bkz2.0_20 | Updated 150/739 | Mean std_B: 798060180.94
+- Algo: bkz2.0_20 | Updated 122/736 | Mean std_B: 803590920.58
+- Algo: bkz2.0_20 | Updated 145/735 | Mean std_B: 802287283.72
+- Algo: bkz2.0_20 | Updated 147/738 | Mean std_B: 799794470.66
+- Algo: bkz2.0_20 | Updated 109/735 | Mean std_B: 805785907.06
+- Algo: bkz2.0_20 | Updated 150/738 | Mean std_B: 797606115.15
+- Algo: bkz2.0_20 | Updated 149/738 | Mean std_B: 796515308.82
+Dataset saved to ../data/data_n_256_k_2_s_cbd_3abd9_1.0.pkl
+Tour 11 | Time: 44900.84s | Mean std_B: 768139950.24 | Reduction Factor: 0.6579 | Prob: 0.0928
+[BEST 10% STD] True B is the best candidate: 583 / 6300 (9.25%)
+[BEST 30% STD] True B is the best candidate: 1692 / 18900 (8.95%)
+[BEST 60% STD] True B is the best candidate: 3378 / 37800 (8.94%)
+[BEST 100% STD] True B is the best candidate: 5662 / 63000 (8.99%)
+- Algo: bkz2.0_20 | Updated 133/737 | Mean std_B: 800013898.10
+- Algo: bkz2.0_20 | Updated 104/739 | Mean std_B: 802941330.77
+- Algo: bkz2.0_20 | Updated 105/738 | Mean std_B: 798858969.62
+- Algo: bkz2.0_20 | Updated 105/737 | Mean std_B: 798173043.94
+- Algo: bkz2.0_20 | Updated 106/738 | Mean std_B: 799608207.75
+- Algo: bkz2.0_20 | Updated 133/738 | Mean std_B: 797872155.48
+- Algo: bkz2.0_20 | Updated 128/737 | Mean std_B: 800392314.75
+- Algo: bkz2.0_20 | Updated 120/738 | Mean std_B: 800226235.85
+- Algo: bkz2.0_20 | Updated 128/740 | Mean std_B: 797299728.92
+- Algo: bkz2.0_20 | Updated 128/738 | Mean std_B: 800746246.25
+- Algo: bkz2.0_20 | Updated 120/738 | Mean std_B: 800656874.83
+- Algo: bkz2.0_20 | Updated 112/738 | Mean std_B: 803265339.93
+- Algo: bkz2.0_20 | Updated 109/733 | Mean std_B: 803373956.51
+- Algo: bkz2.0_20 | Updated 120/738 | Mean std_B: 800365671.65
+- Algo: bkz2.0_20 | Updated 115/735 | Mean std_B: 801443847.47
+- Algo: bkz2.0_20 | Updated 83/735 | Mean std_B: 803259655.25
+- Algo: bkz2.0_20 | Updated 121/734 | Mean std_B: 802553267.91
+- Algo: bkz2.0_20 | Updated 137/739 | Mean std_B: 799904928.28
+- Algo: bkz2.0_20 | Updated 126/735 | Mean std_B: 801183692.10
+- Algo: bkz2.0_20 | Updated 102/736 | Mean std_B: 800570788.62
+- Algo: bkz2.0_20 | Updated 136/739 | Mean std_B: 798923287.19
+- Algo: bkz2.0_20 | Updated 130/734 | Mean std_B: 800980044.93
+- Algo: bkz2.0_20 | Updated 108/736 | Mean std_B: 803078319.11
+- Algo: bkz2.0_20 | Updated 138/737 | Mean std_B: 798446476.30
+- Algo: bkz2.0_20 | Updated 126/735 | Mean std_B: 798173489.15
+- Algo: bkz2.0_20 | Updated 111/736 | Mean std_B: 798557454.92
+- Algo: bkz2.0_20 | Updated 127/737 | Mean std_B: 797212694.87
+- Algo: bkz2.0_20 | Updated 132/737 | Mean std_B: 800559334.88
+- Algo: bkz2.0_20 | Updated 99/736 | Mean std_B: 802248419.23
+- Algo: bkz2.0_20 | Updated 124/735 | Mean std_B: 802051709.55
+- Algo: bkz2.0_20 | Updated 133/739 | Mean std_B: 797479883.91
+- Algo: bkz2.0_20 | Updated 111/738 | Mean std_B: 798484784.03
+- Algo: bkz2.0_20 | Updated 88/737 | Mean std_B: 800756429.95
+- Algo: bkz2.0_20 | Updated 141/738 | Mean std_B: 800151694.65
+- Algo: bkz2.0_20 | Updated 118/738 | Mean std_B: 800073683.46
+- Algo: bkz2.0_20 | Updated 136/739 | Mean std_B: 796715841.61
+- Algo: bkz2.0_20 | Updated 136/737 | Mean std_B: 799506777.46
+- Algo: bkz2.0_20 | Updated 149/739 | Mean std_B: 797582037.03
+- Algo: bkz2.0_20 | Updated 100/737 | Mean std_B: 802103233.59
+- Algo: bkz2.0_20 | Updated 100/736 | Mean std_B: 802332551.31
+- Algo: bkz2.0_20 | Updated 138/738 | Mean std_B: 798596566.78
+- Algo: bkz2.0_20 | Updated 96/734 | Mean std_B: 803376843.67
+- Algo: bkz2.0_20 | Updated 108/736 | Mean std_B: 801066864.33
+- Algo: bkz2.0_20 | Updated 123/736 | Mean std_B: 801750523.25
+- Algo: bkz2.0_20 | Updated 121/736 | Mean std_B: 803639014.84
+- Algo: bkz2.0_20 | Updated 122/739 | Mean std_B: 803126650.20
+- Algo: bkz2.0_20 | Updated 139/741 | Mean std_B: 799276425.85
+- Algo: bkz2.0_20 | Updated 137/738 | Mean std_B: 796547573.35
+- Algo: bkz2.0_20 | Updated 114/735 | Mean std_B: 801820761.80
+- Algo: bkz2.0_20 | Updated 134/736 | Mean std_B: 801100679.00
+- Algo: bkz2.0_20 | Updated 139/740 | Mean std_B: 796974129.43
+- Algo: bkz2.0_20 | Updated 129/739 | Mean std_B: 799975619.33
+- Algo: bkz2.0_20 | Updated 91/735 | Mean std_B: 807380730.77
+- Algo: bkz2.0_20 | Updated 102/738 | Mean std_B: 800351852.05
+- Algo: bkz2.0_20 | Updated 123/738 | Mean std_B: 799037538.15
+- Algo: bkz2.0_20 | Updated 107/738 | Mean std_B: 798503033.02
+- Algo: bkz2.0_20 | Updated 96/737 | Mean std_B: 800971284.28
+- Algo: bkz2.0_20 | Updated 138/735 | Mean std_B: 802164261.30
+- Algo: bkz2.0_20 | Updated 124/738 | Mean std_B: 800094839.81
+- Algo: bkz2.0_20 | Updated 118/737 | Mean std_B: 800885374.45
+- Algo: bkz2.0_20 | Updated 143/737 | Mean std_B: 799771844.18
+- Algo: bkz2.0_20 | Updated 109/735 | Mean std_B: 801556422.09
+- Algo: bkz2.0_20 | Updated 128/737 | Mean std_B: 802853433.60
+Tour 12 | Time: 49849.05s | Mean std_B: 766648216.56 | Reduction Factor: 0.6566 | Prob: 0.0930
+- Algo: bkz2.0_20 | Updated 116/739 | Mean std_B: 800160599.26
+- Algo: bkz2.0_20 | Updated 120/739 | Mean std_B: 798589969.35
+- Algo: bkz2.0_20 | Updated 100/738 | Mean std_B: 798458570.33
+- Algo: bkz2.0_20 | Updated 87/737 | Mean std_B: 799119671.74
+- Algo: bkz2.0_20 | Updated 118/736 | Mean std_B: 800189158.56
+- Algo: bkz2.0_20 | Updated 114/736 | Mean std_B: 799799856.55
+- Algo: bkz2.0_20 | Updated 81/739 | Mean std_B: 801371142.09
+- Algo: bkz2.0_20 | Updated 108/737 | Mean std_B: 800372999.87
+- Algo: bkz2.0_20 | Updated 121/739 | Mean std_B: 798469222.10
+- Algo: bkz2.0_20 | Updated 92/736 | Mean std_B: 802974228.26
+- Algo: bkz2.0_20 | Updated 109/738 | Mean std_B: 798960065.65
+- Algo: bkz2.0_20 | Updated 131/736 | Mean std_B: 799430107.38
+- Algo: bkz2.0_20 | Updated 105/736 | Mean std_B: 801538819.36
+- Algo: bkz2.0_20 | Updated 118/737 | Mean std_B: 799148280.46
+- Algo: bkz2.0_20 | Updated 74/733 | Mean std_B: 803749378.03
+- Algo: bkz2.0_20 | Updated 82/738 | Mean std_B: 798768313.68
+- Algo: bkz2.0_20 | Updated 124/738 | Mean std_B: 798016489.88
+- Algo: bkz2.0_20 | Updated 96/738 | Mean std_B: 800072279.66
+- Algo: bkz2.0_20 | Updated 120/739 | Mean std_B: 799957608.41
+- Algo: bkz2.0_20 | Updated 76/737 | Mean std_B: 801240869.68
+- Algo: bkz2.0_20 | Updated 120/736 | Mean std_B: 802419928.19
+- Algo: bkz2.0_20 | Updated 119/738 | Mean std_B: 798969964.37
+- Algo: bkz2.0_20 | Updated 100/737 | Mean std_B: 800486023.23
+- Algo: bkz2.0_20 | Updated 102/736 | Mean std_B: 797694166.38
+- Algo: bkz2.0_20 | Updated 88/735 | Mean std_B: 802082353.97
+- Algo: bkz2.0_20 | Updated 123/740 | Mean std_B: 798521234.63
+- Algo: bkz2.0_20 | Updated 87/735 | Mean std_B: 805892305.26
+- Algo: bkz2.0_20 | Updated 108/739 | Mean std_B: 800064115.00
+- Algo: bkz2.0_20 | Updated 114/736 | Mean std_B: 798470575.52
+- Algo: bkz2.0_20 | Updated 97/739 | Mean std_B: 800841095.27
+- Algo: bkz2.0_20 | Updated 85/735 | Mean std_B: 802075114.02
+- Algo: bkz2.0_20 | Updated 88/737 | Mean std_B: 801381557.51
+- Algo: bkz2.0_20 | Updated 108/737 | Mean std_B: 802039912.01
+- Algo: bkz2.0_20 | Updated 95/738 | Mean std_B: 798903813.16
+- Algo: bkz2.0_20 | Updated 122/739 | Mean std_B: 798796729.41
+- Algo: bkz2.0_20 | Updated 117/734 | Mean std_B: 801434080.53
+- Algo: bkz2.0_20 | Updated 123/740 | Mean std_B: 795781918.32
+- Algo: bkz2.0_20 | Updated 129/737 | Mean std_B: 797363971.59
+- Algo: bkz2.0_20 | Updated 98/738 | Mean std_B: 797492627.61
+- Algo: bkz2.0_20 | Updated 101/739 | Mean std_B: 797659130.85
+- Algo: bkz2.0_20 | Updated 129/738 | Mean std_B: 801520870.31
+- Algo: bkz2.0_20 | Updated 86/737 | Mean std_B: 800122717.09
+- Algo: bkz2.0_20 | Updated 88/736 | Mean std_B: 802232610.05
+- Algo: bkz2.0_20 | Updated 116/737 | Mean std_B: 797558053.99
+- Algo: bkz2.0_20 | Updated 133/738 | Mean std_B: 801347650.54
+- Algo: bkz2.0_20 | Updated 104/739 | Mean std_B: 798678952.48
+- Algo: bkz2.0_20 | Updated 102/737 | Mean std_B: 799262367.36
+- Algo: bkz2.0_20 | Updated 91/739 | Mean std_B: 802352494.41
+- Algo: bkz2.0_20 | Updated 151/740 | Mean std_B: 795019646.22
+- Algo: bkz2.0_20 | Updated 84/737 | Mean std_B: 801039438.24
+- Algo: bkz2.0_20 | Updated 115/735 | Mean std_B: 801845015.68
+- Algo: bkz2.0_20 | Updated 81/738 | Mean std_B: 797411353.73
+- Algo: bkz2.0_20 | Updated 110/735 | Mean std_B: 802465039.30
+- Algo: bkz2.0_20 | Updated 87/736 | Mean std_B: 801442978.89
+- Algo: bkz2.0_20 | Updated 84/736 | Mean std_B: 801325321.82
+- Algo: bkz2.0_20 | Updated 98/736 | Mean std_B: 800717052.14
+- Algo: bkz2.0_20 | Updated 79/735 | Mean std_B: 802712321.67
+- Algo: bkz2.0_20 | Updated 124/738 | Mean std_B: 799364841.00
+- Algo: bkz2.0_20 | Updated 121/738 | Mean std_B: 799518639.08
+- Algo: bkz2.0_20 | Updated 90/734 | Mean std_B: 803478907.21
+- Algo: bkz2.0_20 | Updated 119/739 | Mean std_B: 798822666.09
+- Algo: bkz2.0_20 | Updated 104/734 | Mean std_B: 800204742.95
+- Algo: bkz2.0_20 | Updated 134/740 | Mean std_B: 798197883.28
+Tour 13 | Time: 52216.73s | Mean std_B: 765360201.88 | Reduction Factor: 0.6554 | Prob: 0.0931
+- Algo: bkz2.0_20 | Updated 105/737 | Mean std_B: 798042776.72
+- Algo: bkz2.0_20 | Updated 79/738 | Mean std_B: 798304228.16
+- Algo: bkz2.0_20 | Updated 122/738 | Mean std_B: 797420003.22
+- Algo: bkz2.0_20 | Updated 103/735 | Mean std_B: 802003508.76
+- Algo: bkz2.0_20 | Updated 85/736 | Mean std_B: 800179858.99
+- Algo: bkz2.0_20 | Updated 71/739 | Mean std_B: 803291969.99
+- Algo: bkz2.0_20 | Updated 77/737 | Mean std_B: 798003744.74
+- Algo: bkz2.0_20 | Updated 70/735 | Mean std_B: 802136367.20
+- Algo: bkz2.0_20 | Updated 89/736 | Mean std_B: 799225457.83
+- Algo: bkz2.0_20 | Updated 83/737 | Mean std_B: 800916925.73
+- Algo: bkz2.0_20 | Updated 120/739 | Mean std_B: 794797651.39
+- Algo: bkz2.0_20 | Updated 106/738 | Mean std_B: 799414806.44
+- Algo: bkz2.0_20 | Updated 96/737 | Mean std_B: 800616780.74
+- Algo: bkz2.0_20 | Updated 96/736 | Mean std_B: 801737033.01
+- Algo: bkz2.0_20 | Updated 106/739 | Mean std_B: 801933067.12
+- Algo: bkz2.0_20 | Updated 92/739 | Mean std_B: 798978337.69
+- Algo: bkz2.0_20 | Updated 102/736 | Mean std_B: 801590222.38
+- Algo: bkz2.0_20 | Updated 90/736 | Mean std_B: 798856088.19
+- Algo: bkz2.0_20 | Updated 95/734 | Mean std_B: 802472971.57
+- Algo: bkz2.0_20 | Updated 84/736 | Mean std_B: 801414353.86
+- Algo: bkz2.0_20 | Updated 87/737 | Mean std_B: 802576405.38
+- Algo: bkz2.0_20 | Updated 75/736 | Mean std_B: 801476985.01
+- Algo: bkz2.0_20 | Updated 85/736 | Mean std_B: 800379528.87
+- Algo: bkz2.0_20 | Updated 95/734 | Mean std_B: 804235519.52
+- Algo: bkz2.0_20 | Updated 72/736 | Mean std_B: 800010002.00
+- Algo: bkz2.0_20 | Updated 105/739 | Mean std_B: 799391693.73
+- Algo: bkz2.0_20 | Updated 86/735 | Mean std_B: 802240817.81
+- Algo: bkz2.0_20 | Updated 105/740 | Mean std_B: 799269413.02
+- Algo: bkz2.0_20 | Updated 83/735 | Mean std_B: 806200543.69
+- Algo: bkz2.0_20 | Updated 77/738 | Mean std_B: 798585728.45
+- Algo: bkz2.0_20 | Updated 113/740 | Mean std_B: 797421151.56
+- Algo: bkz2.0_20 | Updated 109/739 | Mean std_B: 797290954.39
+- Algo: bkz2.0_20 | Updated 112/739 | Mean std_B: 797532182.36
+- Algo: bkz2.0_20 | Updated 81/739 | Mean std_B: 798182573.00
+- Algo: bkz2.0_20 | Updated 81/736 | Mean std_B: 801395818.22
+- Algo: bkz2.0_20 | Updated 92/733 | Mean std_B: 801635778.01
+- Algo: bkz2.0_20 | Updated 90/737 | Mean std_B: 800436623.62
+- Algo: bkz2.0_20 | Updated 96/737 | Mean std_B: 799977004.33
+- Algo: bkz2.0_20 | Updated 117/737 | Mean std_B: 799982568.05
+- Algo: bkz2.0_20 | Updated 107/736 | Mean std_B: 802645530.91
+- Algo: bkz2.0_20 | Updated 128/739 | Mean std_B: 797405303.89
+- Algo: bkz2.0_20 | Updated 85/738 | Mean std_B: 798987745.50
+- Algo: bkz2.0_20 | Updated 94/735 | Mean std_B: 802624056.89
+- Algo: bkz2.0_20 | Updated 102/740 | Mean std_B: 797869541.45
+- Algo: bkz2.0_20 | Updated 92/737 | Mean std_B: 799892602.76
+- Algo: bkz2.0_20 | Updated 78/735 | Mean std_B: 802901974.12
+- Algo: bkz2.0_20 | Updated 84/739 | Mean std_B: 799591913.29
+- Algo: bkz2.0_20 | Updated 81/738 | Mean std_B: 798384812.24
+- Algo: bkz2.0_20 | Updated 80/739 | Mean std_B: 798729831.53
+- Algo: bkz2.0_20 | Updated 104/738 | Mean std_B: 799772095.31
+- Algo: bkz2.0_20 | Updated 100/735 | Mean std_B: 801492083.07
+- Algo: bkz2.0_20 | Updated 124/738 | Mean std_B: 801412340.04
+- Algo: bkz2.0_20 | Updated 97/740 | Mean std_B: 797626513.28
+- Algo: bkz2.0_20 | Updated 111/739 | Mean std_B: 799453067.03
+- Algo: bkz2.0_20 | Updated 77/739 | Mean std_B: 797395140.06
+- Algo: bkz2.0_20 | Updated 91/738 | Mean std_B: 801713514.82
+- Algo: bkz2.0_20 | Updated 89/738 | Mean std_B: 800363230.00
+- Algo: bkz2.0_20 | Updated 96/740 | Mean std_B: 799617144.43
+- Algo: bkz2.0_20 | Updated 91/738 | Mean std_B: 797602597.40
+- Algo: bkz2.0_20 | Updated 79/737 | Mean std_B: 799314499.89
+- Algo: bkz2.0_20 | Updated 98/738 | Mean std_B: 797550972.11
+- Algo: bkz2.0_20 | Updated 112/740 | Mean std_B: 799182323.70
+- Algo: bkz2.0_20 | Updated 123/738 | Mean std_B: 797450141.20
+Tour 14 | Time: 54640.43s | Mean std_B: 764229977.42 | Reduction Factor: 0.6545 | Prob: 0.0933
+- Algo: bkz2.0_20 | Updated 91/738 | Mean std_B: 800431997.20
+- Algo: bkz2.0_20 | Updated 96/737 | Mean std_B: 799994484.16
+- Algo: bkz2.0_20 | Updated 71/736 | Mean std_B: 798515888.58
+- Algo: bkz2.0_20 | Updated 101/740 | Mean std_B: 796678904.20
+- Algo: bkz2.0_20 | Updated 84/738 | Mean std_B: 799580338.71
+- Algo: bkz2.0_20 | Updated 109/736 | Mean std_B: 796662117.89
+- Algo: bkz2.0_20 | Updated 84/736 | Mean std_B: 803331101.39
+- Algo: bkz2.0_20 | Updated 80/737 | Mean std_B: 800679883.72
+- Algo: bkz2.0_20 | Updated 79/737 | Mean std_B: 798137748.58
+- Algo: bkz2.0_20 | Updated 77/737 | Mean std_B: 799694836.52
+- Algo: bkz2.0_20 | Updated 60/736 | Mean std_B: 801222581.48
+- Algo: bkz2.0_20 | Updated 70/738 | Mean std_B: 798060958.11
+- Algo: bkz2.0_20 | Updated 92/737 | Mean std_B: 802648193.26
+- Algo: bkz2.0_20 | Updated 81/736 | Mean std_B: 800708638.62
+- Algo: bkz2.0_20 | Updated 84/737 | Mean std_B: 799842753.58
+- Algo: bkz2.0_20 | Updated 81/733 | Mean std_B: 802788854.45
+- Algo: bkz2.0_20 | Updated 94/739 | Mean std_B: 798226700.68
+- Algo: bkz2.0_20 | Updated 85/736 | Mean std_B: 801225113.42
+- Algo: bkz2.0_20 | Updated 86/735 | Mean std_B: 800179048.65
+- Algo: bkz2.0_20 | Updated 76/734 | Mean std_B: 803109030.00
+- Algo: bkz2.0_20 | Updated 63/738 | Mean std_B: 800749547.65
+- Algo: bkz2.0_20 | Updated 86/738 | Mean std_B: 797004287.56
+- Algo: bkz2.0_20 | Updated 86/737 | Mean std_B: 801537058.92
+- Algo: bkz2.0_20 | Updated 90/740 | Mean std_B: 797085463.14
+- Algo: bkz2.0_20 | Updated 77/735 | Mean std_B: 801389128.02
+- Algo: bkz2.0_20 | Updated 74/735 | Mean std_B: 806446799.09
+- Algo: bkz2.0_20 | Updated 88/739 | Mean std_B: 801386953.50
+- Algo: bkz2.0_20 | Updated 79/739 | Mean std_B: 796152630.23
+- Algo: bkz2.0_20 | Updated 74/738 | Mean std_B: 801775177.92
+- Algo: bkz2.0_20 | Updated 98/736 | Mean std_B: 801147137.06
+- Algo: bkz2.0_20 | Updated 66/737 | Mean std_B: 799016206.67
+- Algo: bkz2.0_20 | Updated 78/734 | Mean std_B: 804282350.04
+- Algo: bkz2.0_20 | Updated 87/736 | Mean std_B: 798571089.60
+- Algo: bkz2.0_20 | Updated 88/738 | Mean std_B: 798050277.78
+- Algo: bkz2.0_20 | Updated 59/738 | Mean std_B: 803365465.76
+- Algo: bkz2.0_20 | Updated 111/739 | Mean std_B: 801232400.65
+- Algo: bkz2.0_20 | Updated 95/739 | Mean std_B: 801024964.12
+- Algo: bkz2.0_20 | Updated 100/738 | Mean std_B: 798852403.00
+- Algo: bkz2.0_20 | Updated 78/737 | Mean std_B: 800501779.21
+- Algo: bkz2.0_20 | Updated 117/739 | Mean std_B: 797205957.76
+- Algo: bkz2.0_20 | Updated 79/737 | Mean std_B: 799819661.72
+- Algo: bkz2.0_20 | Updated 76/737 | Mean std_B: 800143984.91
+- Algo: bkz2.0_20 | Updated 92/739 | Mean std_B: 799530426.14
+- Algo: bkz2.0_20 | Updated 93/737 | Mean std_B: 798704828.90
+- Algo: bkz2.0_20 | Updated 100/740 | Mean std_B: 799205614.94
+- Algo: bkz2.0_20 | Updated 83/735 | Mean std_B: 801891831.11
+- Algo: bkz2.0_20 | Updated 110/737 | Mean std_B: 797585236.30
+- Algo: bkz2.0_20 | Updated 102/738 | Mean std_B: 800571008.32
+- Algo: bkz2.0_20 | Updated 80/736 | Mean std_B: 801177568.30
+- Algo: bkz2.0_20 | Updated 68/739 | Mean std_B: 802072916.62
+- Algo: bkz2.0_20 | Updated 94/736 | Mean std_B: 799943579.04
+- Algo: bkz2.0_20 | Updated 79/736 | Mean std_B: 801976448.00
+- Algo: bkz2.0_20 | Updated 96/739 | Mean std_B: 796604225.79
+- Algo: bkz2.0_20 | Updated 90/738 | Mean std_B: 797631933.20
+- Algo: bkz2.0_20 | Updated 82/740 | Mean std_B: 797889347.56
+- Algo: bkz2.0_20 | Updated 67/738 | Mean std_B: 797179906.44
+- Algo: bkz2.0_20 | Updated 104/739 | Mean std_B: 798769543.20
+- Algo: bkz2.0_20 | Updated 82/739 | Mean std_B: 796782124.02
+- Algo: bkz2.0_20 | Updated 77/739 | Mean std_B: 797378100.49
+- Algo: bkz2.0_20 | Updated 93/735 | Mean std_B: 801602509.58
+- Algo: bkz2.0_20 | Updated 85/736 | Mean std_B: 801414461.42
+- Algo: bkz2.0_20 | Updated 101/739 | Mean std_B: 797555159.22
+- Algo: bkz2.0_20 | Updated 102/739 | Mean std_B: 798046639.86
+Tour 15 | Time: 57163.67s | Mean std_B: 763234815.14 | Reduction Factor: 0.6536 | Prob: 0.0934
+- Algo: bkz2.0_20 | Updated 69/739 | Mean std_B: 799027828.03
+- Algo: bkz2.0_20 | Updated 90/740 | Mean std_B: 799274212.67
+- Algo: bkz2.0_20 | Updated 88/737 | Mean std_B: 796897135.46
+- Algo: bkz2.0_20 | Updated 93/739 | Mean std_B: 800997952.53
+- Algo: bkz2.0_20 | Updated 68/738 | Mean std_B: 798123542.14
+- Algo: bkz2.0_20 | Updated 66/735 | Mean std_B: 799790006.06
+- Algo: bkz2.0_20 | Updated 89/739 | Mean std_B: 795536127.51
+- Algo: bkz2.0_20 | Updated 64/737 | Mean std_B: 799118866.78
+- Algo: bkz2.0_20 | Updated 88/738 | Mean std_B: 797094019.10
+- Algo: bkz2.0_20 | Updated 72/735 | Mean std_B: 799508520.54
+- Algo: bkz2.0_20 | Updated 85/739 | Mean std_B: 798536785.03
+- Algo: bkz2.0_20 | Updated 101/739 | Mean std_B: 799048589.94
+- Algo: bkz2.0_20 | Updated 85/738 | Mean std_B: 797578956.05
+- Algo: bkz2.0_20 | Updated 74/738 | Mean std_B: 798610623.89
+- Algo: bkz2.0_20 | Updated 72/737 | Mean std_B: 799052730.12
+- Algo: bkz2.0_20 | Updated 77/735 | Mean std_B: 805292062.88
+- Algo: bkz2.0_20 | Updated 67/737 | Mean std_B: 800968902.25
+- Algo: bkz2.0_20 | Updated 73/738 | Mean std_B: 797431448.92
+- Algo: bkz2.0_20 | Updated 74/739 | Mean std_B: 798624481.14
+- Algo: bkz2.0_20 | Updated 65/738 | Mean std_B: 799099852.31
+- Algo: bkz2.0_20 | Updated 89/740 | Mean std_B: 795310703.60
+- Algo: bkz2.0_20 | Updated 74/736 | Mean std_B: 801041686.07
+- Algo: bkz2.0_20 | Updated 74/736 | Mean std_B: 798722248.28
+- Algo: bkz2.0_20 | Updated 77/736 | Mean std_B: 800150530.58
+- Algo: bkz2.0_20 | Updated 91/736 | Mean std_B: 798473763.88
+- Algo: bkz2.0_20 | Updated 60/735 | Mean std_B: 802962023.81
+- Algo: bkz2.0_20 | Updated 77/739 | Mean std_B: 797991581.23
+- Algo: bkz2.0_20 | Updated 86/737 | Mean std_B: 801102304.91
+- Algo: bkz2.0_20 | Updated 77/738 | Mean std_B: 798306538.18
+- Algo: bkz2.0_20 | Updated 60/738 | Mean std_B: 802910384.01
+- Algo: bkz2.0_20 | Updated 72/737 | Mean std_B: 800966595.03
+- Algo: bkz2.0_20 | Updated 75/736 | Mean std_B: 801812489.67
+- Algo: bkz2.0_20 | Updated 75/735 | Mean std_B: 800740319.40
+- Algo: bkz2.0_20 | Updated 85/736 | Mean std_B: 803584301.25
+- Algo: bkz2.0_20 | Updated 94/739 | Mean std_B: 798438292.91
+- Algo: bkz2.0_20 | Updated 65/737 | Mean std_B: 798863124.06
+- Algo: bkz2.0_20 | Updated 112/737 | Mean std_B: 798690734.92
+- Algo: bkz2.0_20 | Updated 89/739 | Mean std_B: 796621077.48
+- Algo: bkz2.0_20 | Updated 87/740 | Mean std_B: 795525068.09
+- Algo: bkz2.0_20 | Updated 96/739 | Mean std_B: 798052567.86
+- Algo: bkz2.0_20 | Updated 78/740 | Mean std_B: 800303535.01
+- Algo: bkz2.0_20 | Updated 66/736 | Mean std_B: 801323939.44
+- Algo: bkz2.0_20 | Updated 65/736 | Mean std_B: 800271827.83
+- Algo: bkz2.0_20 | Updated 91/739 | Mean std_B: 794933443.95
+- Algo: bkz2.0_20 | Updated 74/733 | Mean std_B: 802614421.34
+- Algo: bkz2.0_20 | Updated 72/736 | Mean std_B: 800850992.70
+- Algo: bkz2.0_20 | Updated 70/739 | Mean std_B: 801973289.05
+- Algo: bkz2.0_20 | Updated 82/734 | Mean std_B: 803724649.17
+- Algo: bkz2.0_20 | Updated 94/737 | Mean std_B: 797312781.85
+- Algo: bkz2.0_20 | Updated 90/739 | Mean std_B: 799081743.50
+- Algo: bkz2.0_20 | Updated 106/737 | Mean std_B: 799286546.19
+- Algo: bkz2.0_20 | Updated 88/738 | Mean std_B: 799074793.82
+- Algo: bkz2.0_20 | Updated 71/737 | Mean std_B: 799827224.00
+- Algo: bkz2.0_20 | Updated 53/734 | Mean std_B: 802013717.64
+- Algo: bkz2.0_20 | Updated 61/735 | Mean std_B: 802807641.69
+- Algo: bkz2.0_20 | Updated 68/739 | Mean std_B: 797214700.64
+- Algo: bkz2.0_20 | Updated 77/736 | Mean std_B: 801239188.86
+- Algo: bkz2.0_20 | Updated 88/740 | Mean std_B: 796372496.39
+- Algo: bkz2.0_20 | Updated 87/738 | Mean std_B: 799144911.57
+- Algo: bkz2.0_20 | Updated 88/738 | Mean std_B: 798886081.18
+- Algo: bkz2.0_20 | Updated 97/738 | Mean std_B: 800194178.20
+- Algo: bkz2.0_20 | Updated 80/736 | Mean std_B: 800702026.81
+- Algo: bkz2.0_20 | Updated 88/741 | Mean std_B: 798228280.83
+Tour 16 | Time: 59476.08s | Mean std_B: 762324305.32 | Reduction Factor: 0.6528 | Prob: 0.0935
+- Algo: bkz2.0_20 | Updated 90/739 | Mean std_B: 795108620.70
+- Algo: bkz2.0_20 | Updated 76/733 | Mean std_B: 801228228.09
+- Algo: bkz2.0_20 | Updated 80/737 | Mean std_B: 799782314.69
+- Algo: bkz2.0_20 | Updated 78/739 | Mean std_B: 799025331.68
+- Algo: bkz2.0_20 | Updated 74/736 | Mean std_B: 801074925.36
+- Algo: bkz2.0_20 | Updated 76/738 | Mean std_B: 797658399.33
+- Algo: bkz2.0_20 | Updated 79/737 | Mean std_B: 797293244.59
+- Algo: bkz2.0_20 | Updated 83/737 | Mean std_B: 798585660.28
+- Algo: bkz2.0_20 | Updated 88/737 | Mean std_B: 800221526.77
+- Algo: bkz2.0_20 | Updated 87/737 | Mean std_B: 799159600.45
+- Algo: bkz2.0_20 | Updated 74/737 | Mean std_B: 799550178.69
+- Algo: bkz2.0_20 | Updated 58/735 | Mean std_B: 799969151.04
+- Algo: bkz2.0_20 | Updated 64/738 | Mean std_B: 797250782.45
+- Algo: bkz2.0_20 | Updated 74/736 | Mean std_B: 800190588.20
+- Algo: bkz2.0_20 | Updated 69/737 | Mean std_B: 798149063.73
+- Algo: bkz2.0_20 | Updated 78/736 | Mean std_B: 799256893.63
+- Algo: bkz2.0_20 | Updated 68/737 | Mean std_B: 803438958.28
+- Algo: bkz2.0_20 | Updated 89/739 | Mean std_B: 798106781.92
+- Algo: bkz2.0_20 | Updated 91/740 | Mean std_B: 795690004.34
+- Algo: bkz2.0_20 | Updated 93/741 | Mean std_B: 797343911.02
+- Algo: bkz2.0_20 | Updated 80/735 | Mean std_B: 800912655.09
+- Algo: bkz2.0_20 | Updated 74/736 | Mean std_B: 800804237.83
+- Algo: bkz2.0_20 | Updated 62/739 | Mean std_B: 798149318.61
+- Algo: bkz2.0_20 | Updated 92/739 | Mean std_B: 797420733.57
+- Algo: bkz2.0_20 | Updated 76/740 | Mean std_B: 797247499.12
+- Algo: bkz2.0_20 | Updated 65/739 | Mean std_B: 797592649.91
+- Algo: bkz2.0_20 | Updated 67/736 | Mean std_B: 801675551.25
+- Algo: bkz2.0_20 | Updated 61/735 | Mean std_B: 805244401.08
+- Algo: bkz2.0_20 | Updated 92/737 | Mean std_B: 799518616.14
+- Algo: bkz2.0_20 | Updated 84/738 | Mean std_B: 798397313.33
+- Algo: bkz2.0_20 | Updated 89/739 | Mean std_B: 798454995.74
+- Algo: bkz2.0_20 | Updated 65/737 | Mean std_B: 801902008.44
+- Algo: bkz2.0_20 | Updated 94/740 | Mean std_B: 798874101.85
+- Algo: bkz2.0_20 | Updated 71/735 | Mean std_B: 800649708.20
+- Algo: bkz2.0_20 | Updated 69/737 | Mean std_B: 798643118.96
+- Algo: bkz2.0_20 | Updated 72/739 | Mean std_B: 797277357.43
+- Algo: bkz2.0_20 | Updated 74/736 | Mean std_B: 800528174.34
+- Algo: bkz2.0_20 | Updated 53/739 | Mean std_B: 803034130.33
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 81/736 | Mean std_B: 797872217.94
+- Algo: bkz2.0_20 | Updated 72/739 | Mean std_B: 797320072.62
+- Algo: bkz2.0_20 | Updated 90/739 | Mean std_B: 799500221.82
+- Algo: bkz2.0_20 | Updated 66/738 | Mean std_B: 798455323.74
+- Algo: bkz2.0_20 | Updated 70/738 | Mean std_B: 799232176.85
+- Algo: bkz2.0_20 | Updated 91/738 | Mean std_B: 799863828.96
+- Algo: bkz2.0_20 | Updated 72/739 | Mean std_B: 797830510.39
+- Algo: bkz2.0_20 | Updated 58/738 | Mean std_B: 798813809.45
+- Algo: bkz2.0_20 | Updated 53/738 | Mean std_B: 801344086.26
+- Algo: bkz2.0_20 | Updated 103/738 | Mean std_B: 795933647.50
+- Algo: bkz2.0_20 | Updated 79/740 | Mean std_B: 797310845.96
+- Algo: bkz2.0_20 | Updated 62/736 | Mean std_B: 799958832.55
+- Algo: bkz2.0_20 | Updated 83/738 | Mean std_B: 796866045.84
+- Algo: bkz2.0_20 | Updated 54/736 | Mean std_B: 800950821.51
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 73/736 | Mean std_B: 801292910.46
+- Algo: bkz2.0_20 | Updated 91/739 | Mean std_B: 798855495.04
+- Algo: bkz2.0_20 | Updated 71/738 | Mean std_B: 801691092.51
+- Algo: bkz2.0_20 | Updated 82/739 | Mean std_B: 801491369.33
+- Algo: bkz2.0_20 | Updated 65/734 | Mean std_B: 801017335.46
+- Algo: bkz2.0_20 | Updated 70/740 | Mean std_B: 797277091.25
+- Algo: bkz2.0_20 | Updated 64/735 | Mean std_B: 802766218.20
+- Algo: bkz2.0_20 | Updated 72/736 | Mean std_B: 798708651.61
+- Algo: bkz2.0_20 | Updated 68/734 | Mean std_B: 804288844.48
+- Algo: bkz2.0_20 | Updated 57/737 | Mean std_B: 799059421.56
+- Algo: bkz2.0_20 | Updated 77/736 | Mean std_B: 800000886.29
+Tour 17 | Time: 61720.72s | Mean std_B: 761470163.42 | Reduction Factor: 0.6521 | Prob: 0.0936
+- Algo: bkz2.0_20 | Updated 80/739 | Mean std_B: 797432272.91
+- Algo: bkz2.0_20 | Updated 63/738 | Mean std_B: 798106363.86
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 78/739 | Mean std_B: 797663628.07
+- Algo: bkz2.0_20 | Updated 87/740 | Mean std_B: 797101076.67
+- Algo: bkz2.0_20 | Updated 61/738 | Mean std_B: 797960762.72
+- Algo: bkz2.0_20 | Updated 77/737 | Mean std_B: 801003558.36
+- Algo: bkz2.0_20 | Updated 60/735 | Mean std_B: 798917619.80
+- Algo: bkz2.0_20 | Updated 75/737 | Mean std_B: 799313571.91
+- Algo: bkz2.0_20 | Updated 57/735 | Mean std_B: 805277016.18
+- Algo: bkz2.0_20 | Updated 76/736 | Mean std_B: 798537749.54
+- Algo: bkz2.0_20 | Updated 53/738 | Mean std_B: 797485251.05
+- Algo: bkz2.0_20 | Updated 92/740 | Mean std_B: 797313557.52
+- Algo: bkz2.0_20 | Updated 60/736 | Mean std_B: 798945514.62
+- Algo: bkz2.0_20 | Updated 67/740 | Mean std_B: 796706427.57
+- Algo: bkz2.0_20 | Updated 55/736 | Mean std_B: 802638594.64
+- Algo: bkz2.0_20 | Updated 81/740 | Mean std_B: 798844176.03
+- Algo: bkz2.0_20 | Updated 65/738 | Mean std_B: 797469079.56
+- Algo: bkz2.0_20 | Updated 71/738 | Mean std_B: 798863722.60
+- Algo: bkz2.0_20 | Updated 66/736 | Mean std_B: 799640062.16
+- Algo: bkz2.0_20 | Updated 71/736 | Mean std_B: 799414158.75
+- Algo: bkz2.0_20 | Updated 75/738 | Mean std_B: 799624158.74
+- Algo: bkz2.0_20 | Updated 76/741 | Mean std_B: 797332004.90
+- Algo: bkz2.0_20 | Updated 83/738 | Mean std_B: 797987416.60
+- Algo: bkz2.0_20 | Updated 60/737 | Mean std_B: 799058062.58
+- Algo: bkz2.0_20 | Updated 71/738 | Mean std_B: 798021384.72
+- Algo: bkz2.0_20 | Updated 51/737 | Mean std_B: 802086611.92
+- Algo: bkz2.0_20 | Updated 62/736 | Mean std_B: 800486242.74
+- Algo: bkz2.0_20 | Updated 53/737 | Mean std_B: 801604294.96
+- Algo: bkz2.0_20 | Updated 57/736 | Mean std_B: 802184950.03
+- Algo: bkz2.0_20 | Updated 83/739 | Mean std_B: 796545525.16
+- Algo: bkz2.0_20 | Updated 60/735 | Mean std_B: 801495006.99
+- Algo: bkz2.0_20 | Updated 68/739 | Mean std_B: 798810844.75
+- Algo: bkz2.0_20 | Updated 72/733 | Mean std_B: 801188539.74
+- Algo: bkz2.0_20 | Updated 69/739 | Mean std_B: 796194202.89
+- Algo: bkz2.0_20 | Updated 71/739 | Mean std_B: 794903000.06
+- Algo: bkz2.0_20 | Updated 71/735 | Mean std_B: 800626289.49
+- Algo: bkz2.0_20 | Updated 71/738 | Mean std_B: 800430878.83
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 73/738 | Mean std_B: 798660669.59
+- Algo: bkz2.0_20 | Updated 59/734 | Mean std_B: 801453547.77
+- Algo: bkz2.0_20 | Updated 85/738 | Mean std_B: 799724822.89
+- Algo: bkz2.0_20 | Updated 69/736 | Mean std_B: 798223463.58
+- Algo: bkz2.0_20 | Updated 85/738 | Mean std_B: 798929113.93
+- Algo: bkz2.0_20 | Updated 64/738 | Mean std_B: 797251146.04
+- Algo: bkz2.0_20 | Updated 56/739 | Mean std_B: 799716706.08
+- Algo: bkz2.0_20 | Updated 80/739 | Mean std_B: 794792193.56
+- Algo: bkz2.0_20 | Updated 69/739 | Mean std_B: 797044880.33
+- Algo: bkz2.0_20 | Updated 77/738 | Mean std_B: 797456431.69
+- Algo: bkz2.0_20 | Updated 94/739 | Mean std_B: 799209426.49
+- Algo: bkz2.0_20 | Updated 69/736 | Mean std_B: 798724094.48
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 71/740 | Mean std_B: 797634534.94
+- Algo: bkz2.0_20 | Updated 61/737 | Mean std_B: 798727597.07
+- Algo: bkz2.0_20 | Updated 76/738 | Mean std_B: 796337027.47
+- Algo: bkz2.0_20 | Updated 73/737 | Mean std_B: 798619458.75
+- Algo: bkz2.0_20 | Updated 74/739 | Mean std_B: 798365468.46
+- Algo: bkz2.0_20 | Updated 52/735 | Mean std_B: 801299587.44
+- Algo: bkz2.0_20 | Updated 72/737 | Mean std_B: 799410194.58
+- Algo: bkz2.0_20 | Updated 57/740 | Mean std_B: 796169557.95
+- Algo: bkz2.0_20 | Updated 58/737 | Mean std_B: 800290185.01
+- Algo: bkz2.0_20 | Updated 75/734 | Mean std_B: 803005746.10
+- Algo: bkz2.0_20 | Updated 82/738 | Mean std_B: 800178681.22
+- Algo: bkz2.0_20 | Updated 75/737 | Mean std_B: 799575136.46
+- Algo: bkz2.0_30 | Updated 73/739 | Mean std_B: 801922968.40
+- Algo: bkz2.0_30 | Updated 86/738 | Mean std_B: 800548373.62
+Tour 18 | Time: 65117.24s | Mean std_B: 760683810.96 | Reduction Factor: 0.6514 | Prob: 0.0937
+- Algo: bkz2.0_20 | Updated 50/734 | Mean std_B: 802730686.84
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 70/738 | Mean std_B: 798759389.78
+- Algo: bkz2.0_20 | Updated 61/735 | Mean std_B: 805292270.68
+- Algo: bkz2.0_20 | Updated 61/738 | Mean std_B: 797978752.98
+- Algo: bkz2.0_20 | Updated 59/737 | Mean std_B: 799542167.94
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 71/736 | Mean std_B: 798896184.62
+- Algo: bkz2.0_20 | Updated 62/738 | Mean std_B: 796481490.17
+- Algo: bkz2.0_20 | Updated 59/737 | Mean std_B: 802898162.96
+- Algo: bkz2.0_20 | Updated 59/740 | Mean std_B: 795749652.76
+- Algo: bkz2.0_20 | Updated 64/739 | Mean std_B: 796934004.97
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 55/739 | Mean std_B: 796592792.08
+- Algo: bkz2.0_20 | Updated 58/737 | Mean std_B: 800488326.51
+- Algo: bkz2.0_20 | Updated 59/736 | Mean std_B: 800248345.34
+- Algo: bkz2.0_20 | Updated 76/738 | Mean std_B: 797434115.99
+- Algo: bkz2.0_20 | Updated 83/738 | Mean std_B: 800661569.66
+- Algo: bkz2.0_20 | Updated 72/737 | Mean std_B: 800192773.88
+- Algo: bkz2.0_20 | Updated 68/738 | Mean std_B: 797145725.03
+- Algo: bkz2.0_20 | Updated 56/737 | Mean std_B: 797985803.79
+- Algo: bkz2.0_20 | Updated 54/736 | Mean std_B: 800773328.28
+- Algo: bkz2.0_20 | Updated 65/739 | Mean std_B: 797953164.93
+- Algo: bkz2.0_20 | Updated 62/737 | Mean std_B: 799734933.07
+- Algo: bkz2.0_20 | Updated 58/737 | Mean std_B: 798595582.80
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 60/735 | Mean std_B: 800899244.72
+- Algo: bkz2.0_20 | Updated 82/741 | Mean std_B: 796635118.28
+- Algo: bkz2.0_20 | Updated 65/739 | Mean std_B: 795712104.23
+- Algo: bkz2.0_20 | Updated 73/740 | Mean std_B: 796595201.65
+- Algo: bkz2.0_20 | Updated 61/737 | Mean std_B: 799038918.44
+- Algo: bkz2.0_20 | Updated 61/738 | Mean std_B: 797621277.01
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 82/736 | Mean std_B: 798209852.40
+- Algo: bkz2.0_20 | Updated 77/739 | Mean std_B: 797077888.57
+- Algo: bkz2.0_20 | Updated 59/739 | Mean std_B: 798403635.61
+- Algo: bkz2.0_20 | Updated 75/736 | Mean std_B: 798355547.40
+- Algo: bkz2.0_20 | Updated 86/737 | Mean std_B: 798488370.21
+- Algo: bkz2.0_20 | Updated 78/737 | Mean std_B: 798779417.34
+- Algo: bkz2.0_20 | Updated 73/738 | Mean std_B: 800064449.17
+- Algo: bkz2.0_20 | Updated 54/733 | Mean std_B: 802357456.90
+- Algo: bkz2.0_20 | Updated 80/740 | Mean std_B: 797628963.66
+- Algo: bkz2.0_20 | Updated 63/736 | Mean std_B: 802842341.63
+- Algo: bkz2.0_20 | Updated 55/736 | Mean std_B: 798937808.78
+- Algo: bkz2.0_20 | Updated 82/739 | Mean std_B: 793845558.38
+- Algo: bkz2.0_20 | Updated 62/739 | Mean std_B: 797241017.38
+- Algo: bkz2.0_20 | Updated 67/738 | Mean std_B: 800320937.50
+- Algo: bkz2.0_20 | Updated 86/740 | Mean std_B: 798404414.15
+- Algo: bkz2.0_20 | Updated 66/739 | Mean std_B: 798287937.78
+- Algo: bkz2.0_20 | Updated 75/735 | Mean std_B: 800258281.52
+- Algo: bkz2.0_20 | Updated 69/738 | Mean std_B: 798165175.87
+- Algo: bkz2.0_20 | Updated 35/737 | Mean std_B: 801741561.64
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 48/738 | Mean std_B: 796912863.28
+- Algo: bkz2.0_20 | Updated 75/739 | Mean std_B: 798832024.80
+- Algo: bkz2.0_20 | Updated 59/734 | Mean std_B: 804019904.12
+- Algo: bkz2.0_20 | Updated 73/738 | Mean std_B: 800292768.63
+- Algo: bkz2.0_20 | Updated 71/739 | Mean std_B: 797884898.08
+- Algo: bkz2.0_20 | Updated 65/736 | Mean std_B: 801034066.93
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 61/735 | Mean std_B: 800048604.07
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 60/739 | Mean std_B: 798692189.99
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 66/735 | Mean std_B: 800272563.49
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 76/738 | Mean std_B: 798414938.07
+- Algo: bkz2.0_20 | Updated 63/740 | Mean std_B: 796205123.60
+- Algo: bkz2.0_30 | Updated 81/738 | Mean std_B: 800131236.85
+- Algo: bkz2.0_30 | Updated 92/737 | Mean std_B: 798531309.88
+- Algo: bkz2.0_30 | Updated 79/739 | Mean std_B: 799287428.10
+- Algo: bkz2.0_30 | Updated 95/737 | Mean std_B: 797985168.06
+- Algo: bkz2.0_30 | Updated 86/739 | Mean std_B: 800881061.03
+Tour 19 | Time: 68519.71s | Mean std_B: 759947099.58 | Reduction Factor: 0.6508 | Prob: 0.0938
+- Algo: bkz2.0_20 | Updated 61/738 | Mean std_B: 797624697.38
+- Algo: bkz2.0_20 | Updated 60/738 | Mean std_B: 796385152.16
+- Algo: bkz2.0_20 | Updated 65/739 | Mean std_B: 797864444.21
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 61/737 | Mean std_B: 800688272.41
+- Algo: bkz2.0_20 | Updated 49/738 | Mean std_B: 797687079.91
+- Algo: bkz2.0_20 | Updated 47/737 | Mean std_B: 799619404.48
+- Algo: bkz2.0_20 | Updated 70/738 | Mean std_B: 796865106.81
+- Algo: bkz2.0_20 | Updated 57/733 | Mean std_B: 801231701.58
+- Algo: bkz2.0_20 | Updated 63/737 | Mean std_B: 800784041.26
+- Algo: bkz2.0_20 | Updated 53/739 | Mean std_B: 798147023.69
+- Algo: bkz2.0_20 | Updated 73/738 | Mean std_B: 797543086.86
+- Algo: bkz2.0_20 | Updated 55/739 | Mean std_B: 797691357.68
+- Algo: bkz2.0_20 | Updated 70/739 | Mean std_B: 796506189.72
+- Algo: bkz2.0_20 | Updated 44/739 | Mean std_B: 797628855.14
+- Algo: bkz2.0_20 | Updated 65/738 | Mean std_B: 798966228.11
+- Algo: bkz2.0_20 | Updated 70/738 | Mean std_B: 798717592.91
+- Algo: bkz2.0_20 | Updated 59/740 | Mean std_B: 796214002.61
+- Algo: bkz2.0_20 | Updated 55/737 | Mean std_B: 798255874.13
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 61/736 | Mean std_B: 800952855.69
+- Algo: bkz2.0_20 | Updated 68/736 | Mean std_B: 799842095.42
+- Algo: bkz2.0_20 | Updated 71/736 | Mean std_B: 796598618.71
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 65/738 | Mean std_B: 797396940.38
+- Algo: bkz2.0_20 | Updated 72/740 | Mean std_B: 798519295.08
+- Algo: bkz2.0_20 | Updated 63/737 | Mean std_B: 799924376.06
+- Algo: bkz2.0_20 | Updated 58/740 | Mean std_B: 798546157.03
+- Algo: bkz2.0_20 | Updated 55/740 | Mean std_B: 796430698.61
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 63/738 | Mean std_B: 796915059.29
+- Algo: bkz2.0_20 | Updated 76/740 | Mean std_B: 793956814.90
+- Algo: bkz2.0_20 | Updated 75/739 | Mean std_B: 798448490.36
+- Algo: bkz2.0_20 | Updated 59/736 | Mean std_B: 801716609.11
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 53/736 | Mean std_B: 798889316.41
+- Algo: bkz2.0_20 | Updated 66/739 | Mean std_B: 798208198.57
+- Algo: bkz2.0_20 | Updated 62/737 | Mean std_B: 798889840.71
+- Algo: bkz2.0_20 | Updated 57/740 | Mean std_B: 796706706.37
+- Algo: bkz2.0_20 | Updated 60/737 | Mean std_B: 802208902.86
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 68/736 | Mean std_B: 798096816.90
+- Algo: bkz2.0_20 | Updated 43/738 | Mean std_B: 800544192.99
+- Algo: bkz2.0_20 | Updated 54/735 | Mean std_B: 801153452.98
+- Algo: bkz2.0_20 | Updated 62/735 | Mean std_B: 799677016.10
+- Algo: bkz2.0_20 | Updated 58/739 | Mean std_B: 797934933.79
+- Algo: bkz2.0_20 | Updated 60/738 | Mean std_B: 799382728.09
+- Algo: bkz2.0_20 | Updated 60/739 | Mean std_B: 796282040.23
+- Algo: bkz2.0_20 | Updated 56/736 | Mean std_B: 800684075.87
+- Algo: bkz2.0_20 | Updated 75/741 | Mean std_B: 797009441.41
+- Algo: bkz2.0_20 | Updated 56/739 | Mean std_B: 801697340.85
+- Algo: bkz2.0_20 | Updated 52/739 | Mean std_B: 797397492.15
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 66/735 | Mean std_B: 804777499.56
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 55/734 | Mean std_B: 803191551.79
+- Algo: bkz2.0_30 | Updated 80/739 | Mean std_B: 800245211.75
+- Algo: bkz2.0_30 | Updated 73/738 | Mean std_B: 799644364.69
+- Algo: bkz2.0_30 | Updated 88/737 | Mean std_B: 799302788.82
+- Algo: bkz2.0_30 | Updated 77/737 | Mean std_B: 798799283.24
+- Algo: bkz2.0_30 | Updated 70/738 | Mean std_B: 799384099.49
+- Algo: bkz2.0_30 | Updated 80/738 | Mean std_B: 797487778.01
+- Algo: bkz2.0_30 | Updated 91/739 | Mean std_B: 798370027.42
+- Algo: bkz2.0_30 | Updated 78/739 | Mean std_B: 798627231.00
+- Algo: bkz2.0_30 | Updated 78/736 | Mean std_B: 801213290.10
+- Algo: bkz2.0_30 | Updated 80/738 | Mean std_B: 797837911.34
+- Algo: bkz2.0_30 | Updated 75/734 | Mean std_B: 802516717.18
+- Algo: bkz2.0_30 | Updated 75/736 | Mean std_B: 798456706.30
+- Algo: bkz2.0_30 | Updated 99/737 | Mean std_B: 798638326.98
+- Algo: bkz2.0_30 | Updated 79/741 | Mean std_B: 795399678.54
+- Algo: bkz2.0_30 | Updated 88/739 | Mean std_B: 798024752.33
+Tour 20 | Time: 72000.18s | Mean std_B: 759235496.08 | Reduction Factor: 0.6501 | Prob: 0.0939
+- Algo: bkz2.0_20 | Updated 57/738 | Mean std_B: 797241172.29
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 66/736 | Mean std_B: 798837729.11
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 45/739 | Mean std_B: 798681583.66
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 51/738 | Mean std_B: 796346819.18
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 60/733 | Mean std_B: 800525265.85
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 50/740 | Mean std_B: 800340102.67
+- Algo: bkz2.0_20 | Updated 62/735 | Mean std_B: 800341976.20
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 61/736 | Mean std_B: 801405417.52
+- Algo: bkz2.0_20 | Updated 60/738 | Mean std_B: 797998509.09
+- Algo: bkz2.0_20 | Updated 51/739 | Mean std_B: 797592494.22
+- Algo: bkz2.0_20 | Updated 44/740 | Mean std_B: 795533268.27
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 67/737 | Mean std_B: 799071915.76
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 41/739 | Mean std_B: 798219074.86
+- Algo: bkz2.0_20 | Updated 50/738 | Mean std_B: 797752636.45
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 55/738 | Mean std_B: 798953897.24
+- Algo: bkz2.0_20 | Updated 63/739 | Mean std_B: 798406544.96
+- Algo: bkz2.0_20 | Updated 45/739 | Mean std_B: 796645285.84
+- Algo: bkz2.0_20 | Updated 61/738 | Mean std_B: 796401789.64
+- Algo: bkz2.0_20 | Updated 78/737 | Mean std_B: 799426170.52
+- Algo: bkz2.0_20 | Updated 46/734 | Mean std_B: 802550603.80
+- Algo: bkz2.0_20 | Updated 44/736 | Mean std_B: 801491411.17
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 79/738 | Mean std_B: 796701457.25
+- Algo: bkz2.0_20 | Updated 42/740 | Mean std_B: 797377774.95
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 62/738 | Mean std_B: 799620436.62
+- Algo: bkz2.0_20 | Updated 75/736 | Mean std_B: 798058115.86
+- Algo: bkz2.0_20 | Updated 54/738 | Mean std_B: 798205360.64
+- Algo: bkz2.0_20 | Updated 64/740 | Mean std_B: 794762798.46
+- Algo: bkz2.0_20 | Updated 60/738 | Mean std_B: 799133391.16
+- Algo: bkz2.0_20 | Updated 61/739 | Mean std_B: 800776361.30
+- Algo: bkz2.0_20 | Updated 86/740 | Mean std_B: 795987800.17
+- Algo: bkz2.0_20 | Updated 68/740 | Mean std_B: 798312748.71
+- Algo: bkz2.0_20 | Updated 53/739 | Mean std_B: 797527060.50
+- Algo: bkz2.0_20 | Updated 56/735 | Mean std_B: 800346168.46
+- Algo: bkz2.0_20 | Updated 65/737 | Mean std_B: 799400346.58
+- Algo: bkz2.0_20 | Updated 76/741 | Mean std_B: 796466051.32
+- Algo: bkz2.0_20 | Updated 67/737 | Mean std_B: 798708813.77
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 75/739 | Mean std_B: 797927638.00
+- Algo: bkz2.0_20 | Updated 57/737 | Mean std_B: 799159406.42
+- Algo: bkz2.0_20 | Updated 53/738 | Mean std_B: 799945967.64
+- Algo: bkz2.0_20 | Updated 54/736 | Mean std_B: 798124669.37
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_30 | Updated 74/734 | Mean std_B: 802178798.96
+- Algo: bkz2.0_30 | Updated 83/741 | Mean std_B: 795962725.28
+- Algo: bkz2.0_30 | Updated 69/737 | Mean std_B: 798176668.27
+- Algo: bkz2.0_30 | Updated 69/738 | Mean std_B: 798184579.93
+- Algo: bkz2.0_30 | Updated 80/738 | Mean std_B: 797936162.48
+- Algo: bkz2.0_30 | Updated 79/737 | Mean std_B: 800254370.25
+- Algo: bkz2.0_30 | Updated 73/739 | Mean std_B: 797595938.11
+- Algo: bkz2.0_30 | Updated 64/735 | Mean std_B: 803150377.09
+- Algo: bkz2.0_30 | Updated 86/736 | Mean std_B: 804917999.66
+- Algo: bkz2.0_30 | Updated 82/738 | Mean std_B: 799257712.51
+- Algo: bkz2.0_30 | Updated 74/736 | Mean std_B: 802581679.31
+- Algo: bkz2.0_30 | Updated 89/739 | Mean std_B: 797429836.66
+- Algo: bkz2.0_30 | Updated 79/738 | Mean std_B: 798981635.61
+- Algo: bkz2.0_30 | Updated 64/738 | Mean std_B: 798298082.35
+- Algo: bkz2.0_30 | Updated 84/740 | Mean std_B: 796550459.55
+- Algo: bkz2.0_30 | Updated 83/739 | Mean std_B: 800003211.65
+- Algo: bkz2.0_30 | Updated 77/738 | Mean std_B: 798767575.05
+- Algo: bkz2.0_30 | Updated 80/740 | Mean std_B: 796408825.99
+- Algo: bkz2.0_30 | Updated 83/739 | Mean std_B: 797387984.36
+- Algo: bkz2.0_30 | Updated 73/740 | Mean std_B: 797911680.70
+- Algo: bkz2.0_30 | Updated 63/737 | Mean std_B: 798878015.74
+- Algo: bkz2.0_30 | Updated 76/739 | Mean std_B: 795540611.29
+- Algo: bkz2.0_30 | Updated 68/737 | Mean std_B: 798769330.96
+Tour 21 | Time: 75729.30s | Mean std_B: 758526774.21 | Reduction Factor: 0.6495 | Prob: 0.0940
+- Algo: bkz2.0_20 | Updated 56/739 | Mean std_B: 796853865.41
+- Algo: bkz2.0_20 | Updated 68/740 | Mean std_B: 797053515.96
+- Algo: bkz2.0_20 | Updated 35/739 | Mean std_B: 798325806.58
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 50/738 | Mean std_B: 799446975.09
+- Algo: bkz2.0_20 | Updated 56/738 | Mean std_B: 796395038.19
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 61/740 | Mean std_B: 798558889.80
+- Algo: bkz2.0_20 | Updated 43/735 | Mean std_B: 800875246.76
+- Algo: bkz2.0_20 | Updated 50/738 | Mean std_B: 798801753.28
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 56/736 | Mean std_B: 797558788.39
+- Algo: bkz2.0_20 | Updated 75/739 | Mean std_B: 797721360.66
+- Algo: bkz2.0_20 | Updated 62/737 | Mean std_B: 800133058.87
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 54/738 | Mean std_B: 796546229.50
+- Algo: bkz2.0_20 | Updated 54/738 | Mean std_B: 797697422.87
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 55/736 | Mean std_B: 800261190.33
+- Algo: bkz2.0_20 | Updated 55/734 | Mean std_B: 801943010.52
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 59/737 | Mean std_B: 801538335.35
+- Algo: bkz2.0_20 | Updated 69/739 | Mean std_B: 800029392.14
+- Algo: bkz2.0_20 | Updated 45/739 | Mean std_B: 797000991.45
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 46/738 | Mean std_B: 798606273.96
+- Algo: bkz2.0_20 | Updated 63/739 | Mean std_B: 795808640.71
+- Algo: bkz2.0_20 | Updated 59/737 | Mean std_B: 797649697.45
+- Algo: bkz2.0_20 | Updated 68/739 | Mean std_B: 797951145.35
+- Algo: bkz2.0_20 | Updated 64/738 | Mean std_B: 797422226.80
+- Algo: bkz2.0_20 | Updated 70/740 | Mean std_B: 795418717.14
+- Algo: bkz2.0_20 | Updated 54/738 | Mean std_B: 799167017.92
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 50/739 | Mean std_B: 795074814.12
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 62/738 | Mean std_B: 798131243.25
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_30 | Updated 73/739 | Mean std_B: 799062389.18
+- Algo: bkz2.0_30 | Updated 66/738 | Mean std_B: 798939589.81
+- Algo: bkz2.0_30 | Updated 64/739 | Mean std_B: 797796538.57
+- Algo: bkz2.0_30 | Updated 66/740 | Mean std_B: 795817705.78
+- Algo: bkz2.0_30 | Updated 68/738 | Mean std_B: 801112909.99
+- Algo: bkz2.0_30 | Updated 63/740 | Mean std_B: 798668811.71
+- Algo: bkz2.0_30 | Updated 59/734 | Mean std_B: 800144296.22
+- Algo: bkz2.0_30 | Updated 63/738 | Mean std_B: 800709725.54
+- Algo: bkz2.0_30 | Updated 70/739 | Mean std_B: 798901705.85
+- Algo: bkz2.0_30 | Updated 84/737 | Mean std_B: 799588712.12
+- Algo: bkz2.0_30 | Updated 80/739 | Mean std_B: 798633984.01
+- Algo: bkz2.0_30 | Updated 61/739 | Mean std_B: 799180635.56
+- Algo: bkz2.0_30 | Updated 72/740 | Mean std_B: 797319283.25
+- Algo: bkz2.0_30 | Updated 76/740 | Mean std_B: 796386118.77
+- Algo: bkz2.0_30 | Updated 49/739 | Mean std_B: 798779417.25
+- Algo: bkz2.0_30 | Updated 73/741 | Mean std_B: 794649742.05
+- Algo: bkz2.0_30 | Updated 67/738 | Mean std_B: 799510087.83
+- Algo: bkz2.0_30 | Updated 68/740 | Mean std_B: 795928854.03
+- Algo: bkz2.0_30 | Updated 78/735 | Mean std_B: 800464238.30
+- Algo: bkz2.0_30 | Updated 70/738 | Mean std_B: 799593053.09
+- Algo: bkz2.0_30 | Updated 72/739 | Mean std_B: 798357153.44
+- Algo: bkz2.0_30 | Updated 76/740 | Mean std_B: 797515861.82
+- Algo: bkz2.0_30 | Updated 87/736 | Mean std_B: 798882232.55
+- Algo: bkz2.0_30 | Updated 70/739 | Mean std_B: 796164494.29
+- Algo: bkz2.0_30 | Updated 81/737 | Mean std_B: 804076869.48
+- Algo: bkz2.0_30 | Updated 66/736 | Mean std_B: 799267810.15
+- Algo: bkz2.0_30 | Updated 90/736 | Mean std_B: 797681572.48
+- Algo: bkz2.0_30 | Updated 88/737 | Mean std_B: 799215086.48
+- Algo: bkz2.0_30 | Updated 76/742 | Mean std_B: 795185434.68
+- Algo: bkz2.0_30 | Updated 44/737 | Mean std_B: 798789478.72
+- Algo: bkz2.0_30 | Updated 56/736 | Mean std_B: 801966744.39
+- Algo: bkz2.0_30 | Updated 69/741 | Mean std_B: 795739771.92
+- Algo: bkz2.0_30 | Updated 73/736 | Mean std_B: 800299846.94
+- Algo: bkz2.0_30 | Updated 61/738 | Mean std_B: 797827810.26
+- Algo: bkz2.0_30 | Updated 58/737 | Mean std_B: 800730083.26
+- Algo: bkz2.0_30 | Updated 55/738 | Mean std_B: 797339271.02
+Tour 22 | Time: 79807.22s | Mean std_B: 757827720.46 | Reduction Factor: 0.6489 | Prob: 0.0940
+- Algo: bkz2.0_20 | Updated 64/738 | Mean std_B: 797859101.05
+- Algo: bkz2.0_20 | Updated 67/738 | Mean std_B: 796754298.29
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 45/738 | Mean std_B: 799726841.51
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 46/735 | Mean std_B: 799977874.64
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 41/736 | Mean std_B: 798202881.28
+- Algo: bkz2.0_20 | Updated 64/739 | Mean std_B: 797701992.04
+- Algo: bkz2.0_20 | Updated 51/739 | Mean std_B: 800654850.10
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 67/741 | Mean std_B: 795393910.52
+- Algo: bkz2.0_20 | Updated 60/737 | Mean std_B: 799247260.98
+- Algo: bkz2.0_20 | Updated 48/737 | Mean std_B: 797738583.28
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 51/738 | Mean std_B: 796160896.49
+- Algo: bkz2.0_20 | Updated 65/736 | Mean std_B: 798451159.94
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 62/739 | Mean std_B: 796927000.12
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 59/742 | Mean std_B: 794991972.67
+- Algo: bkz2.0_20 | Updated 54/739 | Mean std_B: 797395864.92
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 51/740 | Mean std_B: 798092601.02
+- Algo: bkz2.0_20 | Updated 60/740 | Mean std_B: 798128655.31
+- Algo: bkz2.0_30 | Updated 65/742 | Mean std_B: 796900519.74
+- Algo: bkz2.0_30 | Updated 66/739 | Mean std_B: 796786438.72
+- Algo: bkz2.0_30 | Updated 54/740 | Mean std_B: 795071083.75
+- Algo: bkz2.0_30 | Updated 64/739 | Mean std_B: 796629198.06
+- Algo: bkz2.0_30 | Updated 73/739 | Mean std_B: 799315226.62
+- Algo: bkz2.0_30 | Updated 54/739 | Mean std_B: 796657137.76
+- Algo: bkz2.0_30 | Updated 61/737 | Mean std_B: 795529320.13
+- Algo: bkz2.0_30 | Updated 65/736 | Mean std_B: 801181499.32
+- Algo: bkz2.0_30 | Updated 62/740 | Mean std_B: 797984975.11
+- Algo: bkz2.0_30 | Updated 77/737 | Mean std_B: 799050593.87
+- Algo: bkz2.0_30 | Updated 61/740 | Mean std_B: 797168814.59
+- Algo: bkz2.0_30 | Updated 74/740 | Mean std_B: 796107917.85
+- Algo: bkz2.0_30 | Updated 86/741 | Mean std_B: 793775414.43
+- Algo: bkz2.0_30 | Updated 73/737 | Mean std_B: 798054986.74
+- Algo: bkz2.0_30 | Updated 66/739 | Mean std_B: 797338910.17
+- Algo: bkz2.0_30 | Updated 53/737 | Mean std_B: 800021024.52
+- Algo: bkz2.0_30 | Updated 68/739 | Mean std_B: 799023116.81
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 89/738 | Mean std_B: 795743058.66
+- Algo: bkz2.0_30 | Updated 61/739 | Mean std_B: 797076212.65
+- Algo: bkz2.0_30 | Updated 60/735 | Mean std_B: 804048851.05
+- Algo: bkz2.0_30 | Updated 71/737 | Mean std_B: 798251160.08
+- Algo: bkz2.0_30 | Updated 65/739 | Mean std_B: 798644240.84
+- Algo: bkz2.0_30 | Updated 63/741 | Mean std_B: 796929559.78
+- Algo: bkz2.0_30 | Updated 73/738 | Mean std_B: 798589133.31
+- Algo: bkz2.0_30 | Updated 59/738 | Mean std_B: 798176293.42
+- Algo: bkz2.0_30 | Updated 57/739 | Mean std_B: 798015508.83
+- Algo: bkz2.0_30 | Updated 82/738 | Mean std_B: 794729746.42
+- Algo: bkz2.0_30 | Updated 70/734 | Mean std_B: 799317957.04
+- Algo: bkz2.0_30 | Updated 79/738 | Mean std_B: 795277806.53
+- Algo: bkz2.0_30 | Updated 46/736 | Mean std_B: 800068210.86
+- Algo: bkz2.0_30 | Updated 69/739 | Mean std_B: 796296892.96
+- Algo: bkz2.0_30 | Updated 71/736 | Mean std_B: 800692165.64
+- Algo: bkz2.0_30 | Updated 61/738 | Mean std_B: 797747284.91
+- Algo: bkz2.0_30 | Updated 54/740 | Mean std_B: 798267357.55
+- Algo: bkz2.0_30 | Updated 86/737 | Mean std_B: 802617867.64
+- Algo: bkz2.0_30 | Updated 67/738 | Mean std_B: 798673555.05
+- Algo: bkz2.0_30 | Updated 60/739 | Mean std_B: 799586793.01
+- Algo: bkz2.0_30 | Updated 80/737 | Mean std_B: 799118210.60
+- Algo: bkz2.0_30 | Updated 64/737 | Mean std_B: 798877526.29
+- Algo: bkz2.0_30 | Updated 69/739 | Mean std_B: 797813321.24
+- Algo: bkz2.0_30 | Updated 78/739 | Mean std_B: 796637431.41
+- Algo: bkz2.0_30 | Updated 75/740 | Mean std_B: 799665226.48
+- Algo: bkz2.0_30 | Updated 79/742 | Mean std_B: 794195739.82
+- Algo: bkz2.0_30 | Updated 54/738 | Mean std_B: 801609583.84
+- Algo: bkz2.0_30 | Updated 74/737 | Mean std_B: 798635369.03
+- Algo: bkz2.0_30 | Updated 81/738 | Mean std_B: 799135239.14
+Tour 23 | Time: 84123.37s | Mean std_B: 757130102.31 | Reduction Factor: 0.6483 | Prob: 0.0941
+- Algo: bkz2.0_20 | Updated 53/740 | Mean std_B: 798037375.32
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 65/738 | Mean std_B: 797807162.48
+- Algo: bkz2.0_20 | Updated 50/739 | Mean std_B: 797302555.52
+- Algo: bkz2.0_20 | Updated 40/738 | Mean std_B: 796782748.20
+- Algo: bkz2.0_20 | Updated 59/739 | Mean std_B: 798134578.94
+- Algo: bkz2.0_20 | Updated 41/742 | Mean std_B: 794742974.15
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 53/741 | Mean std_B: 796228953.52
+- Algo: bkz2.0_20 | Updated 47/736 | Mean std_B: 796838814.29
+- Algo: bkz2.0_20 | Updated 67/741 | Mean std_B: 796586814.73
+- Algo: bkz2.0_30 | Updated 68/739 | Mean std_B: 795971487.24
+- Algo: bkz2.0_30 | Updated 58/735 | Mean std_B: 802043724.01
+- Algo: bkz2.0_30 | Updated 68/741 | Mean std_B: 795803452.85
+- Algo: bkz2.0_30 | Updated 64/739 | Mean std_B: 802281793.90
+- Algo: bkz2.0_30 | Updated 66/737 | Mean std_B: 798548868.69
+- Algo: bkz2.0_30 | Updated 68/737 | Mean std_B: 802683248.52
+- Algo: bkz2.0_30 | Updated 74/739 | Mean std_B: 795446671.89
+- Algo: bkz2.0_30 | Updated 83/741 | Mean std_B: 793438389.10
+- Algo: bkz2.0_30 | Updated 65/739 | Mean std_B: 798542891.94
+- Algo: bkz2.0_30 | Updated 66/739 | Mean std_B: 798875209.50
+- Algo: bkz2.0_30 | Updated 63/738 | Mean std_B: 796249109.25
+- Algo: bkz2.0_30 | Updated 62/737 | Mean std_B: 798287155.36
+- Algo: bkz2.0_30 | Updated 72/740 | Mean std_B: 797102186.98
+- Algo: bkz2.0_30 | Updated 73/737 | Mean std_B: 799596054.82
+- Algo: bkz2.0_30 | Updated 71/739 | Mean std_B: 796428106.89
+- Algo: bkz2.0_30 | Updated 43/738 | Mean std_B: 797028038.73
+- Algo: bkz2.0_30 | Updated 57/742 | Mean std_B: 794753460.64
+- Algo: bkz2.0_30 | Updated 52/737 | Mean std_B: 799234056.45
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 48/739 | Mean std_B: 797428977.69
+- Algo: bkz2.0_30 | Updated 65/739 | Mean std_B: 795927815.95
+- Algo: bkz2.0_30 | Updated 78/740 | Mean std_B: 797631439.57
+- Algo: bkz2.0_30 | Updated 54/736 | Mean std_B: 798873494.62
+- Algo: bkz2.0_30 | Updated 65/739 | Mean std_B: 796648801.64
+- Algo: bkz2.0_30 | Updated 59/737 | Mean std_B: 801887583.32
+- Algo: bkz2.0_30 | Updated 63/740 | Mean std_B: 797522133.65
+- Algo: bkz2.0_30 | Updated 73/736 | Mean std_B: 798680506.20
+- Algo: bkz2.0_30 | Updated 52/740 | Mean std_B: 794714321.70
+- Algo: bkz2.0_30 | Updated 71/739 | Mean std_B: 796929971.58
+- Algo: bkz2.0_30 | Updated 60/738 | Mean std_B: 797965962.94
+- Algo: bkz2.0_30 | Updated 72/739 | Mean std_B: 795668347.48
+- Algo: bkz2.0_30 | Updated 47/734 | Mean std_B: 801349255.48
+- Algo: bkz2.0_30 | Updated 71/740 | Mean std_B: 795726489.57
+- Algo: bkz2.0_30 | Updated 78/738 | Mean std_B: 796415763.36
+- Algo: bkz2.0_30 | Updated 61/739 | Mean std_B: 797309850.19
+- Algo: bkz2.0_30 | Updated 54/739 | Mean std_B: 797276884.54
+- Algo: bkz2.0_30 | Updated 78/735 | Mean std_B: 800135455.70
+- Algo: bkz2.0_30 | Updated 73/739 | Mean std_B: 795355385.39
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 60/738 | Mean std_B: 797665117.52
+- Algo: bkz2.0_30 | Updated 60/738 | Mean std_B: 798366100.52
+- Algo: bkz2.0_30 | Updated 77/739 | Mean std_B: 798700184.42
+- Algo: bkz2.0_30 | Updated 64/737 | Mean std_B: 799306631.24
+- Algo: bkz2.0_30 | Updated 71/738 | Mean std_B: 797882366.43
+- Algo: bkz2.0_30 | Updated 59/739 | Mean std_B: 799254326.83
+- Algo: bkz2.0_30 | Updated 61/740 | Mean std_B: 797334182.96
+- Algo: bkz2.0_30 | Updated 74/739 | Mean std_B: 799419006.06
+- Algo: bkz2.0_30 | Updated 57/741 | Mean std_B: 796248829.49
+- Algo: bkz2.0_30 | Updated 71/736 | Mean std_B: 798109244.48
+- Algo: bkz2.0_30 | Updated 91/738 | Mean std_B: 796065603.62
+- Algo: bkz2.0_30 | Updated 76/740 | Mean std_B: 797058280.77
+- Algo: bkz2.0_30 | Updated 76/739 | Mean std_B: 797259537.42
+- Algo: bkz2.0_30 | Updated 62/740 | Mean std_B: 796539810.54
+- Algo: bkz2.0_30 | Updated 49/737 | Mean std_B: 799010560.04
+- Algo: bkz2.0_30 | Updated 75/738 | Mean std_B: 798624418.75
+- Algo: bkz2.0_40 | Updated 85/739 | Mean std_B: 796615975.16
+Dataset saved to ../data/data_n_256_k_2_s_cbd_3abd9_2.0.pkl
+Tour 24 | Time: 90041.86s | Mean std_B: 756415201.11 | Reduction Factor: 0.6477 | Prob: 0.0942
+[BEST 10% STD] True B is the best candidate: 575 / 6300 (9.13%)
+[BEST 30% STD] True B is the best candidate: 1790 / 18900 (9.47%)
+[BEST 60% STD] True B is the best candidate: 3453 / 37800 (9.13%)
+[BEST 100% STD] True B is the best candidate: 5667 / 63000 (9.00%)
+- Algo: bkz2.0_20 | Updated 57/738 | Mean std_B: 800049729.60
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 61/741 | Mean std_B: 795118955.48
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 80/741 | Mean std_B: 795886782.74
+- Algo: bkz2.0_20 | Updated 45/738 | Mean std_B: 796174531.96
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 36/736 | Mean std_B: 798207263.96
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 55/739 | Mean std_B: 798938550.05
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 52/741 | Mean std_B: 797537902.73
+- Algo: bkz2.0_30 | Updated 53/739 | Mean std_B: 796990684.33
+- Algo: bkz2.0_30 | Updated 50/739 | Mean std_B: 800274750.22
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 74/739 | Mean std_B: 798309262.29
+- Algo: bkz2.0_30 | Updated 77/740 | Mean std_B: 800190508.24
+- Algo: bkz2.0_30 | Updated 60/739 | Mean std_B: 799627635.21
+- Algo: bkz2.0_30 | Updated 65/737 | Mean std_B: 802134140.75
+- Algo: bkz2.0_30 | Updated 61/737 | Mean std_B: 798713196.38
+- Algo: bkz2.0_30 | Updated 57/738 | Mean std_B: 796566559.49
+- Algo: bkz2.0_30 | Updated 66/738 | Mean std_B: 797444333.88
+- Algo: bkz2.0_30 | Updated 65/740 | Mean std_B: 796638898.16
+- Algo: bkz2.0_30 | Updated 50/737 | Mean std_B: 798172489.88
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 75/737 | Mean std_B: 795114665.36
+- Algo: bkz2.0_30 | Updated 70/739 | Mean std_B: 798899614.90
+- Algo: bkz2.0_30 | Updated 57/739 | Mean std_B: 796157444.64
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 73/740 | Mean std_B: 795337459.44
+- Algo: bkz2.0_30 | Updated 69/740 | Mean std_B: 795648568.47
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 57/739 | Mean std_B: 797038472.35
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 75/737 | Mean std_B: 797548633.77
+- Algo: bkz2.0_30 | Updated 72/739 | Mean std_B: 796654921.16
+- Algo: bkz2.0_30 | Updated 50/736 | Mean std_B: 800307586.16
+- Algo: bkz2.0_30 | Updated 59/739 | Mean std_B: 800163586.88
+- Algo: bkz2.0_30 | Updated 61/739 | Mean std_B: 795445519.31
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 62/739 | Mean std_B: 796136827.79
+- Algo: bkz2.0_30 | Updated 69/739 | Mean std_B: 797578929.82
+- Algo: bkz2.0_30 | Updated 65/740 | Mean std_B: 795748029.04
+- Algo: bkz2.0_30 | Updated 78/740 | Mean std_B: 794228847.19
+- Algo: bkz2.0_30 | Updated 67/737 | Mean std_B: 798143320.80
+- Algo: bkz2.0_30 | Updated 67/736 | Mean std_B: 800390568.03
+- Algo: bkz2.0_30 | Updated 74/738 | Mean std_B: 796225414.22
+- Algo: bkz2.0_30 | Updated 52/738 | Mean std_B: 796175833.74
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 67/740 | Mean std_B: 796046484.39
+- Algo: bkz2.0_30 | Updated 45/734 | Mean std_B: 800190950.24
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 70/737 | Mean std_B: 798757690.68
+- Algo: bkz2.0_30 | Updated 62/742 | Mean std_B: 796199769.25
+- Algo: bkz2.0_30 | Updated 64/739 | Mean std_B: 797030792.12
+- Algo: bkz2.0_30 | Updated 63/740 | Mean std_B: 797978380.94
+- Algo: bkz2.0_30 | Updated 52/739 | Mean std_B: 796786291.82
+- Algo: bkz2.0_30 | Updated 70/739 | Mean std_B: 798323992.42
+- Algo: bkz2.0_30 | Updated 54/740 | Mean std_B: 799428470.59
+- Algo: bkz2.0_30 | Updated 67/740 | Mean std_B: 797178757.75
+- Algo: bkz2.0_30 | Updated 68/740 | Mean std_B: 794471039.78
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 64/738 | Mean std_B: 795382677.77
+- Algo: bkz2.0_30 | Updated 46/736 | Mean std_B: 797452582.02
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 63/739 | Mean std_B: 794585798.93
+- Algo: bkz2.0_30 | Updated 60/739 | Mean std_B: 799906429.77
+- Algo: bkz2.0_30 | Updated 66/739 | Mean std_B: 798292486.00
+- Algo: bkz2.0_30 | Updated 59/738 | Mean std_B: 799064516.88
+- Algo: bkz2.0_30 | Updated 67/742 | Mean std_B: 794468317.81
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 54/737 | Mean std_B: 800274899.70
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 50/740 | Mean std_B: 797896416.92
+- Algo: bkz2.0_30 | Updated 70/737 | Mean std_B: 798967790.40
+- Algo: bkz2.0_30 | Updated 73/740 | Mean std_B: 795925594.72
+- Algo: bkz2.0_30 | Updated 63/742 | Mean std_B: 793411022.31
+- Algo: bkz2.0_40 | Updated 61/740 | Mean std_B: 794567070.12
+- Algo: bkz2.0_40 | Updated 69/737 | Mean std_B: 797481311.69
+- Algo: bkz2.0_40 | Updated 63/739 | Mean std_B: 796594728.54
+Tour 25 | Time: 99373.83s | Mean std_B: 755751918.61 | Reduction Factor: 0.6472 | Prob: 0.0943
+- Algo: bkz2.0_20 | Updated 63/741 | Mean std_B: 796609139.45
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_20 | Updated 49/741 | Mean std_B: 796837668.25
+- Algo: bkz2.0_30 | Updated 71/739 | Mean std_B: 797023868.49
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 51/740 | Mean std_B: 796569247.28
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 59/737 | Mean std_B: 798206272.96
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 54/737 | Mean std_B: 799999105.81
+- Algo: bkz2.0_30 | Updated 56/739 | Mean std_B: 798146115.19
+- Algo: bkz2.0_30 | Updated 54/740 | Mean std_B: 796795347.54
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 57/739 | Mean std_B: 796091314.82
+- Algo: bkz2.0_30 | Updated 42/737 | Mean std_B: 799259523.57
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 47/738 | Mean std_B: 796866983.96
+- Algo: bkz2.0_30 | Updated 61/739 | Mean std_B: 797890827.36
+- Algo: bkz2.0_30 | Updated 47/739 | Mean std_B: 797322485.38
+- Algo: bkz2.0_30 | Updated 67/739 | Mean std_B: 798016136.20
+- Algo: bkz2.0_30 | Updated 62/739 | Mean std_B: 798796405.15
+- Algo: bkz2.0_30 | Updated 72/739 | Mean std_B: 795677770.64
+- Algo: bkz2.0_30 | Updated 61/740 | Mean std_B: 797657569.70
+- Algo: bkz2.0_30 | Updated 82/742 | Mean std_B: 794178694.48
+- Algo: bkz2.0_30 | Updated 87/740 | Mean std_B: 800419400.73
+- Algo: bkz2.0_30 | Updated 70/739 | Mean std_B: 794924138.46
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 68/740 | Mean std_B: 794546894.86
+- Algo: bkz2.0_30 | Updated 42/739 | Mean std_B: 798882719.03
+- Algo: bkz2.0_30 | Updated 76/736 | Mean std_B: 796827845.56
+- Algo: bkz2.0_30 | Updated 54/737 | Mean std_B: 797593985.53
+- Algo: bkz2.0_30 | Updated 48/741 | Mean std_B: 797998951.82
+- Algo: bkz2.0_30 | Updated 65/738 | Mean std_B: 797832174.84
+- Algo: bkz2.0_30 | Updated 41/739 | Mean std_B: 800099697.19
+- Algo: bkz2.0_30 | Updated 54/738 | Mean std_B: 796467918.14
+- Algo: bkz2.0_30 | Updated 81/740 | Mean std_B: 794465469.45
+- Algo: bkz2.0_30 | Updated 64/738 | Mean std_B: 798024827.93
+- Algo: bkz2.0_30 | Updated 59/742 | Mean std_B: 794386973.02
+- Algo: bkz2.0_30 | Updated 57/738 | Mean std_B: 799358541.63
+- Algo: bkz2.0_30 | Updated 44/739 | Mean std_B: 799305643.16
+- Algo: bkz2.0_30 | Updated 82/738 | Mean std_B: 799918408.57
+- Algo: bkz2.0_30 | Updated 60/738 | Mean std_B: 797555343.27
+- Algo: bkz2.0_30 | Updated 57/739 | Mean std_B: 797428674.82
+- Algo: bkz2.0_30 | Updated 58/739 | Mean std_B: 794420274.42
+- Algo: bkz2.0_30 | Updated 57/740 | Mean std_B: 796006172.56
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 53/738 | Mean std_B: 797179186.46
+- Algo: bkz2.0_30 | Updated 58/739 | Mean std_B: 799757195.64
+- Algo: bkz2.0_30 | Updated 59/738 | Mean std_B: 796134144.21
+- Algo: bkz2.0_30 | Updated 52/740 | Mean std_B: 796607998.44
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 61/739 | Mean std_B: 797061724.19
+- Algo: bkz2.0_30 | Updated 49/740 | Mean std_B: 797341918.70
+- Algo: bkz2.0_30 | Updated 48/740 | Mean std_B: 796154276.42
+- Algo: bkz2.0_30 | Updated 58/738 | Mean std_B: 797414642.36
+- Algo: bkz2.0_30 | Updated 57/741 | Mean std_B: 795015775.37
+- Algo: bkz2.0_30 | Updated 52/739 | Mean std_B: 799307540.24
+- Algo: bkz2.0_40 | Updated 64/740 | Mean std_B: 794796641.62
+- Algo: bkz2.0_40 | Updated 56/739 | Mean std_B: 794792280.03
+- Algo: bkz2.0_40 | Updated 60/737 | Mean std_B: 798935619.04
+- Algo: bkz2.0_40 | Updated 65/740 | Mean std_B: 796241036.23
+- Algo: bkz2.0_40 | Updated 89/739 | Mean std_B: 793898535.83
+- Algo: bkz2.0_40 | Updated 69/739 | Mean std_B: 796932650.79
+- Algo: bkz2.0_40 | Updated 58/738 | Mean std_B: 799661620.17
+- Algo: bkz2.0_40 | Updated 67/742 | Mean std_B: 794342695.88
+- Algo: bkz2.0_40 | Updated 70/739 | Mean std_B: 798241906.74
+- Algo: bkz2.0_40 | Updated 72/739 | Mean std_B: 796355998.17
+- Algo: bkz2.0_40 | Updated 61/740 | Mean std_B: 796236368.65
+- Algo: bkz2.0_40 | Updated 71/741 | Mean std_B: 791854404.33
+- Algo: bkz2.0_40 | Updated 78/736 | Mean std_B: 799987218.97
+- Algo: bkz2.0_40 | Updated 57/739 | Mean std_B: 796455279.35
+- Algo: bkz2.0_40 | Updated 78/741 | Mean std_B: 793744605.22
+Tour 26 | Time: 106244.89s | Mean std_B: 755101279.52 | Reduction Factor: 0.6466 | Prob: 0.0944
+- Algo: bkz2.0_20 | Updated 56/741 | Mean std_B: 794992138.56
+- Algo: bkz2.0_30 | Updated 49/739 | Mean std_B: 800668628.56
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 61/740 | Mean std_B: 794662574.90
+- Algo: bkz2.0_30 | Updated 71/738 | Mean std_B: 796691265.06
+- Algo: bkz2.0_30 | Updated 64/739 | Mean std_B: 794038139.30
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 60/739 | Mean std_B: 797574176.22
+- Algo: bkz2.0_30 | Updated 45/742 | Mean std_B: 796391776.50
+- Algo: bkz2.0_30 | Updated 59/739 | Mean std_B: 797978528.67
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 74/742 | Mean std_B: 793125473.86
+- Algo: bkz2.0_30 | Updated 62/736 | Mean std_B: 797580756.30
+- Algo: bkz2.0_30 | Updated 48/739 | Mean std_B: 796433853.65
+- Algo: bkz2.0_30 | Updated 53/739 | Mean std_B: 799533120.91
+- Algo: bkz2.0_30 | Updated 55/739 | Mean std_B: 796137710.12
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 78/739 | Mean std_B: 796254968.35
+- Algo: bkz2.0_30 | Updated 50/738 | Mean std_B: 797717459.14
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 65/739 | Mean std_B: 797886787.63
+- Algo: bkz2.0_30 | Updated 51/739 | Mean std_B: 797842923.07
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 59/738 | Mean std_B: 795858582.91
+- Algo: bkz2.0_30 | Updated 47/741 | Mean std_B: 797345881.23
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 74/738 | Mean std_B: 801054654.71
+- Algo: bkz2.0_30 | Updated 69/739 | Mean std_B: 797067959.25
+- Algo: bkz2.0_30 | Updated 45/740 | Mean std_B: 797399694.66
+- Algo: bkz2.0_30 | Updated 43/739 | Mean std_B: 798052346.62
+- Algo: bkz2.0_30 | Updated 65/737 | Mean std_B: 798863878.88
+- Algo: bkz2.0_30 | Updated 48/738 | Mean std_B: 796072310.09
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 55/739 | Mean std_B: 795459967.54
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 59/741 | Mean std_B: 795353220.07
+- Algo: bkz2.0_30 | Updated 69/739 | Mean std_B: 794828290.78
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 59/740 | Mean std_B: 795668187.36
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 73/740 | Mean std_B: 801374636.24
+- Algo: bkz2.0_30 | Updated 53/738 | Mean std_B: 797064783.67
+- Algo: bkz2.0_30 | Updated 63/739 | Mean std_B: 796069576.99
+- Algo: bkz2.0_30 | Updated 71/740 | Mean std_B: 796041967.84
+- Algo: bkz2.0_30 | Updated 63/737 | Mean std_B: 796987068.97
+- Algo: bkz2.0_30 | Updated 65/738 | Mean std_B: 797034943.89
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 58/740 | Mean std_B: 799267685.28
+- Algo: bkz2.0_30 | Updated 62/740 | Mean std_B: 798453094.25
+- Algo: bkz2.0_30 | Updated 55/741 | Mean std_B: 797232010.82
+- Algo: bkz2.0_30 | Updated 57/742 | Mean std_B: 792770973.98
+- Algo: bkz2.0_30 | Updated 59/739 | Mean std_B: 796305387.42
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_40 | Updated 60/742 | Mean std_B: 793270405.05
+- Algo: bkz2.0_40 | Updated 64/740 | Mean std_B: 795295044.03
+- Algo: bkz2.0_40 | Updated 55/739 | Mean std_B: 798944421.77
+- Algo: bkz2.0_40 | Updated 61/741 | Mean std_B: 794876567.26
+- Algo: bkz2.0_40 | Updated 52/738 | Mean std_B: 797827581.70
+- Algo: bkz2.0_40 | Updated 51/741 | Mean std_B: 796793813.93
+- Algo: bkz2.0_40 | Updated 54/741 | Mean std_B: 794723321.03
+- Algo: bkz2.0_40 | Updated 59/740 | Mean std_B: 796126347.77
+- Algo: bkz2.0_40 | Updated 60/740 | Mean std_B: 796535531.10
+- Algo: bkz2.0_40 | Updated 55/739 | Mean std_B: 798232057.60
+- Algo: bkz2.0_40 | Updated 80/742 | Mean std_B: 792869916.31
+- Algo: bkz2.0_40 | Updated 54/740 | Mean std_B: 794966084.63
+- Algo: bkz2.0_40 | Updated 66/739 | Mean std_B: 797784184.21
+- Algo: bkz2.0_40 | Updated 56/739 | Mean std_B: 796224763.37
+- Algo: bkz2.0_40 | Updated 55/739 | Mean std_B: 797439487.55
+- Algo: bkz2.0_40 | Updated 66/740 | Mean std_B: 794514932.64
+- Algo: bkz2.0_40 | Updated 61/740 | Mean std_B: 794903517.70
+- Algo: bkz2.0_40 | Updated 74/741 | Mean std_B: 793509626.11
+- Algo: bkz2.0_40 | Updated 47/738 | Mean std_B: 800741162.26
+- Algo: bkz2.0_40 | Updated 49/737 | Mean std_B: 798486044.64
+- Algo: bkz2.0_40 | Updated 56/738 | Mean std_B: 797115353.52
+- Algo: bkz2.0_40 | Updated 53/740 | Mean std_B: 794820941.67
+- Algo: bkz2.0_40 | Updated 69/736 | Mean std_B: 799533863.40
+Tour 27 | Time: 112950.25s | Mean std_B: 754462716.76 | Reduction Factor: 0.6461 | Prob: 0.0945
+- Algo: bkz2.0_20 | Updated 41/741 | Mean std_B: 796225264.37
+- Algo: bkz2.0_30 | Updated 76/739 | Mean std_B: 796447223.84
+- Algo: bkz2.0_30 | Updated 51/740 | Mean std_B: 797536729.28
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 63/738 | Mean std_B: 795237448.27
+- Algo: bkz2.0_30 | Updated 45/739 | Mean std_B: 797263522.33
+- Algo: bkz2.0_30 | Updated 54/742 | Mean std_B: 792029018.57
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 52/742 | Mean std_B: 795381970.02
+- Algo: bkz2.0_30 | Updated 49/739 | Mean std_B: 796972293.54
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 37/739 | Mean std_B: 801133036.69
+- Algo: bkz2.0_30 | Updated 41/739 | Mean std_B: 799207302.04
+- Algo: bkz2.0_30 | Updated 67/739 | Mean std_B: 797292793.68
+- Algo: bkz2.0_30 | Updated 59/739 | Mean std_B: 796075265.43
+- Algo: bkz2.0_30 | Updated 55/738 | Mean std_B: 795585306.64
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 44/740 | Mean std_B: 797426256.59
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 55/740 | Mean std_B: 795681839.67
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 52/739 | Mean std_B: 797872058.37
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 47/738 | Mean std_B: 797649894.73
+- Algo: bkz2.0_30 | Updated 43/741 | Mean std_B: 795614022.50
+- Algo: bkz2.0_30 | Updated 64/738 | Mean std_B: 800577681.38
+- Algo: bkz2.0_30 | Updated 65/742 | Mean std_B: 794199709.49
+- Algo: bkz2.0_30 | Updated 62/736 | Mean std_B: 797079676.25
+- Algo: bkz2.0_30 | Updated 48/740 | Mean std_B: 797540177.70
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 56/741 | Mean std_B: 800789061.65
+- Algo: bkz2.0_30 | Updated 57/737 | Mean std_B: 798818573.92
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 53/739 | Mean std_B: 798981729.26
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 59/740 | Mean std_B: 792326161.91
+- Algo: bkz2.0_30 | Updated 59/741 | Mean std_B: 796526203.62
+- Algo: bkz2.0_40 | Updated 63/739 | Mean std_B: 794876955.90
+- Algo: bkz2.0_40 | Updated 69/741 | Mean std_B: 793749297.90
+- Algo: bkz2.0_40 | Updated 68/741 | Mean std_B: 794381026.16
+- Algo: bkz2.0_40 | Updated 71/738 | Mean std_B: 798443294.12
+- Algo: bkz2.0_40 | Updated 71/742 | Mean std_B: 794369646.99
+- Algo: bkz2.0_40 | Updated 55/739 | Mean std_B: 799331124.18
+- Algo: bkz2.0_40 | Updated 56/739 | Mean std_B: 796959862.08
+- Algo: bkz2.0_40 | Updated 49/742 | Mean std_B: 793684954.58
+- Algo: bkz2.0_40 | Updated 67/739 | Mean std_B: 796611363.90
+- Algo: bkz2.0_40 | Updated 72/738 | Mean std_B: 795770065.04
+- Algo: bkz2.0_40 | Updated 60/739 | Mean std_B: 798055413.87
+- Algo: bkz2.0_40 | Updated 61/738 | Mean std_B: 796502460.12
+- Algo: bkz2.0_40 | Updated 60/738 | Mean std_B: 798067892.81
+- Algo: bkz2.0_40 | Updated 67/739 | Mean std_B: 796756425.05
+- Algo: bkz2.0_40 | Updated 62/741 | Mean std_B: 796493625.07
+- Algo: bkz2.0_40 | Updated 73/740 | Mean std_B: 794044502.30
+- Algo: bkz2.0_40 | Updated 62/737 | Mean std_B: 798051231.57
+- Algo: bkz2.0_40 | Updated 58/743 | Mean std_B: 792564020.83
+- Algo: bkz2.0_40 | Updated 66/741 | Mean std_B: 793911211.79
+- Algo: bkz2.0_40 | Updated 51/740 | Mean std_B: 795927198.35
+- Algo: bkz2.0_40 | Updated 53/741 | Mean std_B: 795319299.70
+- Algo: bkz2.0_40 | Updated 45/738 | Mean std_B: 798387922.47
+- Algo: bkz2.0_40 | Updated 69/739 | Mean std_B: 796249694.54
+- Algo: bkz2.0_40 | Updated 49/741 | Mean std_B: 794799400.70
+- Algo: bkz2.0_40 | Updated 54/740 | Mean std_B: 795321501.64
+- Algo: bkz2.0_40 | Updated 69/741 | Mean std_B: 796493373.10
+- Algo: bkz2.0_40 | Updated 58/740 | Mean std_B: 795369846.93
+- Algo: bkz2.0_40 | Updated 56/739 | Mean std_B: 796994917.64
+- Algo: bkz2.0_40 | Updated 75/740 | Mean std_B: 795071022.62
+- Algo: bkz2.0_40 | Updated 64/739 | Mean std_B: 793600057.61
+- Algo: bkz2.0_40 | Updated 64/739 | Mean std_B: 796468208.12
+- Algo: bkz2.0_40 | Updated 67/740 | Mean std_B: 792613379.86
+- Algo: bkz2.0_40 | Updated 46/736 | Mean std_B: 796618664.94
+- Algo: bkz2.0_40 | Updated 57/741 | Mean std_B: 794593749.58
+- Algo: bkz2.0_40 | Updated 61/741 | Mean std_B: 795269452.01
+- Algo: bkz2.0_40 | Updated 39/740 | Mean std_B: 796084745.62
+Tour 28 | Time: 120347.26s | Mean std_B: 753858863.73 | Reduction Factor: 0.6455 | Prob: 0.0945
+- Algo: bkz2.0_20 | Updated 44/741 | Mean std_B: 795074425.71
+- Updating BKZ block size from 20 to 30.
+- Algo: bkz2.0_30 | Updated 51/738 | Mean std_B: 795471006.20
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 53/739 | Mean std_B: 796082728.17
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 30/741 | Mean std_B: 795305954.56
+- Algo: bkz2.0_30 | Updated 45/739 | Mean std_B: 798927980.75
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 65/742 | Mean std_B: 793288660.49
+- Algo: bkz2.0_30 | Updated 59/741 | Mean std_B: 793991496.11
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 63/741 | Mean std_B: 799231931.07
+- Algo: bkz2.0_30 | Updated 71/739 | Mean std_B: 794164418.89
+- Algo: bkz2.0_30 | Updated 57/739 | Mean std_B: 797231912.33
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 45/736 | Mean std_B: 797852116.89
+- Algo: bkz2.0_30 | Updated 42/739 | Mean std_B: 797113333.40
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 66/737 | Mean std_B: 800806942.50
+- Algo: bkz2.0_30 | Updated 64/741 | Mean std_B: 793172014.43
+- Algo: bkz2.0_30 | Updated 47/742 | Mean std_B: 794739880.54
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 48/738 | Mean std_B: 797396816.81
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 59/739 | Mean std_B: 796420985.53
+- Algo: bkz2.0_40 | Updated 50/739 | Mean std_B: 794670487.04
+- Algo: bkz2.0_40 | Updated 76/740 | Mean std_B: 794893690.77
+- Algo: bkz2.0_40 | Updated 46/741 | Mean std_B: 794849630.19
+- Algo: bkz2.0_40 | Updated 55/740 | Mean std_B: 793270150.09
+- Algo: bkz2.0_40 | Updated 60/742 | Mean std_B: 793845038.75
+- Algo: bkz2.0_40 | Updated 57/739 | Mean std_B: 796176130.84
+- Algo: bkz2.0_40 | Updated 46/738 | Mean std_B: 797160628.24
+- Algo: bkz2.0_40 | Updated 59/741 | Mean std_B: 797897660.54
+- Algo: bkz2.0_40 | Updated 80/740 | Mean std_B: 793827782.93
+- Algo: bkz2.0_40 | Updated 46/739 | Mean std_B: 797487095.19
+- Algo: bkz2.0_40 | Updated 56/740 | Mean std_B: 797398693.96
+- Algo: bkz2.0_40 | Updated 59/741 | Mean std_B: 793832565.97
+- Algo: bkz2.0_40 | Updated 55/741 | Mean std_B: 795883299.94
+- Algo: bkz2.0_40 | Updated 52/739 | Mean std_B: 794932930.17
+- Algo: bkz2.0_40 | Updated 49/741 | Mean std_B: 796469450.53
+- Algo: bkz2.0_40 | Updated 56/740 | Mean std_B: 796853330.58
+- Algo: bkz2.0_40 | Updated 59/741 | Mean std_B: 792617483.55
+- Algo: bkz2.0_40 | Updated 77/742 | Mean std_B: 792964541.18
+- Algo: bkz2.0_40 | Updated 53/740 | Mean std_B: 796114134.48
+- Algo: bkz2.0_40 | Updated 58/742 | Mean std_B: 793161825.84
+- Algo: bkz2.0_40 | Updated 52/739 | Mean std_B: 796648760.09
+- Algo: bkz2.0_40 | Updated 55/740 | Mean std_B: 795361014.58
+- Algo: bkz2.0_40 | Updated 55/739 | Mean std_B: 795534411.19
+- Algo: bkz2.0_40 | Updated 62/738 | Mean std_B: 798739165.65
+- Algo: bkz2.0_40 | Updated 64/742 | Mean std_B: 792626544.48
+- Algo: bkz2.0_40 | Updated 48/740 | Mean std_B: 796134503.25
+- Algo: bkz2.0_40 | Updated 57/742 | Mean std_B: 792516100.24
+- Algo: bkz2.0_40 | Updated 73/741 | Mean std_B: 792993132.62
+- Algo: bkz2.0_40 | Updated 70/739 | Mean std_B: 796417598.05
+- Algo: bkz2.0_40 | Updated 41/740 | Mean std_B: 796429778.99
+- Algo: bkz2.0_40 | Updated 54/740 | Mean std_B: 794586542.68
+- Algo: bkz2.0_40 | Updated 62/743 | Mean std_B: 790225859.45
+- Algo: bkz2.0_40 | Updated 54/738 | Mean std_B: 800121846.43
+- Algo: bkz2.0_40 | Updated 68/741 | Mean std_B: 793722767.96
+- Algo: bkz2.0_40 | Updated 76/740 | Mean std_B: 796139038.49
+- Algo: bkz2.0_40 | Updated 65/737 | Mean std_B: 797604619.15
+- Algo: bkz2.0_40 | Updated 55/739 | Mean std_B: 795301516.60
+- Algo: bkz2.0_40 | Updated 71/740 | Mean std_B: 793369231.91
+- Algo: bkz2.0_40 | Updated 58/739 | Mean std_B: 795521941.08
+- Algo: bkz2.0_40 | Updated 68/740 | Mean std_B: 793734560.28
+- Algo: bkz2.0_40 | Updated 44/738 | Mean std_B: 798460248.57
+- Algo: bkz2.0_40 | Updated 46/740 | Mean std_B: 795355262.66
+- Algo: bkz2.0_40 | Updated 68/740 | Mean std_B: 795874305.64
+- Algo: bkz2.0_40 | Updated 62/737 | Mean std_B: 798739233.93
+- Algo: bkz2.0_40 | Updated 65/741 | Mean std_B: 796269639.17
+- Algo: bkz2.0_40 | Updated 66/739 | Mean std_B: 797457344.56
+Tour 29 | Time: 128471.01s | Mean std_B: 753249921.99 | Reduction Factor: 0.6450 | Prob: 0.0946
+- Algo: bkz2.0_30 | Updated 43/738 | Mean std_B: 800840205.97
+- Algo: bkz2.0_30 | Updated 62/741 | Mean std_B: 796132111.25
+- Algo: bkz2.0_30 | Updated 59/741 | Mean std_B: 800684182.92
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 57/742 | Mean std_B: 793537976.38
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 55/739 | Mean std_B: 797637482.06
+- Algo: bkz2.0_30 | Updated 54/741 | Mean std_B: 795715488.77
+- Algo: bkz2.0_30 | Updated 54/741 | Mean std_B: 793873884.67
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 35/741 | Mean std_B: 796563246.95
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 38/736 | Mean std_B: 798113828.65
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_40 | Updated 61/741 | Mean std_B: 793876497.86
+- Algo: bkz2.0_40 | Updated 61/743 | Mean std_B: 793308009.67
+- Algo: bkz2.0_40 | Updated 39/741 | Mean std_B: 795102527.24
+- Algo: bkz2.0_40 | Updated 62/741 | Mean std_B: 792711504.24
+- Algo: bkz2.0_40 | Updated 56/741 | Mean std_B: 795201831.46
+- Algo: bkz2.0_40 | Updated 68/739 | Mean std_B: 796928002.50
+- Algo: bkz2.0_40 | Updated 58/741 | Mean std_B: 794095879.05
+- Algo: bkz2.0_40 | Updated 38/740 | Mean std_B: 796679113.52
+- Algo: bkz2.0_40 | Updated 53/739 | Mean std_B: 798068294.21
+- Algo: bkz2.0_40 | Updated 53/739 | Mean std_B: 795703178.04
+- Algo: bkz2.0_40 | Updated 51/737 | Mean std_B: 798288392.75
+- Algo: bkz2.0_40 | Updated 78/739 | Mean std_B: 795042918.29
+- Algo: bkz2.0_40 | Updated 42/740 | Mean std_B: 796917872.07
+- Algo: bkz2.0_40 | Updated 59/738 | Mean std_B: 797646036.88
+- Algo: bkz2.0_40 | Updated 46/740 | Mean std_B: 796225698.84
+- Algo: bkz2.0_40 | Updated 53/740 | Mean std_B: 794450782.52
+- Algo: bkz2.0_40 | Updated 54/741 | Mean std_B: 794624839.20
+- Algo: bkz2.0_40 | Updated 38/742 | Mean std_B: 794298922.22
+- Algo: bkz2.0_40 | Updated 51/739 | Mean std_B: 795528068.53
+- Algo: bkz2.0_40 | Updated 64/741 | Mean std_B: 792240268.59
+- Algo: bkz2.0_40 | Updated 71/742 | Mean std_B: 793772769.46
+- Algo: bkz2.0_40 | Updated 62/741 | Mean std_B: 796244450.49
+- Algo: bkz2.0_40 | Updated 53/739 | Mean std_B: 797411118.28
+- Algo: bkz2.0_40 | Updated 48/742 | Mean std_B: 792030025.92
+- Algo: bkz2.0_40 | Updated 77/740 | Mean std_B: 794654927.41
+- Algo: bkz2.0_40 | Updated 54/742 | Mean std_B: 793066615.41
+- Algo: bkz2.0_40 | Updated 57/739 | Mean std_B: 793762366.18
+- Algo: bkz2.0_40 | Updated 62/742 | Mean std_B: 792949166.11
+- Algo: bkz2.0_40 | Updated 58/740 | Mean std_B: 793938254.92
+- Algo: bkz2.0_40 | Updated 74/741 | Mean std_B: 795090578.23
+- Algo: bkz2.0_40 | Updated 52/739 | Mean std_B: 795801238.04
+- Algo: bkz2.0_40 | Updated 42/739 | Mean std_B: 795207235.37
+- Algo: bkz2.0_40 | Updated 55/741 | Mean std_B: 794250523.58
+- Algo: bkz2.0_40 | Updated 52/739 | Mean std_B: 796777791.67
+- Algo: bkz2.0_40 | Updated 59/738 | Mean std_B: 797809238.69
+- Algo: bkz2.0_40 | Updated 56/740 | Mean std_B: 795293568.16
+- Algo: bkz2.0_40 | Updated 42/740 | Mean std_B: 795106700.50
+- Algo: bkz2.0_40 | Updated 53/739 | Mean std_B: 796593157.24
+- Algo: bkz2.0_40 | Updated 46/743 | Mean std_B: 792312907.07
+- Algo: bkz2.0_40 | Updated 68/741 | Mean std_B: 795969236.37
+- Algo: bkz2.0_40 | Updated 51/740 | Mean std_B: 796811519.66
+- Algo: bkz2.0_40 | Updated 61/742 | Mean std_B: 791865715.32
+- Algo: bkz2.0_40 | Updated 66/740 | Mean std_B: 793746871.67
+- Algo: bkz2.0_40 | Updated 63/740 | Mean std_B: 793923431.68
+- Algo: bkz2.0_40 | Updated 49/739 | Mean std_B: 796031922.14
+- Algo: bkz2.0_40 | Updated 53/740 | Mean std_B: 795152441.37
+- Algo: bkz2.0_40 | Updated 71/739 | Mean std_B: 795610175.40
+- Algo: bkz2.0_40 | Updated 59/740 | Mean std_B: 796034339.14
+- Algo: bkz2.0_40 | Updated 62/738 | Mean std_B: 796226901.76
+- Algo: bkz2.0_40 | Updated 59/739 | Mean std_B: 798231934.58
+- Algo: bkz2.0_40 | Updated 64/743 | Mean std_B: 791645722.17
+- Algo: bkz2.0_40 | Updated 69/738 | Mean std_B: 794395724.10
+- Algo: bkz2.0_40 | Updated 58/739 | Mean std_B: 794079454.81
+- Algo: bkz2.0_40 | Updated 46/739 | Mean std_B: 797277332.50
+Dataset saved to ../data/data_n_256_k_2_s_cbd_3abd9_3.0.pkl
+Tour 30 | Time: 136391.86s | Mean std_B: 752664893.56 | Reduction Factor: 0.6445 | Prob: 0.0947
+[BEST 10% STD] True B is the best candidate: 578 / 6300 (9.17%)
+[BEST 30% STD] True B is the best candidate: 1770 / 18900 (9.37%)
+[BEST 60% STD] True B is the best candidate: 3523 / 37800 (9.32%)
+[BEST 100% STD] True B is the best candidate: 5753 / 63000 (9.13%)
+- Algo: bkz2.0_30 | Updated 64/737 | Mean std_B: 800075520.33
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 59/739 | Mean std_B: 796597179.85
+- Updating BKZ block size from 30 to 40.
+- Algo: bkz2.0_30 | Updated 53/741 | Mean std_B: 796449987.61
+- Algo: bkz2.0_30 | Updated 43/741 | Mean std_B: 794291747.67
+- Algo: bkz2.0_40 | Updated 58/739 | Mean std_B: 795308772.76
+- Algo: bkz2.0_40 | Updated 59/743 | Mean std_B: 794314908.96
+- Algo: bkz2.0_40 | Updated 56/741 | Mean std_B: 800472526.76
+- Algo: bkz2.0_40 | Updated 51/741 | Mean std_B: 795884295.79
+- Algo: bkz2.0_40 | Updated 55/740 | Mean std_B: 796217539.06
+- Algo: bkz2.0_40 | Updated 53/742 | Mean std_B: 791691234.46
+- Algo: bkz2.0_40 | Updated 49/738 | Mean std_B: 799035729.85
+- Algo: bkz2.0_40 | Updated 48/740 | Mean std_B: 796074060.17
+- Algo: bkz2.0_40 | Updated 52/740 | Mean std_B: 796855632.75
+- Algo: bkz2.0_40 | Updated 56/739 | Mean std_B: 795870953.93
+- Algo: bkz2.0_40 | Updated 54/743 | Mean std_B: 791170543.25
+- Algo: bkz2.0_40 | Updated 54/739 | Mean std_B: 796139201.02
+- Algo: bkz2.0_40 | Updated 50/737 | Mean std_B: 798182136.91
+- Algo: bkz2.0_40 | Updated 61/740 | Mean std_B: 794248101.25
+- Algo: bkz2.0_40 | Updated 48/741 | Mean std_B: 796465729.49
+- Algo: bkz2.0_40 | Updated 65/739 | Mean std_B: 797124579.67
+- Algo: bkz2.0_40 | Updated 51/740 | Mean std_B: 795924802.77
+- Algo: bkz2.0_40 | Updated 53/741 | Mean std_B: 793965366.25
+- Algo: bkz2.0_40 | Updated 45/739 | Mean std_B: 796054027.51
+- Algo: bkz2.0_40 | Updated 43/740 | Mean std_B: 796584356.63
+- Algo: bkz2.0_40 | Updated 48/741 | Mean std_B: 794066488.00
+- Algo: bkz2.0_40 | Updated 56/741 | Mean std_B: 793324954.55
+- Algo: bkz2.0_40 | Updated 60/738 | Mean std_B: 797506568.15
+- Algo: bkz2.0_40 | Updated 60/742 | Mean std_B: 793131164.04
+- Algo: bkz2.0_40 | Updated 50/742 | Mean std_B: 792990410.06
+- Algo: bkz2.0_40 | Updated 52/742 | Mean std_B: 792866391.38
+- Algo: bkz2.0_40 | Updated 53/740 | Mean std_B: 796117018.45
+- Algo: bkz2.0_40 | Updated 52/740 | Mean std_B: 796191501.67
+- Algo: bkz2.0_40 | Updated 53/740 | Mean std_B: 797763544.54
+- Algo: bkz2.0_40 | Updated 50/742 | Mean std_B: 792664284.05
+- Algo: bkz2.0_40 | Updated 53/739 | Mean std_B: 794241582.91
+- Algo: bkz2.0_40 | Updated 52/740 | Mean std_B: 795116691.26
+- Algo: bkz2.0_40 | Updated 63/740 | Mean std_B: 794707622.21
+- Algo: bkz2.0_40 | Updated 55/740 | Mean std_B: 794306416.17
+- Algo: bkz2.0_40 | Updated 41/738 | Mean std_B: 798380271.34
+- Algo: bkz2.0_40 | Updated 44/741 | Mean std_B: 793447860.90
+- Algo: bkz2.0_40 | Updated 48/740 | Mean std_B: 796744821.29
+- Algo: bkz2.0_40 | Updated 74/739 | Mean std_B: 795172623.02
+- Algo: bkz2.0_40 | Updated 58/742 | Mean std_B: 792209450.92
+- Algo: bkz2.0_40 | Updated 58/741 | Mean std_B: 793696082.01
+- Algo: bkz2.0_40 | Updated 52/742 | Mean std_B: 793192414.51
+- Algo: bkz2.0_40 | Updated 63/741 | Mean std_B: 795092316.76
+- Algo: bkz2.0_40 | Updated 66/739 | Mean std_B: 794699124.04
+- Algo: bkz2.0_40 | Updated 56/742 | Mean std_B: 793466855.61
+- Algo: bkz2.0_40 | Updated 56/741 | Mean std_B: 793267259.23
+- Algo: bkz2.0_40 | Updated 57/741 | Mean std_B: 792239013.94
+- Algo: bkz2.0_40 | Updated 66/741 | Mean std_B: 792728876.10
+- Algo: bkz2.0_40 | Updated 54/740 | Mean std_B: 796975904.07
+- Algo: bkz2.0_40 | Updated 56/738 | Mean std_B: 797483613.68
+- Algo: bkz2.0_40 | Updated 58/740 | Mean std_B: 793973639.83
+- Algo: bkz2.0_40 | Updated 42/742 | Mean std_B: 793687081.65
+- Algo: bkz2.0_40 | Updated 51/739 | Mean std_B: 796612172.89
+- Algo: bkz2.0_40 | Updated 47/740 | Mean std_B: 797377908.21
+- Algo: bkz2.0_40 | Updated 68/738 | Mean std_B: 793115510.93
+- Algo: bkz2.0_40 | Updated 65/741 | Mean std_B: 792968779.52
+- Algo: bkz2.0_40 | Updated 52/740 | Mean std_B: 795563622.73
+- Algo: bkz2.0_40 | Updated 53/741 | Mean std_B: 794519045.24
+- Algo: bkz2.0_40 | Updated 65/743 | Mean std_B: 792237901.02
+- Algo: bkz2.0_40 | Updated 53/739 | Mean std_B: 796166575.10
+Tour 31 | Time: 147297.40s | Mean std_B: 752103124.49 | Reduction Factor: 0.6440 | Prob: 0.0948
+Stopping after 144000 seconds.
+Attack completed after 147303.29 seconds.
+Dataset saved to ../data/data_n_256_k_2_s_cbd_3abd9.pkl
+Attack 1/1 completed in 147304.42 seconds.
+Performing attack on all secret types.
+Preprocessing time: 147297.40 seconds
+[BEST 10% STD] True B is the best candidate: 5860 / 6300 (93.02%)
+[BEST 10% STD] True B is the best candidate: 5829 / 6300 (92.52%)
+[BEST 10% STD] True B is the best candidate: 5866 / 6300 (93.11%)
+[BEST 10% STD] True B is the best candidate: 3493 / 6300 (55.44%)
+[BEST 30% STD] True B is the best candidate: 10329 / 18900 (54.65%)
+[BEST 60% STD] True B is the best candidate: 20780 / 37800 (54.97%)
+[BEST 100% STD] True B is the best candidate: 34531 / 63000 (54.81%)
+[BEST 10% STD] True B is the best candidate: 5775 / 6300 (91.67%)
+[BEST 30% STD] True B is the best candidate: 16684 / 18900 (88.28%)
+[BEST 10% STD] True B is the best candidate: 5859 / 6300 (93.00%)
+[BEST 10% STD] True B is the best candidate: 3684 / 6300 (58.48%)
+[BEST 30% STD] True B is the best candidate: 11508 / 18900 (60.89%)
+[BEST 60% STD] True B is the best candidate: 23304 / 37800 (61.65%)
+[BEST 100% STD] True B is the best candidate: 38589 / 63000 (61.25%)
+[BEST 10% STD] True B is the best candidate: 5839 / 6300 (92.68%)
+[BEST 10% STD] True B is the best candidate: 5863 / 6300 (93.06%)
+[BEST 10% STD] True B is the best candidate: 5753 / 6300 (91.32%)
+Success rate for cbd with hw=1: 8/10
+[BEST 10% STD] True B is the best candidate: 3468 / 6300 (55.05%)
+[BEST 30% STD] True B is the best candidate: 10378 / 18900 (54.91%)
+[BEST 60% STD] True B is the best candidate: 20668 / 37800 (54.68%)
+[BEST 100% STD] True B is the best candidate: 34201 / 63000 (54.29%)
+[BEST 10% STD] True B is the best candidate: 4872 / 6300 (77.33%)
+[BEST 30% STD] True B is the best candidate: 14190 / 18900 (75.08%)
+[BEST 10% STD] True B is the best candidate: 5095 / 6300 (80.87%)
+[BEST 30% STD] True B is the best candidate: 15194 / 18900 (80.39%)
+[BEST 10% STD] True B is the best candidate: 3420 / 6300 (54.29%)
+[BEST 30% STD] True B is the best candidate: 9973 / 18900 (52.77%)
+[BEST 60% STD] True B is the best candidate: 19880 / 37800 (52.59%)
+[BEST 100% STD] True B is the best candidate: 33111 / 63000 (52.56%)
+[BEST 10% STD] True B is the best candidate: 3370 / 6300 (53.49%)
+[BEST 30% STD] True B is the best candidate: 10069 / 18900 (53.28%)
+[BEST 60% STD] True B is the best candidate: 19895 / 37800 (52.63%)
+[BEST 100% STD] True B is the best candidate: 32935 / 63000 (52.28%)
+[BEST 10% STD] True B is the best candidate: 4805 / 6300 (76.27%)
+[BEST 30% STD] True B is the best candidate: 14209 / 18900 (75.18%)
+[BEST 10% STD] True B is the best candidate: 4836 / 6300 (76.76%)
+[BEST 30% STD] True B is the best candidate: 14140 / 18900 (74.81%)
+[BEST 10% STD] True B is the best candidate: 4850 / 6300 (76.98%)
+[BEST 30% STD] True B is the best candidate: 14139 / 18900 (74.81%)
+[BEST 10% STD] True B is the best candidate: 3344 / 6300 (53.08%)
+[BEST 30% STD] True B is the best candidate: 9902 / 18900 (52.39%)
+[BEST 60% STD] True B is the best candidate: 19803 / 37800 (52.39%)
+[BEST 100% STD] True B is the best candidate: 32736 / 63000 (51.96%)
+[BEST 10% STD] True B is the best candidate: 3523 / 6300 (55.92%)
+[BEST 30% STD] True B is the best candidate: 10389 / 18900 (54.97%)
+[BEST 60% STD] True B is the best candidate: 20721 / 37800 (54.82%)
+[BEST 100% STD] True B is the best candidate: 34362 / 63000 (54.54%)
+Success rate for cbd with hw=2: 5/10
+[BEST 10% STD] True B is the best candidate: 4289 / 6300 (68.08%)
+[BEST 30% STD] True B is the best candidate: 12384 / 18900 (65.52%)
+[BEST 60% STD] True B is the best candidate: 24463 / 37800 (64.72%)
+slurmstepd: error: *** JOB 59191299 ON wn104 CANCELLED AT 2025-08-06T07:55:47 DUE TO TIME LIMIT ***

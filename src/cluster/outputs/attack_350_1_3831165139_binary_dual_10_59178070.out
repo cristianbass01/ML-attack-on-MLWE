@@ -1,0 +1,1053 @@
+Parameters: {'n': 350, 'q': 3831165139, 'k': 1, 'secret_type': 'binary', 'eta': 2, 'gaussian_std': 3, 'hw': -1, 'error_type': 'gaussian', 'num_gen': 4, 'add_noise': True, 'mod_q': True, 'seed': 42, 'approximation_std': 3, 'approximation_threshold': 0.01, 'save_to': '../data', 'float_type': 'd', 'matrix_config': 'dual', 'reduction_samples': None, 'reduction_resampling': True, 'min_samples': None, 'num_matrices': 63, 'reduction_max_size': 800, 'lookback': 3, 'warmup_steps': 5, 'flatter_alpha': 0.001, 'bkz_delta': 0.99, 'bkz_block_sizes': '20:40:10', 'use_polish': True, 'interleaved_steps': 0, 'penalty': 10, 'verbose': True, 'train_percentages': [0.1, 0.3, 0.6, 1.0], 'model': 'tukey', 'lr': 0.0001, 'c_factor': 1.0, 'epsilon': 1.1, 'max_iter': 15000, 'alpha': 0.0001, 'warm_start': False, 'fit_intercept': False, 'tol': 0.001, 'use_ransac': False, 'residual_factor': 1.5, 'max_trials': 100, 'reduction_factor': None}
+Arguments: {'num_attacks': 1, 'attack_strategy': 'hour', 'attack_every': 12, 'save_strategy': 'hour', 'save_every': 12, 'stop_strategy': 'hour', 'stop_after': 40, 'save_at_the_end': True, 'reload': False, 'reload_from': None, 'train_secret_types': ['binary'], 'reload_from_salsa': 1.0, 'num_training_repeats': 10, 'hw_range': None}
+Attacking 63 matrices using 64 threads.
+- Algo: flatter | Updated 745/745 | Mean std_B: 1326139675.88
+- Algo: flatter | Updated 745/745 | Mean std_B: 1301351632.65
+- Algo: flatter | Updated 745/745 | Mean std_B: 1299340105.24
+- Algo: flatter | Updated 745/745 | Mean std_B: 1347035157.43
+- Algo: flatter | Updated 745/745 | Mean std_B: 1333784598.61
+- Algo: flatter | Updated 745/745 | Mean std_B: 1354261220.61
+- Algo: flatter | Updated 745/745 | Mean std_B: 1298822909.47
+- Algo: flatter | Updated 745/745 | Mean std_B: 1293163565.30
+- Algo: flatter | Updated 745/745 | Mean std_B: 1314885850.99
+- Algo: flatter | Updated 745/745 | Mean std_B: 1256984854.86
+- Algo: flatter | Updated 745/745 | Mean std_B: 1271900516.37
+- Algo: flatter | Updated 745/745 | Mean std_B: 1268740638.16
+- Algo: flatter | Updated 745/745 | Mean std_B: 1216257795.21
+- Algo: flatter | Updated 745/745 | Mean std_B: 1274481734.11
+- Algo: flatter | Updated 745/745 | Mean std_B: 1368469025.06
+- Algo: flatter | Updated 745/745 | Mean std_B: 1275970097.13
+- Algo: flatter | Updated 745/745 | Mean std_B: 1303745867.54
+- Algo: flatter | Updated 745/745 | Mean std_B: 1266372773.31
+- Algo: flatter | Updated 745/745 | Mean std_B: 1291718883.75
+- Algo: flatter | Updated 745/745 | Mean std_B: 1251588817.91
+- Algo: flatter | Updated 745/745 | Mean std_B: 1229858386.70
+- Algo: flatter | Updated 745/745 | Mean std_B: 1320892698.03
+- Algo: flatter | Updated 745/745 | Mean std_B: 1245346231.72
+- Algo: flatter | Updated 745/745 | Mean std_B: 1246448163.50
+- Algo: flatter | Updated 745/745 | Mean std_B: 1306561817.92
+- Algo: flatter | Updated 745/745 | Mean std_B: 1261754492.49
+- Algo: flatter | Updated 745/745 | Mean std_B: 1271954187.61
+- Algo: flatter | Updated 745/745 | Mean std_B: 1336359433.03
+- Algo: flatter | Updated 745/745 | Mean std_B: 1262726475.93
+- Algo: flatter | Updated 745/745 | Mean std_B: 1257377730.72
+- Algo: flatter | Updated 745/745 | Mean std_B: 1258501045.64
+- Algo: flatter | Updated 745/745 | Mean std_B: 1217230151.56
+- Algo: flatter | Updated 745/745 | Mean std_B: 1235428569.02
+- Algo: flatter | Updated 745/745 | Mean std_B: 1260482958.32
+- Algo: flatter | Updated 745/745 | Mean std_B: 1274573192.42
+- Algo: flatter | Updated 745/745 | Mean std_B: 1290318979.68
+- Algo: flatter | Updated 745/745 | Mean std_B: 1285633937.55
+- Algo: flatter | Updated 745/745 | Mean std_B: 1232928712.89
+- Algo: flatter | Updated 745/745 | Mean std_B: 1252551696.51
+- Algo: flatter | Updated 745/745 | Mean std_B: 1289795193.15
+- Algo: flatter | Updated 745/745 | Mean std_B: 1236654113.64
+- Algo: flatter | Updated 745/745 | Mean std_B: 1243636235.98
+- Algo: flatter | Updated 745/745 | Mean std_B: 1272152892.60
+- Algo: flatter | Updated 745/745 | Mean std_B: 1225102305.54
+- Algo: flatter | Updated 745/745 | Mean std_B: 1239953283.91
+- Algo: flatter | Updated 745/745 | Mean std_B: 1236711349.30
+- Algo: flatter | Updated 745/745 | Mean std_B: 1226863742.19
+- Algo: flatter | Updated 745/745 | Mean std_B: 1238508800.27
+- Algo: flatter | Updated 745/745 | Mean std_B: 1242300271.10
+- Algo: flatter | Updated 745/745 | Mean std_B: 1279535441.82
+- Algo: flatter | Updated 745/745 | Mean std_B: 1213070402.09
+- Algo: flatter | Updated 745/745 | Mean std_B: 1246866097.39
+- Algo: flatter | Updated 745/745 | Mean std_B: 1226731747.34
+- Algo: flatter | Updated 745/745 | Mean std_B: 1289892919.38
+- Algo: flatter | Updated 745/745 | Mean std_B: 1266227566.75
+- Algo: flatter | Updated 745/745 | Mean std_B: 1237131701.67
+- Algo: flatter | Updated 745/745 | Mean std_B: 1228743208.46
+- Algo: flatter | Updated 745/745 | Mean std_B: 1396783529.64
+- Algo: flatter | Updated 745/745 | Mean std_B: 1226506323.97
+- Algo: flatter | Updated 745/745 | Mean std_B: 1236006025.33
+- Algo: flatter | Updated 745/745 | Mean std_B: 1252927673.60
+- Algo: flatter | Updated 745/745 | Mean std_B: 1255718978.98
+- Algo: flatter | Updated 745/745 | Mean std_B: 1199295511.56
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:189: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+Tour 1 | Time: 32668.90s | Mean std_B: nan | Reduction Factor: 0.1086 | Prob: nan
+- Algo: flatter | Updated 103/745 | Mean std_B: 1802112525.89
+- Algo: flatter | Updated 140/745 | Mean std_B: 2548296050.72
+- Algo: flatter | Updated 82/745 | Mean std_B: 1584025145.53
+- Algo: flatter | Updated 112/745 | Mean std_B: 1791191542.26
+- Algo: flatter | Updated 129/745 | Mean std_B: 1835224955.59
+- Algo: flatter | Updated 294/745 | Mean std_B: 1733828456.01
+- Algo: flatter | Updated 184/745 | Mean std_B: 1937746150.25
+- Algo: flatter | Updated 127/745 | Mean std_B: 2079091320.49
+- Algo: flatter | Updated 103/745 | Mean std_B: 1605050213.84
+- Algo: flatter | Updated 118/745 | Mean std_B: 1783415212.38
+- Algo: flatter | Updated 183/745 | Mean std_B: 2950738523.44
+- Algo: flatter | Updated 158/745 | Mean std_B: 2295053496.65
+- Algo: flatter | Updated 133/745 | Mean std_B: 1948713350.20
+- Algo: flatter | Updated 181/745 | Mean std_B: 2549570705.99
+- Algo: flatter | Updated 86/745 | Mean std_B: 1769845055.03
+- Algo: flatter | Updated 175/745 | Mean std_B: 2170638660.20
+- Algo: flatter | Updated 171/745 | Mean std_B: 2667492551.74
+- Algo: flatter | Updated 108/745 | Mean std_B: 1629409823.85
+- Algo: flatter | Updated 129/745 | Mean std_B: 2173167623.50
+- Algo: flatter | Updated 86/745 | Mean std_B: 1784154902.09
+- Algo: flatter | Updated 150/745 | Mean std_B: 2124903263.99
+- Algo: flatter | Updated 166/745 | Mean std_B: 8057284606.77
+- Algo: flatter | Updated 161/745 | Mean std_B: 1990514036.29
+- Algo: flatter | Updated 92/745 | Mean std_B: 1555927305.87
+- Algo: flatter | Updated 100/745 | Mean std_B: 1659176852.13
+- Algo: flatter | Updated 143/745 | Mean std_B: 1874939425.51
+- Algo: flatter | Updated 139/745 | Mean std_B: 1574510724.31
+- Algo: flatter | Updated 158/745 | Mean std_B: 2053776838.64
+- Algo: flatter | Updated 165/745 | Mean std_B: 2346374138.25
+- Algo: flatter | Updated 161/745 | Mean std_B: 2732107707.60
+- Algo: flatter | Updated 163/745 | Mean std_B: 3176289569.63
+- Algo: flatter | Updated 195/745 | Mean std_B: 6927965633.43
+- Algo: flatter | Updated 110/745 | Mean std_B: 1755458988.81
+- Algo: flatter | Updated 157/745 | Mean std_B: 2441348384.07
+- Algo: flatter | Updated 154/745 | Mean std_B: 2030324373.44
+- Algo: flatter | Updated 256/745 | Mean std_B: 1734264251.62
+- Algo: flatter | Updated 182/745 | Mean std_B: 9568373789.86
+- Algo: flatter | Updated 144/745 | Mean std_B: 2067293890.94
+- Algo: flatter | Updated 195/745 | Mean std_B: 25438112464.74
+- Algo: flatter | Updated 160/745 | Mean std_B: 6242816846.69
+- Algo: flatter | Updated 166/745 | Mean std_B: 4170246100.42
+- Algo: flatter | Updated 163/745 | Mean std_B: 2544108036.09
+- Algo: flatter | Updated 201/745 | Mean std_B: 3279511924.88
+- Algo: flatter | Updated 138/745 | Mean std_B: 2404936219.83
+- Algo: flatter | Updated 204/745 | Mean std_B: 2124021410.35
+- Algo: flatter | Updated 131/745 | Mean std_B: 1675350593.62
+- Algo: flatter | Updated 89/745 | Mean std_B: 1627011796.75
+- Algo: flatter | Updated 161/745 | Mean std_B: 3227487711.70
+- Algo: flatter | Updated 104/745 | Mean std_B: 1529945384.57
+- Algo: flatter | Updated 105/745 | Mean std_B: 2019743327.95
+- Algo: flatter | Updated 142/745 | Mean std_B: 2211570657.90
+- Algo: flatter | Updated 147/745 | Mean std_B: 2163569645.48
+- Algo: flatter | Updated 125/745 | Mean std_B: 1845009409.29
+- Algo: flatter | Updated 121/745 | Mean std_B: 2227914436.75
+- Algo: flatter | Updated 202/745 | Mean std_B: 7387300862.67
+- Algo: flatter | Updated 143/745 | Mean std_B: 2181243822.17
+- Algo: flatter | Updated 149/745 | Mean std_B: 2092518125.31
+- Algo: flatter | Updated 96/745 | Mean std_B: 1893006817.30
+- Algo: flatter | Updated 131/745 | Mean std_B: 1705639904.25
+- Algo: flatter | Updated 129/745 | Mean std_B: 1708745152.06
+- Algo: flatter | Updated 168/745 | Mean std_B: 2162095523.60
+- Algo: flatter | Updated 95/745 | Mean std_B: 2018030930.09
+- Algo: flatter | Updated 166/745 | Mean std_B: 4928678815.05
+Tour 2 | Time: 33906.55s | Mean std_B: nan | Reduction Factor: 0.1085 | Prob: nan
+- Algo: flatter | Updated 42/745 | Mean std_B: 2146967477.99
+- Algo: flatter | Updated 7/745 | Mean std_B: 3385807890.48
+- Algo: flatter | Updated 21/745 | Mean std_B: 2656505132.11
+- Algo: flatter | Updated 27/745 | Mean std_B: 2072564411.35
+- Algo: flatter | Updated 44/745 | Mean std_B: 1811754893.16
+- Algo: flatter | Updated 13/745 | Mean std_B: 2955460761.60
+- Algo: flatter | Updated 15/745 | Mean std_B: 2170240660.09
+- Algo: flatter | Updated 15/745 | Mean std_B: 4079852966.22
+- Algo: flatter | Updated 54/745 | Mean std_B: 1826100252.17
+- Algo: flatter | Updated 4/745 | Mean std_B: 9195264651.36
+- Algo: flatter | Updated 43/745 | Mean std_B: 2029695136.69
+- Algo: flatter | Updated 16/745 | Mean std_B: 3429379740.25
+- Algo: flatter | Updated 29/745 | Mean std_B: 2366585695.12
+- Algo: flatter | Updated 54/745 | Mean std_B: 2235751479.49
+- Algo: flatter | Updated 7/745 | Mean std_B: 3487090114.93
+- Algo: flatter | Updated 13/745 | Mean std_B: 3108719804.84
+- Algo: flatter | Updated 26/745 | Mean std_B: 2116070015.30
+- Algo: flatter | Updated 40/745 | Mean std_B: 2279376905.25
+- Algo: flatter | Updated 63/745 | Mean std_B: 2379996194.65
+- Algo: flatter | Updated 19/745 | Mean std_B: 2126171400.34
+- Algo: flatter | Updated 26/745 | Mean std_B: 1912679634.01
+- Algo: flatter | Updated 41/745 | Mean std_B: 2193926540.62
+- Algo: flatter | Updated 88/745 | Mean std_B: 2284939476.18
+- Algo: flatter | Updated 54/745 | Mean std_B: 1900333962.89
+- Algo: flatter | Updated 76/745 | Mean std_B: 2465100029.35
+- Algo: flatter | Updated 17/745 | Mean std_B: 2861899511.03
+- Algo: flatter | Updated 40/745 | Mean std_B: 2090230092.25
+- Algo: flatter | Updated 41/745 | Mean std_B: 1929647707.71
+- Algo: flatter | Updated 34/745 | Mean std_B: 1883161561.62
+- Algo: flatter | Updated 29/745 | Mean std_B: 1873238390.83
+- Algo: flatter | Updated 26/745 | Mean std_B: 2120393939.26
+- Algo: flatter | Updated 58/745 | Mean std_B: 1765245846.64
+- Algo: flatter | Updated 22/745 | Mean std_B: 2645966944.54
+- Algo: flatter | Updated 0/745 | Mean std_B: 18812982134.34
+- Algo: flatter | Updated 12/745 | Mean std_B: 2676495757.73
+- Algo: flatter | Updated 47/745 | Mean std_B: 1924350469.10
+- Algo: flatter | Updated 29/745 | Mean std_B: 1722280632.04
+- Algo: flatter | Updated 29/745 | Mean std_B: 2207193928.31
+- Algo: flatter | Updated 57/745 | Mean std_B: 2421848638.04
+- Algo: flatter | Updated 14/745 | Mean std_B: 2064088631.02
+- Algo: flatter | Updated 20/745 | Mean std_B: 2196913741.54
+- Algo: flatter | Updated 4/745 | Mean std_B: 5333828690.05
+- Algo: flatter | Updated 40/745 | Mean std_B: 2083859500.88
+- Algo: flatter | Updated 17/745 | Mean std_B: 2395261568.78
+- Algo: flatter | Updated 22/745 | Mean std_B: 2241261038.44
+- Algo: flatter | Updated 39/745 | Mean std_B: 1754714703.91
+- Algo: flatter | Updated 24/745 | Mean std_B: 2243929814.76
+- Algo: flatter | Updated 7/745 | Mean std_B: 7465597151.07
+- Algo: flatter | Updated 27/745 | Mean std_B: 2595820204.50
+- Algo: flatter | Updated 66/745 | Mean std_B: 2093650590.63
+- Algo: flatter | Updated 12/745 | Mean std_B: 2496153723.13
+- Algo: flatter | Updated 8/745 | Mean std_B: 7190954722.79
+- Algo: flatter | Updated 9/745 | Mean std_B: 3626290533.55
+- Algo: flatter | Updated 30/745 | Mean std_B: 1919726077.49
+- Algo: flatter | Updated 1/745 | Mean std_B: 14003953670.70
+- Algo: flatter | Updated 57/745 | Mean std_B: 2095298963.37
+- Algo: flatter | Updated 30/745 | Mean std_B: 2290709112.46
+- Algo: flatter | Updated 48/745 | Mean std_B: 1927792880.99
+- Algo: flatter | Updated 42/745 | Mean std_B: 1948550495.67
+- Algo: flatter | Updated 7/745 | Mean std_B: 3965614353.39
+- Algo: flatter | Updated 41/745 | Mean std_B: 1889676787.99
+- Algo: flatter | Updated 9/745 | Mean std_B: 4341614149.57
+- Algo: flatter | Updated 13/745 | Mean std_B: 2309693104.01
+Tour 3 | Time: 35615.93s | Mean std_B: 1257189171.58 | Reduction Factor: 0.1076 | Prob: 0.8724
+- Algo: flatter | Updated 42/745 | Mean std_B: 2119321998.75
+- Algo: flatter | Updated 29/745 | Mean std_B: 2038450630.66
+- Algo: flatter | Updated 20/745 | Mean std_B: 2332610114.78
+- Algo: flatter | Updated 20/745 | Mean std_B: 1935317790.09
+- Algo: flatter | Updated 8/745 | Mean std_B: 2641343431.95
+- Algo: flatter | Updated 21/745 | Mean std_B: 2085618245.30
+- Algo: flatter | Updated 26/745 | Mean std_B: 2108824749.68
+- Algo: flatter | Updated 34/745 | Mean std_B: 2057552944.96
+- Algo: flatter | Updated 23/745 | Mean std_B: 2970791089.92
+- Algo: flatter | Updated 19/745 | Mean std_B: 2109343546.38
+- Algo: flatter | Updated 29/745 | Mean std_B: 1977596732.29
+- Algo: flatter | Updated 21/745 | Mean std_B: 2886389030.05
+- Algo: flatter | Updated 65/745 | Mean std_B: 1828786183.20
+- Algo: flatter | Updated 39/745 | Mean std_B: 1849010208.38
+- Algo: flatter | Updated 37/745 | Mean std_B: 1993555704.26
+- Algo: flatter | Updated 39/745 | Mean std_B: 1940427975.35
+- Algo: flatter | Updated 24/745 | Mean std_B: 2681088400.14
+- Algo: flatter | Updated 41/745 | Mean std_B: 1940772334.19
+- Algo: flatter | Updated 35/745 | Mean std_B: 1998071567.90
+- Algo: flatter | Updated 23/745 | Mean std_B: 1860693841.27
+- Algo: flatter | Updated 40/745 | Mean std_B: 1904110208.88
+- Algo: flatter | Updated 9/745 | Mean std_B: 2844468423.31
+- Algo: flatter | Updated 40/745 | Mean std_B: 1839888714.13
+- Algo: flatter | Updated 24/745 | Mean std_B: 2664902241.99
+- Algo: flatter | Updated 39/745 | Mean std_B: 1812038331.35
+- Algo: flatter | Updated 29/745 | Mean std_B: 2014257286.21
+- Algo: flatter | Updated 25/745 | Mean std_B: 2149385739.00
+- Algo: flatter | Updated 12/745 | Mean std_B: 2413498978.40
+- Algo: flatter | Updated 31/745 | Mean std_B: 2099277410.07
+- Algo: flatter | Updated 22/745 | Mean std_B: 2519061925.17
+- Algo: flatter | Updated 27/745 | Mean std_B: 2047505862.75
+- Algo: flatter | Updated 38/745 | Mean std_B: 1812297226.29
+- Algo: flatter | Updated 32/745 | Mean std_B: 2094287501.91
+- Algo: flatter | Updated 49/745 | Mean std_B: 2040288245.37
+- Algo: flatter | Updated 19/745 | Mean std_B: 2341472788.34
+- Algo: flatter | Updated 23/745 | Mean std_B: 2409705722.29
+- Algo: flatter | Updated 4/745 | Mean std_B: 4037268879.39
+- Algo: flatter | Updated 21/745 | Mean std_B: 2027765246.25
+- Algo: flatter | Updated 11/745 | Mean std_B: 2657609676.75
+- Algo: flatter | Updated 46/745 | Mean std_B: 2056346031.13
+- Algo: flatter | Updated 5/745 | Mean std_B: 3635713358.72
+- Algo: flatter | Updated 4/745 | Mean std_B: 7559000585.01
+- Algo: flatter | Updated 34/745 | Mean std_B: 1942369825.83
+- Algo: flatter | Updated 44/745 | Mean std_B: 1941075973.36
+- Algo: flatter | Updated 33/745 | Mean std_B: 2063142291.61
+- Algo: flatter | Updated 29/745 | Mean std_B: 2021690110.31
+- Algo: flatter | Updated 10/745 | Mean std_B: 3601128323.90
+- Algo: flatter | Updated 44/745 | Mean std_B: 1923142874.44
+- Algo: flatter | Updated 19/745 | Mean std_B: 2409417087.71
+- Algo: flatter | Updated 33/745 | Mean std_B: 1829858450.00
+- Algo: flatter | Updated 30/745 | Mean std_B: 2124933793.74
+- Algo: flatter | Updated 21/745 | Mean std_B: 2115895874.29
+- Algo: flatter | Updated 9/745 | Mean std_B: 2433916167.71
+- Algo: flatter | Updated 13/745 | Mean std_B: 2817387425.24
+- Algo: flatter | Updated 27/745 | Mean std_B: 2897687618.39
+- Algo: flatter | Updated 0/745 | Mean std_B: 5575308340.01
+- Algo: flatter | Updated 11/745 | Mean std_B: 2789406401.06
+- Algo: flatter | Updated 61/745 | Mean std_B: 2057091564.26
+- Algo: flatter | Updated 1/745 | Mean std_B: 10497128388.61
+- Algo: flatter | Updated 26/745 | Mean std_B: 2815148802.46
+- Algo: flatter | Updated 27/745 | Mean std_B: 2683878939.24
+- Algo: flatter | Updated 17/745 | Mean std_B: 2652497767.09
+- Algo: flatter | Updated 24/745 | Mean std_B: 2348146514.72
+Tour 4 | Time: 37879.73s | Mean std_B: 1251321218.41 | Reduction Factor: 0.1071 | Prob: 0.8742
+- Algo: bkz2.0_20 | Updated 16/745 | Mean std_B: 2323942071.30
+- Algo: bkz2.0_20 | Updated 0/745 | Mean std_B: 3684080523.91
+- Algo: bkz2.0_20 | Updated 1/745 | Mean std_B: 8547750159.36
+- Algo: bkz2.0_20 | Updated 27/745 | Mean std_B: 2064037763.34
+- Algo: bkz2.0_20 | Updated 29/745 | Mean std_B: 2029877445.02
+- Algo: bkz2.0_20 | Updated 19/745 | Mean std_B: 1979685016.75
+- Algo: bkz2.0_20 | Updated 21/745 | Mean std_B: 2020084889.39
+- Algo: bkz2.0_20 | Updated 32/745 | Mean std_B: 1983234264.41
+- Algo: bkz2.0_20 | Updated 23/745 | Mean std_B: 2356797932.48
+- Algo: bkz2.0_20 | Updated 12/745 | Mean std_B: 3380968010.98
+- Algo: bkz2.0_20 | Updated 22/745 | Mean std_B: 2001118410.89
+- Algo: bkz2.0_20 | Updated 44/745 | Mean std_B: 1909620920.41
+- Algo: bkz2.0_20 | Updated 37/745 | Mean std_B: 1993572719.29
+- Algo: bkz2.0_20 | Updated 19/745 | Mean std_B: 2071870452.56
+- Algo: bkz2.0_20 | Updated 34/745 | Mean std_B: 2026510858.38
+- Algo: bkz2.0_20 | Updated 25/745 | Mean std_B: 1943499628.13
+- Algo: bkz2.0_20 | Updated 16/745 | Mean std_B: 3983920526.13
+- Algo: bkz2.0_20 | Updated 35/745 | Mean std_B: 2167932944.33
+- Algo: bkz2.0_20 | Updated 30/745 | Mean std_B: 1923061605.43
+- Algo: bkz2.0_20 | Updated 31/745 | Mean std_B: 2005658425.05
+- Algo: bkz2.0_20 | Updated 2/745 | Mean std_B: 4918842090.69
+- Algo: bkz2.0_20 | Updated 43/745 | Mean std_B: 2146987229.50
+- Algo: bkz2.0_20 | Updated 36/745 | Mean std_B: 2069132781.76
+- Algo: bkz2.0_20 | Updated 8/745 | Mean std_B: 2832371254.68
+- Algo: bkz2.0_20 | Updated 34/745 | Mean std_B: 1999278122.63
+- Algo: bkz2.0_20 | Updated 27/745 | Mean std_B: 1973885916.34
+- Algo: bkz2.0_20 | Updated 10/745 | Mean std_B: 2568870933.77
+- Algo: bkz2.0_20 | Updated 20/745 | Mean std_B: 2030054604.92
+- Algo: bkz2.0_20 | Updated 51/745 | Mean std_B: 2050271777.22
+- Algo: bkz2.0_20 | Updated 2/745 | Mean std_B: 4563765938.09
+- Algo: bkz2.0_20 | Updated 31/745 | Mean std_B: 2023340479.07
+- Algo: bkz2.0_20 | Updated 12/745 | Mean std_B: 2690482448.38
+- Algo: bkz2.0_20 | Updated 9/745 | Mean std_B: 2914289604.73
+- Algo: bkz2.0_20 | Updated 11/745 | Mean std_B: 2234185468.02
+- Algo: bkz2.0_20 | Updated 36/745 | Mean std_B: 2009113618.02
+- Algo: bkz2.0_20 | Updated 34/745 | Mean std_B: 2039376634.51
+- Algo: bkz2.0_20 | Updated 15/745 | Mean std_B: 4029378074.36
+- Algo: bkz2.0_20 | Updated 22/745 | Mean std_B: 1987970867.59
+- Algo: bkz2.0_20 | Updated 27/745 | Mean std_B: 2040785325.33
+- Algo: bkz2.0_20 | Updated 1/745 | Mean std_B: 8717655353.21
+- Algo: bkz2.0_20 | Updated 16/745 | Mean std_B: 2215730970.65
+- Algo: bkz2.0_20 | Updated 11/745 | Mean std_B: 2355058961.85
+- Algo: bkz2.0_20 | Updated 5/745 | Mean std_B: 3354318475.35
+- Algo: bkz2.0_20 | Updated 13/745 | Mean std_B: 2827102579.98
+- Algo: bkz2.0_20 | Updated 17/745 | Mean std_B: 2465717546.32
+- Algo: bkz2.0_20 | Updated 2/745 | Mean std_B: 5218199445.91
+- Algo: bkz2.0_20 | Updated 10/745 | Mean std_B: 2437631528.69
+- Algo: bkz2.0_20 | Updated 33/745 | Mean std_B: 1872476978.16
+- Algo: bkz2.0_20 | Updated 20/745 | Mean std_B: 2418459273.23
+- Algo: bkz2.0_20 | Updated 24/745 | Mean std_B: 1990666202.78
+- Algo: bkz2.0_20 | Updated 1/745 | Mean std_B: 50831679070.54
+- Algo: bkz2.0_20 | Updated 4/745 | Mean std_B: 8391140535.29
+- Algo: bkz2.0_20 | Updated 14/745 | Mean std_B: 2277983106.13
+- Algo: bkz2.0_20 | Updated 19/745 | Mean std_B: 2101632302.53
+- Algo: bkz2.0_20 | Updated 0/745 | Mean std_B: 44489666583.94
+- Algo: bkz2.0_20 | Updated 11/745 | Mean std_B: 2399839854.51
+- Algo: bkz2.0_20 | Updated 18/745 | Mean std_B: 2395712497.00
+- Algo: bkz2.0_20 | Updated 5/745 | Mean std_B: 3095549700.39
+- Algo: bkz2.0_20 | Updated 5/745 | Mean std_B: 3570189274.48
+- Algo: bkz2.0_20 | Updated 26/745 | Mean std_B: 2040094595.98
+- Algo: bkz2.0_20 | Updated 10/745 | Mean std_B: 2647290706.01
+- Algo: bkz2.0_20 | Updated 24/745 | Mean std_B: 2970939831.71
+- Algo: bkz2.0_20 | Updated 9/745 | Mean std_B: 3399114356.22
+Tour 5 | Time: 41307.18s | Mean std_B: 1247853121.00 | Reduction Factor: 0.1067 | Prob: 0.8752
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+- Algo: bkz2.0_20 | Updated 6/745 | Mean std_B: 3760151678.54
+- Algo: bkz2.0_20 | Updated 150/745 | Mean std_B: 1416569171.49
+- Algo: bkz2.0_20 | Updated 35/745 | Mean std_B: 1888001248.18
+- Algo: bkz2.0_20 | Updated 144/745 | Mean std_B: 1570001492.26
+- Algo: bkz2.0_20 | Updated 55/745 | Mean std_B: 1610974119.11
+- Algo: bkz2.0_20 | Updated 20/745 | Mean std_B: 2197490327.72
+- Algo: bkz2.0_20 | Updated 147/745 | Mean std_B: 1640626911.33
+- Algo: bkz2.0_20 | Updated 124/745 | Mean std_B: 1514392241.94
+- Algo: bkz2.0_20 | Updated 5/745 | Mean std_B: 3714955617.02
+- Algo: bkz2.0_20 | Updated 140/745 | Mean std_B: 1476552851.30
+- Algo: bkz2.0_20 | Updated 1/745 | Mean std_B: 17827375148.29
+- Algo: bkz2.0_20 | Updated 58/745 | Mean std_B: 1611309317.21
+- Algo: bkz2.0_20 | Updated 110/745 | Mean std_B: 1499552722.63
+- Algo: bkz2.0_20 | Updated 6/745 | Mean std_B: 5733320676.58
+- Algo: bkz2.0_20 | Updated 76/745 | Mean std_B: 1560160938.56
+- Algo: bkz2.0_20 | Updated 159/745 | Mean std_B: 1480372138.49
+- Algo: bkz2.0_20 | Updated 18/745 | Mean std_B: 2092124135.27
+- Algo: bkz2.0_20 | Updated 147/745 | Mean std_B: 1420781955.75
+- Algo: bkz2.0_20 | Updated 107/745 | Mean std_B: 1567325109.94
+- Algo: bkz2.0_20 | Updated 18/745 | Mean std_B: 3048661893.05
+- Algo: bkz2.0_20 | Updated 156/745 | Mean std_B: 1368441314.87
+- Algo: bkz2.0_20 | Updated 9/745 | Mean std_B: 2801718679.44
+- Algo: bkz2.0_20 | Updated 12/745 | Mean std_B: 2207613128.40
+- Algo: bkz2.0_20 | Updated 44/745 | Mean std_B: 1938545696.04
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+- Algo: bkz2.0_20 | Updated 126/745 | Mean std_B: 1517638681.47
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+- Algo: bkz2.0_20 | Updated 96/745 | Mean std_B: 1489141984.49
+- Algo: bkz2.0_20 | Updated 15/745 | Mean std_B: 2709722167.77
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+- Algo: bkz2.0_20 | Updated 20/745 | Mean std_B: 2277493243.27
+- Algo: bkz2.0_20 | Updated 145/745 | Mean std_B: 1449490892.87
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+- Algo: bkz2.0_20 | Updated 99/745 | Mean std_B: 1545805265.01
+- Algo: bkz2.0_20 | Updated 1/745 | Mean std_B: 6064430607.76
+- Algo: bkz2.0_20 | Updated 130/745 | Mean std_B: 1535832874.89
+- Algo: bkz2.0_20 | Updated 101/745 | Mean std_B: 1585054135.04
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+- Algo: bkz2.0_20 | Updated 76/745 | Mean std_B: 1562806894.08
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+- Algo: bkz2.0_20 | Updated 13/745 | Mean std_B: 2472666030.45
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+- Algo: bkz2.0_20 | Updated 78/745 | Mean std_B: 1712136736.27
+b'infinite loop in babai'
+Upgrading float type to qd
+- Algo: bkz2.0_20 | Updated 160/745 | Mean std_B: 1414473879.44
+- Algo: bkz2.0_20 | Updated 96/745 | Mean std_B: 1491910032.48
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+- Algo: bkz2.0_20 | Updated 131/745 | Mean std_B: 1674273700.26
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+- Algo: bkz2.0_20 | Updated 48/745 | Mean std_B: 1596358220.34
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+- Algo: bkz2.0_20 | Updated 9/745 | Mean std_B: 2406877226.38
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+- Algo: bkz2.0_20 | Updated 96/745 | Mean std_B: 1625443110.91
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+- Algo: bkz2.0_20 | Updated 76/745 | Mean std_B: 1492283741.55
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+- Algo: bkz2.0_20 | Updated 109/745 | Mean std_B: 1433827357.07
+- Algo: bkz2.0_20 | Updated 99/745 | Mean std_B: 1579565256.01
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+- Algo: bkz2.0_20 | Updated 102/745 | Mean std_B: 1489614974.86
+b'infinite loop in babai'
+Upgrading float type to qd
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+- Algo: bkz2.0_20 | Updated 132/745 | Mean std_B: 1670425299.71
+b'infinite loop in babai'
+Upgrading float type to qd
+- Algo: bkz2.0_20 | Updated 12/745 | Mean std_B: 2679070369.98
+- Algo: bkz2.0_20 | Updated 121/745 | Mean std_B: 1712136651.67
+- Algo: bkz2.0_20 | Updated 145/745 | Mean std_B: 1482723550.92
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+- Algo: bkz2.0_20 | Updated 1/745 | Mean std_B: 11382640734.90
+- Algo: bkz2.0_20 | Updated 13/745 | Mean std_B: 2258626714.85
+- Algo: bkz2.0_20 | Updated 128/745 | Mean std_B: 1399914368.96
+- Algo: bkz2.0_20 | Updated 132/745 | Mean std_B: 1646746937.83
+b'infinite loop in babai'
+Upgrading float type to ld
+b'infinite loop in babai'
+Upgrading float type to dd
+b'infinite loop in babai'
+Upgrading float type to qd
+- Algo: bkz2.0_20 | Updated 145/745 | Mean std_B: 1495157792.79
+- Algo: bkz2.0_20 | Updated 89/745 | Mean std_B: 1487113599.38
+- Algo: bkz2.0_20 | Updated 61/745 | Mean std_B: 2076355091.24
+- Algo: bkz2.0_20 | Updated 117/745 | Mean std_B: 1462515736.22
+- Algo: bkz2.0_20 | Updated 127/745 | Mean std_B: 1506673254.45
+- Algo: bkz2.0_20 | Updated 80/745 | Mean std_B: 1658881510.16
+- Algo: bkz2.0_20 | Updated 10/745 | Mean std_B: 9832958495.33
+- Algo: bkz2.0_20 | Updated 107/745 | Mean std_B: 1456785745.77
+- Algo: bkz2.0_20 | Updated 44/745 | Mean std_B: 2135810980.61
+Dataset saved to ../data/data_n_350_k_1_s_binary_43277_1.0.pkl
+Tour 6 | Time: 62724.88s | Mean std_B: 1237583960.84 | Reduction Factor: 0.1058 | Prob: 0.8783
+[BEST 10% STD] True B is the best candidate: 4670 / 5040 (92.66%)
+[BEST 30% STD] True B is the best candidate: 13753 / 15120 (90.96%)
+Secret found after 62946.55 seconds.
+Confusion Matrix:
+       |   0.0   1.0 | Accuracy
+-------------------------------
+   0.0 |   181     0 | 100.0%
+   1.0 |     0   169 | 100.0%
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00       181
+           1       1.00      1.00      1.00       169
+
+    accuracy                           1.00       350
+   macro avg       1.00      1.00      1.00       350
+weighted avg       1.00      1.00      1.00       350
+
+Dataset saved to ../data/data_n_350_k_1_s_binary_43277.pkl
+Attack 1/1 completed in 62946.55 seconds.
+Performing attack on all secret types.
+Preprocessing time: 62724.88 seconds
+[BEST 10% STD] True B is the best candidate: 5038 / 5040 (99.96%)
+[BEST 30% STD] True B is the best candidate: 15112 / 15120 (99.95%)
+[BEST 10% STD] True B is the best candidate: 5040 / 5040 (100.00%)
+[BEST 30% STD] True B is the best candidate: 15115 / 15120 (99.97%)
+[BEST 60% STD] True B is the best candidate: 30221 / 30240 (99.94%)
+[BEST 10% STD] True B is the best candidate: 5040 / 5040 (100.00%)
+[BEST 30% STD] True B is the best candidate: 15116 / 15120 (99.97%)
+[BEST 10% STD] True B is the best candidate: 5040 / 5040 (100.00%)
+[BEST 30% STD] True B is the best candidate: 15113 / 15120 (99.95%)
+[BEST 60% STD] True B is the best candidate: 30215 / 30240 (99.92%)
+[BEST 10% STD] True B is the best candidate: 5039 / 5040 (99.98%)
+[BEST 30% STD] True B is the best candidate: 15112 / 15120 (99.95%)
+[BEST 10% STD] True B is the best candidate: 5040 / 5040 (100.00%)
+[BEST 30% STD] True B is the best candidate: 15117 / 15120 (99.98%)
+[BEST 10% STD] True B is the best candidate: 5040 / 5040 (100.00%)
+[BEST 30% STD] True B is the best candidate: 15118 / 15120 (99.99%)
+[BEST 10% STD] True B is the best candidate: 5040 / 5040 (100.00%)
+[BEST 30% STD] True B is the best candidate: 15117 / 15120 (99.98%)
+[BEST 60% STD] True B is the best candidate: 30228 / 30240 (99.96%)
+[BEST 10% STD] True B is the best candidate: 5039 / 5040 (99.98%)
+[BEST 30% STD] True B is the best candidate: 15111 / 15120 (99.94%)
+[BEST 60% STD] True B is the best candidate: 30219 / 30240 (99.93%)
+[BEST 10% STD] True B is the best candidate: 5040 / 5040 (100.00%)
+[BEST 30% STD] True B is the best candidate: 15118 / 15120 (99.99%)
+[BEST 60% STD] True B is the best candidate: 30227 / 30240 (99.96%)
+Success rate for binary with hw=1: 10/10
+[BEST 10% STD] True B is the best candidate: 5040 / 5040 (100.00%)
+[BEST 30% STD] True B is the best candidate: 15115 / 15120 (99.97%)
+[BEST 60% STD] True B is the best candidate: 30220 / 30240 (99.93%)
+[BEST 10% STD] True B is the best candidate: 5038 / 5040 (99.96%)
+[BEST 30% STD] True B is the best candidate: 15109 / 15120 (99.93%)
+[BEST 10% STD] True B is the best candidate: 5038 / 5040 (99.96%)
+[BEST 30% STD] True B is the best candidate: 15107 / 15120 (99.91%)
+[BEST 10% STD] True B is the best candidate: 5039 / 5040 (99.98%)
+[BEST 30% STD] True B is the best candidate: 15114 / 15120 (99.96%)
+[BEST 10% STD] True B is the best candidate: 5039 / 5040 (99.98%)
+[BEST 30% STD] True B is the best candidate: 15110 / 15120 (99.93%)
+[BEST 10% STD] True B is the best candidate: 5040 / 5040 (100.00%)
+[BEST 30% STD] True B is the best candidate: 15112 / 15120 (99.95%)
+[BEST 10% STD] True B is the best candidate: 5037 / 5040 (99.94%)
+[BEST 30% STD] True B is the best candidate: 15107 / 15120 (99.91%)
+[BEST 10% STD] True B is the best candidate: 5039 / 5040 (99.98%)
+[BEST 30% STD] True B is the best candidate: 15115 / 15120 (99.97%)
+[BEST 10% STD] True B is the best candidate: 5040 / 5040 (100.00%)
+[BEST 30% STD] True B is the best candidate: 15115 / 15120 (99.97%)
+[BEST 10% STD] True B is the best candidate: 5039 / 5040 (99.98%)
+[BEST 30% STD] True B is the best candidate: 15113 / 15120 (99.95%)
+Success rate for binary with hw=2: 10/10
+[BEST 10% STD] True B is the best candidate: 5038 / 5040 (99.96%)
+[BEST 30% STD] True B is the best candidate: 15103 / 15120 (99.89%)
+[BEST 60% STD] True B is the best candidate: 30181 / 30240 (99.80%)
+[BEST 10% STD] True B is the best candidate: 5035 / 5040 (99.90%)
+[BEST 30% STD] True B is the best candidate: 15105 / 15120 (99.90%)
+[BEST 60% STD] True B is the best candidate: 30194 / 30240 (99.85%)
+[BEST 10% STD] True B is the best candidate: 5037 / 5040 (99.94%)
+[BEST 30% STD] True B is the best candidate: 15108 / 15120 (99.92%)
+[BEST 10% STD] True B is the best candidate: 5034 / 5040 (99.88%)
+[BEST 30% STD] True B is the best candidate: 15107 / 15120 (99.91%)
+[BEST 60% STD] True B is the best candidate: 30183 / 30240 (99.81%)
+[BEST 10% STD] True B is the best candidate: 5036 / 5040 (99.92%)
+[BEST 30% STD] True B is the best candidate: 15102 / 15120 (99.88%)
+[BEST 60% STD] True B is the best candidate: 30188 / 30240 (99.83%)
+[BEST 10% STD] True B is the best candidate: 5037 / 5040 (99.94%)
+[BEST 30% STD] True B is the best candidate: 15095 / 15120 (99.83%)
+[BEST 10% STD] True B is the best candidate: 5039 / 5040 (99.98%)
+[BEST 30% STD] True B is the best candidate: 15106 / 15120 (99.91%)
+[BEST 60% STD] True B is the best candidate: 30197 / 30240 (99.86%)
+[BEST 10% STD] True B is the best candidate: 5037 / 5040 (99.94%)
+[BEST 30% STD] True B is the best candidate: 15103 / 15120 (99.89%)
+[BEST 10% STD] True B is the best candidate: 5036 / 5040 (99.92%)
+[BEST 30% STD] True B is the best candidate: 15109 / 15120 (99.93%)
+[BEST 10% STD] True B is the best candidate: 5036 / 5040 (99.92%)
+[BEST 30% STD] True B is the best candidate: 15104 / 15120 (99.89%)
+Success rate for binary with hw=3: 10/10
+[BEST 10% STD] True B is the best candidate: 5037 / 5040 (99.94%)
+[BEST 30% STD] True B is the best candidate: 15103 / 15120 (99.89%)
+[BEST 10% STD] True B is the best candidate: 5039 / 5040 (99.98%)
+[BEST 30% STD] True B is the best candidate: 15106 / 15120 (99.91%)
+[BEST 10% STD] True B is the best candidate: 5038 / 5040 (99.96%)
+[BEST 30% STD] True B is the best candidate: 15092 / 15120 (99.81%)
+[BEST 60% STD] True B is the best candidate: 30175 / 30240 (99.79%)
+[BEST 10% STD] True B is the best candidate: 5040 / 5040 (100.00%)
+[BEST 30% STD] True B is the best candidate: 15107 / 15120 (99.91%)
+[BEST 60% STD] True B is the best candidate: 30192 / 30240 (99.84%)
+[BEST 10% STD] True B is the best candidate: 5039 / 5040 (99.98%)
+[BEST 30% STD] True B is the best candidate: 15102 / 15120 (99.88%)
+[BEST 10% STD] True B is the best candidate: 5033 / 5040 (99.86%)
+[BEST 30% STD] True B is the best candidate: 15102 / 15120 (99.88%)
+[BEST 60% STD] True B is the best candidate: 30188 / 30240 (99.83%)
+[BEST 10% STD] True B is the best candidate: 5034 / 5040 (99.88%)
+[BEST 30% STD] True B is the best candidate: 15098 / 15120 (99.85%)
+[BEST 60% STD] True B is the best candidate: 30197 / 30240 (99.86%)
+[BEST 10% STD] True B is the best candidate: 5036 / 5040 (99.92%)
+[BEST 30% STD] True B is the best candidate: 15109 / 15120 (99.93%)
+[BEST 10% STD] True B is the best candidate: 5035 / 5040 (99.90%)
+[BEST 10% STD] True B is the best candidate: 5038 / 5040 (99.96%)
+[BEST 30% STD] True B is the best candidate: 15104 / 15120 (99.89%)
+Success rate for binary with hw=4: 10/10
+[BEST 10% STD] True B is the best candidate: 5038 / 5040 (99.96%)
+[BEST 30% STD] True B is the best candidate: 15097 / 15120 (99.85%)
+[BEST 60% STD] True B is the best candidate: 30175 / 30240 (99.79%)
+[BEST 10% STD] True B is the best candidate: 5037 / 5040 (99.94%)
+[BEST 30% STD] True B is the best candidate: 15106 / 15120 (99.91%)
+[BEST 10% STD] True B is the best candidate: 5035 / 5040 (99.90%)
+[BEST 30% STD] True B is the best candidate: 15095 / 15120 (99.83%)
+[BEST 10% STD] True B is the best candidate: 5034 / 5040 (99.88%)
+[BEST 10% STD] True B is the best candidate: 5034 / 5040 (99.88%)
+[BEST 30% STD] True B is the best candidate: 15086 / 15120 (99.78%)
+[BEST 60% STD] True B is the best candidate: 30145 / 30240 (99.69%)
+[BEST 10% STD] True B is the best candidate: 5038 / 5040 (99.96%)
+[BEST 30% STD] True B is the best candidate: 15098 / 15120 (99.85%)
+[BEST 10% STD] True B is the best candidate: 5039 / 5040 (99.98%)
+[BEST 30% STD] True B is the best candidate: 15104 / 15120 (99.89%)
+[BEST 10% STD] True B is the best candidate: 5038 / 5040 (99.96%)
+[BEST 30% STD] True B is the best candidate: 15106 / 15120 (99.91%)
+[BEST 10% STD] True B is the best candidate: 5034 / 5040 (99.88%)
+[BEST 30% STD] True B is the best candidate: 15092 / 15120 (99.81%)
+[BEST 60% STD] True B is the best candidate: 30147 / 30240 (99.69%)
+[BEST 10% STD] True B is the best candidate: 5038 / 5040 (99.96%)
+[BEST 30% STD] True B is the best candidate: 15102 / 15120 (99.88%)
+[BEST 60% STD] True B is the best candidate: 30186 / 30240 (99.82%)
+Success rate for binary with hw=5: 10/10
+[BEST 10% STD] True B is the best candidate: 5027 / 5040 (99.74%)
+[BEST 30% STD] True B is the best candidate: 15093 / 15120 (99.82%)
+[BEST 60% STD] True B is the best candidate: 30174 / 30240 (99.78%)
+[BEST 10% STD] True B is the best candidate: 5035 / 5040 (99.90%)
+[BEST 30% STD] True B is the best candidate: 15105 / 15120 (99.90%)
+[BEST 10% STD] True B is the best candidate: 5031 / 5040 (99.82%)
+[BEST 30% STD] True B is the best candidate: 15081 / 15120 (99.74%)
+[BEST 60% STD] True B is the best candidate: 30146 / 30240 (99.69%)
+[BEST 10% STD] True B is the best candidate: 5038 / 5040 (99.96%)
+[BEST 30% STD] True B is the best candidate: 15100 / 15120 (99.87%)
+[BEST 10% STD] True B is the best candidate: 5037 / 5040 (99.94%)
+[BEST 30% STD] True B is the best candidate: 15101 / 15120 (99.87%)
+[BEST 10% STD] True B is the best candidate: 5037 / 5040 (99.94%)
+[BEST 30% STD] True B is the best candidate: 15104 / 15120 (99.89%)
+[BEST 10% STD] True B is the best candidate: 5037 / 5040 (99.94%)
+[BEST 30% STD] True B is the best candidate: 15100 / 15120 (99.87%)
+[BEST 60% STD] True B is the best candidate: 30190 / 30240 (99.83%)
+[BEST 10% STD] True B is the best candidate: 5038 / 5040 (99.96%)
+[BEST 30% STD] True B is the best candidate: 15098 / 15120 (99.85%)
+[BEST 60% STD] True B is the best candidate: 30176 / 30240 (99.79%)
+[BEST 10% STD] True B is the best candidate: 5037 / 5040 (99.94%)
+[BEST 30% STD] True B is the best candidate: 15099 / 15120 (99.86%)
+[BEST 60% STD] True B is the best candidate: 30169 / 30240 (99.77%)
+[BEST 10% STD] True B is the best candidate: 5037 / 5040 (99.94%)
+[BEST 30% STD] True B is the best candidate: 15098 / 15120 (99.85%)
+[BEST 60% STD] True B is the best candidate: 30158 / 30240 (99.73%)
+Success rate for binary with hw=6: 10/10
+[BEST 10% STD] True B is the best candidate: 5034 / 5040 (99.88%)
+[BEST 30% STD] True B is the best candidate: 15103 / 15120 (99.89%)
+[BEST 60% STD] True B is the best candidate: 30178 / 30240 (99.79%)
+[BEST 10% STD] True B is the best candidate: 5032 / 5040 (99.84%)
+[BEST 30% STD] True B is the best candidate: 15080 / 15120 (99.74%)
+[BEST 10% STD] True B is the best candidate: 5036 / 5040 (99.92%)
+[BEST 30% STD] True B is the best candidate: 15098 / 15120 (99.85%)
+[BEST 60% STD] True B is the best candidate: 30155 / 30240 (99.72%)
+[BEST 10% STD] True B is the best candidate: 5031 / 5040 (99.82%)
+[BEST 30% STD] True B is the best candidate: 15090 / 15120 (99.80%)
+[BEST 60% STD] True B is the best candidate: 30137 / 30240 (99.66%)
+[BEST 100% STD] True B is the best candidate: 50165 / 50400 (99.53%)
+[BEST 10% STD] True B is the best candidate: 5038 / 5040 (99.96%)
+[BEST 30% STD] True B is the best candidate: 15093 / 15120 (99.82%)
+[BEST 60% STD] True B is the best candidate: 30158 / 30240 (99.73%)
+[BEST 10% STD] True B is the best candidate: 5035 / 5040 (99.90%)
+[BEST 30% STD] True B is the best candidate: 15091 / 15120 (99.81%)
+[BEST 60% STD] True B is the best candidate: 30147 / 30240 (99.69%)
+[BEST 10% STD] True B is the best candidate: 5036 / 5040 (99.92%)
+[BEST 30% STD] True B is the best candidate: 15101 / 15120 (99.87%)
+[BEST 60% STD] True B is the best candidate: 30149 / 30240 (99.70%)
+[BEST 10% STD] True B is the best candidate: 5036 / 5040 (99.92%)
+[BEST 30% STD] True B is the best candidate: 15093 / 15120 (99.82%)
+[BEST 60% STD] True B is the best candidate: 30170 / 30240 (99.77%)
+[BEST 10% STD] True B is the best candidate: 5037 / 5040 (99.94%)
+[BEST 30% STD] True B is the best candidate: 15100 / 15120 (99.87%)
+[BEST 10% STD] True B is the best candidate: 5037 / 5040 (99.94%)
+[BEST 30% STD] True B is the best candidate: 15102 / 15120 (99.88%)
+[BEST 60% STD] True B is the best candidate: 30185 / 30240 (99.82%)
+Success rate for binary with hw=7: 10/10
+[BEST 10% STD] True B is the best candidate: 5031 / 5040 (99.82%)
+[BEST 30% STD] True B is the best candidate: 15082 / 15120 (99.75%)
+[BEST 60% STD] True B is the best candidate: 30109 / 30240 (99.57%)
+[BEST 10% STD] True B is the best candidate: 5034 / 5040 (99.88%)
+[BEST 30% STD] True B is the best candidate: 15083 / 15120 (99.76%)
+[BEST 60% STD] True B is the best candidate: 30127 / 30240 (99.63%)
+[BEST 10% STD] True B is the best candidate: 5035 / 5040 (99.90%)
+[BEST 30% STD] True B is the best candidate: 15096 / 15120 (99.84%)
+[BEST 10% STD] True B is the best candidate: 5033 / 5040 (99.86%)
+[BEST 30% STD] True B is the best candidate: 15087 / 15120 (99.78%)
+[BEST 10% STD] True B is the best candidate: 5037 / 5040 (99.94%)
+[BEST 30% STD] True B is the best candidate: 15085 / 15120 (99.77%)
+[BEST 60% STD] True B is the best candidate: 30130 / 30240 (99.64%)
+[BEST 10% STD] True B is the best candidate: 5034 / 5040 (99.88%)
+[BEST 30% STD] True B is the best candidate: 15089 / 15120 (99.79%)
+[BEST 60% STD] True B is the best candidate: 30116 / 30240 (99.59%)
+[BEST 10% STD] True B is the best candidate: 5038 / 5040 (99.96%)
+[BEST 30% STD] True B is the best candidate: 15094 / 15120 (99.83%)
+[BEST 10% STD] True B is the best candidate: 5032 / 5040 (99.84%)
+[BEST 30% STD] True B is the best candidate: 15088 / 15120 (99.79%)
+[BEST 60% STD] True B is the best candidate: 30133 / 30240 (99.65%)
+[BEST 10% STD] True B is the best candidate: 5031 / 5040 (99.82%)
+[BEST 30% STD] True B is the best candidate: 15092 / 15120 (99.81%)
+[BEST 10% STD] True B is the best candidate: 5031 / 5040 (99.82%)
+[BEST 30% STD] True B is the best candidate: 15088 / 15120 (99.79%)
+[BEST 60% STD] True B is the best candidate: 30130 / 30240 (99.64%)
+[BEST 100% STD] True B is the best candidate: 50123 / 50400 (99.45%)
+Success rate for binary with hw=8: 10/10
+[BEST 10% STD] True B is the best candidate: 5035 / 5040 (99.90%)
+[BEST 30% STD] True B is the best candidate: 15085 / 15120 (99.77%)
+[BEST 10% STD] True B is the best candidate: 5033 / 5040 (99.86%)
+[BEST 30% STD] True B is the best candidate: 15074 / 15120 (99.70%)
+[BEST 60% STD] True B is the best candidate: 30107 / 30240 (99.56%)
+[BEST 100% STD] True B is the best candidate: 50061 / 50400 (99.33%)
+[BEST 10% STD] True B is the best candidate: 5036 / 5040 (99.92%)
+[BEST 30% STD] True B is the best candidate: 15093 / 15120 (99.82%)
+[BEST 10% STD] True B is the best candidate: 5035 / 5040 (99.90%)
+[BEST 30% STD] True B is the best candidate: 15088 / 15120 (99.79%)
+[BEST 10% STD] True B is the best candidate: 5028 / 5040 (99.76%)
+[BEST 30% STD] True B is the best candidate: 15067 / 15120 (99.65%)
+[BEST 10% STD] True B is the best candidate: 5034 / 5040 (99.88%)
+[BEST 30% STD] True B is the best candidate: 15078 / 15120 (99.72%)
+[BEST 10% STD] True B is the best candidate: 5034 / 5040 (99.88%)
+[BEST 30% STD] True B is the best candidate: 15088 / 15120 (99.79%)
+[BEST 10% STD] True B is the best candidate: 5031 / 5040 (99.82%)
+[BEST 30% STD] True B is the best candidate: 15070 / 15120 (99.67%)
+[BEST 10% STD] True B is the best candidate: 5034 / 5040 (99.88%)
+[BEST 30% STD] True B is the best candidate: 15085 / 15120 (99.77%)
+[BEST 10% STD] True B is the best candidate: 5032 / 5040 (99.84%)
+[BEST 30% STD] True B is the best candidate: 15071 / 15120 (99.68%)
+[BEST 60% STD] True B is the best candidate: 30092 / 30240 (99.51%)
+Success rate for binary with hw=9: 10/10
+[BEST 10% STD] True B is the best candidate: 5032 / 5040 (99.84%)
+[BEST 30% STD] True B is the best candidate: 15072 / 15120 (99.68%)
+[BEST 60% STD] True B is the best candidate: 30100 / 30240 (99.54%)
+[BEST 100% STD] True B is the best candidate: 50025 / 50400 (99.26%)
+[BEST 10% STD] True B is the best candidate: 5032 / 5040 (99.84%)
+[BEST 30% STD] True B is the best candidate: 15072 / 15120 (99.68%)
+[BEST 60% STD] True B is the best candidate: 30089 / 30240 (99.50%)
+[BEST 10% STD] True B is the best candidate: 5032 / 5040 (99.84%)
+[BEST 30% STD] True B is the best candidate: 15074 / 15120 (99.70%)
+[BEST 10% STD] True B is the best candidate: 5033 / 5040 (99.86%)
+[BEST 30% STD] True B is the best candidate: 15078 / 15120 (99.72%)
+[BEST 60% STD] True B is the best candidate: 30111 / 30240 (99.57%)
+[BEST 10% STD] True B is the best candidate: 5030 / 5040 (99.80%)
+[BEST 30% STD] True B is the best candidate: 15081 / 15120 (99.74%)
+[BEST 60% STD] True B is the best candidate: 30134 / 30240 (99.65%)
+[BEST 10% STD] True B is the best candidate: 5034 / 5040 (99.88%)
+[BEST 30% STD] True B is the best candidate: 15089 / 15120 (99.79%)
+[BEST 10% STD] True B is the best candidate: 5030 / 5040 (99.80%)
+[BEST 30% STD] True B is the best candidate: 15066 / 15120 (99.64%)
+[BEST 10% STD] True B is the best candidate: 5031 / 5040 (99.82%)
+[BEST 30% STD] True B is the best candidate: 15085 / 15120 (99.77%)
+[BEST 10% STD] True B is the best candidate: 5024 / 5040 (99.68%)
+[BEST 30% STD] True B is the best candidate: 15053 / 15120 (99.56%)
+[BEST 10% STD] True B is the best candidate: 5030 / 5040 (99.80%)
+[BEST 30% STD] True B is the best candidate: 15084 / 15120 (99.76%)
+[BEST 60% STD] True B is the best candidate: 30121 / 30240 (99.61%)
+Success rate for binary with hw=10: 10/10
+[BEST 10% STD] True B is the best candidate: 5027 / 5040 (99.74%)
+[BEST 30% STD] True B is the best candidate: 15070 / 15120 (99.67%)
+[BEST 60% STD] True B is the best candidate: 30098 / 30240 (99.53%)
+slurmstepd: error: *** JOB 59178070 ON wn117 CANCELLED AT 2025-08-04T18:07:22 ***

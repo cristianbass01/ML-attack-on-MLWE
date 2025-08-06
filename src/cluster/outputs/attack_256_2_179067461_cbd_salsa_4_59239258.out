@@ -1,0 +1,78 @@
+Parameters: {'n': 256, 'q': 179067461, 'k': 2, 'secret_type': 'cbd', 'eta': 2, 'gaussian_std': 3, 'hw': -1, 'error_type': 'cbd', 'num_gen': 4, 'add_noise': True, 'mod_q': True, 'seed': 42, 'approximation_std': 3, 'approximation_threshold': 0.01, 'save_to': '../data', 'float_type': 'qd', 'matrix_config': 'salsa', 'reduction_samples': 712, 'reduction_resampling': True, 'min_samples': None, 'num_matrices': 63, 'reduction_max_size': 800, 'lookback': 3, 'warmup_steps': 10, 'flatter_alpha': 0.001, 'bkz_delta': 0.99, 'bkz_block_sizes': '20:40:10', 'use_polish': True, 'interleaved_steps': 0, 'penalty': 4, 'verbose': True, 'train_percentages': [0.1, 0.3, 0.6, 1.0], 'model': 'tukey', 'lr': 0.0001, 'c_factor': 1.0, 'epsilon': 1.1, 'max_iter': 15000, 'alpha': 0.0001, 'warm_start': False, 'fit_intercept': False, 'tol': 0.001, 'use_ransac': False, 'residual_factor': 1.5, 'max_trials': 100}
+Arguments: {'num_attacks': 1, 'attack_strategy': 'no', 'attack_every': 0, 'save_strategy': 'hour', 'save_every': 40, 'stop_strategy': 'hour', 'stop_after': 46, 'save_at_the_end': True, 'reload': False, 'reload_from': None, 'train_secret_types': ['cbd'], 'reload_from_salsa': None, 'num_training_repeats': 10, 'hw_range': None}
+Attacking 63 matrices using 64 threads.
+- Algo: flatter | Updated 712/712 | Mean std_B: 2353435861.80
+- Algo: flatter | Updated 712/712 | Mean std_B: 2352152298.07
+- Algo: flatter | Updated 712/712 | Mean std_B: 2353225225.55
+- Algo: flatter | Updated 712/712 | Mean std_B: 2353765145.32
+- Algo: flatter | Updated 712/712 | Mean std_B: 2352182149.58
+- Algo: flatter | Updated 712/712 | Mean std_B: 2352662923.08
+- Algo: flatter | Updated 712/712 | Mean std_B: 2353302046.34
+- Algo: flatter | Updated 712/712 | Mean std_B: 2353315589.42
+- Algo: flatter | Updated 712/712 | Mean std_B: 2350574134.25
+- Algo: flatter | Updated 712/712 | Mean std_B: 2351619158.46
+- Algo: flatter | Updated 712/712 | Mean std_B: 2351721222.93
+- Algo: flatter | Updated 712/712 | Mean std_B: 2352466041.65
+- Algo: flatter | Updated 712/712 | Mean std_B: 2352043211.46
+- Algo: flatter | Updated 712/712 | Mean std_B: 2353150763.75
+- Algo: flatter | Updated 712/712 | Mean std_B: 2351792574.09
+- Algo: flatter | Updated 712/712 | Mean std_B: 2352445819.92
+- Algo: flatter | Updated 712/712 | Mean std_B: 2352324354.23
+- Algo: flatter | Updated 712/712 | Mean std_B: 2353661254.99
+- Algo: flatter | Updated 712/712 | Mean std_B: 2351045178.24
+- Algo: flatter | Updated 712/712 | Mean std_B: 2351223723.24
+- Algo: flatter | Updated 712/712 | Mean std_B: 2353456036.00
+- Algo: flatter | Updated 712/712 | Mean std_B: 2352758547.01
+- Algo: flatter | Updated 712/712 | Mean std_B: 2350414632.66
+- Algo: flatter | Updated 712/712 | Mean std_B: 2352471092.11
+- Algo: flatter | Updated 712/712 | Mean std_B: 2352996265.70
+- Algo: flatter | Updated 712/712 | Mean std_B: 2353093733.59
+- Algo: flatter | Updated 712/712 | Mean std_B: 2352860084.57
+- Algo: flatter | Updated 712/712 | Mean std_B: 2353864254.46
+- Algo: flatter | Updated 712/712 | Mean std_B: 2353369499.36
+- Algo: flatter | Updated 712/712 | Mean std_B: 2353224253.91
+- Algo: flatter | Updated 712/712 | Mean std_B: 2354300145.77
+- Algo: flatter | Updated 712/712 | Mean std_B: 2351445956.01
+- Algo: flatter | Updated 712/712 | Mean std_B: 2351963278.66
+- Algo: flatter | Updated 712/712 | Mean std_B: 2351725791.27
+- Algo: flatter | Updated 712/712 | Mean std_B: 2353552275.78
+- Algo: flatter | Updated 712/712 | Mean std_B: 2351835877.20
+- Algo: flatter | Updated 712/712 | Mean std_B: 2352024583.47
+- Algo: flatter | Updated 712/712 | Mean std_B: 2354490029.76
+- Algo: flatter | Updated 712/712 | Mean std_B: 2352545754.57
+- Algo: flatter | Updated 712/712 | Mean std_B: 2353219076.53
+- Algo: flatter | Updated 712/712 | Mean std_B: 2352635179.32
+- Algo: flatter | Updated 712/712 | Mean std_B: 2353681069.58
+- Algo: flatter | Updated 712/712 | Mean std_B: 2351416470.87
+- Algo: flatter | Updated 712/712 | Mean std_B: 2352211727.41
+- Algo: flatter | Updated 712/712 | Mean std_B: 2351671709.24
+- Algo: flatter | Updated 712/712 | Mean std_B: 2352366405.46
+- Algo: flatter | Updated 712/712 | Mean std_B: 2352876371.33
+- Algo: flatter | Updated 712/712 | Mean std_B: 2351103540.98
+- Algo: flatter | Updated 712/712 | Mean std_B: 2352294005.13
+- Algo: flatter | Updated 712/712 | Mean std_B: 2351883637.90
+- Algo: flatter | Updated 712/712 | Mean std_B: 2351764157.78
+- Algo: flatter | Updated 712/712 | Mean std_B: 2354011274.78
+- Algo: flatter | Updated 712/712 | Mean std_B: 2352483518.09
+- Algo: flatter | Updated 712/712 | Mean std_B: 2353866708.30
+- Algo: flatter | Updated 712/712 | Mean std_B: 2350472461.71
+- Algo: flatter | Updated 712/712 | Mean std_B: 2354678738.50
+- Algo: flatter | Updated 712/712 | Mean std_B: 2351989762.18
+- Algo: flatter | Updated 712/712 | Mean std_B: 2353429568.53
+- Algo: flatter | Updated 712/712 | Mean std_B: 2353121836.80
+- Algo: flatter | Updated 712/712 | Mean std_B: 2354857210.68
+- Algo: flatter | Updated 712/712 | Mean std_B: 2353449227.75
+- Algo: flatter | Updated 712/712 | Mean std_B: 2352252522.63
+- Algo: flatter | Updated 712/712 | Mean std_B: 2351349092.73
+Traceback (most recent call last):
+  File "/d/hpc/home/cb17769/ML-attack-on-MLWE/src/cluster/attack.py", line 155, in <module>
+    main(updated_params, args)
+  File "/d/hpc/home/cb17769/ML-attack-on-MLWE/src/cluster/attack.py", line 56, in main
+    _, attack_time = dataset.attack(
+  File "/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/dataset.py", line 445, in attack
+    self.RA = mod_mult(self.R, A_to_reduce, self.mlwe.q).astype(int)
+  File "/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py", line 53, in mod_mult
+    return np.tensordot(mat1, mat2, 1) % q
+  File "/usr/local/lib/python3.10/dist-packages/numpy/_core/numeric.py", line 1159, in tensordot
+    raise ValueError("shape-mismatch for sum")
+ValueError: shape-mismatch for sum

@@ -1,0 +1,462 @@
+Parameters: {'n': 350, 'q': 3831165139, 'k': 1, 'secret_type': 'binary', 'eta': 2, 'gaussian_std': 3, 'hw': -1, 'error_type': 'gaussian', 'num_gen': 4, 'add_noise': True, 'mod_q': True, 'seed': 42, 'approximation_std': 3, 'approximation_threshold': 0.01, 'save_to': '../data', 'float_type': 'd', 'matrix_config': 'dual', 'reduction_samples': None, 'reduction_resampling': True, 'min_samples': None, 'num_matrices': 63, 'reduction_max_size': 800, 'lookback': 3, 'warmup_steps': 5, 'flatter_alpha': 0.001, 'bkz_delta': 0.99, 'bkz_block_sizes': '20:40:10', 'use_polish': True, 'interleaved_steps': 0, 'penalty': 8, 'verbose': True, 'train_percentages': [0.1, 0.3, 0.6, 1.0], 'model': 'tukey', 'lr': 0.0001, 'c_factor': 1.0, 'epsilon': 1.1, 'max_iter': 15000, 'alpha': 0.0001, 'warm_start': False, 'fit_intercept': False, 'tol': 0.001, 'use_ransac': False, 'residual_factor': 1.5, 'max_trials': 100, 'reduction_factor': None}
+Arguments: {'num_attacks': 1, 'attack_strategy': 'hour', 'attack_every': 2, 'save_strategy': 'hour', 'save_every': 12, 'stop_strategy': 'hour', 'stop_after': 40, 'save_at_the_end': True, 'reload': False, 'reload_from': None, 'train_secret_types': ['binary'], 'reload_from_salsa': 1.0, 'num_training_repeats': 10, 'hw_range': None}
+Attacking 63 matrices using 64 threads.
+- Algo: flatter | Updated 749/749 | Mean std_B: 1268173442.73
+- Algo: flatter | Updated 749/749 | Mean std_B: 1226542301.25
+- Algo: flatter | Updated 749/749 | Mean std_B: 1243937798.79
+- Algo: flatter | Updated 749/749 | Mean std_B: 1270952473.94
+- Algo: flatter | Updated 749/749 | Mean std_B: 1265611728.66
+- Algo: flatter | Updated 749/749 | Mean std_B: 1228793371.52
+- Algo: flatter | Updated 749/749 | Mean std_B: 1244883378.45
+- Algo: flatter | Updated 749/749 | Mean std_B: 1278882726.97
+- Algo: flatter | Updated 749/749 | Mean std_B: 1232314700.77
+- Algo: flatter | Updated 749/749 | Mean std_B: 1231417709.24
+- Algo: flatter | Updated 749/749 | Mean std_B: 1229228828.45
+- Algo: flatter | Updated 749/749 | Mean std_B: 1185426571.78
+- Algo: flatter | Updated 749/749 | Mean std_B: 1233240087.94
+- Algo: flatter | Updated 749/749 | Mean std_B: 1214713948.60
+- Algo: flatter | Updated 749/749 | Mean std_B: 1185480691.27
+- Algo: flatter | Updated 749/749 | Mean std_B: 1167177428.89
+- Algo: flatter | Updated 749/749 | Mean std_B: 1196428067.59
+- Algo: flatter | Updated 749/749 | Mean std_B: 1185278915.22
+- Algo: flatter | Updated 749/749 | Mean std_B: 1189132006.20
+- Algo: flatter | Updated 749/749 | Mean std_B: 1192008532.13
+- Algo: flatter | Updated 749/749 | Mean std_B: 1172261112.14
+- Algo: flatter | Updated 749/749 | Mean std_B: 1181586652.68
+- Algo: flatter | Updated 749/749 | Mean std_B: 1191031067.97
+- Algo: flatter | Updated 749/749 | Mean std_B: 1196212286.36
+- Algo: flatter | Updated 749/749 | Mean std_B: 1155864885.11
+- Algo: flatter | Updated 749/749 | Mean std_B: 1213532165.26
+- Algo: flatter | Updated 749/749 | Mean std_B: 1194599739.70
+- Algo: flatter | Updated 749/749 | Mean std_B: 1224781469.70
+- Algo: flatter | Updated 749/749 | Mean std_B: 1216566057.40
+- Algo: flatter | Updated 749/749 | Mean std_B: 1144252587.62
+- Algo: flatter | Updated 749/749 | Mean std_B: 1231707713.94
+- Algo: flatter | Updated 749/749 | Mean std_B: 1159801760.54
+- Algo: flatter | Updated 749/749 | Mean std_B: 1169433156.51
+- Algo: flatter | Updated 749/749 | Mean std_B: 1165912074.60
+- Algo: flatter | Updated 749/749 | Mean std_B: 1180675316.10
+- Algo: flatter | Updated 749/749 | Mean std_B: 1161668059.68
+- Algo: flatter | Updated 749/749 | Mean std_B: 1176330816.30
+- Algo: flatter | Updated 749/749 | Mean std_B: 1155563607.52
+- Algo: flatter | Updated 749/749 | Mean std_B: 1138032866.92
+- Algo: flatter | Updated 749/749 | Mean std_B: 1188326573.21
+- Algo: flatter | Updated 749/749 | Mean std_B: 1178084856.28
+- Algo: flatter | Updated 749/749 | Mean std_B: 1210488566.88
+- Algo: flatter | Updated 749/749 | Mean std_B: 1173078917.18
+- Algo: flatter | Updated 749/749 | Mean std_B: 1172638041.31
+- Algo: flatter | Updated 749/749 | Mean std_B: 1149865781.12
+- Algo: flatter | Updated 749/749 | Mean std_B: 1247050897.77
+- Algo: flatter | Updated 749/749 | Mean std_B: 1182851655.72
+- Algo: flatter | Updated 749/749 | Mean std_B: 1174988283.86
+- Algo: flatter | Updated 749/749 | Mean std_B: 1150048823.04
+- Algo: flatter | Updated 749/749 | Mean std_B: 1188398226.80
+- Algo: flatter | Updated 749/749 | Mean std_B: 1151380542.48
+- Algo: flatter | Updated 749/749 | Mean std_B: 1218708417.68
+- Algo: flatter | Updated 749/749 | Mean std_B: 1131902717.05
+- Algo: flatter | Updated 749/749 | Mean std_B: 1153039055.72
+- Algo: flatter | Updated 749/749 | Mean std_B: 1200330894.66
+- Algo: flatter | Updated 749/749 | Mean std_B: 1158975382.44
+- Algo: flatter | Updated 749/749 | Mean std_B: 1156381134.85
+- Algo: flatter | Updated 749/749 | Mean std_B: 1157908573.05
+- Algo: flatter | Updated 749/749 | Mean std_B: 1148377384.12
+- Algo: flatter | Updated 749/749 | Mean std_B: 1177243645.39
+- Algo: flatter | Updated 749/749 | Mean std_B: 1157203683.54
+- Algo: flatter | Updated 749/749 | Mean std_B: 1169135477.98
+- Algo: flatter | Updated 749/749 | Mean std_B: 1123043323.24
+Tour 1 | Time: 32541.72s | Mean std_B: 1189070197.28 | Reduction Factor: 0.0954 | Prob: 0.8928
+[BEST 10% STD] True B is the best candidate: 4384 / 4718 (92.92%)
+[BEST 30% STD] True B is the best candidate: 13003 / 14156 (91.86%)
+[BEST 60% STD] True B is the best candidate: 25672 / 28312 (90.68%)
+Secret found after 33100.50 seconds.
+Confusion Matrix:
+       |   0.0   1.0 | Accuracy
+-------------------------------
+   0.0 |   181     0 | 100.0%
+   1.0 |     0   169 | 100.0%
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00       181
+           1       1.00      1.00      1.00       169
+
+    accuracy                           1.00       350
+   macro avg       1.00      1.00      1.00       350
+weighted avg       1.00      1.00      1.00       350
+
+Dataset saved to ../data/data_n_350_k_1_s_binary_fa0a2.pkl
+Attack 1/1 completed in 33100.50 seconds.
+Performing attack on all secret types.
+Preprocessing time: 32541.72 seconds
+[BEST 10% STD] True B is the best candidate: 4716 / 4718 (99.96%)
+[BEST 30% STD] True B is the best candidate: 14150 / 14156 (99.96%)
+[BEST 60% STD] True B is the best candidate: 28281 / 28312 (99.89%)
+[BEST 100% STD] True B is the best candidate: 47085 / 47187 (99.78%)
+[BEST 10% STD] True B is the best candidate: 4713 / 4718 (99.89%)
+[BEST 30% STD] True B is the best candidate: 14139 / 14156 (99.88%)
+[BEST 60% STD] True B is the best candidate: 28250 / 28312 (99.78%)
+[BEST 100% STD] True B is the best candidate: 47037 / 47187 (99.68%)
+[BEST 10% STD] True B is the best candidate: 4716 / 4718 (99.96%)
+[BEST 30% STD] True B is the best candidate: 14141 / 14156 (99.89%)
+[BEST 10% STD] True B is the best candidate: 4714 / 4718 (99.92%)
+[BEST 30% STD] True B is the best candidate: 14140 / 14156 (99.89%)
+[BEST 60% STD] True B is the best candidate: 28261 / 28312 (99.82%)
+[BEST 100% STD] True B is the best candidate: 47062 / 47187 (99.74%)
+[BEST 10% STD] True B is the best candidate: 4713 / 4718 (99.89%)
+[BEST 30% STD] True B is the best candidate: 14136 / 14156 (99.86%)
+[BEST 60% STD] True B is the best candidate: 28264 / 28312 (99.83%)
+[BEST 100% STD] True B is the best candidate: 47042 / 47187 (99.69%)
+[BEST 10% STD] True B is the best candidate: 4711 / 4718 (99.85%)
+[BEST 30% STD] True B is the best candidate: 14126 / 14156 (99.79%)
+[BEST 60% STD] True B is the best candidate: 28248 / 28312 (99.77%)
+[BEST 100% STD] True B is the best candidate: 47036 / 47187 (99.68%)
+[BEST 10% STD] True B is the best candidate: 4714 / 4718 (99.92%)
+[BEST 30% STD] True B is the best candidate: 14138 / 14156 (99.87%)
+[BEST 60% STD] True B is the best candidate: 28267 / 28312 (99.84%)
+[BEST 10% STD] True B is the best candidate: 4713 / 4718 (99.89%)
+[BEST 30% STD] True B is the best candidate: 14142 / 14156 (99.90%)
+[BEST 60% STD] True B is the best candidate: 28276 / 28312 (99.87%)
+[BEST 100% STD] True B is the best candidate: 47070 / 47187 (99.75%)
+[BEST 10% STD] True B is the best candidate: 4715 / 4718 (99.94%)
+[BEST 30% STD] True B is the best candidate: 14144 / 14156 (99.92%)
+[BEST 60% STD] True B is the best candidate: 28268 / 28312 (99.84%)
+[BEST 100% STD] True B is the best candidate: 47060 / 47187 (99.73%)
+[BEST 10% STD] True B is the best candidate: 4717 / 4718 (99.98%)
+[BEST 30% STD] True B is the best candidate: 14145 / 14156 (99.92%)
+[BEST 60% STD] True B is the best candidate: 28267 / 28312 (99.84%)
+[BEST 100% STD] True B is the best candidate: 47063 / 47187 (99.74%)
+Success rate for binary with hw=1: 3/10
+[BEST 10% STD] True B is the best candidate: 4716 / 4718 (99.96%)
+[BEST 30% STD] True B is the best candidate: 14146 / 14156 (99.93%)
+[BEST 60% STD] True B is the best candidate: 28275 / 28312 (99.87%)
+[BEST 100% STD] True B is the best candidate: 47080 / 47187 (99.77%)
+[BEST 10% STD] True B is the best candidate: 4713 / 4718 (99.89%)
+[BEST 30% STD] True B is the best candidate: 14137 / 14156 (99.87%)
+[BEST 60% STD] True B is the best candidate: 28248 / 28312 (99.77%)
+[BEST 100% STD] True B is the best candidate: 47049 / 47187 (99.71%)
+[BEST 10% STD] True B is the best candidate: 4718 / 4718 (100.00%)
+[BEST 30% STD] True B is the best candidate: 14132 / 14156 (99.83%)
+[BEST 60% STD] True B is the best candidate: 28247 / 28312 (99.77%)
+[BEST 100% STD] True B is the best candidate: 46998 / 47187 (99.60%)
+[BEST 10% STD] True B is the best candidate: 4715 / 4718 (99.94%)
+[BEST 30% STD] True B is the best candidate: 14137 / 14156 (99.87%)
+[BEST 60% STD] True B is the best candidate: 28250 / 28312 (99.78%)
+[BEST 10% STD] True B is the best candidate: 4714 / 4718 (99.92%)
+[BEST 30% STD] True B is the best candidate: 14141 / 14156 (99.89%)
+[BEST 60% STD] True B is the best candidate: 28260 / 28312 (99.82%)
+[BEST 10% STD] True B is the best candidate: 4717 / 4718 (99.98%)
+[BEST 30% STD] True B is the best candidate: 14149 / 14156 (99.95%)
+[BEST 60% STD] True B is the best candidate: 28265 / 28312 (99.83%)
+[BEST 100% STD] True B is the best candidate: 47041 / 47187 (99.69%)
+[BEST 10% STD] True B is the best candidate: 4715 / 4718 (99.94%)
+[BEST 30% STD] True B is the best candidate: 14132 / 14156 (99.83%)
+[BEST 60% STD] True B is the best candidate: 28253 / 28312 (99.79%)
+[BEST 10% STD] True B is the best candidate: 4715 / 4718 (99.94%)
+[BEST 30% STD] True B is the best candidate: 14140 / 14156 (99.89%)
+[BEST 60% STD] True B is the best candidate: 28255 / 28312 (99.80%)
+[BEST 100% STD] True B is the best candidate: 47031 / 47187 (99.67%)
+[BEST 10% STD] True B is the best candidate: 4716 / 4718 (99.96%)
+[BEST 30% STD] True B is the best candidate: 14145 / 14156 (99.92%)
+[BEST 60% STD] True B is the best candidate: 28276 / 28312 (99.87%)
+[BEST 100% STD] True B is the best candidate: 47081 / 47187 (99.78%)
+[BEST 10% STD] True B is the best candidate: 4709 / 4718 (99.81%)
+[BEST 30% STD] True B is the best candidate: 14117 / 14156 (99.72%)
+[BEST 60% STD] True B is the best candidate: 28221 / 28312 (99.68%)
+[BEST 100% STD] True B is the best candidate: 46977 / 47187 (99.55%)
+Success rate for binary with hw=2: 4/10
+[BEST 10% STD] True B is the best candidate: 4713 / 4718 (99.89%)
+[BEST 30% STD] True B is the best candidate: 14136 / 14156 (99.86%)
+[BEST 60% STD] True B is the best candidate: 28238 / 28312 (99.74%)
+[BEST 100% STD] True B is the best candidate: 46978 / 47187 (99.56%)
+[BEST 10% STD] True B is the best candidate: 4712 / 4718 (99.87%)
+[BEST 30% STD] True B is the best candidate: 14135 / 14156 (99.85%)
+[BEST 60% STD] True B is the best candidate: 28246 / 28312 (99.77%)
+[BEST 100% STD] True B is the best candidate: 47025 / 47187 (99.66%)
+[BEST 10% STD] True B is the best candidate: 4710 / 4718 (99.83%)
+[BEST 30% STD] True B is the best candidate: 14130 / 14156 (99.82%)
+[BEST 10% STD] True B is the best candidate: 4717 / 4718 (99.98%)
+[BEST 30% STD] True B is the best candidate: 14136 / 14156 (99.86%)
+[BEST 60% STD] True B is the best candidate: 28247 / 28312 (99.77%)
+[BEST 10% STD] True B is the best candidate: 4717 / 4718 (99.98%)
+[BEST 30% STD] True B is the best candidate: 14136 / 14156 (99.86%)
+[BEST 60% STD] True B is the best candidate: 28236 / 28312 (99.73%)
+[BEST 100% STD] True B is the best candidate: 46990 / 47187 (99.58%)
+[BEST 10% STD] True B is the best candidate: 4709 / 4718 (99.81%)
+[BEST 30% STD] True B is the best candidate: 14111 / 14156 (99.68%)
+[BEST 60% STD] True B is the best candidate: 28187 / 28312 (99.56%)
+[BEST 100% STD] True B is the best candidate: 46910 / 47187 (99.41%)
+[BEST 10% STD] True B is the best candidate: 4716 / 4718 (99.96%)
+[BEST 30% STD] True B is the best candidate: 14142 / 14156 (99.90%)
+[BEST 60% STD] True B is the best candidate: 28264 / 28312 (99.83%)
+[BEST 10% STD] True B is the best candidate: 4714 / 4718 (99.92%)
+[BEST 30% STD] True B is the best candidate: 14125 / 14156 (99.78%)
+[BEST 60% STD] True B is the best candidate: 28224 / 28312 (99.69%)
+[BEST 100% STD] True B is the best candidate: 46954 / 47187 (99.51%)
+[BEST 10% STD] True B is the best candidate: 4717 / 4718 (99.98%)
+[BEST 30% STD] True B is the best candidate: 14145 / 14156 (99.92%)
+[BEST 60% STD] True B is the best candidate: 28268 / 28312 (99.84%)
+[BEST 100% STD] True B is the best candidate: 47021 / 47187 (99.65%)
+[BEST 10% STD] True B is the best candidate: 4717 / 4718 (99.98%)
+[BEST 30% STD] True B is the best candidate: 14140 / 14156 (99.89%)
+[BEST 60% STD] True B is the best candidate: 28236 / 28312 (99.73%)
+[BEST 100% STD] True B is the best candidate: 46990 / 47187 (99.58%)
+Success rate for binary with hw=3: 6/10
+[BEST 10% STD] True B is the best candidate: 4710 / 4718 (99.83%)
+[BEST 30% STD] True B is the best candidate: 14129 / 14156 (99.81%)
+[BEST 60% STD] True B is the best candidate: 28223 / 28312 (99.69%)
+[BEST 100% STD] True B is the best candidate: 46979 / 47187 (99.56%)
+[BEST 10% STD] True B is the best candidate: 4713 / 4718 (99.89%)
+[BEST 30% STD] True B is the best candidate: 14134 / 14156 (99.84%)
+[BEST 60% STD] True B is the best candidate: 28234 / 28312 (99.72%)
+[BEST 100% STD] True B is the best candidate: 46971 / 47187 (99.54%)
+[BEST 10% STD] True B is the best candidate: 4712 / 4718 (99.87%)
+[BEST 30% STD] True B is the best candidate: 14116 / 14156 (99.72%)
+[BEST 60% STD] True B is the best candidate: 28197 / 28312 (99.59%)
+[BEST 100% STD] True B is the best candidate: 46889 / 47187 (99.37%)
+[BEST 10% STD] True B is the best candidate: 4703 / 4718 (99.68%)
+[BEST 30% STD] True B is the best candidate: 14107 / 14156 (99.65%)
+[BEST 60% STD] True B is the best candidate: 28179 / 28312 (99.53%)
+[BEST 100% STD] True B is the best candidate: 46819 / 47187 (99.22%)
+[BEST 10% STD] True B is the best candidate: 4717 / 4718 (99.98%)
+[BEST 30% STD] True B is the best candidate: 14144 / 14156 (99.92%)
+[BEST 60% STD] True B is the best candidate: 28258 / 28312 (99.81%)
+[BEST 100% STD] True B is the best candidate: 47008 / 47187 (99.62%)
+[BEST 10% STD] True B is the best candidate: 4713 / 4718 (99.89%)
+[BEST 30% STD] True B is the best candidate: 14119 / 14156 (99.74%)
+[BEST 60% STD] True B is the best candidate: 28190 / 28312 (99.57%)
+[BEST 10% STD] True B is the best candidate: 4710 / 4718 (99.83%)
+[BEST 30% STD] True B is the best candidate: 14115 / 14156 (99.71%)
+[BEST 60% STD] True B is the best candidate: 28195 / 28312 (99.59%)
+[BEST 100% STD] True B is the best candidate: 46919 / 47187 (99.43%)
+[BEST 10% STD] True B is the best candidate: 4711 / 4718 (99.85%)
+[BEST 30% STD] True B is the best candidate: 14117 / 14156 (99.72%)
+[BEST 60% STD] True B is the best candidate: 28193 / 28312 (99.58%)
+[BEST 100% STD] True B is the best candidate: 46910 / 47187 (99.41%)
+[BEST 10% STD] True B is the best candidate: 4711 / 4718 (99.85%)
+[BEST 30% STD] True B is the best candidate: 14122 / 14156 (99.76%)
+[BEST 60% STD] True B is the best candidate: 28210 / 28312 (99.64%)
+[BEST 10% STD] True B is the best candidate: 4706 / 4718 (99.75%)
+[BEST 30% STD] True B is the best candidate: 14111 / 14156 (99.68%)
+[BEST 60% STD] True B is the best candidate: 28175 / 28312 (99.52%)
+[BEST 100% STD] True B is the best candidate: 46852 / 47187 (99.29%)
+Success rate for binary with hw=4: 5/10
+[BEST 10% STD] True B is the best candidate: 4706 / 4718 (99.75%)
+[BEST 30% STD] True B is the best candidate: 14108 / 14156 (99.66%)
+[BEST 60% STD] True B is the best candidate: 28201 / 28312 (99.61%)
+[BEST 100% STD] True B is the best candidate: 46886 / 47187 (99.36%)
+[BEST 10% STD] True B is the best candidate: 4714 / 4718 (99.92%)
+[BEST 30% STD] True B is the best candidate: 14126 / 14156 (99.79%)
+[BEST 60% STD] True B is the best candidate: 28220 / 28312 (99.68%)
+[BEST 10% STD] True B is the best candidate: 4712 / 4718 (99.87%)
+[BEST 30% STD] True B is the best candidate: 14104 / 14156 (99.63%)
+[BEST 60% STD] True B is the best candidate: 28149 / 28312 (99.42%)
+[BEST 100% STD] True B is the best candidate: 46767 / 47187 (99.11%)
+[BEST 10% STD] True B is the best candidate: 4713 / 4718 (99.89%)
+[BEST 30% STD] True B is the best candidate: 14129 / 14156 (99.81%)
+[BEST 60% STD] True B is the best candidate: 28219 / 28312 (99.67%)
+[BEST 10% STD] True B is the best candidate: 4703 / 4718 (99.68%)
+[BEST 30% STD] True B is the best candidate: 14105 / 14156 (99.64%)
+[BEST 60% STD] True B is the best candidate: 28196 / 28312 (99.59%)
+[BEST 100% STD] True B is the best candidate: 46891 / 47187 (99.37%)
+[BEST 10% STD] True B is the best candidate: 4709 / 4718 (99.81%)
+[BEST 30% STD] True B is the best candidate: 14110 / 14156 (99.68%)
+[BEST 60% STD] True B is the best candidate: 28196 / 28312 (99.59%)
+[BEST 10% STD] True B is the best candidate: 4710 / 4718 (99.83%)
+[BEST 30% STD] True B is the best candidate: 14120 / 14156 (99.75%)
+[BEST 60% STD] True B is the best candidate: 28204 / 28312 (99.62%)
+[BEST 100% STD] True B is the best candidate: 46918 / 47187 (99.43%)
+[BEST 10% STD] True B is the best candidate: 4710 / 4718 (99.83%)
+[BEST 30% STD] True B is the best candidate: 14124 / 14156 (99.77%)
+[BEST 60% STD] True B is the best candidate: 28188 / 28312 (99.56%)
+[BEST 100% STD] True B is the best candidate: 46899 / 47187 (99.39%)
+[BEST 10% STD] True B is the best candidate: 4711 / 4718 (99.85%)
+[BEST 30% STD] True B is the best candidate: 14114 / 14156 (99.70%)
+[BEST 60% STD] True B is the best candidate: 28189 / 28312 (99.57%)
+[BEST 100% STD] True B is the best candidate: 46864 / 47187 (99.32%)
+[BEST 10% STD] True B is the best candidate: 4703 / 4718 (99.68%)
+[BEST 30% STD] True B is the best candidate: 14098 / 14156 (99.59%)
+[BEST 60% STD] True B is the best candidate: 28154 / 28312 (99.44%)
+[BEST 100% STD] True B is the best candidate: 46822 / 47187 (99.23%)
+Success rate for binary with hw=5: 3/10
+[BEST 10% STD] True B is the best candidate: 4709 / 4718 (99.81%)
+[BEST 30% STD] True B is the best candidate: 14111 / 14156 (99.68%)
+[BEST 60% STD] True B is the best candidate: 28162 / 28312 (99.47%)
+[BEST 100% STD] True B is the best candidate: 46778 / 47187 (99.13%)
+[BEST 10% STD] True B is the best candidate: 4709 / 4718 (99.81%)
+[BEST 30% STD] True B is the best candidate: 14108 / 14156 (99.66%)
+[BEST 60% STD] True B is the best candidate: 28185 / 28312 (99.55%)
+[BEST 10% STD] True B is the best candidate: 4706 / 4718 (99.75%)
+[BEST 30% STD] True B is the best candidate: 14121 / 14156 (99.75%)
+[BEST 60% STD] True B is the best candidate: 28200 / 28312 (99.60%)
+[BEST 100% STD] True B is the best candidate: 46869 / 47187 (99.33%)
+[BEST 10% STD] True B is the best candidate: 4714 / 4718 (99.92%)
+[BEST 30% STD] True B is the best candidate: 14126 / 14156 (99.79%)
+[BEST 60% STD] True B is the best candidate: 28202 / 28312 (99.61%)
+[BEST 10% STD] True B is the best candidate: 4714 / 4718 (99.92%)
+[BEST 30% STD] True B is the best candidate: 14109 / 14156 (99.67%)
+[BEST 60% STD] True B is the best candidate: 28165 / 28312 (99.48%)
+[BEST 100% STD] True B is the best candidate: 46816 / 47187 (99.21%)
+[BEST 10% STD] True B is the best candidate: 4710 / 4718 (99.83%)
+[BEST 30% STD] True B is the best candidate: 14112 / 14156 (99.69%)
+[BEST 60% STD] True B is the best candidate: 28184 / 28312 (99.55%)
+[BEST 100% STD] True B is the best candidate: 46846 / 47187 (99.28%)
+[BEST 10% STD] True B is the best candidate: 4710 / 4718 (99.83%)
+[BEST 30% STD] True B is the best candidate: 14098 / 14156 (99.59%)
+[BEST 60% STD] True B is the best candidate: 28154 / 28312 (99.44%)
+[BEST 100% STD] True B is the best candidate: 46780 / 47187 (99.14%)
+[BEST 10% STD] True B is the best candidate: 4706 / 4718 (99.75%)
+[BEST 30% STD] True B is the best candidate: 14093 / 14156 (99.55%)
+[BEST 60% STD] True B is the best candidate: 28128 / 28312 (99.35%)
+[BEST 100% STD] True B is the best candidate: 46760 / 47187 (99.10%)
+[BEST 10% STD] True B is the best candidate: 4712 / 4718 (99.87%)
+[BEST 30% STD] True B is the best candidate: 14130 / 14156 (99.82%)
+[BEST 60% STD] True B is the best candidate: 28215 / 28312 (99.66%)
+[BEST 10% STD] True B is the best candidate: 4712 / 4718 (99.87%)
+[BEST 30% STD] True B is the best candidate: 14130 / 14156 (99.82%)
+[BEST 60% STD] True B is the best candidate: 28195 / 28312 (99.59%)
+[BEST 100% STD] True B is the best candidate: 46880 / 47187 (99.35%)
+Success rate for binary with hw=6: 7/10
+[BEST 10% STD] True B is the best candidate: 4706 / 4718 (99.75%)
+[BEST 30% STD] True B is the best candidate: 14107 / 14156 (99.65%)
+[BEST 60% STD] True B is the best candidate: 28137 / 28312 (99.38%)
+[BEST 100% STD] True B is the best candidate: 46765 / 47187 (99.11%)
+[BEST 10% STD] True B is the best candidate: 4712 / 4718 (99.87%)
+[BEST 30% STD] True B is the best candidate: 14106 / 14156 (99.65%)
+[BEST 60% STD] True B is the best candidate: 28155 / 28312 (99.45%)
+[BEST 100% STD] True B is the best candidate: 46783 / 47187 (99.14%)
+[BEST 10% STD] True B is the best candidate: 4711 / 4718 (99.85%)
+[BEST 30% STD] True B is the best candidate: 14118 / 14156 (99.73%)
+[BEST 60% STD] True B is the best candidate: 28189 / 28312 (99.57%)
+[BEST 100% STD] True B is the best candidate: 46829 / 47187 (99.24%)
+[BEST 10% STD] True B is the best candidate: 4713 / 4718 (99.89%)
+[BEST 30% STD] True B is the best candidate: 14121 / 14156 (99.75%)
+[BEST 60% STD] True B is the best candidate: 28187 / 28312 (99.56%)
+[BEST 10% STD] True B is the best candidate: 4705 / 4718 (99.72%)
+[BEST 30% STD] True B is the best candidate: 14102 / 14156 (99.62%)
+[BEST 60% STD] True B is the best candidate: 28169 / 28312 (99.49%)
+[BEST 10% STD] True B is the best candidate: 4709 / 4718 (99.81%)
+[BEST 30% STD] True B is the best candidate: 14109 / 14156 (99.67%)
+[BEST 60% STD] True B is the best candidate: 28191 / 28312 (99.57%)
+[BEST 100% STD] True B is the best candidate: 46814 / 47187 (99.21%)
+[BEST 10% STD] True B is the best candidate: 4712 / 4718 (99.87%)
+[BEST 30% STD] True B is the best candidate: 14115 / 14156 (99.71%)
+[BEST 10% STD] True B is the best candidate: 4702 / 4718 (99.66%)
+[BEST 30% STD] True B is the best candidate: 14111 / 14156 (99.68%)
+[BEST 60% STD] True B is the best candidate: 28167 / 28312 (99.49%)
+[BEST 100% STD] True B is the best candidate: 46816 / 47187 (99.21%)
+[BEST 10% STD] True B is the best candidate: 4700 / 4718 (99.62%)
+[BEST 30% STD] True B is the best candidate: 14087 / 14156 (99.51%)
+[BEST 60% STD] True B is the best candidate: 28123 / 28312 (99.33%)
+[BEST 100% STD] True B is the best candidate: 46764 / 47187 (99.10%)
+[BEST 10% STD] True B is the best candidate: 4711 / 4718 (99.85%)
+[BEST 30% STD] True B is the best candidate: 14112 / 14156 (99.69%)
+[BEST 60% STD] True B is the best candidate: 28172 / 28312 (99.51%)
+[BEST 100% STD] True B is the best candidate: 46832 / 47187 (99.25%)
+Success rate for binary with hw=7: 6/10
+[BEST 10% STD] True B is the best candidate: 4709 / 4718 (99.81%)
+[BEST 30% STD] True B is the best candidate: 14093 / 14156 (99.55%)
+[BEST 60% STD] True B is the best candidate: 28140 / 28312 (99.39%)
+[BEST 100% STD] True B is the best candidate: 46726 / 47187 (99.02%)
+[BEST 10% STD] True B is the best candidate: 4703 / 4718 (99.68%)
+[BEST 30% STD] True B is the best candidate: 14095 / 14156 (99.57%)
+[BEST 60% STD] True B is the best candidate: 28151 / 28312 (99.43%)
+[BEST 100% STD] True B is the best candidate: 46756 / 47187 (99.09%)
+[BEST 10% STD] True B is the best candidate: 4702 / 4718 (99.66%)
+[BEST 30% STD] True B is the best candidate: 14077 / 14156 (99.44%)
+[BEST 60% STD] True B is the best candidate: 28116 / 28312 (99.31%)
+[BEST 100% STD] True B is the best candidate: 46668 / 47187 (98.90%)
+[BEST 10% STD] True B is the best candidate: 4707 / 4718 (99.77%)
+[BEST 30% STD] True B is the best candidate: 14113 / 14156 (99.70%)
+[BEST 60% STD] True B is the best candidate: 28174 / 28312 (99.51%)
+[BEST 10% STD] True B is the best candidate: 4705 / 4718 (99.72%)
+[BEST 30% STD] True B is the best candidate: 14092 / 14156 (99.55%)
+[BEST 60% STD] True B is the best candidate: 28123 / 28312 (99.33%)
+[BEST 100% STD] True B is the best candidate: 46687 / 47187 (98.94%)
+[BEST 10% STD] True B is the best candidate: 4707 / 4718 (99.77%)
+[BEST 30% STD] True B is the best candidate: 14095 / 14156 (99.57%)
+[BEST 60% STD] True B is the best candidate: 28139 / 28312 (99.39%)
+[BEST 100% STD] True B is the best candidate: 46763 / 47187 (99.10%)
+[BEST 10% STD] True B is the best candidate: 4712 / 4718 (99.87%)
+[BEST 30% STD] True B is the best candidate: 14121 / 14156 (99.75%)
+[BEST 60% STD] True B is the best candidate: 28182 / 28312 (99.54%)
+[BEST 100% STD] True B is the best candidate: 46778 / 47187 (99.13%)
+[BEST 10% STD] True B is the best candidate: 4703 / 4718 (99.68%)
+[BEST 30% STD] True B is the best candidate: 14096 / 14156 (99.58%)
+[BEST 60% STD] True B is the best candidate: 28136 / 28312 (99.38%)
+[BEST 10% STD] True B is the best candidate: 4703 / 4718 (99.68%)
+[BEST 30% STD] True B is the best candidate: 14106 / 14156 (99.65%)
+[BEST 60% STD] True B is the best candidate: 28174 / 28312 (99.51%)
+[BEST 100% STD] True B is the best candidate: 46792 / 47187 (99.16%)
+[BEST 10% STD] True B is the best candidate: 4711 / 4718 (99.85%)
+[BEST 30% STD] True B is the best candidate: 14094 / 14156 (99.56%)
+[BEST 60% STD] True B is the best candidate: 28113 / 28312 (99.30%)
+[BEST 100% STD] True B is the best candidate: 46687 / 47187 (98.94%)
+Success rate for binary with hw=8: 6/10
+[BEST 10% STD] True B is the best candidate: 4700 / 4718 (99.62%)
+[BEST 30% STD] True B is the best candidate: 14077 / 14156 (99.44%)
+[BEST 60% STD] True B is the best candidate: 28112 / 28312 (99.29%)
+[BEST 100% STD] True B is the best candidate: 46692 / 47187 (98.95%)
+[BEST 10% STD] True B is the best candidate: 4702 / 4718 (99.66%)
+[BEST 30% STD] True B is the best candidate: 14080 / 14156 (99.46%)
+[BEST 60% STD] True B is the best candidate: 28068 / 28312 (99.14%)
+[BEST 100% STD] True B is the best candidate: 46615 / 47187 (98.79%)
+[BEST 10% STD] True B is the best candidate: 4706 / 4718 (99.75%)
+[BEST 30% STD] True B is the best candidate: 14102 / 14156 (99.62%)
+[BEST 60% STD] True B is the best candidate: 28171 / 28312 (99.50%)
+[BEST 100% STD] True B is the best candidate: 46794 / 47187 (99.17%)
+[BEST 10% STD] True B is the best candidate: 4707 / 4718 (99.77%)
+[BEST 30% STD] True B is the best candidate: 14099 / 14156 (99.60%)
+[BEST 60% STD] True B is the best candidate: 28146 / 28312 (99.41%)
+[BEST 100% STD] True B is the best candidate: 46765 / 47187 (99.11%)
+[BEST 10% STD] True B is the best candidate: 4702 / 4718 (99.66%)
+[BEST 30% STD] True B is the best candidate: 14101 / 14156 (99.61%)
+[BEST 60% STD] True B is the best candidate: 28147 / 28312 (99.42%)
+[BEST 10% STD] True B is the best candidate: 4710 / 4718 (99.83%)
+[BEST 30% STD] True B is the best candidate: 14112 / 14156 (99.69%)
+[BEST 60% STD] True B is the best candidate: 28187 / 28312 (99.56%)
+[BEST 100% STD] True B is the best candidate: 46835 / 47187 (99.25%)
+[BEST 10% STD] True B is the best candidate: 4713 / 4718 (99.89%)
+[BEST 30% STD] True B is the best candidate: 14106 / 14156 (99.65%)
+[BEST 60% STD] True B is the best candidate: 28160 / 28312 (99.46%)
+[BEST 100% STD] True B is the best candidate: 46787 / 47187 (99.15%)
+[BEST 10% STD] True B is the best candidate: 4708 / 4718 (99.79%)
+[BEST 30% STD] True B is the best candidate: 14083 / 14156 (99.48%)
+[BEST 60% STD] True B is the best candidate: 28094 / 28312 (99.23%)
+[BEST 100% STD] True B is the best candidate: 46651 / 47187 (98.86%)
+[BEST 10% STD] True B is the best candidate: 4709 / 4718 (99.81%)
+[BEST 30% STD] True B is the best candidate: 14115 / 14156 (99.71%)
+[BEST 60% STD] True B is the best candidate: 28168 / 28312 (99.49%)
+[BEST 10% STD] True B is the best candidate: 4711 / 4718 (99.85%)
+[BEST 30% STD] True B is the best candidate: 14113 / 14156 (99.70%)
+[BEST 60% STD] True B is the best candidate: 28175 / 28312 (99.52%)
+Success rate for binary with hw=9: 6/10
+[BEST 10% STD] True B is the best candidate: 4711 / 4718 (99.85%)
+[BEST 30% STD] True B is the best candidate: 14116 / 14156 (99.72%)
+[BEST 60% STD] True B is the best candidate: 28178 / 28312 (99.53%)
+[BEST 100% STD] True B is the best candidate: 46852 / 47187 (99.29%)
+[BEST 10% STD] True B is the best candidate: 4707 / 4718 (99.77%)
+[BEST 30% STD] True B is the best candidate: 14084 / 14156 (99.49%)
+[BEST 60% STD] True B is the best candidate: 28106 / 28312 (99.27%)
+[BEST 10% STD] True B is the best candidate: 4702 / 4718 (99.66%)
+[BEST 30% STD] True B is the best candidate: 14093 / 14156 (99.55%)
+[BEST 60% STD] True B is the best candidate: 28111 / 28312 (99.29%)
+[BEST 100% STD] True B is the best candidate: 46660 / 47187 (98.88%)
+[BEST 10% STD] True B is the best candidate: 4703 / 4718 (99.68%)
+[BEST 30% STD] True B is the best candidate: 14083 / 14156 (99.48%)
+[BEST 60% STD] True B is the best candidate: 28110 / 28312 (99.29%)
+[BEST 10% STD] True B is the best candidate: 4709 / 4718 (99.81%)
+[BEST 30% STD] True B is the best candidate: 14101 / 14156 (99.61%)
+[BEST 60% STD] True B is the best candidate: 28147 / 28312 (99.42%)
+[BEST 10% STD] True B is the best candidate: 4702 / 4718 (99.66%)
+[BEST 30% STD] True B is the best candidate: 14095 / 14156 (99.57%)
+[BEST 60% STD] True B is the best candidate: 28135 / 28312 (99.37%)
+[BEST 100% STD] True B is the best candidate: 46723 / 47187 (99.02%)
+[BEST 10% STD] True B is the best candidate: 4704 / 4718 (99.70%)
+[BEST 30% STD] True B is the best candidate: 14084 / 14156 (99.49%)
+[BEST 60% STD] True B is the best candidate: 28116 / 28312 (99.31%)
+[BEST 100% STD] True B is the best candidate: 46695 / 47187 (98.96%)
+[BEST 10% STD] True B is the best candidate: 4698 / 4718 (99.58%)
+[BEST 30% STD] True B is the best candidate: 14058 / 14156 (99.31%)
+[BEST 60% STD] True B is the best candidate: 28067 / 28312 (99.13%)
+slurmstepd: error: *** JOB 59185481 ON wn127 CANCELLED AT 2025-08-04T18:07:22 ***

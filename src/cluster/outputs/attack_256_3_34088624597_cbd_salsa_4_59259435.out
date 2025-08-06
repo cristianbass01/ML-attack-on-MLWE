@@ -1,0 +1,866 @@
+Parameters: {'n': 256, 'q': 34088624597, 'k': 3, 'secret_type': 'cbd', 'eta': 2, 'gaussian_std': 3, 'hw': -1, 'error_type': 'cbd', 'num_gen': 4, 'add_noise': True, 'mod_q': True, 'seed': 42, 'approximation_std': 3, 'approximation_threshold': 0.01, 'save_to': '../data', 'float_type': 'qd', 'matrix_config': 'salsa', 'reduction_samples': 672, 'reduction_resampling': True, 'min_samples': None, 'num_matrices': 63, 'reduction_max_size': 2000, 'lookback': 3, 'warmup_steps': 10, 'flatter_alpha': 0.001, 'bkz_delta': 0.99, 'bkz_block_sizes': '20:40:10', 'use_polish': True, 'interleaved_steps': 0, 'penalty': 4, 'verbose': True, 'train_percentages': [0.1, 0.3, 0.6, 1.0], 'model': 'tukey', 'lr': 0.0001, 'c_factor': 1.0, 'epsilon': 1.1, 'max_iter': 15000, 'alpha': 0.0001, 'warm_start': False, 'fit_intercept': False, 'tol': 0.001, 'use_ransac': False, 'residual_factor': 1.5, 'max_trials': 100}
+Arguments: {'num_attacks': 1, 'attack_strategy': 'no', 'attack_every': 0, 'save_strategy': 'hour', 'save_every': 40, 'stop_strategy': 'hour', 'stop_after': 46, 'save_at_the_end': True, 'reload': False, 'reload_from': None, 'train_secret_types': ['cbd'], 'reload_from_salsa': None, 'num_training_repeats': 10, 'hw_range': None}
+Attacking 63 matrices using 64 threads.
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 357/357 | Mean std_B: 1952768981.49
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 713/713 | Mean std_B: 1657114923.94
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 453/453 | Mean std_B: 1871559958.84
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 461/461 | Mean std_B: 1822624061.48
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 676/676 | Mean std_B: 1974537789.21
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 451/451 | Mean std_B: 1807001776.27
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 448/448 | Mean std_B: 1807815794.73
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 429/429 | Mean std_B: 1861565362.93
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 452/452 | Mean std_B: 1842859589.09
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 456/456 | Mean std_B: 1925668762.41
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 438/438 | Mean std_B: 1852292225.81
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 450/450 | Mean std_B: 1799975916.17
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 428/428 | Mean std_B: 1816928268.08
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 661/661 | Mean std_B: 1975078943.21
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 1031/1031 | Mean std_B: 2053447364.39
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 452/452 | Mean std_B: 1861757991.78
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 554/554 | Mean std_B: 1728495117.88
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 758/758 | Mean std_B: 2002687695.85
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 417/417 | Mean std_B: 1813882120.70
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 795/795 | Mean std_B: 2445020902.11
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 445/445 | Mean std_B: 1831394100.73
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 443/443 | Mean std_B: 1858823255.91
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 454/454 | Mean std_B: 1861073903.90
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 458/458 | Mean std_B: 1853059062.13
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 360/360 | Mean std_B: 1978884553.03
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 771/771 | Mean std_B: 1974743876.93
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 436/436 | Mean std_B: 1832406589.56
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 464/464 | Mean std_B: 1840846021.69
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 420/420 | Mean std_B: 1809149627.20
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 460/460 | Mean std_B: 1789208572.42
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 451/451 | Mean std_B: 1769402676.49
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 455/455 | Mean std_B: 1784886035.15
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 456/456 | Mean std_B: 1825119848.93
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 603/603 | Mean std_B: 1916164308.19
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 1014/1014 | Mean std_B: 2067424819.89
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 444/444 | Mean std_B: 1797802363.66
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 449/449 | Mean std_B: 1825649075.76
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 445/445 | Mean std_B: 1844727803.98
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 461/461 | Mean std_B: 1865165905.56
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 447/447 | Mean std_B: 1844157656.11
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 446/446 | Mean std_B: 1817233354.43
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 437/437 | Mean std_B: 1750838890.67
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 444/444 | Mean std_B: 1795461757.43
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 445/445 | Mean std_B: 1809495949.39
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 668/668 | Mean std_B: 1643444987.51
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 455/455 | Mean std_B: 1864305618.47
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 444/444 | Mean std_B: 1834929832.55
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 437/437 | Mean std_B: 1947395748.01
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 692/692 | Mean std_B: 1655656115.13
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 467/467 | Mean std_B: 1840688986.04
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 824/824 | Mean std_B: 2422799390.19
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 456/456 | Mean std_B: 1821516565.27
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 435/435 | Mean std_B: 1838164861.97
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 787/787 | Mean std_B: 2457964310.33
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 702/702 | Mean std_B: 1679179813.74
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 446/446 | Mean std_B: 1833798456.75
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 447/447 | Mean std_B: 1825181812.28
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 768/768 | Mean std_B: 2470203417.79
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 464/464 | Mean std_B: 1798946053.95
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 454/454 | Mean std_B: 1863098066.74
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 433/433 | Mean std_B: 1906758775.36
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 660/660 | Mean std_B: 1988789667.97
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 610/610 | Mean std_B: 1910046344.31
+Tour 1 | Time: 1146.40s | Mean std_B: 1911868931.89 | Reduction Factor: 1.0029 | Prob: 1.0000
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/417 | Mean std_B: 1813882120.70
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/461 | Mean std_B: 1865165905.56
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/444 | Mean std_B: 1797802363.66
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/446 | Mean std_B: 1817233354.43
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/452 | Mean std_B: 1861757991.78
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/455 | Mean std_B: 1864305618.47
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/449 | Mean std_B: 1825649075.76
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/444 | Mean std_B: 1795461757.43
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/456 | Mean std_B: 1825119848.93
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/456 | Mean std_B: 1925668762.41
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/448 | Mean std_B: 1807815794.73
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/464 | Mean std_B: 1798946053.95
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/460 | Mean std_B: 1789208572.42
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/451 | Mean std_B: 1769402676.49
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/436 | Mean std_B: 1832406589.56
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/451 | Mean std_B: 1807001776.27
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/437 | Mean std_B: 1750838890.67
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/467 | Mean std_B: 1840688986.04
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/450 | Mean std_B: 1799975916.17
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/452 | Mean std_B: 1842859589.09
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/438 | Mean std_B: 1852292225.81
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/445 | Mean std_B: 1809495949.39
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/455 | Mean std_B: 1784886035.15
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/454 | Mean std_B: 1861073903.90
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/443 | Mean std_B: 1858823255.91
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/453 | Mean std_B: 1871559958.84
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/447 | Mean std_B: 1825181812.28
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/435 | Mean std_B: 1838164861.97
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/437 | Mean std_B: 1947395748.01
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/420 | Mean std_B: 1809149627.20
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/445 | Mean std_B: 1831394100.73
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/433 | Mean std_B: 1906758775.36
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/456 | Mean std_B: 1821516565.27
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/428 | Mean std_B: 1816928268.08
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/461 | Mean std_B: 1822624061.48
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 419/419 | Mean std_B: 1851291180.86
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/445 | Mean std_B: 1844727803.98
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/444 | Mean std_B: 1834929832.55
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 692/692 | Mean std_B: 1998885140.53
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/464 | Mean std_B: 1840846021.69
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/458 | Mean std_B: 1853059062.13
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/447 | Mean std_B: 1844157656.11
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/429 | Mean std_B: 1861565362.93
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 407/407 | Mean std_B: 1929839273.63
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/454 | Mean std_B: 1863098066.74
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 861/862 | Mean std_B: 2203618944.11
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/446 | Mean std_B: 1833798456.75
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 393/439 | Mean std_B: 1799034620.35
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 822/822 | Mean std_B: 2007720408.84
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 701/701 | Mean std_B: 1872358996.14
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 635/635 | Mean std_B: 2020360686.61
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 410/410 | Mean std_B: 1902823767.38
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 526/526 | Mean std_B: 2259212642.10
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 351/351 | Mean std_B: 2038683764.35
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 592/592 | Mean std_B: 1952108343.30
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 327/327 | Mean std_B: 1976213725.10
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 311/311 | Mean std_B: 1992826700.88
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 379/379 | Mean std_B: 2070231046.54
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 374/374 | Mean std_B: 2053417484.30
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 577/577 | Mean std_B: 2161890003.93
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 345/345 | Mean std_B: 2044251937.25
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 794/794 | Mean std_B: 2020560246.56
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 668/668 | Mean std_B: 2069327757.27
+Tour 2 | Time: 3022.28s | Mean std_B: 1938216020.54 | Reduction Factor: 1.0014 | Prob: 1.0000
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/456 | Mean std_B: 1825119848.93
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/450 | Mean std_B: 1799975916.17
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/438 | Mean std_B: 1852292225.81
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/454 | Mean std_B: 1863098066.74
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/435 | Mean std_B: 1838164861.97
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/449 | Mean std_B: 1825649075.76
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/456 | Mean std_B: 1925668762.41
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/464 | Mean std_B: 1798946053.95
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/433 | Mean std_B: 1906758775.36
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/446 | Mean std_B: 1833798456.75
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 404/404 | Mean std_B: 1876156798.04
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/448 | Mean std_B: 1807815794.73
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/417 | Mean std_B: 1813882120.70
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 456/457 | Mean std_B: 1809338550.76
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 341/361 | Mean std_B: 1954570889.86
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/444 | Mean std_B: 1795461757.43
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/446 | Mean std_B: 1817233354.43
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/445 | Mean std_B: 1844727803.98
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/460 | Mean std_B: 1789208572.42
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/447 | Mean std_B: 1825181812.28
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/429 | Mean std_B: 1861565362.93
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/455 | Mean std_B: 1864305618.47
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/461 | Mean std_B: 1822624061.48
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/458 | Mean std_B: 1853059062.13
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/445 | Mean std_B: 1831394100.73
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 722/730 | Mean std_B: 2394729934.75
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 367/367 | Mean std_B: 2007288441.53
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/454 | Mean std_B: 1861073903.90
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/467 | Mean std_B: 1840688986.04
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 853/857 | Mean std_B: 2119479807.33
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/447 | Mean std_B: 1844157656.11
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/444 | Mean std_B: 1797802363.66
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/453 | Mean std_B: 1871559958.84
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/420 | Mean std_B: 1809149627.20
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/445 | Mean std_B: 1809495949.39
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/456 | Mean std_B: 1821516565.27
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/436 | Mean std_B: 1832406589.56
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/452 | Mean std_B: 1861757991.78
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/452 | Mean std_B: 1842859589.09
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 361/361 | Mean std_B: 2052644743.60
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/437 | Mean std_B: 1947395748.01
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/451 | Mean std_B: 1769402676.49
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/444 | Mean std_B: 1834929832.55
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/455 | Mean std_B: 1784886035.15
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/461 | Mean std_B: 1865165905.56
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 321/321 | Mean std_B: 2011973864.80
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/443 | Mean std_B: 1858823255.91
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 317/317 | Mean std_B: 2036611110.69
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/464 | Mean std_B: 1840846021.69
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/451 | Mean std_B: 1807001776.27
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 410/410 | Mean std_B: 2080888525.67
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/428 | Mean std_B: 1816928268.08
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/437 | Mean std_B: 1750838890.67
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 386/386 | Mean std_B: 2148881773.30
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 923/923 | Mean std_B: 1936524285.61
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 350/350 | Mean std_B: 2088700605.63
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 355/355 | Mean std_B: 2110159361.41
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 361/361 | Mean std_B: 2039529573.17
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 658/658 | Mean std_B: 2065216633.62
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 409/409 | Mean std_B: 2024736932.49
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 358/358 | Mean std_B: 1992254413.42
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 417/417 | Mean std_B: 2049526235.53
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 417/417 | Mean std_B: 2025104150.37
+Tour 3 | Time: 5231.17s | Mean std_B: 1950029771.89 | Reduction Factor: 1.0007 | Prob: 1.0000
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/429 | Mean std_B: 1861565362.93
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/451 | Mean std_B: 1807001776.27
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/450 | Mean std_B: 1799975916.17
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/448 | Mean std_B: 1807815794.73
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/435 | Mean std_B: 1838164861.97
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/438 | Mean std_B: 1852292225.81
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/449 | Mean std_B: 1825649075.76
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 977/1013 | Mean std_B: 2077310144.37
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/460 | Mean std_B: 1789208572.42
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/444 | Mean std_B: 1834929832.55
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/451 | Mean std_B: 1769402676.49
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/443 | Mean std_B: 1858823255.91
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/433 | Mean std_B: 1906758775.36
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/446 | Mean std_B: 1833798456.75
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/456 | Mean std_B: 1825119848.93
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 757/758 | Mean std_B: 2579248685.66
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/445 | Mean std_B: 1844727803.98
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/444 | Mean std_B: 1795461757.43
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/456 | Mean std_B: 1821516565.27
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 321/321 | Mean std_B: 1983613913.51
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 348/742 | Mean std_B: 2568641485.71
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/437 | Mean std_B: 1750838890.67
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 409/409 | Mean std_B: 1907648807.60
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/436 | Mean std_B: 1832406589.56
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/452 | Mean std_B: 1861757991.78
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 636/636 | Mean std_B: 2225712111.30
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/453 | Mean std_B: 1871559958.84
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 543/714 | Mean std_B: 2021392504.54
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/461 | Mean std_B: 1822624061.48
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/454 | Mean std_B: 1863098066.74
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/455 | Mean std_B: 1864305618.47
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 791/802 | Mean std_B: 2028898012.75
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/447 | Mean std_B: 1825181812.28
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/446 | Mean std_B: 1817233354.43
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/467 | Mean std_B: 1840688986.04
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 639/761 | Mean std_B: 1272173269.71
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/464 | Mean std_B: 1840846021.69
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/461 | Mean std_B: 1865165905.56
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/445 | Mean std_B: 1831394100.73
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/455 | Mean std_B: 1784886035.15
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/428 | Mean std_B: 1816928268.08
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 386/400 | Mean std_B: 2087608587.70
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/447 | Mean std_B: 1844157656.11
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/437 | Mean std_B: 1947395748.01
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/452 | Mean std_B: 1842859589.09
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/458 | Mean std_B: 1853059062.13
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/454 | Mean std_B: 1861073903.90
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/456 | Mean std_B: 1925668762.41
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/444 | Mean std_B: 1797802363.66
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/417 | Mean std_B: 1813882120.70
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 711/760 | Mean std_B: 2035626638.72
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/464 | Mean std_B: 1798946053.95
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 757/778 | Mean std_B: 1937788733.02
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 362/416 | Mean std_B: 1989776179.50
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/420 | Mean std_B: 1809149627.20
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 0/445 | Mean std_B: 1809495949.39
+- Flatter stall after: 6, updating...
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 799/815 | Mean std_B: 2139331969.38
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 533/628 | Mean std_B: 1797997746.59
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 315/339 | Mean std_B: 1983246617.73
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 740/824 | Mean std_B: 1975346563.49
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 671/697 | Mean std_B: 2175497119.01
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 372/412 | Mean std_B: 2013785019.96
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 294/386 | Mean std_B: 2050515396.85
+Tour 4 | Time: 7478.91s | Mean std_B: 1856643989.57 | Reduction Factor: 1.0002 | Prob: 1.0000
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 647/855 | Mean std_B: 2008338642.72
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 354/396 | Mean std_B: 1871674132.90
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 629/798 | Mean std_B: 2103390572.59
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 285/372 | Mean std_B: 2063118205.40
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 379/381 | Mean std_B: 2121549226.68
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 320/354 | Mean std_B: 1989059791.24
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 240/333 | Mean std_B: 2021396119.03
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 318/407 | Mean std_B: 2030578037.03
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 345/345 | Mean std_B: 2065836887.43
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 690/897 | Mean std_B: 1875660632.96
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 472/652 | Mean std_B: 2164506336.87
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 702/792 | Mean std_B: 2125857045.86
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 358/358 | Mean std_B: 2007516867.56
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 321/411 | Mean std_B: 2000460375.54
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 295/402 | Mean std_B: 2010298385.17
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 258/691 | Mean std_B: 2494600530.29
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 200/359 | Mean std_B: 2024647732.85
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 306/422 | Mean std_B: 2023112699.62
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 525/758 | Mean std_B: 2340186671.13
+/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py:200: RuntimeWarning: invalid value encountered in sqrt
+  return mean_b, var_b, np.sqrt(var_b)
+- Algo: flatter | Updated 696/824 | Mean std_B: 1579349997.97

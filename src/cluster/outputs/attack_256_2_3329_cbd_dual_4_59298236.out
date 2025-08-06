@@ -1,0 +1,12 @@
+Parameters: {'n': 256, 'q': 3329, 'k': 2, 'secret_type': 'cbd', 'eta': 2, 'gaussian_std': 3, 'hw': -1, 'error_type': 'cbd', 'num_gen': 4, 'add_noise': True, 'mod_q': True, 'seed': 42, 'approximation_std': 3, 'approximation_threshold': 0.01, 'save_to': '../data', 'float_type': 'ld', 'matrix_config': 'dual', 'reduction_samples': 0.875, 'reduction_resampling': True, 'min_samples': None, 'num_matrices': 63, 'reduction_max_size': 1000, 'lookback': 3, 'warmup_steps': 10, 'flatter_alpha': 0.001, 'bkz_delta': 0.99, 'bkz_block_sizes': '20:40:10', 'use_polish': True, 'interleaved_steps': 0, 'penalty': 4, 'verbose': True, 'train_percentages': [0.1, 0.3, 0.6, 1.0], 'model': 'tukey', 'lr': 0.0001, 'c_factor': 1.0, 'epsilon': 1.1, 'max_iter': 15000, 'alpha': 0.0001, 'warm_start': False, 'fit_intercept': False, 'tol': 0.0001, 'use_ransac': False, 'residual_factor': 1.5, 'max_trials': 100, 'continuous_reduction': True}
+Arguments: {'num_attacks': 1, 'attack_strategy': 'no', 'attack_every': 0, 'save_strategy': 'hour', 'save_every': 40, 'stop_strategy': 'hour', 'stop_after': 46, 'save_at_the_end': True, 'reload': False, 'reload_from': None, 'train_secret_types': ['cbd'], 'reload_from_salsa': None, 'num_training_repeats': 10, 'hw_range': None}
+Traceback (most recent call last):
+  File "/d/hpc/home/cb17769/ML-attack-on-MLWE/src/cluster/attack.py", line 155, in <module>
+    main(updated_params, args)
+  File "/d/hpc/home/cb17769/ML-attack-on-MLWE/src/cluster/attack.py", line 56, in main
+    _, attack_time = dataset.attack(
+  File "/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/dataset.py", line 312, in attack
+    save_strategy, save_every = convert_strategy(save_strategy, save_every)
+  File "/d/hpc/home/cb17769/ML-attack-on-MLWE/src/ml_attack/utils.py", line 76, in convert_strategy
+    raise ValueError("Invalid strategy. Choose from 'tour', 'time', 'hour', 'minute', 'second', or 'no'.")
+ValueError: Invalid strategy. Choose from 'tour', 'time', 'hour', 'minute', 'second', or 'no'.
