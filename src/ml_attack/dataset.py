@@ -21,7 +21,8 @@ from ml_attack.utils import (
   get_optimal_vector_norm,
   pad_vectors_to_max,
   get_error_distribution,
-  std_to_prob
+  std_to_prob,
+  convert_strategy
 )
 from ml_attack.lwe import neg_circ
 
@@ -194,7 +195,7 @@ class LWEDataset():
             last_block_size = block_sizes[-1]
             delta_0 = get_hermite_root_factor(last_block_size)
             m = get_optimal_sample_size(n * k, self.mlwe.q, self.params['penalty'], delta_0)
-            m = max(m, int(0.5 * n * k)) # Ensure at least 50% of the rows are sampled
+            m = max(m, int(0.875 * n * k)) # Ensure at least 50% of the rows are sampled
         elif 0 <= self.params['reduction_samples'] <= 1:
             m = int(self.params['reduction_samples'] * n * k)
             if m == 0:
@@ -307,16 +308,9 @@ class LWEDataset():
         if self.B is None and attack_every is not None:
             raise ValueError("B vector must be initialized before running the attack with attack_every. Please run initialize_secret() first.")
 
-        if attack_strategy not in ["tour", "time", "no", "hour", "minute", "second"]:
-            raise ValueError("Invalid attack strategy. Choose from 'tour', 'time', or 'no'.")
-        if save_strategy not in ["tour", "time", "no", "hour", "minute", "second"]:
-            raise ValueError("Invalid save strategy. Choose from 'tour', 'time', or 'no'.")
-        
-        if attack_strategy in ["tour", "time", "hour", "minute", "second"] and attack_every is None:
-            raise ValueError("attack_every must be specified when using attack_strategy 'tour' or 'time'.")
-        
-        if save_strategy in ["tour", "time", "hour", "minute", "second"] and save_every is None:
-            raise ValueError("save_every must be specified when using save_strategy 'tour' or 'time'.")
+        attack_strategy, attack_every = convert_strategy(attack_strategy, attack_every)
+        save_strategy, save_every = convert_strategy(save_strategy, save_every)
+        stop_strategy, stop_after = convert_strategy(stop_strategy, stop_after)
 
         if self.indices is None:
             self.indices = self.get_indices_to_reduce()
@@ -338,6 +332,22 @@ class LWEDataset():
         if self.R is not None:
             RA = mod_mult(self.R, A_to_reduce, self.mlwe.q)
 
+        if self.params['continuous_reduction']:
+            timers = []
+            if attack_strategy == "time":
+                timers.append(attack_every)
+            if save_strategy == "time":
+                timers.append(save_every)
+            if stop_strategy == "time":
+                timers.append(stop_after)
+            if timers:
+                initial_timer = min(timers)
+            else:
+                initial_timer = 1
+                self.params['continuous_reduction'] = False
+        else:
+            initial_timer = 1
+
         for i in range(num_matrices):
             reduction = ContinuousReduction(self.params)
             if self.RC is not None:
@@ -350,10 +360,10 @@ class LWEDataset():
                     priorities=std_b
                 )
 
-                args.append([reduction.to_state_dict(), self.RC[i].copy(), 1])
+                args.append([reduction.to_state_dict(), self.RC[i].copy(), initial_timer])
             else:
                 # First attack
-                args.append([reduction.to_state_dict(), A_to_reduce[i].copy(), 1])
+                args.append([reduction.to_state_dict(), A_to_reduce[i].copy(), initial_timer])
 
         if is_rlwe:
             A_to_reduce = A_to_reduce[:, np.newaxis, :, :]
@@ -364,33 +374,6 @@ class LWEDataset():
         tour = 0
         start_time = time.time()
         previous_reduction_time = self.reduction_time
-
-        if attack_strategy == "hour":
-            attack_every *= 3600
-            attack_strategy = "time"
-        elif attack_strategy == "minute":
-            attack_every *= 60
-            attack_strategy = "time"
-        elif attack_strategy == "second":
-            attack_strategy = "time"
-
-        if save_strategy == "hour":
-            save_every *= 3600
-            save_strategy = "time"
-        elif save_strategy == "minute":
-            save_every *= 60
-            save_strategy = "time"
-        elif save_strategy == "second":
-            save_strategy = "time"
-
-        if stop_strategy == "hour":
-            stop_after *= 3600
-            stop_strategy = "time"
-        elif stop_strategy == "minute":
-            stop_after *= 60
-            stop_strategy = "time"
-        elif stop_strategy == "second":
-            stop_strategy = "time"
 
         last_save_time = start_time if save_strategy == "time" else None
         last_attack_time = start_time if attack_strategy == "time" else None
@@ -512,23 +495,27 @@ class LWEDataset():
     @staticmethod
     def continuous_reduction_wrapper(args):
         """ Wrapper function for the reduction process. """
-        reduction_state, matrix_to_reduce, times = args
+        reduction_state, matrix_to_reduce, timer = args
         reduction = ContinuousReduction.from_state_dict(reduction_state)
         start_time = time.time()
-        R, matrix_to_reduce = reduction.reduce(matrix_to_reduce, times=times)
+        R, matrix_to_reduce = reduction.reduce(matrix_to_reduce, timer=timer)
         tour_time = time.time() - start_time
         
-        # Update the times the reduction tour will be repeated
-        if tour_time < 60 * 2: # Less than 2 minute -> increase by 1
-            times += 1
-        elif tour_time >= 60 * 10: # More than 10 minutes -> decrease by 1
-            times -= 1
-            if times < 1:
-                times = 1
-        elif tour_time >= 60 * 20: # More than 20 minutes -> reset to 1
-            times = 1
+        if not reduction.continuous_reduction:
+            # Update the timer the reduction tour will be repeated
+            if tour_time < 60 * 2: # Less than 2 minute -> increase by 1
+                timer += 1
+            elif tour_time >= 60 * 10: # More than 10 minutes -> decrease by 1
+                timer -= 1
+                if timer < 1:
+                    timer = 1
+            elif tour_time >= 60 * 20: # More than 20 minutes -> reset to 1
+                timer = 1
+        else:
+            # Remove the exceeded time from the timer
+            timer -= (tour_time - timer)
         
-        return R, [reduction.to_state_dict(), matrix_to_reduce, times]
+        return R, [reduction.to_state_dict(), matrix_to_reduce, timer]
 
     
     def train(self):

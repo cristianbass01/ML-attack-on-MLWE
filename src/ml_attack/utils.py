@@ -71,6 +71,23 @@ def time_execution(func):
         return result
     return wrapper
 
+def convert_strategy(strategy: str, timer: int) -> tuple:
+    if strategy not in ["tour", "time", "no", "hour", "minute", "second"]:
+        raise ValueError("Invalid strategy. Choose from 'tour', 'time', 'hour', 'minute', 'second', or 'no'.")
+    if strategy in ["time", "hour", "minute", "second"] and timer is None:
+        raise ValueError("timer must be specified when using 'time', 'hour', 'minute', or 'second' strategy.")
+
+    if strategy == "hour":
+        timer *= 3600
+        strategy = "time"
+    elif strategy == "minute":
+        timer *= 60
+        strategy = "time"
+    elif strategy == "second":
+        strategy = "time"
+    return strategy, timer
+
+
 def compute_b_candidates_and_probs(b_mod, mu, sigma, modulus, num_std, threshold):
     """
     For a batch of inputs, compute candidate b values and associated probabilities.

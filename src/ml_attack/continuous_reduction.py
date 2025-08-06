@@ -62,6 +62,7 @@ class ContinuousReduction(object):
 
         self.use_polish = self.params["use_polish"]
         self.interleaved_steps = self.params["interleaved_steps"]
+        self.continuous_reduction = self.params["continuous_reduction"]
 
         # if pnjBKZ is used
         # self.crossover = params["crossover"]
@@ -357,11 +358,11 @@ class ContinuousReduction(object):
             self.saved_reduced = vectors.astype(int)
             self.saved_stds = priorities.astype(int)
 
-    def reduce(self, matrix_to_reduce, times=1):
+    def reduce(self, matrix_to_reduce, timer=1):
         """ 
         Reduce the given matrix using the specified algorithms.
         :param matrix_to_reduce: The matrix to be reduced.
-        :param times: The number of times to run the reduction algorithms.
+        :param timer: The time limit for the reduction.
         """
         # Preprocess matrix to reduce
         if self.initial_matrix is None:
@@ -370,12 +371,7 @@ class ContinuousReduction(object):
             
         # Run the reduction
         start_time = time.time()
-        for _ in range(times):
-            # Check if the time limit has been exceeded
-            if time.time() - start_time > 30 * 60:  # 30 minutes
-                self.log("Time limit exceeded. Breaking out of the reduction loop.")
-                break
-
+        while timer > 0:
             # Run the current algorithm.
             matrix_to_reduce = self.run_algo(matrix_to_reduce)
             self.steps_same_algo += 1
@@ -386,6 +382,14 @@ class ContinuousReduction(object):
 
             # Run checks
             self.control(matrix_to_reduce)
+
+            # Check if the time limit has been exceeded
+            if self.continuous_reduction:
+                if (time.time() - start_time) >= timer:
+                    self.log("Time limit exceeded. Breaking out of the reduction loop.")
+                    break
+            else:
+                timer -= 1
 
         # Get R from the current matrix to reduce
         if self.use_priority:
