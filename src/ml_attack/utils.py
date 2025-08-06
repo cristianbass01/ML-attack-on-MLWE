@@ -176,18 +176,25 @@ def get_b_distribution(params : dict, matrix, R = None) -> tuple:
     if 'error_type' in params:
         mean_e, var_e, _ = get_vector_distribution(params, params['error_type'])
         if R is not None:
+            # If R is provided, scale the error distribution by the sum of R
+            if np.log2(params['q']) > 32:
+                R = R.astype(np.float128)
+                
             mean_e = mean_e * np.sum(R, axis=-1)
             var_e = var_e * np.sum(np.pow(R, 2), axis=-1)
     else:
         mean_e, var_e = 0.0, 0.0
+
+    if np.log2(params['q']) > 32:
+        matrix = matrix.astype(np.float128)
 
     matrix_sum = np.sum(matrix, axis=-1)
     matrix_sq_sum = np.sum(np.pow(matrix, 2), axis=-1)
 
     if 'hw' in params and params['hw'] > 0 and params['secret_type'] == 'binary':
         # In the binary case I have to take into account also the covariance matrix because 
-        # the distribution does not have zero-mean (and so it is not simmetric)
-        h = params['hw']
+        # the distribution does not have zero-mean (and so it is not symmetric)
+        h = params['hw'] * params['k']
         n = params['n'] * params['k']
         mean_b = (h / n) * matrix_sum + mean_e 
         scaling = (h * (n - h)) / (n * (n-1))
