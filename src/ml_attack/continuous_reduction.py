@@ -134,30 +134,34 @@ class ContinuousReduction(object):
     def arrange_reduction_matrix(self, matrix_to_reduce):
         m, n = self.m, self.n
         # Check if the matrix is 1-dimensional
-        A_red = np.zeros((m + n, m + n), dtype=int)
+        A_red = np.zeros((m + n, m + n), dtype=np.int64)
         if self.matrix_config == "salsa":
             # Matrix in form [0 q*In; w*Im A]
-            A_red[n:, :m] = np.identity(m, dtype=int) * self.penalty
+            A_red[n:, :m] = np.identity(m, dtype=np.int64) * self.penalty
             A_red[n:, m:] = matrix_to_reduce
-            A_red[:n, m:] = np.identity(n, dtype=int) * self.q
+            A_red[:n, m:] = np.identity(n, dtype=np.int64) * self.q
         elif self.matrix_config == "dual":
             # Matrix in form [w*Im A; 0 q*In]
-            A_red[:m, :m] = np.identity(m, dtype=int) * self.penalty
+            A_red[:m, :m] = np.identity(m, dtype=np.int64) * self.penalty
             A_red[:m, m:] = matrix_to_reduce
-            A_red[m:, m:] = np.identity(n, dtype=int) * self.q
+            A_red[m:, m:] = np.identity(n, dtype=np.int64) * self.q
         elif self.matrix_config == "original":
             # Matrix in form [A  w*Im; 0 q*In]
-            A_red[:m, n:] = np.identity(m, dtype=int) * self.penalty
+            A_red[:m, n:] = np.identity(m, dtype=np.int64) * self.penalty
             A_red[:m, :n] = matrix_to_reduce
-            A_red[m:, :n] = np.identity(n, dtype=int) * self.q
+            A_red[m:, :n] = np.identity(n, dtype=np.int64) * self.q
         else:
             raise ValueError(f"Unknown matrix configuration: {self.matrix_config}. Supported: 'salsa', 'dual', 'original'.")
 
+        if np.log2(self.q) > 32:
+            # If q is large, use higher precision
+            A_red = A_red.astype(np.float128)
+        
         return A_red  # Ap.shape = (m+N)*(m+N)
 
     def run_flatter_once(self, Ap):
         """ Runs a single loop of flatter. """
-        fplll_Ap = IntegerMatrix.from_matrix(Ap.tolist())
+        fplll_Ap = IntegerMatrix.from_matrix(Ap.astype(int).tolist())
         
         fplll_Ap_encoded = "[" + fplll_Ap.__str__() + "]"
         fplll_Ap_encoded = fplll_Ap_encoded.encode()
@@ -170,12 +174,16 @@ class ContinuousReduction(object):
         out, _ = p.communicate(input=fplll_Ap_encoded)  # output from the flatter run.
 
         t_str = out.rstrip().decode()[1:-1]
-        Ap = np.array([np.array(line[1:-1].split(" ")).astype(int) for line in t_str.split("\n")[:-1]]).astype(int)
+        Ap = np.array([np.array(line[1:-1].split(" "), dtype=np.int64) for line in t_str.split("\n")[:-1]], dtype=np.int64)
+        
+        if np.log2(self.q) > 32:
+            Ap = Ap.astype(np.float128)
+
         return Ap
     
     def run_bkz2_once(self, Ap):
         """ Runs a single round of BKZ. """
-        fplll_Ap = IntegerMatrix.from_matrix(Ap.tolist())
+        fplll_Ap = IntegerMatrix.from_matrix(Ap.astype(int).tolist())
         if self._first_bkz:
             LLL.reduction(fplll_Ap)
             self._first_bkz = False
@@ -200,10 +208,13 @@ class ContinuousReduction(object):
                 else:
                     print(f"Error running bkz2.0. No more float types to upgrade to.")
                     break
-
-        Ap = np.zeros((Ap.shape[0], Ap.shape[1]), dtype=int)
+        # Convert back to numpy array
+        Ap = np.zeros((Ap.shape[0], Ap.shape[1]), dtype=np.int64)
         fplll_Ap.to_matrix(Ap)
+        if np.log2(self.q) > 32:
+            Ap = Ap.astype(np.float128)
         return Ap
+        
 
 # The following code is commented out because it is not used in the current implementation.
 
@@ -306,7 +317,7 @@ class ContinuousReduction(object):
         if self.steps_same_algo > self.lookback and self.n_stall >= self.lookback:
             updated = False
             if self.flatter_countdown > 0:
-                self.log(f"- Flatter stall after: {self.flatter_countdown}, updating...")
+                self.log(f"- Flatter stalled, updating...")
                 self.flatter_countdown = 0
                 updated = True
             else:
@@ -339,7 +350,10 @@ class ContinuousReduction(object):
             raise ValueError("Initial matrix has already been set.")
         
         # Set the initial matrix and its dimensions
-        self.initial_matrix = initial_matrix.copy().astype(int)
+        self.initial_matrix = initial_matrix.copy().astype(np.int64)
+        if np.log2(self.q) > 32:
+            self.initial_matrix = self.initial_matrix.astype(np.float128)
+
         self.m, self.n = initial_matrix.shape
         self.bkz_block_sizes = [blocksize for blocksize in self.bkz_block_sizes if blocksize < self.m + self.n]
 
@@ -354,8 +368,8 @@ class ContinuousReduction(object):
         if self.use_priority:
             self.saved_reduced.initialize(vectors, priorities)
         else:
-            self.saved_reduced = vectors.astype(int)
-            self.saved_stds = priorities.astype(int)
+            self.saved_reduced = vectors.astype(np.int64)
+            self.saved_stds = priorities.astype(np.float64)
 
     def reduce(self, matrix_to_reduce, times=1):
         """ 
@@ -435,6 +449,9 @@ class ContinuousReduction(object):
 
         if state["initial_matrix"] is not None:
             obj.initial_matrix = np.array(state["initial_matrix"])
+
+            if np.log2(obj.q) > 32:
+                obj.initial_matrix = obj.initial_matrix.astype(np.float128)
 
         if 'priority_queue' in state and state["priority_queue"] is not None:
             obj.saved_reduced = BoundedPriorityQueue.from_state_dict(state["priority_queue"])

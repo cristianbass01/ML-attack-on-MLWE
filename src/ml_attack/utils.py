@@ -57,7 +57,7 @@ def mod_mult(mat1, mat2, q):
     mat1 = mat1.astype(np.float128)
     out = (mat1 // frac) @ (mat2 * frac % q)
     out += (mat1 % frac) @ mat2
-    return cmod(out, q).astype(np.int64)
+    return cmod(out, q)
 
 def time_execution(func):
     """
@@ -177,16 +177,10 @@ def get_b_distribution(params : dict, matrix, R = None) -> tuple:
         mean_e, var_e, _ = get_vector_distribution(params, params['error_type'])
         if R is not None:
             # If R is provided, scale the error distribution by the sum of R
-            if np.log2(params['q']) > 32:
-                R = R.astype(np.float128)
-                
             mean_e = mean_e * np.sum(R, axis=-1)
             var_e = var_e * np.sum(np.pow(R, 2), axis=-1)
     else:
         mean_e, var_e = 0.0, 0.0
-
-    if np.log2(params['q']) > 32:
-        matrix = matrix.astype(np.float128)
 
     matrix_sum = np.sum(matrix, axis=-1)
     matrix_sq_sum = np.sum(np.pow(matrix, 2), axis=-1)
@@ -325,7 +319,7 @@ def train_model(dataset, A, b):
         if dataset.params['fit_intercept']:
             A = sm.add_constant(A)
 
-        model = RLM(b, A, M=TukeyBiweight(c=dataset.params['c_factor']))
+        model = RLM(b.astype(int), A.astype(int), M=TukeyBiweight(c=dataset.params['c_factor']))
 
     elif dataset.params['model'] == 'huber':
         patch_once()
@@ -355,7 +349,7 @@ def train_model(dataset, A, b):
         p = np.mean(erf(dataset.mlwe.q / (2 * np.sqrt(2) * std_B)))
 
         if dataset.params['min_samples'] is None:
-            min_samples = np.ceil((dataset.params['k'] * dataset.params['n'] + 1) / p).astype(int)
+            min_samples = np.ceil((dataset.params['k'] * dataset.params['n'] + 1) / p)
             min_samples = min(min_samples, len(A) - 1)
         else:
             min_samples = dataset.params['min_samples']
@@ -834,19 +828,19 @@ def pad_vectors_to_max(vectors_list):
     min_len = min(v.shape[0] for v in vectors_list)
 
     if max_len == min_len:
-        return np.stack(vectors_list).astype(int)
+        return np.stack(vectors_list)
     
     padded = []
     for v in vectors_list:
         pad_size = max_len - v.shape[0]
         if pad_size > 0:
-            padding = np.zeros((pad_size, v.shape[1]), dtype=int)
-            v_padded = np.vstack((v, padding)).astype(int)
+            padding = np.zeros((pad_size, v.shape[1]))
+            v_padded = np.vstack((v, padding))
         else:
             v_padded = v
         padded.append(v_padded)
 
-    return np.stack(padded).astype(int)
+    return np.stack(padded)
 
 def parse_output_file(output_file):
     """Parse the output file and extract relevant statistics."""

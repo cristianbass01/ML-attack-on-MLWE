@@ -62,8 +62,6 @@ class LWEDataset():
         n = self.params['n']
         k = self.params['k']
         num_gen = self.params['num_gen']
-        add_noise = self.params['add_noise']
-        mod_q = self.params['mod_q']
 
         # Initialize A and B matrices
         self.A = np.zeros((num_gen *n*k, k*n))
@@ -77,28 +75,11 @@ class LWEDataset():
         for i in range(num_gen):
             random_bytes = self.mlwe.get_random_bytes()
             
-            if add_noise:
-                if mod_q:
-                    A, B = self.mlwe.generate_A_B(secret_mlwe, random_bytes)
-                    A_lwe = transform_matrix_lwe(A.to_list())
-                    B_lwe = transform_vector_lwe(B.to_list())
-
-                    A_lwe = cmod(A_lwe, self.mlwe.q)
-                    B_lwe = cmod(B_lwe, self.mlwe.q)
-
-                else:
-                    A = self.mlwe.generate_A(random_bytes)
-                    A_lwe = transform_matrix_lwe(A.to_list())
-                    error_lwe = transform_vector_lwe(self.mlwe.generate_error(random_bytes).to_list())
-                    B_lwe = np.tensordot(A_lwe, self.secret, axes=1) + error_lwe
-            
-            else:
-                A = self.mlwe.generate_A(random_bytes)
-                A_lwe = transform_matrix_lwe(A.to_list())
-                B_lwe = np.tensordot(A_lwe, self.secret, axes=1)
-                if mod_q:
-                    A_lwe = cmod(A_lwe, self.mlwe.q)
-                    B_lwe = cmod(B_lwe, self.mlwe.q)
+            A, B = self.mlwe.generate_A_B(secret_mlwe, random_bytes)
+            A_lwe = transform_matrix_lwe(A.to_list())
+            B_lwe = transform_vector_lwe(B.to_list())
+            A_lwe = cmod(A_lwe, self.mlwe.q)
+            B_lwe = cmod(B_lwe, self.mlwe.q)
 
             # Save the generated samples
             self.A[i*n*k:(i+1)*n*k, :] = A_lwe
@@ -124,10 +105,8 @@ class LWEDataset():
 
             # Save the generated samples
             self.A[i*n*k:(i+1)*n*k, :] = A_lwe
-
-            if self.params['mod_q']:
-                self.A = cmod(self.A, self.mlwe.q)
-
+            
+        self.A = cmod(self.A, self.mlwe.q)
         self.reduced = False
 
     def initialize_secret(self):
@@ -140,8 +119,6 @@ class LWEDataset():
         n = self.params['n']
         k = self.params['k']
         num_gen = self.params['num_gen']
-        add_noise = self.params['add_noise']
-        mod_q = self.params['mod_q']
         
         self.mlwe = MLWE(self.params)
 
@@ -156,15 +133,9 @@ class LWEDataset():
         for i in range(num_gen):
             random_bytes = self.mlwe.get_random_bytes()
             
-            if add_noise:
-                error_lwe = transform_vector_lwe(self.mlwe.generate_error(random_bytes).to_list())
-                B_lwe = np.tensordot(A_split[i], self.secret, axes=1) + error_lwe
-                if mod_q:
-                    B_lwe = cmod(B_lwe, self.mlwe.q)
-            else:
-                B_lwe = np.tensordot(A_split[i], self.secret, axes=1)
-                if mod_q:
-                    B_lwe = cmod(B_lwe, self.mlwe.q)
+            error_lwe = transform_vector_lwe(self.mlwe.generate_error(random_bytes).to_list())
+            B_lwe = mod_mult(A_split[i], self.secret, self.mlwe.q) + error_lwe
+            B_lwe = cmod(B_lwe, self.mlwe.q)
 
             # Save the generated samples
             self.B[i*n*k:(i+1)*n*k] = B_lwe
@@ -194,7 +165,7 @@ class LWEDataset():
             last_block_size = block_sizes[-1]
             delta_0 = get_hermite_root_factor(last_block_size)
             m = get_optimal_sample_size(n * k, self.mlwe.q, self.params['penalty'], delta_0)
-            m = max(m, int(0.5 * n * k)) # Ensure at least 50% of the rows are sampled
+            m = max(m, int(0.875 * n * k)) # Ensure at least 50% of the rows are sampled
         elif 0 <= self.params['reduction_samples'] <= 1:
             m = int(self.params['reduction_samples'] * n * k)
             if m == 0:
@@ -245,48 +216,6 @@ class LWEDataset():
         indices_vectors = np.stack(indices_vectors)
 
         return indices_vectors
-
-    def reduction(self):
-        """
-        Reduces the dataset using the reduction matrix.
-        """
-        self.indices = self.get_indices_to_reduce()
-        A_to_reduce = np.stack([self.A[ind] for ind in self.indices])
-        
-        num_blocks = len(self.indices)
-        
-        # Use ThreadPoolExecutor to parallelize the reduction process
-        print(f"Reducing {num_blocks} matrices using {get_slurm_cpu_count()} threads.")
-        args = []
-        for i, mat in enumerate(A_to_reduce):
-            params_copy = self.params.copy()
-            params_copy['checkpoint_filename'] = params_copy['checkpoint_filename'] + f"_{i}.npy"
-            reduction = Reduction(params_copy)
-            args.append((reduction, mat))
-
-        # Use multiprocessing to parallelize the reduction process
-        with ProcessPoolExecutor(max_workers=get_slurm_cpu_count()) as executor:
-            self.R = np.stack(list(executor.map(LWEDataset.reduce_wrapper, args)))
-
-        # Compute reduced A and B with a single call
-        self.RA = mod_mult(self.R, A_to_reduce, self.mlwe.q)
-
-        if self.B is not None:
-            B_to_reduce = np.stack([self.B[ind] for ind in self.indices])
-            self.RB = mod_mult(self.R, B_to_reduce[:, :, np.newaxis], self.mlwe.q)
-            self.RB = np.squeeze(self.RB, axis=-1)
-
-        self.non_zero_indices = np.any(self.RA != 0, axis=2) 
-
-        self.reduced = True
-
-    @staticmethod
-    def reduce_wrapper(args):
-        """
-        Wrapper function for the reduction process.
-        """
-        reduction, matrix = args
-        return reduction.reduce(matrix)
 
     def attack(self, 
                attack_strategy="tour",
@@ -398,7 +327,7 @@ class LWEDataset():
         n_jobs = get_slurm_cpu_count()
         n_jobs = min(n_jobs, num_matrices)  # Limit the number of jobs to the number of matrices
         current_time = start_time
-        with ProcessPoolExecutor(max_workers=n_jobs) as executor:
+        with ThreadPoolExecutor(max_workers=n_jobs) as executor:
             while True:
                 tour += 1
 
@@ -410,12 +339,12 @@ class LWEDataset():
                     R_reduced.append(R)
                     RC_reduced.append(arg[1])
 
-                self.R = pad_vectors_to_max(R_reduced).astype(int)
-                self.RC = np.stack(RC_reduced).astype(int)
+                self.R = pad_vectors_to_max(R_reduced)
+                self.RC = np.stack(RC_reduced)
 
                 if is_rlwe:
                     # Reduction was made using the RLWE/MLWE structure, so we can use the reduction circulants
-                    self.R = np.stack([np.stack([neg_circ(row).T for row in reduced_matrix]) for reduced_matrix in self.R]).astype(int)
+                    self.R = np.stack([np.stack([neg_circ(row).T for row in reduced_matrix]) for reduced_matrix in self.R])
                     
                 current_time = time.time()
 
@@ -423,9 +352,9 @@ class LWEDataset():
                 if save_strategy == "time" and current_time - last_save_time >= save_every:
                     # Save the reduced matrices and best matrices for further reduction
                     if self.params['reduction_max_size'] > 0:
-                        self.best_RC = pad_vectors_to_max([np.stack([item[2] for item in arg[0]['priority_queue']['heap']]) for arg in args]).astype(int)
+                        self.best_RC = pad_vectors_to_max([np.stack([item[2] for item in arg[0]['priority_queue']['heap']]) for arg in args])
                     else:
-                        self.best_RC = np.stack([arg[0]['best_matrix'] for arg in args]).astype(int)
+                        self.best_RC = np.stack([arg[0]['best_matrix'] for arg in args])
 
                     self.reduction_time = previous_reduction_time + current_time - start_time
 
@@ -434,21 +363,21 @@ class LWEDataset():
                 elif save_strategy == "tour" and tour % save_every == 0:
                     # Save the reduced matrices and best matrices for further reduction
                     if self.params['reduction_max_size'] > 0:
-                        self.best_RC = pad_vectors_to_max([np.stack([item[2] for item in arg[0]['priority_queue']['heap']]) for arg in args]).astype(int)
+                        self.best_RC = pad_vectors_to_max([np.stack([item[2] for item in arg[0]['priority_queue']['heap']]) for arg in args])
                     else:
-                        self.best_RC = np.stack([arg[0]['best_matrix'] for arg in args]).astype(int)
+                        self.best_RC = np.stack([arg[0]['best_matrix'] for arg in args])
 
                     self.reduction_time = previous_reduction_time + current_time - start_time
 
                     self.save_reduced(postfix=f'_{tour // save_every}')
 
-                self.RA = mod_mult(self.R, A_to_reduce, self.mlwe.q).astype(int)
+                self.RA = mod_mult(self.R, A_to_reduce, self.mlwe.q)
 
                 self.non_zero_indices = np.any(self.RA != 0, axis=2)
 
                 if self.params['verbose']:
-                    reduction_factor = np.mean(np.std(self.RA[self.non_zero_indices], axis=-1)) / np.mean(np.std(A_to_reduce, axis=-1))
-                    std_b = np.mean(self.get_b_distribution()[2])
+                    reduction_factor = np.mean(np.std(self.RA[self.non_zero_indices], axis=-1)) / np.mean(np.std(A_to_reduce, axis=-1)).astype(np.float64)
+                    std_b = np.mean(self.get_b_distribution()[2]).astype(np.float64)
                     prob = std_to_prob(std_b, self.mlwe.q)
                     print(f"Tour {tour} | Time: {current_time - start_time:.2f}s | Mean std_B: {std_b:.2f} | Reduction Factor: {reduction_factor:.4f} | Prob: {prob:.4f}")
 
@@ -459,7 +388,7 @@ class LWEDataset():
                     if attack_strategy == "time":
                         last_attack_time = current_time
 
-                    self.RB = mod_mult(self.R, B_to_reduce[..., np.newaxis], self.mlwe.q).astype(int)
+                    self.RB = mod_mult(self.R, B_to_reduce[..., np.newaxis], self.mlwe.q)
                     self.RB = np.squeeze(self.RB, axis=-1)
 
                     found, guessed_secret = self.train()
@@ -473,9 +402,9 @@ class LWEDataset():
                             self.RC = np.stack([arg[1] for arg in args])
 
                             if self.params['reduction_max_size'] > 0:
-                                self.best_RC = pad_vectors_to_max([np.stack([item[2] for item in arg[0]['priority_queue']['heap']]) for arg in args]).astype(int)
+                                self.best_RC = pad_vectors_to_max([np.stack([item[2] for item in arg[0]['priority_queue']['heap']]) for arg in args])
                             else:
-                                self.best_RC = np.stack([arg[0]['best_matrix'] for arg in args]).astype(int)
+                                self.best_RC = np.stack([arg[0]['best_matrix'] for arg in args])
 
                             self.reduction_time = previous_reduction_time + current_time - start_time
                             self.save_reduced()
@@ -499,9 +428,9 @@ class LWEDataset():
             self.RC = np.stack([arg[1] for arg in args])
             
             if self.params['reduction_max_size'] > 0:
-                self.best_RC = pad_vectors_to_max([np.stack([item[2] for item in arg[0]['priority_queue']['heap']]) for arg in args]).astype(int)
+                self.best_RC = pad_vectors_to_max([np.stack([item[2] for item in arg[0]['priority_queue']['heap']]) for arg in args])
             else:
-                self.best_RC = np.stack([arg[0]['best_matrix'] for arg in args]).astype(int)
+                self.best_RC = np.stack([arg[0]['best_matrix'] for arg in args])
 
             self.reduction_time = previous_reduction_time + current_time - start_time
 
