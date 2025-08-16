@@ -22,7 +22,7 @@ From: ubuntu:22.04
 
     pip install numpy sympy scipy pycryptodome scikit-learn py-cpuinfo scikit-learn-intelex
 
-    pip install setuptools Cython>=3.0 cysignals pytest black
+    pip install setuptools Cython>=3.0 cysignals pytest black statsmodels
 
     pip install ipython Sphinx>=1.6 matplotlib
 

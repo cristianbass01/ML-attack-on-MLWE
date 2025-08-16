@@ -35,8 +35,8 @@ class BoundedPriorityQueue:
 
     def add_batch(self, vectors, priorities):
         assert len(vectors) == len(priorities)
-        saved = 0
-        
+        saved_priorities = []
+
         for vector, priority in zip(vectors, priorities):
             key = self._vector_key(vector)
             if key in self.vector_keys:
@@ -50,7 +50,7 @@ class BoundedPriorityQueue:
             if len(self.heap) < self.max_size:
                 heapq.heappush(self.heap, item)
                 self.vector_keys.add(key)
-                saved += 1
+                saved_priorities.append(priority)
             else:
                 # Compare with current worst (heap[0])
                 if neg_priority > self.heap[0][0]:
@@ -58,8 +58,10 @@ class BoundedPriorityQueue:
                     popped_item = heapq.heapreplace(self.heap, item)
                     self.vector_keys.remove(self._vector_key(popped_item[2]))
                     self.vector_keys.add(key)
-                    saved += 1
-        return saved
+                    saved_priorities.append(priority)
+
+        max_priority = -self.heap[0][0] if self.heap else float('-inf')
+        return np.sum(np.array(saved_priorities) <= max_priority)
 
     def get_saved_vectors(self):
         return np.array([item[2] for item in self.heap])

@@ -124,13 +124,14 @@ def get_vector_distribution(params : dict, vector_type : str, hw : int = -1) -> 
     Returns the mean and variance of a vector based on its type.
     - params: parameters of the LWE scheme
     - vector_type: type of the vector (binary, ternary, cbd)
-    - hw: hamming weight (optional, used for ternary and cbd)
+    - hw: hamming weight
     Returns:
     - mean: mean of the distribution
     - var: variance of the distribution
     - std: standard deviation of the distribution
     """
-    n = params['n']
+    n = params['n'] * params['k']
+    hw = hw * params['k']
 
     match vector_type:
         case 'binary':
@@ -648,6 +649,7 @@ def get_continuous_reduction_default_params(
             matrix_config: str = 'dual',
             reduction_samples: Optional[int] = None,
             reduction_resampling: bool = True,
+            continuous_reduction: bool = False,
             min_samples: int = 0,
             num_matrices: int = 0,
             reduction_max_size: int = 1000,
@@ -668,6 +670,7 @@ def get_continuous_reduction_default_params(
     'matrix_config': matrix_config,
     'reduction_samples': reduction_samples,
     'reduction_resampling': reduction_resampling,
+    'continuous_reduction': continuous_reduction,
     'min_samples': min_samples,
     'num_matrices': num_matrices,
     'reduction_max_size': reduction_max_size,
