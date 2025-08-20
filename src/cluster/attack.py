@@ -32,6 +32,8 @@ def main(updated_params, args):
     print(f"Parameters: {params}")
     print(f"Arguments: {args_dict}")
 
+    found = False
+
     attack_times = []
     for i in range(args.num_attacks):
         if args.reload or args.reload_from is not None:
@@ -53,7 +55,7 @@ def main(updated_params, args):
             dataset.initialize()
         
         # Attack mode
-        _, attack_time = dataset.attack(
+        secret, attack_time = dataset.attack(
             attack_strategy=args.attack_strategy,
             attack_every=args.attack_every,
             save_strategy=args.save_strategy,
@@ -62,6 +64,10 @@ def main(updated_params, args):
             stop_after=args.stop_after,
             save_at_the_end=args.save_at_the_end,
         )
+
+        if secret is not None:
+            print("Secret found!")
+            found = True
 
         args.save_strategy = "no"  # Save only the first attack
 
@@ -92,7 +98,7 @@ def main(updated_params, args):
         dataset.params.update(updated_params)
         print(f"Reloaded dataset from {filename} with parameters: {dataset.params}")
 
-    if len(args.train_secret_types) > 0:
+    if len(args.train_secret_types) > 0 and not found:
         print("Performing attack on all secret types.")
         preprocessed_time = dataset.reduction_time
         print(f"Preprocessing time: {preprocessed_time:.2f} seconds")
@@ -120,7 +126,7 @@ def main(updated_params, args):
                     found, _ = dataset.train()
                     if found:
                         success_counter[real_hw] += 1
-                        if real_hw == hw:
+                        if real_hw == hw * dataset.params['k']:
                             break
 
                 success_rates = [
