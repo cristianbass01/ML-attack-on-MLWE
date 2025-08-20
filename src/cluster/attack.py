@@ -100,7 +100,6 @@ def main(updated_params, args):
         for secret_type in args.train_secret_types:
             dataset.params['secret_type'] = secret_type
             dataset.params['seed'] = None
-            dataset.params['eta'] = 2
             if secret_type == 'cbd':
                 dataset.params['error_type'] = 'cbd'
             else:
@@ -120,7 +119,7 @@ def main(updated_params, args):
                     found, _ = dataset.train()
                     if found:
                         success_counter[real_hw] += 1
-                        if real_hw == hw:
+                        if real_hw == hw * dataset.params['k']:
                             break
 
                 success_rates = [
