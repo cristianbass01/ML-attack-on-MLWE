@@ -124,8 +124,8 @@ def main(updated_params, args):
                             break
 
                 success_rates = [
-                    f"{hw}: {success_counter[hw]}/{train_counter[hw]} ({success_counter[hw] / train_counter[hw] if train_counter[hw] > 0 else 0:.2f})"
-                    for hw in sorted(train_counter.keys())
+                    f"{hw_found}: {success_counter[hw_found]}/{train_counter[hw_found]} ({success_counter[hw_found] / train_counter[hw_found] if train_counter[hw_found] > 0 else 0:.2f})"
+                    for hw_found in sorted(train_counter.keys())
                 ]
                 print(", ".join(success_rates))
 

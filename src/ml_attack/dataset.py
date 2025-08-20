@@ -310,7 +310,7 @@ class LWEDataset():
         n_jobs = get_slurm_cpu_count()
         n_jobs = min(n_jobs, num_matrices)  # Limit the number of jobs to the number of matrices
         current_time = start_time
-        with ThreadPoolExecutor(max_workers=n_jobs) as executor:
+        with ProcessPoolExecutor(max_workers=n_jobs) as executor:
             while True:
                 tour += 1
 
