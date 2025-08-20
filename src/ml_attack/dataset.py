@@ -142,12 +142,19 @@ class LWEDataset():
             self.B[i*n*k:(i+1)*n*k] = B_lwe
 
         if self.reduced: 
+
+            is_rlwe = self.params['k'] == 1 and self.params['reduction_samples'] == 1 and not self.params['reduction_resampling']
+
             A_to_reduce = np.stack([self.A[ind] for ind in self.indices])
             B_to_reduce = np.stack([self.B[ind] for ind in self.indices])
 
-            self.RA = mod_mult(self.R, A_to_reduce, self.mlwe.q)
+            if is_rlwe:
+                A_to_reduce = A_to_reduce[:, np.newaxis, :, :]
+                B_to_reduce = B_to_reduce[:, np.newaxis, :]
 
-            self.RB = mod_mult(self.R, B_to_reduce[:, :, np.newaxis], self.mlwe.q)
+            self.RA = mod_mult(self.R, A_to_reduce, self.mlwe.q)
+            
+            self.RB = mod_mult(self.R, B_to_reduce[..., np.newaxis], self.mlwe.q)
             self.RB = np.squeeze(self.RB, axis=-1)
 
             self.non_zero_indices = np.any(self.RA != 0, axis=2)
@@ -166,7 +173,6 @@ class LWEDataset():
             last_block_size = block_sizes[-1]
             delta_0 = get_hermite_root_factor(last_block_size)
             m = get_optimal_sample_size(n * k, self.mlwe.q, self.params['penalty'], delta_0)
-            m = max(m, int(0.875 * n * k)) # Ensure at least 50% of the rows are sampled
         elif 0 <= self.params['reduction_samples'] <= 1:
             m = int(self.params['reduction_samples'] * n * k)
             if m == 0:
@@ -326,10 +332,20 @@ class LWEDataset():
                 self.RC = np.stack(RC_reduced)
 
                 if is_rlwe:
-                    # Reduction was made using the RLWE/MLWE structure, so we can use the reduction circulants
+                    # Reduction was made using the RLWE structure, so we can use the reduction circulants
                     self.R = np.stack([np.stack([neg_circ(row).T for row in reduced_matrix]) for reduced_matrix in self.R])
                     
                 current_time = time.time()
+
+                self.RA = mod_mult(self.R, A_to_reduce, self.mlwe.q)
+
+                self.non_zero_indices = np.any(self.RA != 0, axis=2)
+
+                if self.params['verbose']:
+                    reduction_factor = np.mean(np.std(self.RA[self.non_zero_indices], axis=-1)) / np.mean(np.std(A_to_reduce, axis=-1)).astype(np.float64)
+                    std_b = np.mean(self.get_b_distribution()[2]).astype(np.float64)
+                    prob = std_to_prob(std_b, self.mlwe.q)
+                    print(f"Tour {tour} | Time: {current_time - start_time:.2f}s | Mean std_B: {std_b:.2f} | Reduction Factor: {reduction_factor:.4f} | Prob: {prob:.4f}")
 
                 # Check if it's time to save
                 if save_strategy == "time" and current_time - last_save_time >= save_every:
@@ -353,16 +369,6 @@ class LWEDataset():
                     self.reduction_time = previous_reduction_time + current_time - start_time
 
                     self.save_reduced(postfix=f'_{tour // save_every}')
-
-                self.RA = mod_mult(self.R, A_to_reduce, self.mlwe.q)
-
-                self.non_zero_indices = np.any(self.RA != 0, axis=2)
-
-                if self.params['verbose']:
-                    reduction_factor = np.mean(np.std(self.RA[self.non_zero_indices], axis=-1)) / np.mean(np.std(A_to_reduce, axis=-1)).astype(np.float64)
-                    std_b = np.mean(self.get_b_distribution()[2]).astype(np.float64)
-                    prob = std_to_prob(std_b, self.mlwe.q)
-                    print(f"Tour {tour} | Time: {current_time - start_time:.2f}s | Mean std_B: {std_b:.2f} | Reduction Factor: {reduction_factor:.4f} | Prob: {prob:.4f}")
 
                 # Check if it's time to attack
                 if attack_strategy == "time" and current_time - last_attack_time >= attack_every or \
