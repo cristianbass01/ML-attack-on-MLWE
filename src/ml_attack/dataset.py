@@ -688,9 +688,9 @@ class LWEDataset():
         dataset = cls(params)
 
         if params['k'] != 1:
-            orig_A_path = data_path / f"origA_n{params['n']}_k{params['k']}_logq{int(np.round(np.log2(params['q'])))}.npy"
+            orig_A_path = data_path / f"origA_n{params['n']}_k{params['k']}_logq{int(np.ceil(np.log2(params['q'])))}.npy"
         else:
-            orig_A_path = data_path / f"origA_n{params['n']}_logq{int(np.round(np.log2(params['q'])))}.npy"
+            orig_A_path = data_path / f"origA_n{params['n']}_logq{int(np.ceil(np.log2(params['q'])))}.npy"
 
         dataset.A = np.load(orig_A_path)
         dataset.params['num_gen'] = dataset.A.shape[0] // (params['n'] * params['k'])
