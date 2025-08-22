@@ -18,7 +18,7 @@ FLOAT_UPGRADE = {
     "mpfr_250": "mpfr_300",
     "mpfr_300": "mpfr_350"
 }
-MAX_TIME_BKZ = 60  # 1 minute
+MAX_TIME_BKZ = 60*60  # 1 hour
 
 class ContinuousReduction(object):
     def __init__(self, params: dict):

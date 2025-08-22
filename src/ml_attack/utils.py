@@ -542,11 +542,9 @@ def get_filename_from_params(params: dict, ext=".pkl"):
         'hw', 'error_type', 'num_gen', 'add_noise', 'mod_q', 'seed',
         
         # Reduction Algorithm Parameters
-        #'float_type', 'min_samples','algos', 'lookback',
-        #'bkz_deltas', 'flatter_alphas', 'verbose', 'checkpoint_filename',
-        #'reload_checkpoint', 'reduction_std', 
         'reduction_factor', 'reduction_resampling', 'penalty',
-        'matrix_config', 'bkz_block_sizes'
+        'matrix_config', 'bkz_block_sizes', 'reduction_max_size'
+        
         # Approximation Parameters
         #'approximation_std'
     ]

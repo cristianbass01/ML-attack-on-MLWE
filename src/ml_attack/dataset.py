@@ -142,12 +142,19 @@ class LWEDataset():
             self.B[i*n*k:(i+1)*n*k] = B_lwe
 
         if self.reduced: 
+
+            is_rlwe = self.params['k'] == 1 and self.params['reduction_samples'] == 1 and not self.params['reduction_resampling']
+
             A_to_reduce = np.stack([self.A[ind] for ind in self.indices])
             B_to_reduce = np.stack([self.B[ind] for ind in self.indices])
 
-            self.RA = mod_mult(self.R, A_to_reduce, self.mlwe.q)
+            if is_rlwe:
+                A_to_reduce = A_to_reduce[:, np.newaxis, :, :]
+                B_to_reduce = B_to_reduce[:, np.newaxis, :]
 
-            self.RB = mod_mult(self.R, B_to_reduce[:, :, np.newaxis], self.mlwe.q)
+            self.RA = mod_mult(self.R, A_to_reduce, self.mlwe.q)
+            
+            self.RB = mod_mult(self.R, B_to_reduce[..., np.newaxis], self.mlwe.q)
             self.RB = np.squeeze(self.RB, axis=-1)
 
             self.non_zero_indices = np.any(self.RA != 0, axis=2)
@@ -309,7 +316,7 @@ class LWEDataset():
         n_jobs = get_slurm_cpu_count()
         n_jobs = min(n_jobs, num_matrices)  # Limit the number of jobs to the number of matrices
         current_time = start_time
-        with ThreadPoolExecutor(max_workers=n_jobs) as executor:
+        with ProcessPoolExecutor(max_workers=n_jobs) as executor:
             while True:
                 tour += 1
 
@@ -325,7 +332,7 @@ class LWEDataset():
                 self.RC = np.stack(RC_reduced)
 
                 if is_rlwe:
-                    # Reduction was made using the RLWE/MLWE structure, so we can use the reduction circulants
+                    # Reduction was made using the RLWE structure, so we can use the reduction circulants
                     self.R = np.stack([np.stack([neg_circ(row).T for row in reduced_matrix]) for reduced_matrix in self.R])
                     
                 current_time = time.time()
