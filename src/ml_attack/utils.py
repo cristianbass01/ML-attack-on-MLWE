@@ -477,6 +477,9 @@ def clean_secret(secret, params: dict):
     """
     Correct the guessed secret to be in the right range and round it.
     """
+    expected_s, _, std_s = get_vector_distribution(params, params['secret_type'], params['hw'])
+    secret = (secret - np.mean(secret)) / np.std(secret) * std_s + expected_s
+
     match params['secret_type']:
         case 'binary':
             secret = np.clip(np.round(secret), 0, 1)
