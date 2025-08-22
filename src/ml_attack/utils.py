@@ -477,8 +477,9 @@ def clean_secret(secret, params: dict):
     """
     Correct the guessed secret to be in the right range and round it.
     """
-    expected_s, _, std_s = get_vector_distribution(params, params['secret_type'], params['hw'])
-    secret = (secret - np.mean(secret)) / np.std(secret) * std_s + expected_s
+    if params['normalize_raw_secret']:
+        expected_s, _, std_s = get_vector_distribution(params, params['secret_type'], params['hw'])
+        secret = (secret - np.mean(secret)) / np.std(secret) * std_s + expected_s
 
     match params['secret_type']:
         case 'binary':
@@ -689,6 +690,7 @@ def get_continuous_reduction_default_params(
 
 def get_train_default_params(
         train_percentages: List[float] = [1.0],
+        subsets_with_probs: bool = False,
         model: str = 'tukey',
         lr: float = 0.0001,
         c_factor: float = 1.0,
@@ -701,10 +703,12 @@ def get_train_default_params(
         use_ransac: bool = False,
         residual_factor: Optional[float] = 1.5,
         min_samples: Optional[int] = None,
-        max_trials: int = 100
+        max_trials: int = 100,
+        normalize_raw_secret: bool = True
         ):
     return {
         "train_percentages": train_percentages,
+        "subsets_with_probs": subsets_with_probs,
         "model": model,
         "lr": lr,
         "c_factor": c_factor,
@@ -717,7 +721,8 @@ def get_train_default_params(
         "use_ransac": use_ransac,
         "residual_factor": residual_factor,
         "min_samples": min_samples,
-        "max_trials": max_trials
+        "max_trials": max_trials,
+        "normalize_raw_secret": normalize_raw_secret
     }
 
 def get_default_params():

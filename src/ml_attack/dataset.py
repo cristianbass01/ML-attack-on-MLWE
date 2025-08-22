@@ -463,7 +463,19 @@ class LWEDataset():
 
         # After each reduction, it tries to retrive the secret
         std_B = self.approximate_b()
-        sorted_indices = np.argsort(std_B)
+
+        if self.params['subsets_with_probs']:
+            # Normalize std_B to be in the range [0, 1]
+            std_b_min = np.min(std_B)
+            std_b_max = np.max(std_B)
+            normalized_std_b = (std_B - std_b_min) / (std_b_max - std_b_min)
+
+            best_probs = np.array([np.max(probs) for probs in self.b_probs])
+            priority = normalized_std_b * (1 - best_probs)
+        else:
+            priority = std_B
+
+        sorted_indices = np.argsort(priority)
 
         A_reduced = self.get_A()
         best_b = self.best_b
