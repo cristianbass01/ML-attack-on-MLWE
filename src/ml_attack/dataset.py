@@ -481,8 +481,8 @@ class LWEDataset():
         best_b = self.best_b
 
         if self.params['verbose']:
-            b_real = get_no_mod(self.params, A_reduced, self.secret, self.get_B())
-        
+            b_real = get_no_mod(A_reduced, self.secret, self.get_B(), self.params['q'])
+
         for p in self.params['train_percentages']:
             # Select top N% with the lowest std
             num_selected = int(len(std_B) * p)
@@ -602,7 +602,6 @@ class LWEDataset():
         dataset.secret = loaded_data['secret']
         dataset.B = loaded_data['B']
         dataset.A = loaded_data['A']
-
 
         if 'indices' not in loaded_data:
             dataset.R = loaded_data['R']
