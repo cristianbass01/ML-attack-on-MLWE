@@ -488,9 +488,11 @@ def clean_secret(secret, params: dict):
             secret = np.clip(np.round(secret), -1, 1)
         case 'cbd':
             secret = np.clip(np.round(secret), -params['eta'], params['eta'])
+        case 'gaussian':
+            secret = np.round(secret)
         case _:
-            raise ValueError("Invalid secret type. Choose from 'binary', 'ternary', or 'cbd'.")
-        
+            raise ValueError("Invalid secret type. Choose from 'binary', 'ternary', 'cbd', or 'gaussian'.")
+
     secret[secret == -0.0] = 0.0
     return secret
 
