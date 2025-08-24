@@ -8,9 +8,10 @@ sys.path.append(os.path.abspath(os.path.join(os.getcwd(), '..')))
 
 from kyber.mlwe import MLWE
 from ml_attack.utils import (
-    get_default_params, mod_mult, get_b_distribution, transform_vector_lwe, cmod, get_no_mod,
+    get_default_params, mod_mult, get_b_distribution, cmod, get_no_mod,
     compute_b_candidates_and_probs
 )
+from ml_attack.lwe import transform_vector_lwe
 
 def get_data_salsa(data_path, updated_params, num_secrets, top_percent=1.0):
     """
