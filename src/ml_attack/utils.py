@@ -249,7 +249,7 @@ def get_percentage_true_b(dataset, top_percent=1, verbose=False, indices=None):
 
     _, _, std_B = dataset.get_b_distribution()
 
-    b_real = get_no_mod(dataset.params, A_reduced, secret, b_reduced)
+    b_real = get_no_mod(A_reduced, secret, b_reduced, dataset.params['q'])
 
     if indices is None:
         if top_percent < 1:
@@ -301,7 +301,7 @@ def get_true_mask(dataset):
     A_reduced = dataset.get_A()
     b_reduced = dataset.get_B()
 
-    b_real = get_no_mod(dataset.params, A_reduced, secret, b_reduced)
+    b_real = get_no_mod(A_reduced, secret, b_reduced, dataset.params['q'])
 
     mask = np.zeros(len(b_real), dtype=bool)
     for i in range(len(b_real)):
@@ -494,13 +494,10 @@ def clean_secret(secret, params: dict):
     secret[secret == -0.0] = 0.0
     return secret
 
-def get_no_mod(params: dict, A, secret, B) -> bool:
+def get_no_mod(A, secret, B, q) -> bool:
     """
     Returns the no-mod condition for the given parameters and matrices.
     """
-    q = params['q']
-
-    secret = clean_secret(secret, params)
     A_s = A @ secret
     e = (B - A_s) % q
     e[e > q // 2] -= q
