@@ -13,7 +13,7 @@ from ml_attack.utils import (
 )
 from ml_attack.lwe import transform_vector_lwe
 
-def get_data_salsa(data_path, updated_params, num_secrets, top_percent=1.0):
+def get_data_salsa(data_path, updated_params, top_percent=1.0):
     """
     Loads the dataset from a Salsa directory with:
     - params.pkl: parameters of the dataset
@@ -80,7 +80,7 @@ def get_data_salsa(data_path, updated_params, num_secrets, top_percent=1.0):
     indices = np.stack(full_indices)
     return {"R": R, "indices": indices, "params": params, "A": A}
 
-def get_data_reduced(filepath):
+def get_data_reduced(filepath, updated_params):
     """
     Loads the dataset from a file without using the `MLWE` class.
     Assumes `indices` are not None and avoids computing `RA` and `RB`.
@@ -89,6 +89,8 @@ def get_data_reduced(filepath):
         loaded_data = pickle.load(f)
 
     params = loaded_data['params']
+    params.update(updated_params)
+
     A = loaded_data['A']
 
     if 'RC' in loaded_data:
@@ -123,7 +125,7 @@ def get_data_reduced(filepath):
 
     return {"R": R, "indices": indices, "params": params, "A": A}
 
-def statistics(data):
+def statistics(data, num_secrets):
     R = data["R"]
     indices = data["indices"]
     params = data["params"]
@@ -150,15 +152,17 @@ def statistics(data):
     expected_b, var_b, std_b = get_b_distribution(params, RA[non_zero_indices], R[non_zero_indices])
 
     print("Approximation B:")
-    print(f" - Expected B: {expected_b}")
-    print(f" - Var B: {var_b}")
-    print(f" - Std B: {std_b}")
+    print(f" - Expected B: {np.mean(expected_b)}")
+    print(f" - Var B: {np.mean(var_b)}")
+    print(f" - Std B: {np.mean(std_b)}")
 
     mlwe = MLWE(params)
+
     total_matches_nomod = []
+    total_matches_mod = []
     total_matches_approx = []
     for count in range(num_secrets):
-        print(f"Generating secret {count + 1}/{num_secrets}")
+        print(f"\nGenerating secret {count + 1}/{num_secrets}")
 
         random_bytes = mlwe.get_random_bytes()
         secret_mlwe = mlwe.generate_secret(random_bytes)
@@ -189,11 +193,12 @@ def statistics(data):
 
         matches_nomod = np.sum(RB[non_zero_indices] == b_real)
         print(f"  - Matches (NoMod): {matches_nomod} out of {len(b_real)} ({(matches_nomod / len(b_real)) * 100:.2f}%)")
-        total_matches_nomod.append(matches_nomod)
+        total_matches_nomod.append(matches_nomod / len(b_real))
 
         # Perform mod matching
         mod_matches = np.sum((RB[non_zero_indices] % mlwe.q) == (b_real))
         print(f"  - Mod Matches: {mod_matches} out of {len(b_real)} ({(mod_matches / len(b_real)) * 100:.2f}%)")
+        total_matches_mod.append(mod_matches / len(b_real))
 
         # Approximate to get the best b and check again the match
         b_candidates, b_probs = compute_b_candidates_and_probs(
@@ -214,11 +219,13 @@ def statistics(data):
 
         matches_approx = np.sum(best_b == b_real)
         print(f"  - Matches (refined): {matches_approx} out of {len(b_real)} ({(matches_approx / len(b_real)) * 100:.2f}%)")
-        total_matches_approx.append(matches_approx)
+        total_matches_approx.append(matches_approx / len(b_real))
 
     mean_matches_nomod = np.mean(total_matches_nomod)
+    mean_matches_mod = np.mean(total_matches_mod)
     mean_matches_approx = np.mean(total_matches_approx)
     print(f"\nMean Matches (NoMod): {mean_matches_nomod}")
+    print(f"Mean Matches (Mod): {mean_matches_mod}")
     print(f"Mean Matches (Approx): {mean_matches_approx}")
 
 
@@ -230,13 +237,12 @@ if __name__ == "__main__":
     parser.add_argument("--num_secrets", type=int, default=1, help="Number of secrets to generate and test")
     args = parser.parse_args()
 
-    # Load updated parameters from the JSON file
-    with open(args.params, 'r') as f:
-        updated_params = json.load(f)
+    # Load updated parameters
+    updated_params = json.loads(args.params)
 
     if Path(args.data_path).is_dir():
-        data = get_data_salsa(args.data_path, updated_params, args.num_secrets, args.top_percent)
+        data = get_data_salsa(args.data_path, updated_params, args.top_percent)
     else:
-        data = get_data_reduced(args.data_path)
+        data = get_data_reduced(args.data_path, updated_params)
 
-    statistics(data)
+    statistics(data, args.num_secrets)
