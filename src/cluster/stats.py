@@ -11,7 +11,7 @@ from ml_attack.utils import (
     get_default_params, mod_mult, get_b_distribution, cmod, get_no_mod,
     compute_b_candidates_and_probs
 )
-from ml_attack.lwe import transform_vector_lwe
+from ml_attack.lwe import transform_vector_lwe, neg_circ
 
 def get_data_salsa(data_path, updated_params, top_percent=1.0):
     """
@@ -92,6 +92,7 @@ def get_data_reduced(filepath, updated_params):
     params.update(updated_params)
 
     A = loaded_data['A']
+    indices = loaded_data['indices']  # Assumes indices are always present
 
     if 'RC' in loaded_data:
         RC = loaded_data['RC']
@@ -99,10 +100,10 @@ def get_data_reduced(filepath, updated_params):
             best_RC = loaded_data['best_RC']
 
             if params['matrix_config'] in ['salsa', 'dual']:
-                m = A.shape[1]
+                m = indices.shape[1]
                 R = np.stack([reduced_matrix[:, :m] / loaded_data['params']['penalty'] for reduced_matrix in best_RC])
             else:
-                n = A.shape[2]
+                n = indices.shape[2]
                 R = np.stack([reduced_matrix[:, n:] / loaded_data['params']['penalty'] for reduced_matrix in best_RC])
 
             if params['k'] == 1 and params['reduction_samples'] == 1 and not params['reduction_resampling']:
@@ -111,15 +112,13 @@ def get_data_reduced(filepath, updated_params):
             print("Warning: 'best_RC' corrupted. Using 'RC' instead.")
             best_RC = None
             if params['matrix_config'] in ['salsa', 'dual']:
-                m = A.shape[1]
+                m = indices.shape[1]
                 R = np.stack([reduced_matrix[:, :m] / loaded_data['params']['penalty'] for reduced_matrix in RC])
             else:
-                n = A.shape[2]
+                n = indices.shape[2]
                 R = np.stack([reduced_matrix[:, n:] / loaded_data['params']['penalty'] for reduced_matrix in RC])
     else:
         R = loaded_data['R']
-
-    indices = loaded_data['indices']  # Assumes indices are always present
 
     print("Params:", params)
 
