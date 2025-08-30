@@ -26,6 +26,8 @@ from ml_attack.utils import (
 )
 from ml_attack.lwe import neg_circ
 
+from scipy.linalg import circulant
+
 import numpy as np
 import time
 
@@ -143,12 +145,12 @@ class LWEDataset():
 
         if self.reduced: 
 
-            is_rlwe = self.params['k'] == 1 and self.params['reduction_samples'] == 1 and not self.params['reduction_resampling']
+            enhanced = (self.params['reduction_samples'] == self.params['n'] or self.params['reduction_samples'] == (1 / self.params['k']) and not self.params['reduction_resampling'])
 
             A_to_reduce = np.stack([self.A[ind] for ind in self.indices])
             B_to_reduce = np.stack([self.B[ind] for ind in self.indices])
 
-            if is_rlwe:
+            if enhanced:
                 A_to_reduce = A_to_reduce[:, np.newaxis, :, :]
                 B_to_reduce = B_to_reduce[:, np.newaxis, :]
 
@@ -157,7 +159,7 @@ class LWEDataset():
             self.RB = mod_mult(self.R, B_to_reduce[..., np.newaxis], self.mlwe.q)
             self.RB = np.squeeze(self.RB, axis=-1)
 
-            self.non_zero_indices = np.any(self.RA != 0, axis=2)
+            self.non_zero_indices = np.any(self.RA != 0, axis=-1)
 
     def get_indices_to_reduce(self):
         """
@@ -257,7 +259,7 @@ class LWEDataset():
 
         num_matrices = A_to_reduce.shape[0]
 
-        is_rlwe = self.params['k'] == 1 and self.params['reduction_samples'] == 1 and not self.params['reduction_resampling']
+        enhanced = (self.params['reduction_samples'] == self.params['n'] or self.params['reduction_samples'] == (1 / self.params['k']) and not self.params['reduction_resampling'])
 
         # Use ThreadPoolExecutor to parallelize the reduction process
         if self.params['verbose']:
@@ -300,7 +302,7 @@ class LWEDataset():
                 # First attack
                 args.append([reduction.to_state_dict(), A_to_reduce[i].copy(), initial_timer])
 
-        if is_rlwe:
+        if enhanced:
             A_to_reduce = A_to_reduce[:, np.newaxis, :, :]
             if attack_strategy != "no":
                 B_to_reduce = B_to_reduce[:, np.newaxis, :]
@@ -331,15 +333,14 @@ class LWEDataset():
                 self.R = pad_vectors_to_max(R_reduced)
                 self.RC = np.stack(RC_reduced)
 
-                if is_rlwe:
-                    # Reduction was made using the RLWE structure, so we can use the reduction circulants
+                if enhanced:
+                    # Reduction was made using the MLWE structure, so we can use the reduction circulants
                     self.R = np.stack([np.stack([neg_circ(row).T for row in reduced_matrix]) for reduced_matrix in self.R])
                     
                 current_time = time.time()
 
                 self.RA = mod_mult(self.R, A_to_reduce, self.mlwe.q)
-
-                self.non_zero_indices = np.any(self.RA != 0, axis=2)
+                self.non_zero_indices = np.any(self.RA != 0, axis=-1)
 
                 if self.params['verbose']:
                     reduction_factor = np.mean(np.std(self.RA[self.non_zero_indices], axis=-1)) / np.mean(np.std(A_to_reduce, axis=-1)).astype(np.float64)
@@ -515,7 +516,17 @@ class LWEDataset():
         """ Returns the B vector. """
         if self.B is None:
             raise ValueError("B vector is not initialized. Please run initialize_secret() first.")
-        
+
+        if self.reduced and self.RB is None:
+            B_to_reduce = np.stack([self.B[ind] for ind in self.indices])
+            enhanced = (self.params['reduction_samples'] == self.params['n'] or self.params['reduction_samples'] == (1 / self.params['k']) and not self.params['reduction_resampling'])
+            
+            if enhanced:
+                B_to_reduce = B_to_reduce[:, np.newaxis, :]
+
+            self.RB = mod_mult(self.R, B_to_reduce[..., np.newaxis], self.mlwe.q)
+            self.RB = np.squeeze(self.RB, axis=-1)
+
         return self.RB[self.non_zero_indices] if self.reduced else self.B
 
     def get_secret(self):
@@ -622,10 +633,6 @@ class LWEDataset():
                     else:
                         n = A_to_reduce.shape[2]
                         dataset.R = np.stack([reduced_matrix[:, n:] / loaded_data['params']['penalty'] for reduced_matrix in dataset.best_RC])
-
-                    if dataset.params['k'] == 1 and dataset.params['reduction_samples'] == 1 and not dataset.params['reduction_resampling']:
-                        dataset.R = np.stack([np.stack([neg_circ(row).T for row in reduced_matrix]) for reduced_matrix in dataset.R])
-                        A_to_reduce = A_to_reduce[:, np.newaxis, :, :]
                 except:
                     print("Warning: 'best_RC' corrupted. Using 'RC' instead.")
                     dataset.best_RC = None
@@ -635,6 +642,14 @@ class LWEDataset():
                     else:
                         n = A_to_reduce.shape[2]
                         dataset.R = np.stack([reduced_matrix[:, n:] / loaded_data['params']['penalty'] for reduced_matrix in dataset.RC])
+                
+                enhanced = (dataset.params['reduction_samples'] == dataset.params['n'] or dataset.params['reduction_samples'] == (1 / dataset.params['k']) and not dataset.params['reduction_resampling'])
+
+                if enhanced:
+                    dataset.R = np.stack([np.stack([neg_circ(row).T for row in reduced_matrix]) for reduced_matrix in dataset.R])
+
+                    A_to_reduce = A_to_reduce[:, np.newaxis, :, :]
+                    
             else:
                 dataset.R = loaded_data['R']
 
@@ -647,7 +662,9 @@ class LWEDataset():
 
             if dataset.B is not None:
                 B_to_reduce = np.stack([dataset.B[ind] for ind in dataset.indices])
-                if dataset.params['k'] == 1 and dataset.params['reduction_samples'] == 1 and not dataset.params['reduction_resampling']:
+                
+                enhanced = (dataset.params['reduction_samples'] == dataset.params['n'] or dataset.params['reduction_samples'] == (1 / dataset.params['k']) and not dataset.params['reduction_resampling'])
+                if enhanced:
                     B_to_reduce = B_to_reduce[:, np.newaxis, :]
 
                 dataset.RB = mod_mult(dataset.R, B_to_reduce[..., np.newaxis], dataset.mlwe.q)

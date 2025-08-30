@@ -94,12 +94,6 @@ class ContinuousReduction(object):
         :return: The reduced matrix.
         """
         if self.flatter_countdown > 0:
-            self.flatter_countdown -= 1
-            if self.flatter_countdown == 0:
-                self.n_stall = 0
-                self.no_improvements = 0
-                self.steps_same_algo = 0
-                
             return self.run_flatter_once(Ap)
         #elif self.crossover < 0 or self.bkz_block_sizes[self.bkz_block_size_idx] < self.crossover: 
         #    return self.run_bkz2_once(Ap)
@@ -278,8 +272,6 @@ class ContinuousReduction(object):
         
         non_zero_indiced = np.where(std_b > 0)[0]
 
-        algo_name = "flatter" if self.flatter_countdown > 0 else f"bkz2.0_{self.bkz_block_sizes[self.bkz_block_size_idx]}"
-        
         if self.use_priority:
             num_updates = self.saved_reduced.add_batch(A_red[non_zero_indiced], std_b[non_zero_indiced])
         elif self.saved_stds is None:
@@ -302,7 +294,15 @@ class ContinuousReduction(object):
 
         mean_std_b = np.mean(std_b[non_zero_indiced]) if len(non_zero_indiced) > 1 else 0
 
+        algo_name = "flatter" if self.flatter_countdown > 0 else f"bkz2.0_{self.bkz_block_sizes[self.bkz_block_size_idx]}"
         self.log(f"- Algo: {algo_name} | Updated {num_updates}/{len(non_zero_indiced)} | Mean std_B: {mean_std_b:.2f}")
+
+        if self.flatter_countdown > 0:
+            self.flatter_countdown -= 1
+            if self.flatter_countdown == 0:
+                self.n_stall = 0
+                self.no_improvements = 0
+                self.steps_same_algo = 0
 
         if num_updates/len(non_zero_indiced) >= 0.1:
             self.n_stall = 0
