@@ -113,7 +113,8 @@ class ContinuousReduction(object):
         """ Get the R matrix from the reduction. """    
         if self.matrix_config in ["salsa", "dual"]:
             # Matrix in the form [wR, RA + qC]
-            return cmod(matrix_to_reduce[:, :self.m] / self.penalty, self.q)
+            m = self.m if not self.mlwe_trick else (self.n * ((self.m + self.n - 1) // self.n))
+            return cmod(matrix_to_reduce[:, :m] / self.penalty, self.q)
         elif self.matrix_config == "original":
             # Matrix in the form [RA + qC, wR]
             return cmod(matrix_to_reduce[:, (self.n * self.k):] / self.penalty, self.q)
@@ -130,38 +131,34 @@ class ContinuousReduction(object):
 
     def arrange_reduction_matrix(self, matrix_to_reduce):
         """ Arrange the matrix to be reduced into the appropriate form. """
-        m, nk = matrix_to_reduce.shape
+        m_red, nk = matrix_to_reduce.shape
         if self.mlwe_trick:
-            h = m // self.n  # Number of full circulant blocks
-            m = (h + 1) * self.n  # Round up to nearest multiple of n
-            g = m - h * self.n  # Extra rows
-            ambient_dim = m + nk
-            
-            if m > matrix_to_reduce.shape[0]:
-                padding = np.zeros((m - matrix_to_reduce.shape[0], nk), dtype=matrix_to_reduce.dtype)
-                matrix_to_reduce = np.vstack((matrix_to_reduce, padding))
+            h = self.m // self.n  # Number of full circulant blocks
+            g = self.m - h * self.n  # Extra rows
+
+            ambient_dim = m_red + nk
 
         # Check if the matrix is 1-dimensional
-        A_red = np.zeros((m + nk, m + nk), dtype=np.int64)
+        A_red = np.zeros((m_red + nk, m_red + nk), dtype=np.int64)
         if self.matrix_config == "salsa":
             # Matrix in form [0 q*In; w*Im A]
-            A_red[nk:, :m] = np.identity(m, dtype=np.int64) * self.penalty
-            A_red[nk:, m:] = matrix_to_reduce
-            A_red[:nk, m:] = np.identity(nk, dtype=np.int64) * self.q
+            A_red[nk:, :m_red] = np.identity(m_red, dtype=np.int64) * self.penalty
+            A_red[nk:, m_red:] = matrix_to_reduce
+            A_red[:nk, m_red:] = np.identity(nk, dtype=np.int64) * self.q
             if self.mlwe_trick:
                 Pi = np.diag([0 if nk + h*self.n + g <= r < nk + (h+1)*self.n else 1 for r in range(ambient_dim)])
         elif self.matrix_config == "dual":
             # Matrix in form [w*Im A; 0 q*In]
-            A_red[:m, :m] = np.identity(m, dtype=np.int64) * self.penalty
-            A_red[:m, m:] = matrix_to_reduce
-            A_red[m:, m:] = np.identity(nk, dtype=np.int64) * self.q
+            A_red[:m_red, :m_red] = np.identity(m_red, dtype=np.int64) * self.penalty
+            A_red[:m_red, m_red:] = matrix_to_reduce
+            A_red[m_red:, m_red:] = np.identity(nk, dtype=np.int64) * self.q
             if self.mlwe_trick:
                 Pi = np.diag([0 if h*self.n + g <= r < (h+1)*self.n else 1 for r in range(ambient_dim)])
         elif self.matrix_config == "original":
             # Matrix in form [A  w*Im; 0 q*In]
-            A_red[:m, nk:] = np.identity(m, dtype=np.int64) * self.penalty
-            A_red[:m, :nk] = matrix_to_reduce
-            A_red[m:, :nk] = np.identity(nk, dtype=np.int64) * self.q
+            A_red[:m_red, nk:] = np.identity(m_red, dtype=np.int64) * self.penalty
+            A_red[:m_red, :nk] = matrix_to_reduce
+            A_red[m_red:, :nk] = np.identity(nk, dtype=np.int64) * self.q
             if self.mlwe_trick:
                 Pi = np.diag([0 if h*self.n + g <= r < (h+1)*self.n else 1 for r in range(ambient_dim)])
         else:
@@ -177,12 +174,12 @@ class ContinuousReduction(object):
             # Remove the (n-g) zero vectors (dependent rows)
             A_red = A_red[~np.all(A_red == 0, axis=1)]
             # Remove all-zero columns
-            A_red = A_red[:, ~np.all(A_red == 0, axis=0)]
+            #A_red = A_red[:, ~np.all(A_red == 0, axis=0)]
 
         if np.log2(self.q) > 32:
             # If q is large, use higher precision
             A_red = A_red.astype(np.float128)
-        
+
         return A_red
 
     def run_flatter_once(self, Ap):
@@ -339,7 +336,7 @@ class ContinuousReduction(object):
                 self.saved_stds[better_indices] = std_b[better_indices]
 
             max_items = len(non_zero_indiced)
-            
+
         mean_std_b = np.mean(std_b[non_zero_indiced]) if len(non_zero_indiced) > 1 else 0
 
         algo_name = "flatter" if self.flatter_countdown > 0 else f"bkz2.0_{self.bkz_block_sizes[self.bkz_block_size_idx]}"

@@ -769,7 +769,7 @@ def calculate_min_trials(n, m, target_prob=0.99, max_k=1000):
 
 def get_indices_based_on_blocks(n: int, m: int, num_blocks: int, num_matrices: int, seed: int = None, verbose: bool = False):
     """
-    Build `num_matrices` matrices each with exactly `m` indices.
+    Build `num_matrices` matrices each with n*h indices (which only m will be actually used).
 
     - Always uses a global ordering (queue of block indices).
     - Queue is a random permutation of all blocks; once exhausted, it is refilled with a new random permutation.
@@ -778,7 +778,8 @@ def get_indices_based_on_blocks(n: int, m: int, num_blocks: int, num_matrices: i
     """
     rng = np.random.default_rng(seed)
 
-    matrices_segments = [[] for _ in range(num_matrices)]
+    indices_segments = [[] for _ in range(num_matrices)]
+    mask_segments = [[] for _ in range(num_matrices)]
     used_blocks = {mi: [] for mi in range(num_matrices)}  # track how many times each block was used
 
     # --- Coverage offset strategy ---
@@ -820,25 +821,32 @@ def get_indices_based_on_blocks(n: int, m: int, num_blocks: int, num_matrices: i
         matrix_indices = rng.choice(num_matrices, size=num_blocks, replace=False).tolist()
         for mi, bidx in zip(matrix_indices, rng.permutation(num_blocks)):
             start = choose_offset(bidx)
-            take = min(n, m)
-            rotated = ((np.arange(n) - start) % n)  + bidx * n
-            matrices_segments[mi].append(rotated[:take])
+
+            shifted = np.arange(n) - start
+            rotated = (shifted % n) + bidx * n 
+            mask = np.where(shifted < 0, -1, 1)
+
+            indices_segments[mi].append(rotated)
+            mask_segments[mi].append(mask)
             used_blocks[mi].append(int(bidx))
     else:
         # distribute blocks round-robin
         for i, bidx in enumerate(rng.permutation(num_blocks)):
             target_mi = i % num_matrices
             start = choose_offset(bidx)
-            current_rows = sum(seg.shape[0] for seg in matrices_segments[target_mi])
-            take = min(n, m - current_rows)
-            if take > 0:
-                rotated = ((np.arange(n) - start) % n) + bidx * n
-                matrices_segments[target_mi].append(rotated[:take])
+            current_rows = sum(seg.shape[0] for seg in indices_segments[target_mi])
+            if current_rows < m:
+                shifted = np.arange(n) - start
+                rotated = (shifted % n) + bidx * n
+                mask = np.where(shifted < 0, -1, 1)
+
+                indices_segments[target_mi].append(rotated)
+                mask_segments[target_mi].append(mask)
                 used_blocks[target_mi].append(int(bidx))
 
     # --- Step 2: Fill each matrix up to m rows ---
     for mi in range(num_matrices):
-        current_rows = sum(seg.shape[0] for seg in matrices_segments[mi])
+        current_rows = sum(seg.shape[0] for seg in indices_segments[mi])
         current_blocks = set(used_blocks[mi])
 
         while current_rows < m:
@@ -853,21 +861,24 @@ def get_indices_based_on_blocks(n: int, m: int, num_blocks: int, num_matrices: i
                 continue
 
             start = choose_offset(bidx)
-            need = m - current_rows
-            take = min(n, need)
-            rotated = ((np.arange(n) - start) % n) + bidx * n
 
-            matrices_segments[mi].append(rotated[:take])
+            shifted = np.arange(n) - start
+            rotated = (shifted % n) + bidx * n
+            mask = np.where(shifted < 0, -1, 1)
+
+            indices_segments[mi].append(rotated)
+            mask_segments[mi].append(mask)
             used_blocks[mi].append(int(bidx))
             current_blocks.add(bidx)
-            current_rows += take
+            current_rows += n
 
     # --- Finalize matrices ---
-    matrices = np.stack([np.hstack(segs)[:m] for segs in matrices_segments])
+    indices = np.stack([np.hstack(segs) for segs in indices_segments])
+    masks = np.stack([np.hstack(segs) for segs in mask_segments])
 
     if verbose:
         # Compute overall coverage as the fraction of unique entries in all matrices
-        all_entries = np.concatenate(matrices)
+        all_entries = np.concatenate(indices[:, :m], axis=0)
         coverage = len(set(all_entries.flatten())) / (num_blocks * n)
         print(f"Samples coverage: {coverage:.4f}")
 
@@ -876,7 +887,7 @@ def get_indices_based_on_blocks(n: int, m: int, num_blocks: int, num_matrices: i
         overall_reuse = counts.mean()
         print(f"Samples reuse: {overall_reuse:.4f}")
 
-    return matrices
+    return indices, masks
 
 def polish(X, longtype=False):
     if longtype:
@@ -921,6 +932,12 @@ def get_optimal_vector_norm(n, m, q, w, b):
     delta_0 = get_hermite_root_factor(b)
     d = n + m
     return (delta_0 ** d) * np.exp((n * np.log(q) + m * np.log(w)) / d)
+
+def get_optimal_penalty(params):
+    _, var_secret, _ = get_vector_distribution(params, vector_type=params['secret_type'], hw=params['hw'])
+    _, var_error, _ = get_vector_distribution(params, vector_type=params['error_type'])
+
+    return np.ceil(np.sqrt(var_error / var_secret))
 
 def prob_to_std(p: float, q: float) -> float:
     """

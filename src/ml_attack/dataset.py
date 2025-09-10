@@ -23,7 +23,8 @@ from ml_attack.utils import (
   get_error_distribution,
   std_to_prob,
   convert_strategy,
-  get_indices_based_on_blocks
+  get_indices_based_on_blocks,
+  get_optimal_penalty
 )
 from ml_attack.lwe import neg_circ
 
@@ -56,6 +57,7 @@ class LWEDataset():
         self.RB = None
         self.reduced = False
         self.indices = None
+        self.mask = None
         self.non_zero_indices = None
         self.reduction_time = 0
         
@@ -146,12 +148,8 @@ class LWEDataset():
 
         if self.reduced: 
 
-            A_to_reduce = np.stack([self.A[ind] for ind in self.indices])
-            B_to_reduce = np.stack([self.B[ind] for ind in self.indices])
-
-            if self.enhanced():
-                A_to_reduce = A_to_reduce[:, np.newaxis, :, :]
-                B_to_reduce = B_to_reduce[:, np.newaxis, :]
+            A_to_reduce = self.get_A_to_reduce()
+            B_to_reduce = self.get_B_to_reduce()
 
             self.RA = mod_mult(self.R, A_to_reduce, self.mlwe.q)
             
@@ -202,13 +200,13 @@ class LWEDataset():
 
             min_matrices = (n // (m + 1) + 1) * num_gen * k
 
-            if num_matrices == 0:
+            if num_matrices <= 0:
                 num_matrices = min_matrices
             elif self.params['verbose'] and num_matrices < min_matrices:
                 # check and log whether num_matrices is enough to cover all rows
                 print(f"Warning: {num_matrices} matrices insufficient; minimal: {min_matrices}.")
-            
-            indices_vectors = get_indices_based_on_blocks(n, m, num_blocks, num_matrices, seed=self.params['seed'], verbose=self.params['verbose'])
+
+            indices_vectors, masks = get_indices_based_on_blocks(n, m, num_blocks, num_matrices, seed=self.params['seed'], verbose=self.params['verbose'])
 
         else:
             indices_vectors = []
@@ -227,10 +225,11 @@ class LWEDataset():
             for _ in range(min_trials):
                 indices = np.random.choice(total_rows, size=m, replace=False)
                 indices_vectors.append(indices)
-        
-        indices_vectors = np.stack(indices_vectors)
+            
+            indices_vectors = np.stack(indices_vectors)
+            masks = np.ones_like(indices_vectors, dtype=bool)
 
-        return indices_vectors
+        return indices_vectors, masks
 
     def attack(self, 
                attack_strategy="tour",
@@ -254,14 +253,19 @@ class LWEDataset():
         attack_strategy, attack_every = convert_strategy(attack_strategy, attack_every)
         save_strategy, save_every = convert_strategy(save_strategy, save_every)
         stop_strategy, stop_after = convert_strategy(stop_strategy, stop_after)
+ 
+        if self.params['penalty'] is None or self.params['penalty'] <= 0:
+            self.params['penalty'] = get_optimal_penalty(self.params)
+            if self.params['verbose']:
+                print(f"Optimal penalty computed: {self.params['penalty']}")
 
-        if self.indices is None:
-            self.indices = self.get_indices_to_reduce()
+        if self.indices is None or self.mask is None:
+            self.indices, self.mask = self.get_indices_to_reduce()
 
-        A_to_reduce = np.stack([self.A[ind] for ind in self.indices])
-        
+        A_to_reduce = self.get_A_to_reduce()
+
         if attack_strategy != "no":
-            B_to_reduce = np.stack([self.B[ind] for ind in self.indices])
+            B_to_reduce = self.get_B_to_reduce()
 
         num_matrices = A_to_reduce.shape[0]
 
@@ -297,7 +301,7 @@ class LWEDataset():
             reduction = ContinuousReduction(self.params)
             if self.RC is not None:
                 # If RC is already computed, use it to initialize the reduction
-                reduction.initialize_matrix(A_to_reduce[i])
+                reduction.initialize_matrix(A_to_reduce[i].squeeze())
                 _, _, std_b = get_b_distribution(self.params, RA[i], self.R[i])
 
                 reduction.initialize_saved_reduced(
@@ -308,12 +312,7 @@ class LWEDataset():
                 args.append([reduction.to_state_dict(), self.RC[i].copy(), initial_timer])
             else:
                 # First attack
-                args.append([reduction.to_state_dict(), A_to_reduce[i].copy(), initial_timer])
-
-        if self.enhanced():
-            A_to_reduce = A_to_reduce[:, np.newaxis, :, :]
-            if attack_strategy != "no":
-                B_to_reduce = B_to_reduce[:, np.newaxis, :]
+                args.append([reduction.to_state_dict(), A_to_reduce[i].squeeze().copy(), initial_timer])
 
         self.reduced = True
         tour = 0
@@ -344,11 +343,15 @@ class LWEDataset():
                 if self.enhanced():
                     # Reduction was made using the MLWE structure, so we can use the reduction circulants
                     #self.R = np.stack([np.stack([neg_circ(row).T for row in reduced_matrix]) for reduced_matrix in self.R])
-                    nk = self.params['n'] * self.params['k']
+                    num_k = (self.params['n'] + self.params['reduction_samples'] - 1) // self.params['n']
                     self.R = np.stack([
                         np.stack([
-                            np.hstack([neg_circ(part).T for part in np.array_split(row, np.ceil(len(row) / nk))]) for row in reduced_matrix
-                        ]) for reduced_matrix in self.R
+                            np.hstack([
+                                neg_circ(part).T for part in np.split(row, num_k)
+                            ])
+                            for row in reduced_matrix
+                        ]) 
+                        for reduced_matrix in self.R
                     ])
 
                 current_time = time.time()
@@ -357,11 +360,6 @@ class LWEDataset():
                 self.non_zero_indices = np.any(self.RA != 0, axis=-1)
 
                 if self.params['verbose']:
-                    print(f"A_reduced shape: {A_to_reduce.shape}")
-                    print(f"RA shape: {self.RA.shape}")
-                    print(f"R shape: {self.R.shape}")
-                    print(f"Non-zero indices shape: {self.non_zero_indices.shape}")
-
                     reduction_factor = np.mean(np.std(self.RA[self.non_zero_indices], axis=-1)) / np.mean(np.std(A_to_reduce, axis=-1)).astype(np.float64)
                     std_b = np.mean(self.get_b_distribution()[2]).astype(np.float64)
                     prob = std_to_prob(std_b, self.mlwe.q)
@@ -529,7 +527,29 @@ class LWEDataset():
         if self.A is None:
             raise ValueError("A matrix is not initialized. Please run initialize() or initialize_A() first.")
         
+        if self.reduced and self.RA is None:
+            A_to_reduce = self.get_A_to_reduce()
+
+            self.RA = mod_mult(self.R, A_to_reduce, self.mlwe.q)
+            self.non_zero_indices = np.any(self.RA != 0, axis=-1)
+
         return self.RA[self.non_zero_indices] if self.reduced else self.A
+    
+    def get_A_to_reduce(self):
+        """ Returns the A matrix to reduce. """
+        if self.A is None:
+            raise ValueError("A matrix is not initialized. Please run initialize() or initialize_A() first.")
+        
+        if self.indices is None or self.mask is None:
+            self.indices, self.mask = self.get_indices_to_reduce()
+
+        A_to_reduce = np.stack([self.A[ind] for ind in self.indices])
+        A_to_reduce *= self.mask[:, :, None]
+
+        if self.enhanced():
+            A_to_reduce = A_to_reduce[:, np.newaxis, :, :]
+
+        return A_to_reduce
     
     def get_B(self):
         """ Returns the B vector. """
@@ -537,16 +557,29 @@ class LWEDataset():
             raise ValueError("B vector is not initialized. Please run initialize_secret() first.")
 
         if self.reduced and self.RB is None:
-            B_to_reduce = np.stack([self.B[ind] for ind in self.indices])
-
-            if self.enhanced():
-                B_to_reduce = B_to_reduce[:, np.newaxis, :]
+            B_to_reduce = self.get_B_to_reduce()
 
             self.RB = mod_mult(self.R, B_to_reduce[..., np.newaxis], self.mlwe.q)
             self.RB = np.squeeze(self.RB, axis=-1)
 
         return self.RB[self.non_zero_indices] if self.reduced else self.B
 
+    def get_B_to_reduce(self):
+        """ Returns the B vector to reduce. """
+        if self.B is None:
+            raise ValueError("B vector is not initialized. Please run initialize_secret() first.")
+
+        if self.indices is None or self.mask is None:
+            self.indices, self.mask = self.get_indices_to_reduce()
+
+        B_to_reduce = np.stack([self.B[ind] for ind in self.indices])
+        B_to_reduce *= self.mask
+
+        if self.enhanced():
+            B_to_reduce = B_to_reduce[:, np.newaxis, :]
+
+        return B_to_reduce
+    
     def get_secret(self):
         """ Returns the secret vector. """
         if self.secret is None:
@@ -609,6 +642,7 @@ class LWEDataset():
             'RC': self.RC,
             'best_RC': self.best_RC,
             'indices': self.indices,
+            'mask': self.mask,
             'reduction_time': self.reduction_time
         }
 
@@ -636,64 +670,60 @@ class LWEDataset():
         dataset.B = loaded_data['B']
         dataset.A = loaded_data['A']
 
-        if 'indices' not in loaded_data:
-            dataset.R = loaded_data['R']
-            dataset.RA = loaded_data['RA']
-            dataset.RB = loaded_data['RB']
+        dataset.indices = loaded_data['indices']
+        if 'mask' not in loaded_data:
+            dataset.mask = np.ones_like(dataset.indices, dtype=bool)
         else:
-            dataset.indices = loaded_data['indices']
-            A_to_reduce = np.stack([dataset.A[ind] for ind in dataset.indices])
+            dataset.mask = loaded_data['mask']
 
-            if 'RC' in loaded_data:
-                dataset.RC = loaded_data['RC']
-                try:
-                    dataset.best_RC = loaded_data['best_RC']
-                
-                    if dataset.params['matrix_config'] in ['salsa', 'dual']:
-                        m = A_to_reduce.shape[1]
-                        dataset.R = np.stack([reduced_matrix[:, :m] / loaded_data['params']['penalty'] for reduced_matrix in dataset.best_RC])
-                    else:
-                        n = A_to_reduce.shape[2]
-                        dataset.R = np.stack([reduced_matrix[:, n:] / loaded_data['params']['penalty'] for reduced_matrix in dataset.best_RC])
-                except:
-                    print("Warning: 'best_RC' corrupted. Using 'RC' instead.")
-                    dataset.best_RC = None
-                    if dataset.params['matrix_config'] in ['salsa', 'dual']:
-                        m = A_to_reduce.shape[1]
-                        dataset.R = np.stack([reduced_matrix[:, :m] / loaded_data['params']['penalty'] for reduced_matrix in dataset.RC])
-                    else:
-                        n = A_to_reduce.shape[2]
-                        dataset.R = np.stack([reduced_matrix[:, n:] / loaded_data['params']['penalty'] for reduced_matrix in dataset.RC])
+        A_to_reduce = dataset.get_A_to_reduce()
 
-                if dataset.enhanced():
-                    #dataset.R = np.stack([np.stack([neg_circ(row).T for row in reduced_matrix]) for reduced_matrix in dataset.R])
-                    nk = dataset.params['n'] * dataset.params['k']
-                    dataset.R = np.stack([
-                        np.stack([
-                            np.hstack([neg_circ(part).T for part in np.array_split(row, np.ceil(len(row) / nk))]) for row in reduced_matrix
-                        ]) for reduced_matrix in dataset.R
+        if 'RC' in loaded_data:
+            dataset.RC = loaded_data['RC']
+            try:
+                dataset.best_RC = loaded_data['best_RC']
+            
+                if dataset.params['matrix_config'] in ['salsa', 'dual']:
+                    m = dataset.params['reduction_samples']
+                    dataset.R = np.stack([reduced_matrix[:, :m] / loaded_data['params']['penalty'] for reduced_matrix in dataset.best_RC])
+                else:
+                    n = dataset.params['n'] * dataset.params['k']
+                    dataset.R = np.stack([reduced_matrix[:, n:] / loaded_data['params']['penalty'] for reduced_matrix in dataset.best_RC])
+            except:
+                print("Warning: 'best_RC' corrupted. Using 'RC' instead.")
+                dataset.best_RC = None
+                if dataset.params['matrix_config'] in ['salsa', 'dual']:
+                    m = dataset.params['reduction_samples']
+                    dataset.R = np.stack([reduced_matrix[:, :m] / loaded_data['params']['penalty'] for reduced_matrix in dataset.RC])
+                else:
+                    n = dataset.params['n'] * dataset.params['k']
+                    dataset.R = np.stack([reduced_matrix[:, n:] / loaded_data['params']['penalty'] for reduced_matrix in dataset.RC])
+
+            if dataset.enhanced():
+                num_k = dataset.params['reduction_samples'] // dataset.params['k']
+                dataset.R = np.stack([
+                    np.stack([
+                        np.hstack([
+                            neg_circ(part).T for part in np.split(row, num_k)
+                        ])
+                        for row in reduced_matrix
                     ])
-                    
-                    A_to_reduce = A_to_reduce[:, np.newaxis, :, :]
-                    
-            else:
-                dataset.R = loaded_data['R']
-
-            if 'reduction_time' in loaded_data:
-                dataset.reduction_time = loaded_data['reduction_time']
-
-            dataset.RA = mod_mult(dataset.R, A_to_reduce, dataset.mlwe.q)
-
-            dataset.non_zero_indices = np.any(dataset.RA != 0, axis=-1)
-
-            if dataset.B is not None:
-                B_to_reduce = np.stack([dataset.B[ind] for ind in dataset.indices])
+                    for reduced_matrix in dataset.R
+                ])
                 
-                if dataset.enhanced():
-                    B_to_reduce = B_to_reduce[:, np.newaxis, :]
+        else:
+            dataset.R = loaded_data['R']
 
-                dataset.RB = mod_mult(dataset.R, B_to_reduce[..., np.newaxis], dataset.mlwe.q)
-                dataset.RB = np.squeeze(dataset.RB, axis=-1)
+        dataset.reduction_time = loaded_data['reduction_time'] if 'reduction_time' in loaded_data else 0
+
+        dataset.RA = mod_mult(dataset.R, A_to_reduce, dataset.mlwe.q)
+        dataset.non_zero_indices = np.any(dataset.RA != 0, axis=-1)
+
+        if dataset.B is not None:
+            B_to_reduce = dataset.get_B_to_reduce()
+
+            dataset.RB = mod_mult(dataset.R, B_to_reduce[..., np.newaxis], dataset.mlwe.q)
+            dataset.RB = np.squeeze(dataset.RB, axis=-1)
 
         dataset.reduced = True
 
@@ -778,7 +808,8 @@ class LWEDataset():
         dataset.R = np.stack(full_R)
         dataset.indices = np.stack(full_indices)
 
-        A_to_reduce = np.stack([dataset.A[ind] for ind in dataset.indices])
+        A_to_reduce = dataset.get_A_to_reduce()
+
         dataset.RA = mod_mult(dataset.R, A_to_reduce, dataset.mlwe.q)
         dataset.non_zero_indices = np.any(dataset.RA != 0, axis=-1)
 
