@@ -274,10 +274,12 @@ class ContinuousReduction(object):
 
         if self.use_priority:
             num_updates = self.saved_reduced.add_batch(A_red[non_zero_indiced], std_b[non_zero_indiced])
+            max_items = self.saved_reduced.max_size
         elif self.saved_stds is None:
             self.saved_stds = std_b
             self.saved_reduced = A_red
             num_updates = len(std_b)
+            max_items = len(non_zero_indiced)
         else:
             # Identify indices where std_b < self.saved_stds, ignoring std_b items that are 0.
             better_indices = np.where((std_b < self.saved_stds) & (std_b != 0))[0]
@@ -291,11 +293,20 @@ class ContinuousReduction(object):
             if num_updates > 0:
                 self.saved_reduced[better_indices] = A_red[better_indices]
                 self.saved_stds[better_indices] = std_b[better_indices]
+            
+            max_items = len(non_zero_indiced)
 
         mean_std_b = np.mean(std_b[non_zero_indiced]) if len(non_zero_indiced) > 1 else 0
 
         algo_name = "flatter" if self.flatter_countdown > 0 else f"bkz2.0_{self.bkz_block_sizes[self.bkz_block_size_idx]}"
-        self.log(f"- Algo: {algo_name} | Updated {num_updates}/{len(non_zero_indiced)} | Mean std_B: {mean_std_b:.2f}")
+        
+        # Calculate the minimum norm of rows and columns of A_red that are not 0 mod q
+        non_zero_rows = np.any(A_red % self.q != 0, axis=1)
+        non_zero_cols = np.any(A_red % self.q != 0, axis=0)
+        min_row_norm = np.min(np.linalg.norm(A_red[non_zero_rows], axis=1))
+        min_col_norm = np.min(np.linalg.norm(A_red[:, non_zero_cols], axis=0))
+
+        self.log(f"- Algo: {algo_name} | Updated {num_updates}/{max_items} ({len(non_zero_indiced)} non zero) | Mean std_B: {mean_std_b:.2f} | Min row norm: {min_row_norm:.2f} | Min col norm: {min_col_norm:.2f}")
 
         if self.flatter_countdown > 0:
             self.flatter_countdown -= 1
@@ -304,12 +315,12 @@ class ContinuousReduction(object):
                 self.no_improvements = 0
                 self.steps_same_algo = 0
 
-        if num_updates/len(non_zero_indiced) >= 0.1:
+        if num_updates/max_items >= 0.1:
             self.n_stall = 0
             self.no_improvements = 0
         else:
             self.n_stall += 1
-            if num_updates/len(non_zero_indiced) <= 0.02:
+            if num_updates/max_items <= 0.02:
                 self.no_improvements += 1
             else:
                 self.no_improvements = 0

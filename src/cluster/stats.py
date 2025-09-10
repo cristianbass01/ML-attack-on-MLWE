@@ -220,12 +220,9 @@ def statistics(data, num_secrets):
         print(f"  - Matches (refined): {matches_approx} out of {len(b_real)} ({(matches_approx / len(b_real)) * 100:.2f}%)")
         total_matches_approx.append(matches_approx / len(b_real))
 
-    mean_matches_nomod = np.mean(total_matches_nomod)
-    mean_matches_mod = np.mean(total_matches_mod)
-    mean_matches_approx = np.mean(total_matches_approx)
-    print(f"\nMean Matches (NoMod): {mean_matches_nomod}")
-    print(f"Mean Matches (Mod): {mean_matches_mod}")
-    print(f"Mean Matches (Approx): {mean_matches_approx}")
+    print(f"\nMean and Std Matches (NoMod): {np.mean(total_matches_nomod)}, Std = {np.std(total_matches_nomod)}")
+    print(f"Mean and Std Matches (Mod): {np.mean(total_matches_mod)}, Std = {np.std(total_matches_mod)}")
+    print(f"Mean and Std Matches (Approx): {np.mean(total_matches_approx)}, Std = {np.std(total_matches_approx)}")
 
 
 if __name__ == "__main__":
