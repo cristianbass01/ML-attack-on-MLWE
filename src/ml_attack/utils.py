@@ -767,6 +767,117 @@ def calculate_min_trials(n, m, target_prob=0.99, max_k=1000):
     
     return answer
 
+def get_indices_based_on_blocks(n: int, m: int, num_blocks: int, num_matrices: int, seed: int = None, verbose: bool = False):
+    """
+    Build `num_matrices` matrices each with exactly `m` indices.
+
+    - Always uses a global ordering (queue of block indices).
+    - Queue is a random permutation of all blocks; once exhausted, it is refilled with a new random permutation.
+    - If num_matrices >= num_blocks: ensures each block is the *first* block of a different matrix.
+    - Avoids using the same block twice in a matrix until all blocks have been used there.
+    """
+    rng = np.random.default_rng(seed)
+
+    matrices_segments = [[] for _ in range(num_matrices)]
+    used_blocks = {mi: [] for mi in range(num_matrices)}  # track how many times each block was used
+
+    # --- Coverage offset strategy ---
+    coverage_offsets = {bidx: [i * m for i in range((n + m - 1) // m)] for bidx in range(num_blocks)}
+    coverage_counters = {bidx: 0 for bidx in range(num_blocks)}
+    used_offsets = {bidx: set() for bidx in range(num_blocks)}  # track all chosen offsets
+
+    def choose_offset(bidx: int) -> int:
+        """Pick next systematic offset if available, else a fresh random offset (avoid repeats)."""
+        cnt = coverage_counters[bidx]
+        if cnt < len(coverage_offsets[bidx]):
+            # Use systematic coverage offset
+            offset = coverage_offsets[bidx][cnt]
+            coverage_counters[bidx] += 1
+        else:
+            # Random but prefer unused offsets
+            all_offsets = set(range(n))
+            candidates = list(all_offsets - used_offsets[bidx])
+            if candidates:
+                offset = int(rng.choice(candidates))
+            else:
+                offset = int(rng.integers(0, n))
+        used_offsets[bidx].add(offset)
+        return offset
+        
+    # --- Queue of blocks (reshuffled each epoch) ---
+    def next_block(queue: list) -> int:
+        if not queue:
+            new_epoch = rng.permutation(num_blocks).tolist()
+            queue.extend(new_epoch)
+        return queue.pop(0)
+
+    # Initialize queue (first epoch)
+    queue = rng.permutation(num_blocks).tolist()
+
+    # --- Step 1: Assign first block for coverage ---
+    if num_matrices >= num_blocks:
+        # one block as first in each distinct matrix
+        matrix_indices = rng.choice(num_matrices, size=num_blocks, replace=False).tolist()
+        for mi, bidx in zip(matrix_indices, rng.permutation(num_blocks)):
+            start = choose_offset(bidx)
+            take = min(n, m)
+            rotated = ((np.arange(n) - start) % n)  + bidx * n
+            matrices_segments[mi].append(rotated[:take])
+            used_blocks[mi].append(int(bidx))
+    else:
+        # distribute blocks round-robin
+        for i, bidx in enumerate(rng.permutation(num_blocks)):
+            target_mi = i % num_matrices
+            start = choose_offset(bidx)
+            current_rows = sum(seg.shape[0] for seg in matrices_segments[target_mi])
+            take = min(n, m - current_rows)
+            if take > 0:
+                rotated = ((np.arange(n) - start) % n) + bidx * n
+                matrices_segments[target_mi].append(rotated[:take])
+                used_blocks[target_mi].append(int(bidx))
+
+    # --- Step 2: Fill each matrix up to m rows ---
+    for mi in range(num_matrices):
+        current_rows = sum(seg.shape[0] for seg in matrices_segments[mi])
+        current_blocks = set(used_blocks[mi])
+
+        while current_rows < m:
+            bidx = next_block(queue)
+            # If already used in this matrix AND there are still unused blocks left,
+            # put it back at the end of the queue and try another, unless this is the last block remaining in the queue
+            if bidx in current_blocks and len(current_blocks) < num_blocks:
+              # Check if there are any blocks in the queue that have not been used in this matrix
+              unused_in_queue = [idx for idx in queue if idx not in current_blocks]
+              if unused_in_queue:
+                queue.append(bidx)
+                continue
+
+            start = choose_offset(bidx)
+            need = m - current_rows
+            take = min(n, need)
+            rotated = ((np.arange(n) - start) % n) + bidx * n
+
+            matrices_segments[mi].append(rotated[:take])
+            used_blocks[mi].append(int(bidx))
+            current_blocks.add(bidx)
+            current_rows += take
+
+    # --- Finalize matrices ---
+    matrices = np.stack([np.hstack(segs)[:m] for segs in matrices_segments])
+
+    if verbose:
+        # Compute overall coverage as the fraction of unique entries in all matrices
+        all_entries = np.concatenate(matrices)
+        coverage = len(set(all_entries.flatten())) / (num_blocks * n)
+        print(f"Samples coverage: {coverage:.4f}")
+
+        # Compute overall reuse: average number of times each entry appears in all matrices
+        unique_entries, counts = np.unique(all_entries, return_counts=True)
+        overall_reuse = counts.mean()
+        print(f"Samples reuse: {overall_reuse:.4f}")
+
+    return matrices
+
 def polish(X, longtype=False):
     if longtype:
         X = X.astype(np.longdouble)

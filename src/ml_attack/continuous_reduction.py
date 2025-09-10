@@ -18,7 +18,7 @@ FLOAT_UPGRADE = {
     "mpfr_250": "mpfr_300",
     "mpfr_300": "mpfr_350"
 }
-MAX_TIME_BKZ = 60*60  # 1 hour
+MAX_TIME_BKZ = 60  # 1 minute
 
 class ContinuousReduction(object):
     def __init__(self, params: dict):
@@ -82,8 +82,10 @@ class ContinuousReduction(object):
 
         self.steps_same_algo = 0
         self._first_bkz = True
-        self.m = None  # Number of rows in the input matrix
-        self.n = None  # Number of columns in the input matrix
+        self.m = self.params['reduction_samples']
+        self.n = self.params['n']
+        self.k = self.params['k']
+        self.mlwe_trick = not self.params['reduction_resampling']
 
         self.matrix_config = self.params["matrix_config"]
 
@@ -114,7 +116,7 @@ class ContinuousReduction(object):
             return cmod(matrix_to_reduce[:, :self.m] / self.penalty, self.q)
         elif self.matrix_config == "original":
             # Matrix in the form [RA + qC, wR]
-            return cmod(matrix_to_reduce[:, self.n:] / self.penalty, self.q)
+            return cmod(matrix_to_reduce[:, (self.n * self.k):] / self.penalty, self.q)
         else:
             raise ValueError(f"Unknown matrix configuration: {self.matrix_config}. Supported: 'salsa', 'dual', 'original'.")
 
@@ -127,32 +129,61 @@ class ContinuousReduction(object):
             FPLLL.set_precision(int(precision))
 
     def arrange_reduction_matrix(self, matrix_to_reduce):
-        m, n = self.m, self.n
+        """ Arrange the matrix to be reduced into the appropriate form. """
+        m, nk = matrix_to_reduce.shape
+        if self.mlwe_trick:
+            h = m // self.n  # Number of full circulant blocks
+            m = (h + 1) * self.n  # Round up to nearest multiple of n
+            g = m - h * self.n  # Extra rows
+            ambient_dim = m + nk
+            
+            if m > matrix_to_reduce.shape[0]:
+                padding = np.zeros((m - matrix_to_reduce.shape[0], nk), dtype=matrix_to_reduce.dtype)
+                matrix_to_reduce = np.vstack((matrix_to_reduce, padding))
+
         # Check if the matrix is 1-dimensional
-        A_red = np.zeros((m + n, m + n), dtype=np.int64)
+        A_red = np.zeros((m + nk, m + nk), dtype=np.int64)
         if self.matrix_config == "salsa":
             # Matrix in form [0 q*In; w*Im A]
-            A_red[n:, :m] = np.identity(m, dtype=np.int64) * self.penalty
-            A_red[n:, m:] = matrix_to_reduce
-            A_red[:n, m:] = np.identity(n, dtype=np.int64) * self.q
+            A_red[nk:, :m] = np.identity(m, dtype=np.int64) * self.penalty
+            A_red[nk:, m:] = matrix_to_reduce
+            A_red[:nk, m:] = np.identity(nk, dtype=np.int64) * self.q
+            if self.mlwe_trick:
+                Pi = np.diag([0 if nk + h*self.n + g <= r < nk + (h+1)*self.n else 1 for r in range(ambient_dim)])
         elif self.matrix_config == "dual":
             # Matrix in form [w*Im A; 0 q*In]
             A_red[:m, :m] = np.identity(m, dtype=np.int64) * self.penalty
             A_red[:m, m:] = matrix_to_reduce
-            A_red[m:, m:] = np.identity(n, dtype=np.int64) * self.q
+            A_red[m:, m:] = np.identity(nk, dtype=np.int64) * self.q
+            if self.mlwe_trick:
+                Pi = np.diag([0 if h*self.n + g <= r < (h+1)*self.n else 1 for r in range(ambient_dim)])
         elif self.matrix_config == "original":
             # Matrix in form [A  w*Im; 0 q*In]
-            A_red[:m, n:] = np.identity(m, dtype=np.int64) * self.penalty
-            A_red[:m, :n] = matrix_to_reduce
-            A_red[m:, :n] = np.identity(n, dtype=np.int64) * self.q
+            A_red[:m, nk:] = np.identity(m, dtype=np.int64) * self.penalty
+            A_red[:m, :nk] = matrix_to_reduce
+            A_red[m:, :nk] = np.identity(nk, dtype=np.int64) * self.q
+            if self.mlwe_trick:
+                Pi = np.diag([0 if h*self.n + g <= r < (h+1)*self.n else 1 for r in range(ambient_dim)])
         else:
             raise ValueError(f"Unknown matrix configuration: {self.matrix_config}. Supported: 'salsa', 'dual', 'original'.")
+
+        if self.mlwe_trick:
+            # Project out the last (n-g) rows that correspond to the last rows of the last circulant block
+            A_red = Pi @ A_red
+
+            # Reduce to find the dependent rows
+            A_red = self.run_LLL_once(A_red)
+
+            # Remove the (n-g) zero vectors (dependent rows)
+            A_red = A_red[~np.all(A_red == 0, axis=1)]
+            # Remove all-zero columns
+            A_red = A_red[:, ~np.all(A_red == 0, axis=0)]
 
         if np.log2(self.q) > 32:
             # If q is large, use higher precision
             A_red = A_red.astype(np.float128)
         
-        return A_red  # Ap.shape = (m+N)*(m+N)
+        return A_red
 
     def run_flatter_once(self, Ap):
         """ Runs a single loop of flatter. """
@@ -174,6 +205,19 @@ class ContinuousReduction(object):
         if np.log2(self.q) > 32:
             Ap = Ap.astype(np.float128)
 
+        return Ap
+    
+    def run_LLL_once(self, Ap):
+        """ Runs a single round of LLL. """
+        fplll_Ap = IntegerMatrix.from_matrix(Ap.astype(int).tolist())
+        try:
+            LLL.reduction(fplll_Ap)
+        except Exception as e:
+            print(f"LLL failed with error {e}")
+        Ap = np.zeros((Ap.shape[0], Ap.shape[1]), dtype=np.int64)
+        fplll_Ap.to_matrix(Ap)
+        if np.log2(self.q) > 32:
+            Ap = Ap.astype(np.float128)
         return Ap
     
     def run_bkz2_once(self, Ap):
@@ -292,10 +336,17 @@ class ContinuousReduction(object):
                 self.saved_reduced[better_indices] = A_red[better_indices]
                 self.saved_stds[better_indices] = std_b[better_indices]
 
-        mean_std_b = np.mean(std_b[non_zero_indiced]) if len(non_zero_indiced) > 1 else 0
+        mean_std_b = np.min(std_b[non_zero_indiced]) if len(non_zero_indiced) > 1 else 0
 
         algo_name = "flatter" if self.flatter_countdown > 0 else f"bkz2.0_{self.bkz_block_sizes[self.bkz_block_size_idx]}"
-        self.log(f"- Algo: {algo_name} | Updated {num_updates}/{len(non_zero_indiced)} | Mean std_B: {mean_std_b:.2f}")
+
+        # Calculate the minimum norm of rows and columns of A_red that are not 0 mod q
+        non_zero_rows = np.any(A_red % self.q != 0, axis=1)
+        non_zero_cols = np.any(A_red % self.q != 0, axis=0)
+        min_row_norm = np.min(np.linalg.norm(A_red[non_zero_rows], axis=1))
+        min_col_norm = np.min(np.linalg.norm(A_red[:, non_zero_cols], axis=0))
+
+        self.log(f"- Algo: {algo_name} | Updated {num_updates}/{len(non_zero_indiced)} | Mean std_B: {mean_std_b:.2f} | Min row norm: {min_row_norm:.2f} | Min col norm: {min_col_norm:.2f}")
 
         if self.flatter_countdown > 0:
             self.flatter_countdown -= 1
@@ -355,8 +406,7 @@ class ContinuousReduction(object):
         if np.log2(self.q) > 32:
             self.initial_matrix = self.initial_matrix.astype(np.float128)
 
-        self.m, self.n = initial_matrix.shape
-        self.bkz_block_sizes = [blocksize for blocksize in self.bkz_block_sizes if blocksize < self.m + self.n]
+        self.bkz_block_sizes = [blocksize for blocksize in self.bkz_block_sizes if blocksize < self.m + self.n*self.k]
 
     def initialize_saved_reduced(self, vectors, priorities):
         """
@@ -429,9 +479,7 @@ class ContinuousReduction(object):
             "priority_queue": self.saved_reduced.to_state_dict() if self.use_priority else None,
             "best_matrix": self.saved_reduced.tolist() if not self.use_priority and self.saved_reduced is not None else None,
             "best_stds": self.saved_stds.tolist() if not self.use_priority and self.saved_stds is not None else None,
-            "steps_same_algo": self.steps_same_algo,
-            "m": self.m,
-            "n": self.n,
+            "steps_same_algo": self.steps_same_algo
         }
     
     @classmethod
@@ -448,8 +496,6 @@ class ContinuousReduction(object):
         obj.bkz_block_sizes[-1] = state["max_bkz_block_size"]
         obj._first_bkz = state["_first_bkz"]
         obj.steps_same_algo = state["steps_same_algo"]
-        obj.m = state["m"]
-        obj.n = state["n"]
 
         if state["initial_matrix"] is not None:
             obj.initial_matrix = np.array(state["initial_matrix"])
