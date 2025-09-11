@@ -37,6 +37,7 @@ import pickle
 
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 from pathlib import Path
+from joblib import Parallel, delayed
 
 class LWEDataset():
     def __init__(self, params: dict):
@@ -325,107 +326,114 @@ class LWEDataset():
         n_jobs = get_slurm_cpu_count()
         n_jobs = min(n_jobs, num_matrices)  # Limit the number of jobs to the number of matrices
         current_time = start_time
-        with ProcessPoolExecutor(max_workers=n_jobs) as executor:
-            while True:
-                tour += 1
+        while True:
+            tour += 1
 
-                # Run parallel reduction
-                R_reduced = []
-                RC_reduced = []
-                for i, (R, arg) in enumerate(executor.map(LWEDataset.continuous_reduction_wrapper, args)):
-                    args[i] = arg
-                    R_reduced.append(R)
-                    RC_reduced.append(arg[1])
+            # Run parallel reduction
+            R_reduced = []
+            RC_reduced = []
+            
+            #with ProcessPoolExecutor(max_workers=n_jobs) as executor:
+            #    results = executor.map(LWEDataset.continuous_reduction_wrapper, args)
+            
+            results = Parallel(n_jobs=n_jobs)(
+                delayed(LWEDataset.continuous_reduction_wrapper)(arg) for arg in args
+            )
+            
+            for i, (R, arg) in enumerate(results):
+                args[i] = arg
+                R_reduced.append(R)
+                RC_reduced.append(arg[1])
 
-                self.R = pad_vectors_to_max(R_reduced)
-                self.RC = np.stack(RC_reduced)
+            self.R = pad_vectors_to_max(R_reduced)
+            self.RC = np.stack(RC_reduced)
 
-                if self.enhanced():
-                    # Reduction was made using the MLWE structure, so we can use the reduction circulants
-                    #self.R = np.stack([np.stack([neg_circ(row).T for row in reduced_matrix]) for reduced_matrix in self.R])
-                    num_k = (self.params['n'] + self.params['reduction_samples'] - 1) // self.params['n']
-                    self.R = np.stack([
-                        np.stack([
-                            np.hstack([
-                                neg_circ(part).T for part in np.split(row, num_k)
-                            ])
-                            for row in reduced_matrix
-                        ]) 
-                        for reduced_matrix in self.R
-                    ])
+            if self.enhanced():
+                # Reduction was made using the MLWE structure, so we can use the reduction circulants
+                #self.R = np.stack([np.stack([neg_circ(row).T for row in reduced_matrix]) for reduced_matrix in self.R])
+                num_k = (self.params['n'] + self.params['reduction_samples'] - 1) // self.params['n']
+                self.R = np.stack([
+                    np.stack([
+                        np.hstack([
+                            neg_circ(part).T for part in np.split(row, num_k)
+                        ])
+                        for row in reduced_matrix
+                    ]) 
+                    for reduced_matrix in self.R
+                ])
 
-                current_time = time.time()
+            current_time = time.time()
 
-                self.RA = mod_mult(self.R, A_to_reduce, self.mlwe.q)
-                self.non_zero_indices = np.any(self.RA != 0, axis=-1)
+            self.RA = mod_mult(self.R, A_to_reduce, self.mlwe.q)
+            self.non_zero_indices = np.any(self.RA != 0, axis=-1)
 
+            if self.params['verbose']:
+                reduction_factor = np.mean(np.std(self.RA[self.non_zero_indices], axis=-1)) / np.mean(np.std(A_to_reduce, axis=-1)).astype(np.float64)
+                std_b = np.mean(self.get_b_distribution()[2]).astype(np.float64)
+                prob = std_to_prob(std_b, self.mlwe.q)
+                print(f"Tour {tour} | Time: {current_time - start_time:.2f}s | Mean std_B: {std_b:.2f} | Reduction Factor: {reduction_factor:.4f} | Prob: {prob:.4f}")
+            
+            # Check if it's time to save
+            if save_strategy == "time" and current_time - last_save_time >= save_every:
+                # Save the reduced matrices and best matrices for further reduction
+                if self.params['reduction_max_size'] > 0:
+                    self.best_RC = pad_vectors_to_max([np.stack([item[2] for item in arg[0]['priority_queue']['heap']]) for arg in args])
+                else:
+                    self.best_RC = np.stack([arg[0]['best_matrix'] for arg in args])
+
+                self.reduction_time = previous_reduction_time + current_time - start_time
+
+                self.save_reduced(postfix=f'_{(current_time - start_time) // save_every}')
+                last_save_time = current_time
+            elif save_strategy == "tour" and tour % save_every == 0:
+                # Save the reduced matrices and best matrices for further reduction
+                if self.params['reduction_max_size'] > 0:
+                    self.best_RC = pad_vectors_to_max([np.stack([item[2] for item in arg[0]['priority_queue']['heap']]) for arg in args])
+                else:
+                    self.best_RC = np.stack([arg[0]['best_matrix'] for arg in args])
+
+                self.reduction_time = previous_reduction_time + current_time - start_time
+
+                self.save_reduced(postfix=f'_{tour // save_every}')
+
+            # Check if it's time to attack
+            if attack_strategy == "time" and current_time - last_attack_time >= attack_every or \
+                attack_strategy == "tour" and tour % attack_every == 0:
+                
+                if attack_strategy == "time":
+                    last_attack_time = current_time
+
+                self.RB = mod_mult(self.R, B_to_reduce[..., np.newaxis], self.mlwe.q)
+                self.RB = np.squeeze(self.RB, axis=-1)
+
+                found, guessed_secret = self.train()
+                if found and self.params['verbose']:
+                    attack_time = time.time() - start_time
+                    print(f"Secret found after {attack_time:.2f} seconds.")
+                    report(self.secret, guessed_secret)
+
+                    if save_at_the_end:
+                        # Save the reduced matrices and best matrices for further reduction
+                        self.RC = np.stack([arg[1] for arg in args])
+
+                        if self.params['reduction_max_size'] > 0:
+                            self.best_RC = pad_vectors_to_max([np.stack([item[2] for item in arg[0]['priority_queue']['heap']]) for arg in args])
+                        else:
+                            self.best_RC = np.stack([arg[0]['best_matrix'] for arg in args])
+
+                        self.reduction_time = previous_reduction_time + current_time - start_time
+                        self.save_reduced()
+
+                    return guessed_secret, attack_time
+            
+            if stop_strategy == "time" and current_time - start_time >= stop_after:
                 if self.params['verbose']:
-                    reduction_factor = np.mean(np.std(self.RA[self.non_zero_indices], axis=-1)) / np.mean(np.std(A_to_reduce, axis=-1)).astype(np.float64)
-                    std_b = np.mean(self.get_b_distribution()[2]).astype(np.float64)
-                    prob = std_to_prob(std_b, self.mlwe.q)
-                    print(f"Tour {tour} | Time: {current_time - start_time:.2f}s | Mean std_B: {std_b:.2f} | Reduction Factor: {reduction_factor:.4f} | Prob: {prob:.4f}")
-                
-                # Check if it's time to save
-                if save_strategy == "time" and current_time - last_save_time >= save_every:
-                    # Save the reduced matrices and best matrices for further reduction
-                    if self.params['reduction_max_size'] > 0:
-                        self.best_RC = pad_vectors_to_max([np.stack([item[2] for item in arg[0]['priority_queue']['heap']]) for arg in args])
-                    else:
-                        self.best_RC = np.stack([arg[0]['best_matrix'] for arg in args])
-
-                    self.reduction_time = previous_reduction_time + current_time - start_time
-
-                    self.save_reduced(postfix=f'_{(current_time - start_time) // save_every}')
-                    last_save_time = current_time
-                elif save_strategy == "tour" and tour % save_every == 0:
-                    # Save the reduced matrices and best matrices for further reduction
-                    if self.params['reduction_max_size'] > 0:
-                        self.best_RC = pad_vectors_to_max([np.stack([item[2] for item in arg[0]['priority_queue']['heap']]) for arg in args])
-                    else:
-                        self.best_RC = np.stack([arg[0]['best_matrix'] for arg in args])
-
-                    self.reduction_time = previous_reduction_time + current_time - start_time
-
-                    self.save_reduced(postfix=f'_{tour // save_every}')
-
-                # Check if it's time to attack
-                if attack_strategy == "time" and current_time - last_attack_time >= attack_every or \
-                    attack_strategy == "tour" and tour % attack_every == 0:
-                    
-                    if attack_strategy == "time":
-                        last_attack_time = current_time
-
-                    self.RB = mod_mult(self.R, B_to_reduce[..., np.newaxis], self.mlwe.q)
-                    self.RB = np.squeeze(self.RB, axis=-1)
-
-                    found, guessed_secret = self.train()
-                    if found and self.params['verbose']:
-                        attack_time = time.time() - start_time
-                        print(f"Secret found after {attack_time:.2f} seconds.")
-                        report(self.secret, guessed_secret)
-
-                        if save_at_the_end:
-                            # Save the reduced matrices and best matrices for further reduction
-                            self.RC = np.stack([arg[1] for arg in args])
-
-                            if self.params['reduction_max_size'] > 0:
-                                self.best_RC = pad_vectors_to_max([np.stack([item[2] for item in arg[0]['priority_queue']['heap']]) for arg in args])
-                            else:
-                                self.best_RC = np.stack([arg[0]['best_matrix'] for arg in args])
-
-                            self.reduction_time = previous_reduction_time + current_time - start_time
-                            self.save_reduced()
-
-                        return guessed_secret, attack_time
-                
-                if stop_strategy == "time" and current_time - start_time >= stop_after:
-                    if self.params['verbose']:
-                        print(f"Stopping after {stop_after} seconds.")
-                    break
-                elif stop_strategy == "tour" and tour >= stop_after:
-                    if self.params['verbose']:
-                        print(f"Stopping after {stop_after} tours.")
-                    break
+                    print(f"Stopping after {stop_after} seconds.")
+                break
+            elif stop_strategy == "tour" and tour >= stop_after:
+                if self.params['verbose']:
+                    print(f"Stopping after {stop_after} tours.")
+                break
             
         if self.params['verbose'] and attack_strategy != "no":
             print(f"Attack completed after {time.time() - start_time:.2f} seconds.")
@@ -467,6 +475,9 @@ class LWEDataset():
         else:
             # Remove the exceeded time from the timer
             timer -= (tour_time - timer)
+            # Run for at least 1 minute every time
+            if timer < 60:
+                timer = 60
         
         return R, [reduction.to_state_dict(), matrix_to_reduce, timer]
 
@@ -509,7 +520,9 @@ class LWEDataset():
             if self.params['verbose']:
                 exact_candidates = np.sum(best_b[selected_indices] == b_real[selected_indices])
                 total_selection = len(selected_indices)
-                print(f"[BEST {int(p*100)}% STD] True B is the best candidate: {exact_candidates} / {total_selection} ({100 * exact_candidates / total_selection:.2f}%)")
+                mean_std = np.mean(std_B[selected_indices])
+
+                print(f"[BEST {int(p*100)}% STD] True B: {exact_candidates} / {total_selection} ({100 * exact_candidates / total_selection:.2f}%) | Mean std_B: {mean_std:.2f}")
 
             found, guessed_secret = train_model(self,
                                                 A = A_reduced[selected_indices],
