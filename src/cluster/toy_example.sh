@@ -30,6 +30,7 @@ CONTAINER_IMAGE="/d/hpc/projects/FRI/cb17769/lwe_container.sif"
 # reduction_samples: Number of samples for reduction. Null to optimized samples, 0<n<1 fraction of total samples, or integer number of samples
 # reduction_resampling: Whether to resample before reduction
 # continuous_reduction: Whether to use continuous reduction (full parallelization with save/stop after specified hours)
+# parallel_backend: Parallel backend to use ("thread", "process", "joblib")
 # min_samples: Minimum number of samples
 # num_matrices: Number of matrices (0 to use minimal number of matrices)
 # reduction_max_size: Maximum size for reduction priority queue
@@ -75,6 +76,7 @@ PARAMS_JSON=$(cat <<EOF
   "reduction_samples": null,
   "reduction_resampling": true,
   "continuous_reduction": false,
+  "parallel_backend": "thread",
   "min_samples": 0,
   "num_matrices": 0,
   "reduction_max_size": 1000,

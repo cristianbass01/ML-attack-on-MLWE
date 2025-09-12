@@ -333,12 +333,16 @@ class LWEDataset():
             R_reduced = []
             RC_reduced = []
             
-            #with ProcessPoolExecutor(max_workers=n_jobs) as executor:
-            #    results = executor.map(LWEDataset.continuous_reduction_wrapper, args)
-            
-            results = Parallel(n_jobs=n_jobs)(
-                delayed(LWEDataset.continuous_reduction_wrapper)(arg) for arg in args
-            )
+            if self.params['parallel_backend'] == "thread":
+                with ThreadPoolExecutor(max_workers=n_jobs) as executor:
+                    results = executor.map(LWEDataset.continuous_reduction_wrapper, args)
+            elif self.params['parallel_backend'] == "process":
+                with ProcessPoolExecutor(max_workers=n_jobs) as executor:
+                    results = executor.map(LWEDataset.continuous_reduction_wrapper, args)
+            elif self.params['parallel_backend'] == "joblib":
+                results = Parallel(n_jobs=n_jobs)(
+                    delayed(LWEDataset.continuous_reduction_wrapper)(arg) for arg in args
+                )
             
             for i, (R, arg) in enumerate(results):
                 args[i] = arg
