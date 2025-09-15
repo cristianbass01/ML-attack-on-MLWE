@@ -197,7 +197,7 @@ class LWEDataset():
             num_matrices = self.params['num_matrices'] if self.params['num_matrices'] is not None else 0
             
             if self.params['min_samples'] is not None:
-                num_matrices = max(min_samples // n_rows_matrix + 1, num_matrices)
+                num_matrices = max(self.params['min_samples'] // n_rows_matrix + 1, num_matrices)
 
             min_matrices = (n // (m + 1) + 1) * num_gen * k
 
@@ -370,6 +370,8 @@ class LWEDataset():
 
             self.RA = mod_mult(self.R, A_to_reduce, self.mlwe.q)
             self.non_zero_indices = np.any(self.RA != 0, axis=-1)
+            #unique_rows, unique_indices = np.unique(self.RA[self.non_zero_indices], axis=0, return_index=True)
+            #self.non_zero_indices = self.non_zero_indices.nonzero()[0][unique_indices]
 
             if self.params['verbose']:
                 reduction_factor = np.mean(np.std(self.RA[self.non_zero_indices], axis=-1)) / np.mean(np.std(A_to_reduce, axis=-1)).astype(np.float64)

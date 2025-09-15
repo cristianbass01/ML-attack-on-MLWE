@@ -1,12 +1,30 @@
 #!/bin/bash
-#SBATCH --job-name=lwe_toy_example
-#SBATCH --output=outputs/attack_toy_example_%j.out
-#SBATCH --time=01:00:00
-#SBATCH --cpus-per-task=16
-#SBATCH --mem=32G
+#SBATCH --job-name=attack_kyber_1
+#SBATCH --output=outputs/attack_kyber_1_%j.out
+#SBATCH --time=2-00:00:00
+#SBATCH --cpus-per-task=64
+#SBATCH --mem=128G
 #SBATCH --partition=all
 
-### TO BE RUN WITH: sbatch toy_example.sh ###
+### TO BE RUN WITH: sbatch attack_kyber_1.sh ###
+
+n=256
+k=2
+q=3329
+
+hw=6 # can also be set to 5 to beat FRESCA
+
+max_size=100 # -1, 0 or from 50 to 512 (lower values use less memory)
+reduction_samples=0.875 # -1, 0.875, 256, 283, 512
+reduction_resampling=false # true for LWE, false for MLWE
+
+matrix_config="dual" # dual or salsa
+
+penalty=4 # 3 or 4
+bkz_block_size="20:40:10" # 20:40:10, 40:40:1 or 30:50:10
+
+num_matrices=64 # same as CPUs
+parallel_backend="joblib"
 
 DATA_DIR="../data"
 mkdir -p "$DATA_DIR"
@@ -61,33 +79,33 @@ CONTAINER_IMAGE="/d/hpc/projects/FRI/cb17769/lwe_container.sif"
 
 PARAMS_JSON=$(cat <<EOF
 {
-  "n": 32,
-  "k": 2,
-  "q": 3329,
+  "n": $n,
+  "k": $k,
+  "q": $q,
   "secret_type": "cbd",
   "eta": 2,
   "gaussian_std": 3,
-  "hw": -1,
+  "hw": $hw,
   "error_type": "cbd",
   "num_gen": 4,
-  "seed": null,
+  "seed": 42,
   "float_type": "d",
-  "matrix_config": "dual",
-  "reduction_samples": null,
-  "reduction_resampling": false,
-  "continuous_reduction": false,
-  "parallel_backend": "thread",
+  "matrix_config": "$matrix_config",
+  "reduction_samples": $reduction_samples,
+  "reduction_resampling": $reduction_resampling,
+  "continuous_reduction": true,
+  "parallel_backend": "$parallel_backend",
   "min_samples": 0,
-  "num_matrices": 16,
-  "reduction_max_size": 1000,
-  "lookback": 3,
+  "num_matrices": $num_matrices,
+  "reduction_max_size": $max_size,
+  "lookback": 4,
   "warmup_steps": 10,
   "flatter_alpha": 0.001,
   "bkz_delta": 0.99,
-  "bkz_block_sizes": "10:40:10",
+  "bkz_block_sizes": "$bkz_block_size",
   "use_polish": true,
   "interleaved_steps": 0,
-  "penalty": 4,
+  "penalty": $penalty,
   "verbose": true,
   "train_percentages": [0.1, 0.3, 0.6, 1.0],
   "subsets_with_probs": false,
@@ -113,12 +131,12 @@ export PYTHONUNBUFFERED=1
 singularity exec ${CONTAINER_IMAGE} python attack.py \
   --params "$PARAMS_JSON" \
   --num_attacks 1 \
-  --attack_strategy "tour" \
-  --attack_every 1 \
-  --save_strategy "no" \
-  --save_every 0 \
+  --attack_strategy "no" \
+  --attack_every 0 \
+  --save_strategy "hour" \
+  --save_every 40 \
   --stop_strategy "hour" \
-  --stop_after 4 \
+  --stop_after 160 \
   --save_at_the_end \
   --train_secret_types "cbd" \
-  --hw_range 1:15:1
+  --hw_range 1:10:1

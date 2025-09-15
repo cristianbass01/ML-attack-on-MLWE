@@ -7,6 +7,7 @@ from subprocess import Popen, PIPE
 from ml_attack.utils import get_b_distribution, parse_range, polish, get_optimal_vector_norm, cmod, mod_mult
 from ml_attack.priority_queue import BoundedPriorityQueue
 import time
+from enum import Enum
 
 FLOAT_UPGRADE = {
     "d": "ld",
@@ -18,7 +19,13 @@ FLOAT_UPGRADE = {
     "mpfr_250": "mpfr_300",
     "mpfr_300": "mpfr_350"
 }
-MAX_TIME_BKZ = 60  # 1 minute
+MAX_TIME_BKZ = 60*60  # 1 hour
+
+class SaveStrategy(Enum):
+    PRIORITY = -1
+    BEST_LOCALITY = 0
+    BEST_MATRIX = 1
+
 
 class ContinuousReduction(object):
     def __init__(self, params: dict):
@@ -71,11 +78,15 @@ class ContinuousReduction(object):
         self.initial_matrix = None
         if self.params['reduction_max_size'] > 0:
             self.saved_reduced = BoundedPriorityQueue(self.params["reduction_max_size"])
-            self.use_priority = True
+            self.saving_strategy = SaveStrategy.PRIORITY
+        elif self.params['reduction_max_size'] == 0:
+            self.saved_reduced = None
+            self.saved_stds = None
+            self.saving_strategy = SaveStrategy.BEST_LOCALITY
         else:
             self.saved_reduced = None
             self.saved_stds = None
-            self.use_priority = False
+            self.saving_strategy = SaveStrategy.BEST_MATRIX
 
         self.penalty = self.params["penalty"]
         self.verbose = self.params["verbose"]
@@ -313,15 +324,15 @@ class ContinuousReduction(object):
         
         non_zero_indiced = np.where(std_b > 0)[0]
 
-        if self.use_priority:
+        if self.saving_strategy == SaveStrategy.PRIORITY:
             num_updates = self.saved_reduced.add_batch(A_red[non_zero_indiced], std_b[non_zero_indiced])
             max_items = self.saved_reduced.max_size
-        elif self.saved_stds is None:
+        elif self.saving_strategy == SaveStrategy.BEST_LOCALITY and self.saved_stds is None:
             self.saved_stds = std_b
             self.saved_reduced = A_red
             num_updates = len(std_b)
             max_items = len(non_zero_indiced)
-        else:
+        elif self.saving_strategy == SaveStrategy.BEST_LOCALITY:
             # Identify indices where std_b < self.saved_stds, ignoring std_b items that are 0.
             better_indices = np.where((std_b < self.saved_stds) & (std_b != 0))[0]
 
@@ -334,6 +345,18 @@ class ContinuousReduction(object):
             if num_updates > 0:
                 self.saved_reduced[better_indices] = A_red[better_indices]
                 self.saved_stds[better_indices] = std_b[better_indices]
+
+            max_items = len(non_zero_indiced)
+        else:  # SaveStrategy.BEST_MATRIX
+            mean_std_b_current = np.mean(std_b[non_zero_indiced]) if len(non_zero_indiced) > 0 else float('inf')
+            mean_std_b_saved = np.mean(self.saved_stds) if self.saved_stds is not None else float('inf')
+
+            if mean_std_b_current < mean_std_b_saved:
+                self.saved_reduced = A_red.copy()
+                self.saved_stds = std_b.copy()
+                num_updates = len(std_b)
+            else:
+                num_updates = 0
 
             max_items = len(non_zero_indiced)
 
@@ -417,7 +440,7 @@ class ContinuousReduction(object):
         """
         assert len(vectors) == len(priorities), "Vectors and priorities must match"
         
-        if self.use_priority:
+        if self.saving_strategy == SaveStrategy.PRIORITY:
             self.saved_reduced.initialize(vectors, priorities)
         else:
             self.saved_reduced = vectors.astype(np.int64)
@@ -457,7 +480,7 @@ class ContinuousReduction(object):
                 timer -= 1
 
         # Get R from the current matrix to reduce
-        if self.use_priority:
+        if self.saving_strategy == SaveStrategy.PRIORITY:
             return self.get_R(self.saved_reduced.get_saved_vectors()), matrix_to_reduce
         else:
             return self.get_R(self.saved_reduced), matrix_to_reduce
@@ -477,9 +500,9 @@ class ContinuousReduction(object):
             "max_bkz_block_size": self.bkz_block_sizes[-1],
             "_first_bkz": self._first_bkz,
             "initial_matrix": self.initial_matrix.tolist() if self.initial_matrix is not None else None,
-            "priority_queue": self.saved_reduced.to_state_dict() if self.use_priority else None,
-            "best_matrix": self.saved_reduced.tolist() if not self.use_priority and self.saved_reduced is not None else None,
-            "best_stds": self.saved_stds.tolist() if not self.use_priority and self.saved_stds is not None else None,
+            "priority_queue": self.saved_reduced.to_state_dict() if self.saving_strategy == SaveStrategy.PRIORITY else None,
+            "best_matrix": self.saved_reduced.tolist() if not self.saving_strategy == SaveStrategy.PRIORITY and self.saved_reduced is not None else None,
+            "best_stds": self.saved_stds.tolist() if not self.saving_strategy == SaveStrategy.PRIORITY and self.saved_stds is not None else None,
             "steps_same_algo": self.steps_same_algo
         }
     

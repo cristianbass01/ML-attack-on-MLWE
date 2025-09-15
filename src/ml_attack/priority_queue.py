@@ -56,7 +56,9 @@ class BoundedPriorityQueue:
                 if neg_priority > self.heap[0][0]:
                     # Replace worst item
                     popped_item = heapq.heapreplace(self.heap, item)
-                    self.vector_keys.remove(self._vector_key(popped_item[2]))
+                    item_to_remove = self._vector_key(popped_item[2])
+                    if item_to_remove in self.vector_keys:
+                        self.vector_keys.remove(item_to_remove)
                     self.vector_keys.add(key)
                     saved_priorities.append(priority)
 
