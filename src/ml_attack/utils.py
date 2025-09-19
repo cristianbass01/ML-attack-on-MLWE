@@ -655,6 +655,7 @@ def get_continuous_reduction_default_params(
             reduction_samples: Optional[int] = None,
             reduction_resampling: bool = True,
             continuous_reduction: bool = False,
+            parallel_backend: str = "joblib", # "thread", "process", "joblib"
             min_samples: int = 0,
             num_matrices: int = 0,
             reduction_max_size: int = 1000,
@@ -676,6 +677,7 @@ def get_continuous_reduction_default_params(
     'reduction_samples': reduction_samples,
     'reduction_resampling': reduction_resampling,
     'continuous_reduction': continuous_reduction,
+    'parallel_backend': parallel_backend,
     'min_samples': min_samples,
     'num_matrices': num_matrices,
     'reduction_max_size': reduction_max_size,
