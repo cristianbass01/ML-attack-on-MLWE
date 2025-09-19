@@ -59,6 +59,10 @@ def mod_mult(mat1, mat2, q):
     out += (mat1 % frac) @ mat2
     return cmod(out, q)
 
+def lattice_volume(B):
+    gram = B.T @ B
+    return np.sqrt(np.linalg.det(gram))
+
 def time_execution(func):
     """
     Wrapper to calculate the time taken to execute a function.
@@ -651,6 +655,7 @@ def get_continuous_reduction_default_params(
             reduction_samples: Optional[int] = None,
             reduction_resampling: bool = True,
             continuous_reduction: bool = False,
+            update_strategy: str = 'percentage', # "percentage", "mean"
             parallel_backend: str = "joblib", # "thread", "process", "joblib"
             min_samples: int = 0,
             num_matrices: int = 0,
@@ -673,6 +678,7 @@ def get_continuous_reduction_default_params(
     'reduction_samples': reduction_samples,
     'reduction_resampling': reduction_resampling,
     'continuous_reduction': continuous_reduction,
+    'update_strategy': update_strategy,
     'parallel_backend': parallel_backend,
     'min_samples': min_samples,
     'num_matrices': num_matrices,

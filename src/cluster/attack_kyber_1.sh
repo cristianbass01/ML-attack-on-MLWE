@@ -3,7 +3,7 @@
 #SBATCH --output=outputs/attack_kyber_1_%j.out
 #SBATCH --time=2-00:00:00
 #SBATCH --cpus-per-task=64
-#SBATCH --mem=128G
+#SBATCH --mem=200G
 #SBATCH --partition=all
 
 ### TO BE RUN WITH: sbatch attack_kyber_1.sh ###
@@ -14,17 +14,18 @@ q=3329
 
 hw=6 # can also be set to 5 to beat FRESCA
 
-max_size=100 # -1, 0 or from 50 to 512 (lower values use less memory)
-reduction_samples=0.875 # -1, 0.875, 256, 283, 512
-reduction_resampling=false # true for LWE, false for MLWE
+max_size=0 # -1, 0 or from 50 to 512 (lower values use less memory)
+reduction_samples=150 # -1, 0.875, 256, 283, 512
+reduction_resampling=true # true for LWE, false for MLWE
 
 matrix_config="dual" # dual or salsa
 
 penalty=4 # 3 or 4
-bkz_block_size="20:40:10" # 20:40:10, 40:40:1 or 30:50:10
+bkz_block_size="20:50:5" # 20:40:10, 40:40:1 or 30:50:10
 
 num_matrices=64 # same as CPUs
 parallel_backend="joblib"
+update_strategy="mean" # "percentage" or "mean"
 
 DATA_DIR="../data"
 mkdir -p "$DATA_DIR"
@@ -48,10 +49,10 @@ CONTAINER_IMAGE="/d/hpc/projects/FRI/cb17769/lwe_container.sif"
 # reduction_samples: Number of samples for reduction. Null to optimized samples, 0<n<1 fraction of total samples, or integer number of samples
 # reduction_resampling: Whether to resample before reduction
 # continuous_reduction: Whether to use continuous reduction (full parallelization with save/stop after specified hours)
-# parallel_backend: Parallel backend to use ("thread", "process", "joblib")
+# parallel_backend: Parallel backend to use ("thread", "process", "joblib"). Best are "process" or "joblib" because of CPU-heavy BKZ
 # min_samples: Minimum number of samples
 # num_matrices: Number of matrices (0 to use minimal number of matrices)
-# reduction_max_size: Maximum size for reduction priority queue
+# reduction_max_size: Maximum size for reduction priority queue (-1 for saving only the best lattice basis, 0 for saving a basis with the best row vectors, >0 for priority queue saving)
 # lookback: Lookback (number of steps that the reduction stalls)
 # warmup_steps: Number of warmup steps (with Flatter)
 # flatter_alpha: Alpha parameter for flatter reduction
@@ -89,7 +90,7 @@ PARAMS_JSON=$(cat <<EOF
   "error_type": "cbd",
   "num_gen": 4,
   "seed": 42,
-  "float_type": "d",
+  "float_type": "dd",
   "matrix_config": "$matrix_config",
   "reduction_samples": $reduction_samples,
   "reduction_resampling": $reduction_resampling,
@@ -99,7 +100,8 @@ PARAMS_JSON=$(cat <<EOF
   "num_matrices": $num_matrices,
   "reduction_max_size": $max_size,
   "lookback": 4,
-  "warmup_steps": 10,
+  "update_strategy": "$update_strategy",
+  "warmup_steps": 0,
   "flatter_alpha": 0.001,
   "bkz_delta": 0.99,
   "bkz_block_sizes": "$bkz_block_size",
@@ -121,7 +123,8 @@ PARAMS_JSON=$(cat <<EOF
   "use_ransac": false,
   "residual_factor": 1.5,
   "max_trials": 100,
-  "normalize_raw_secret": true
+  "normalize_raw_secret": true,
+  "save_to": "$DATA_DIR"
 }
 EOF
 )

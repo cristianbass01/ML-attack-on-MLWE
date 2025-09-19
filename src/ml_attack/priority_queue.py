@@ -70,6 +70,12 @@ class BoundedPriorityQueue:
     
     def get_priorities(self):
         return np.array([-item[0] for item in self.heap])
+    
+    def get_max_priority(self):
+        return -self.heap[0][0] if self.heap else float('-inf')
+    
+    def get_min_priority(self):
+        return -max(self.heap, key=lambda x: x[0])[0] if self.heap else float('inf')
 
     def to_state_dict(self):
         return {

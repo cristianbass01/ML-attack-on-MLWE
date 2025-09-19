@@ -1,12 +1,12 @@
 #!/bin/bash
-#SBATCH --job-name=attack_kyber_1
-#SBATCH --output=outputs/attack_kyber_1_%j.out
+#SBATCH --job-name=attack_kyber_verde_1
+#SBATCH --output=outputs/attack_kyber_verde_1_%j.out
 #SBATCH --time=2-00:00:00
 #SBATCH --cpus-per-task=64
 #SBATCH --mem=128G
 #SBATCH --partition=all
 
-### TO BE RUN WITH: sbatch attack_kyber_1.sh ###
+### TO BE RUN WITH: sbatch attack_kyber_verde_1.sh ###
 
 n=256
 k=1
@@ -14,16 +14,16 @@ q=3329
 
 hw=8 # 8 or more
 
-max_size=100 # -1, 0 or from 50 to 256 (lower values use less memory)
-reduction_samples=0.875 # -1, 0.875, 256
+max_size=0 # -1, 0 or from 50 to 256 (lower values use less memory)
+reduction_samples=-1 # -1, 0.875, 256
 reduction_resampling=false # true for LWE, false for MLWE
 
 matrix_config="dual" # dual or salsa
 
-penalty=10 # from 8 to 10
+penalty=8 # from 8 to 10
 bkz_block_size="20:40:10" # 20:40:10, 40:40:1 or 30:50:10
 
-num_matrices=64 # same as CPUs
+num_matrices=-1 # same as CPUs
 parallel_backend="joblib"
 
 DATA_DIR="../data"
@@ -89,7 +89,7 @@ PARAMS_JSON=$(cat <<EOF
   "error_type": "gaussian",
   "num_gen": 4,
   "seed": 42,
-  "float_type": "ld",
+  "float_type": "dd",
   "matrix_config": "$matrix_config",
   "reduction_samples": $reduction_samples,
   "reduction_resampling": $reduction_resampling,
@@ -99,7 +99,7 @@ PARAMS_JSON=$(cat <<EOF
   "num_matrices": $num_matrices,
   "reduction_max_size": $max_size,
   "lookback": 4,
-  "warmup_steps": 10,
+  "warmup_steps": 0,
   "flatter_alpha": 0.001,
   "bkz_delta": 0.99,
   "bkz_block_sizes": "$bkz_block_size",
@@ -107,7 +107,7 @@ PARAMS_JSON=$(cat <<EOF
   "interleaved_steps": 0,
   "penalty": $penalty,
   "verbose": true,
-  "train_percentages": [0.1, 0.3, 0.6, 1.0],
+  "train_percentages": [0.1, 0.3, 0.6],
   "subsets_with_probs": false,
   "model": "tukey",
   "lr": 0.0001,
@@ -121,7 +121,8 @@ PARAMS_JSON=$(cat <<EOF
   "use_ransac": false,
   "residual_factor": 1.5,
   "max_trials": 100,
-  "normalize_raw_secret": true
+  "normalize_raw_secret": true,
+  "save_to": "$DATA_DIR"
 }
 EOF
 )

@@ -22,10 +22,9 @@ FLOAT_UPGRADE = {
 MAX_TIME_BKZ = 60*60  # 1 hour
 
 class SaveStrategy(Enum):
-    PRIORITY = -1
+    BEST_MATRIX = -1
     BEST_LOCALITY = 0
-    BEST_MATRIX = 1
-
+    PRIORITY = 1
 
 class ContinuousReduction(object):
     def __init__(self, params: dict):
@@ -99,11 +98,17 @@ class ContinuousReduction(object):
         self.mlwe_trick = not self.params['reduction_resampling']
 
         self.matrix_config = self.params["matrix_config"]
+        
+        self.update_strategy = self.params["update_strategy"]
+        if self.update_strategy not in ["percentage", "mean"]:
+            raise ValueError(f"Unknown update strategy: {self.update_strategy}. Supported: 'percentage', 'mean'.")
+
+        self.history = []
 
     def run_algo(self, Ap):
         """
         Run the specified algorithm on the input matrix.
-        :param Ap: The input matrix to be reduced.penalty
+        :param Ap: The input matrix to be reduced.
         :return: The reduced matrix.
         """
         if self.flatter_countdown > 0:
@@ -137,8 +142,8 @@ class ContinuousReduction(object):
         parsed_float_type = float_type.split("_")
         if len(parsed_float_type) == 2:
             self.float_type, precision = parsed_float_type
-            assert self.float_type == "mpfr"
-            FPLLL.set_precision(int(precision))
+            self.precision = int(precision)
+            FPLLL.set_precision(self.precision)
 
     def arrange_reduction_matrix(self, matrix_to_reduce):
         """ Arrange the matrix to be reduced into the appropriate form. """
@@ -246,14 +251,14 @@ class ContinuousReduction(object):
                 BKZ_Obj(bkz_params)
                 break
             except Exception as e:
-                print(e)
                 # for bkz2.0, this would catch the case where it needs more precision for floating point arithmetic
                 # for bkz, the package does not throw the error properly. Make sure to start with enough precision
-                if self.float_type in FLOAT_UPGRADE:
-                    self.set_float_type(FLOAT_UPGRADE[self.float_type])
-                    print(f"Upgrading float type to {self.float_type}")
+                float_type = self.float_type if self.float_type != "mpfr" else f"mpfr_{self.precision}"
+                if float_type in FLOAT_UPGRADE:
+                    self.set_float_type(FLOAT_UPGRADE[float_type])
+                    print(f"Upgrading float type to {self.float_type} and retrying bkz2.0... Error: {e}")
                 else:
-                    print(f"Error running bkz2.0. No more float types to upgrade to.")
+                    print(f"Error running bkz2.0. No more float types to upgrade to. Error: {e}")
                     break
         # Convert back to numpy array
         Ap = np.zeros((Ap.shape[0], Ap.shape[1]), dtype=np.int64)
@@ -320,18 +325,22 @@ class ContinuousReduction(object):
         # Compute RA
         RA = mod_mult(R, self.initial_matrix, self.q)
 
+        non_zero_indices = np.where(np.any(RA != 0, axis=-1))[0]
+
         _, _, std_b = get_b_distribution(self.params, RA, R)
-        
-        non_zero_indiced = np.where(std_b > 0)[0]
 
         if self.saving_strategy == SaveStrategy.PRIORITY:
-            num_updates = self.saved_reduced.add_batch(A_red[non_zero_indiced], std_b[non_zero_indiced])
+            num_updates = self.saved_reduced.add_batch(A_red[non_zero_indices], std_b[non_zero_indices])
             max_items = self.saved_reduced.max_size
+            max_std_b_saved = self.saved_reduced.get_max_priority()
+            min_std_b_saved = self.saved_reduced.get_min_priority()
         elif self.saving_strategy == SaveStrategy.BEST_LOCALITY and self.saved_stds is None:
             self.saved_stds = std_b
             self.saved_reduced = A_red
             num_updates = len(std_b)
-            max_items = len(non_zero_indiced)
+            max_items = len(non_zero_indices)
+            max_std_b_saved = np.max(self.saved_stds)
+            min_std_b_saved = np.min(self.saved_stds)
         elif self.saving_strategy == SaveStrategy.BEST_LOCALITY:
             # Identify indices where std_b < self.saved_stds, ignoring std_b items that are 0.
             better_indices = np.where((std_b < self.saved_stds) & (std_b != 0))[0]
@@ -346,9 +355,11 @@ class ContinuousReduction(object):
                 self.saved_reduced[better_indices] = A_red[better_indices]
                 self.saved_stds[better_indices] = std_b[better_indices]
 
-            max_items = len(non_zero_indiced)
+            max_items = len(non_zero_indices)
+            max_std_b_saved = np.max(self.saved_stds)
+            min_std_b_saved = np.min(self.saved_stds[self.saved_stds != 0]) if np.any(self.saved_stds != 0) else 0
         else:  # SaveStrategy.BEST_MATRIX
-            mean_std_b_current = np.mean(std_b[non_zero_indiced]) if len(non_zero_indiced) > 0 else float('inf')
+            mean_std_b_current = np.mean(std_b[non_zero_indices]) if len(non_zero_indices) > 0 else float('inf')
             mean_std_b_saved = np.mean(self.saved_stds) if self.saved_stds is not None else float('inf')
 
             if mean_std_b_current < mean_std_b_saved:
@@ -358,19 +369,18 @@ class ContinuousReduction(object):
             else:
                 num_updates = 0
 
-            max_items = len(non_zero_indiced)
+            max_items = len(non_zero_indices)
+            max_std_b_saved = np.max(self.saved_stds) if self.saved_stds is not None else 0
+            min_std_b_saved = np.min(self.saved_stds[self.saved_stds != 0]) if self.saved_stds is not None and np.any(self.saved_stds != 0) else 0
 
-        mean_std_b = np.mean(std_b[non_zero_indiced]) if len(non_zero_indiced) > 1 else 0
+        mean_std_b = np.mean(std_b[non_zero_indices]) if len(non_zero_indices) > 1 else 0
 
         algo_name = "flatter" if self.flatter_countdown > 0 else f"bkz2.0_{self.bkz_block_sizes[self.bkz_block_size_idx]}"
         
         # Calculate the minimum norm of rows and columns of A_red that are not 0 mod q
         non_zero_rows = np.any(A_red % self.q != 0, axis=1)
-        non_zero_cols = np.any(A_red % self.q != 0, axis=0)
         min_row_norm = np.min(np.linalg.norm(A_red[non_zero_rows], axis=1))
-        min_col_norm = np.min(np.linalg.norm(A_red[:, non_zero_cols], axis=0))
-
-        self.log(f"- Algo: {algo_name} | Updated {num_updates}/{max_items} ({len(non_zero_indiced)} non zero) | Mean std_B: {mean_std_b:.2f} | Min row norm: {min_row_norm:.2f} | Min col norm: {min_col_norm:.2f}")
+        self.log(f"- Algo: {algo_name} | Updated {num_updates}/{max_items} ({len(non_zero_indices)} non zero) | Mean std_B: {mean_std_b:.2f} | Min row norm: {min_row_norm:.2f} | Min std_B saved: {min_std_b_saved:.2f} | Max std_B saved: {max_std_b_saved:.2f}")
 
         if self.flatter_countdown > 0:
             self.flatter_countdown -= 1
@@ -379,15 +389,30 @@ class ContinuousReduction(object):
                 self.no_improvements = 0
                 self.steps_same_algo = 0
 
-        if num_updates/max_items >= 0.1:
-            self.n_stall = 0
-            self.no_improvements = 0
-        else:
-            self.n_stall += 1
-            if num_updates/max_items <= 0.02:
+        # Update stall counters
+        if self.update_strategy == "percentage":
+            if num_updates/max_items >= 0.1:
+                self.n_stall = 0
+                self.no_improvements = 0
+            else:
+                self.n_stall += 1
+                if num_updates/max_items <= 0.02:
+                    self.no_improvements += 1
+                else:
+                    self.no_improvements = 0
+        else:  # self.update_strategy == "mean"
+            if len(self.history) > 0 and mean_std_b < np.mean(self.history):
+                self.n_stall = 0
+                self.no_improvements = 0
+            elif len(self.history) > 0 and mean_std_b > max(self.history):
                 self.no_improvements += 1
             else:
-                self.no_improvements = 0
+                self.n_stall += 1
+
+            # Update the history after evaluating the mean
+            self.history.append(mean_std_b)
+            if len(self.history) > self.lookback:
+                self.history.pop(0)
 
         # If we stalled for too long, update the algorithm.
         if self.steps_same_algo > self.lookback and self.n_stall >= self.lookback:
