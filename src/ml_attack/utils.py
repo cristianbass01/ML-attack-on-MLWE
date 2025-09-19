@@ -48,6 +48,10 @@ def cmod(A, q):
         A = A - q if A > q//2 else A
     return A
 
+def lattice_volume(B):
+    gram = B.T @ B
+    return np.sqrt(np.linalg.det(gram))
+
 def mod_mult(mat1, mat2, q):
     if np.log2(q) <= 32:
         return cmod(mat1 @ mat2, q)

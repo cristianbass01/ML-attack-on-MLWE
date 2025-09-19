@@ -129,8 +129,13 @@ class ContinuousReduction(object):
         """ Get the R matrix from the reduction. """    
         if self.matrix_config in ["salsa", "dual"]:
             # Matrix in the form [wR, RA + qC]
-            m = self.m if not self.mlwe_trick else (self.n * ((self.m + self.n - 1) // self.n))
-            return cmod(matrix_to_reduce[:, :m] / self.penalty, self.q)
+            #m = self.m if not self.mlwe_trick else (self.n * ((self.m + self.n - 1) // self.n))
+            R_short = cmod(matrix_to_reduce[:, :self.m] / self.penalty, self.q)
+            final_length = self.m if not self.mlwe_trick else (self.n * ((self.m + self.n - 1) // self.n))
+            R_padded = np.zeros((matrix_to_reduce.shape[0], final_length), dtype=R_short.dtype)
+            R_padded[:, :R_short.shape[1]] = R_short
+            return R_padded
+
         elif self.matrix_config == "original":
             # Matrix in the form [RA + qC, wR]
             return cmod(matrix_to_reduce[:, (self.n * self.k):] / self.penalty, self.q)
@@ -185,12 +190,12 @@ class ContinuousReduction(object):
             A_red = Pi @ A_red
 
             # Reduce to find the dependent rows
-            A_red = self.run_LLL_once(A_red)
+            # A_red = self.run_LLL_once(A_red)
 
             # Remove the (n-g) zero vectors (dependent rows)
             A_red = A_red[~np.all(A_red == 0, axis=1)]
             # Remove all-zero columns
-            #A_red = A_red[:, ~np.all(A_red == 0, axis=0)]
+            A_red = A_red[:, ~np.all(A_red == 0, axis=0)]
 
         if np.log2(self.q) > 32:
             # If q is large, use higher precision
