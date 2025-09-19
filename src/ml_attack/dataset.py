@@ -359,12 +359,6 @@ class LWEDataset():
                 self.RA = mod_mult(self.R, A_to_reduce, self.mlwe.q)
                 self.non_zero_indices = np.any(self.RA != 0, axis=-1)
 
-                if self.params['verbose']:
-                    reduction_factor = np.mean(np.std(self.RA[self.non_zero_indices], axis=-1)) / np.mean(np.std(A_to_reduce, axis=-1)).astype(np.float64)
-                    std_b = np.mean(self.get_b_distribution()[2]).astype(np.float64)
-                    prob = std_to_prob(std_b, self.mlwe.q)
-                    print(f"Tour {tour} | Time: {current_time - start_time:.2f}s | Mean std_B: {std_b:.2f} | Reduction Factor: {reduction_factor:.4f} | Prob: {prob:.4f}")
-                
                 # Check if it's time to save
                 if save_strategy == "time" and current_time - last_save_time >= save_every:
                     # Save the reduced matrices and best matrices for further reduction
@@ -387,6 +381,17 @@ class LWEDataset():
                     self.reduction_time = previous_reduction_time + current_time - start_time
 
                     self.save_reduced(postfix=f'_{tour // save_every}')
+
+
+                if self.params['verbose']:
+                    reduction_factor = np.mean(np.std(self.RA[self.non_zero_indices], axis=-1)) / np.mean(np.std(A_to_reduce, axis=-1)).astype(np.float64)
+                    std_b = np.mean(self.get_b_distribution()[2]).astype(np.float64)
+                    prob = std_to_prob(std_b, self.mlwe.q)
+                    print(f"Tour {tour} | Time: {current_time - start_time:.2f}s | Mean std_B: {std_b:.2f} | Reduction Factor: {reduction_factor:.4f} | Prob: {prob:.4f}")
+
+                    # If the probability is too low, skip the attack
+                    if prob < 0.50:
+                        continue
 
                 # Check if it's time to attack
                 if attack_strategy == "time" and current_time - last_attack_time >= attack_every or \
