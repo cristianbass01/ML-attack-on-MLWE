@@ -194,9 +194,9 @@ class LWEDataset():
             num_blocks = num_gen * k # Maximum number of circulants available
             
             # Calculate min matrices needed to cover all rows
-            num_matrices = self.params['num_matrices'] if self.params['num_matrices'] is not None else 0
+            num_matrices = self.params['num_matrices'] if self.params['num_matrices'] is not None else -1
             
-            if self.params['min_samples'] is not None:
+            if self.params['min_samples'] is not None and self.params['min_samples'] > 0:
                 num_matrices = max(self.params['min_samples'] // n_rows_matrix + 1, num_matrices)
 
             min_matrices = (n // (m + 1) + 1) * num_gen * k

@@ -550,11 +550,8 @@ def get_filename_from_params(params: dict, ext=".pkl"):
         'hw', 'error_type', 'num_gen', 'add_noise', 'mod_q', 'seed',
         
         # Reduction Algorithm Parameters
-        'reduction_factor', 'reduction_resampling', 'penalty',
-        'matrix_config', 'bkz_block_sizes', 'reduction_max_size'
-        
-        # Approximation Parameters
-        #'approximation_std'
+        'reduction_resampling', 'penalty',
+        'matrix_config', 'bkz_block_sizes', 'reduction_max_size', 'reduction_samples'
     ]
 
     hashable_params = {k: v for k, v in params.items() if k in relevant_keys}
@@ -565,7 +562,15 @@ def get_filename_from_params(params: dict, ext=".pkl"):
 
     # Append the hash to the filename and add the extension
     parts.append(hash_digest)
-    filename = "_".join(parts) + ext
+    base_filename = "_".join(parts)
+    filename = f"{base_filename}{ext}"
+
+    # Append a number if the file already exists
+    counter = 1
+    while os.path.exists(filename):
+        filename = f"{base_filename}_{counter}{ext}"
+        counter += 1
+
     return filename
 
 def get_lwe_default_params(
