@@ -290,6 +290,7 @@ class LWEDataset():
                 timers.append(save_every)
             if stop_strategy == "time":
                 timers.append(stop_after)
+
             if timers:
                 initial_timer = min(timers)
             else:
@@ -303,7 +304,8 @@ class LWEDataset():
             if self.RC is not None:
                 # If RC is already computed, use it to initialize the reduction
                 reduction.initialize_matrix(A_to_reduce[i].squeeze())
-                _, _, std_b = get_b_distribution(self.params, RA[i], self.R[i])
+
+                _, _, std_b = get_b_distribution(self.params, RA[i, :, 0], self.R[i, :, 0])
 
                 reduction.initialize_saved_reduced(
                     vectors=self.best_RC[i].copy() if self.best_RC is not None else self.RC[i].copy(),
@@ -703,27 +705,35 @@ class LWEDataset():
 
         if 'RC' in loaded_data:
             dataset.RC = loaded_data['RC']
-            try:
-                dataset.best_RC = loaded_data['best_RC']
-            
-                if dataset.params['matrix_config'] in ['salsa', 'dual']:
-                    m = dataset.params['reduction_samples']
-                    dataset.R = np.stack([reduced_matrix[:, :m] / loaded_data['params']['penalty'] for reduced_matrix in dataset.best_RC])
-                else:
-                    n = dataset.params['n'] * dataset.params['k']
-                    dataset.R = np.stack([reduced_matrix[:, n:] / loaded_data['params']['penalty'] for reduced_matrix in dataset.best_RC])
-            except:
-                print("Warning: 'best_RC' corrupted. Using 'RC' instead.")
-                dataset.best_RC = None
-                if dataset.params['matrix_config'] in ['salsa', 'dual']:
-                    m = dataset.params['reduction_samples']
-                    dataset.R = np.stack([reduced_matrix[:, :m] / loaded_data['params']['penalty'] for reduced_matrix in dataset.RC])
-                else:
-                    n = dataset.params['n'] * dataset.params['k']
-                    dataset.R = np.stack([reduced_matrix[:, n:] / loaded_data['params']['penalty'] for reduced_matrix in dataset.RC])
+            #try:
+            dataset.best_RC = loaded_data['best_RC']
+        
+            if dataset.params['matrix_config'] in ['salsa', 'dual']:
+                m = dataset.params['reduction_samples']
+                R_short = np.stack([reduced_matrix[:, :m] / loaded_data['params']['penalty'] for reduced_matrix in dataset.best_RC])
+                final_length = m if not dataset.enhanced() else (dataset.mlwe.n * ((m + dataset.mlwe.n - 1) // dataset.mlwe.n))
+                R_padded = np.zeros((R_short.shape[0], R_short.shape[1], final_length), dtype=R_short.dtype)
+                R_padded[:, :, :R_short.shape[2]] = R_short
+                dataset.R = R_padded
+            else:
+                n = dataset.params['n'] * dataset.params['k']
+                dataset.R = np.stack([reduced_matrix[:, n:] / loaded_data['params']['penalty'] for reduced_matrix in dataset.best_RC])
+            #except Exception as e:
+            #    print(f"Warning: 'best_RC' corrupted. Using 'RC' instead. Error: {e}")
+            #    dataset.best_RC = None
+            #    if dataset.params['matrix_config'] in ['salsa', 'dual']:
+            #        m = dataset.params['reduction_samples']
+            #        R_short = np.stack([reduced_matrix[:, :m] / loaded_data['params']['penalty'] for reduced_matrix in dataset.RC])
+            #        final_length = m if not dataset.enhanced() else (dataset.mlwe.n * ((m + dataset.mlwe.n - 1) // dataset.mlwe.n))
+            #        R_padded = np.zeros((R_short.shape[0], final_length), dtype=R_short.dtype)
+            #        R_padded[:, :R_short.shape[1]] = R_short
+            #        dataset.R = R_padded
+            #    else:
+            #        n = dataset.params['n'] * dataset.params['k']
+            #        dataset.R = np.stack([reduced_matrix[:, n:] / loaded_data['params']['penalty'] for reduced_matrix in dataset.RC])
 
             if dataset.enhanced():
-                num_k = dataset.params['reduction_samples'] // dataset.params['k']
+                num_k = (dataset.params['n'] + dataset.params['reduction_samples'] - 1) // dataset.params['n']
                 dataset.R = np.stack([
                     np.stack([
                         np.hstack([
