@@ -194,9 +194,9 @@ class LWEDataset():
             num_blocks = num_gen * k # Maximum number of circulants available
             
             # Calculate min matrices needed to cover all rows
-            num_matrices = self.params['num_matrices'] if self.params['num_matrices'] is not None else 0
+            num_matrices = self.params['num_matrices'] if self.params['num_matrices'] is not None else -1
             
-            if self.params['min_samples'] is not None:
+            if self.params['min_samples'] is not None and self.params['min_samples'] > 0:
                 num_matrices = max(self.params['min_samples'] // n_rows_matrix + 1, num_matrices)
 
             min_matrices = (n // (m + 1) + 1) * num_gen * k
@@ -505,6 +505,8 @@ class LWEDataset():
         # After each reduction, it tries to retrive the secret
         std_B = self.approximate_b()
 
+        max_probs = np.array([max(probs) for probs in self.b_probs])
+
         if self.params['subsets_with_probs']:
             # Normalize std_B to be in the range [0, 1]
             std_b_min = np.min(std_B)
@@ -536,9 +538,13 @@ class LWEDataset():
 
                 print(f"[BEST {int(p*100)}% STD] True B: {exact_candidates} / {total_selection} ({100 * exact_candidates / total_selection:.2f}%) | Mean std_B: {mean_std:.2f}")
 
+            expected_success_rate = np.mean(max_probs[selected_indices])
+
             found, guessed_secret = train_model(self,
                                                 A = A_reduced[selected_indices],
-                                                b = best_b[selected_indices])
+                                                b = best_b[selected_indices],
+                                                inlier_rate = expected_success_rate
+                                                )
             if found:
                 return True, guessed_secret
             elif np.all(guessed_secret == self.secret):
