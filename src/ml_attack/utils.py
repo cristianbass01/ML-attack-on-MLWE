@@ -1,5 +1,5 @@
 from sympy import binomial, Integer
-from scipy.stats import binom
+from scipy.stats import binom, norm
 from scipy.special import comb, erf, erfinv
 import hashlib
 import json
@@ -335,8 +335,8 @@ def compute_max_trials(confidence, p, min_samples, max_cap=10000):
         return max_cap
     
     
-def train_model(dataset, A, b):
-    if dataset.params['model'] == 'tukey':
+def train_model(dataset, A, b, inlier_rate):
+    if dataset.params['model'] == 'tukey' or dataset.params['model'] == 'trimmed':
         #model = TukeyRegressor(c=best_c,
         #                       lr=dataset.params['lr'], 
         #                       tol=dataset.params['tol'],
@@ -345,7 +345,16 @@ def train_model(dataset, A, b):
         if dataset.params['fit_intercept']:
             A = sm.add_constant(A)
 
-        model = RLM(b.astype(int), A.astype(int), M=TukeyBiweight(c=dataset.params['c_factor']))
+        if dataset.params['c_factor'] <= 0:
+            c_factor = std_for_coverage(inlier_rate)
+            c_factor = min(c_factor, 4.685)
+        else:
+            c_factor = dataset.params['c_factor']
+
+        if dataset.params['model'] == 'trimmed':
+            model = RLM(b.astype(int), A.astype(int), M=TrimmedMean(c=c_factor))
+        else:
+            model = RLM(b.astype(int), A.astype(int), M=TukeyBiweight(c=c_factor))
 
     elif dataset.params['model'] == 'huber':
         patch_once()
@@ -396,7 +405,7 @@ def train_model(dataset, A, b):
         raw_secret_scaled = model.fit(A_scaled, b).estimator_.coef_
         raw_secret = raw_secret_scaled / scaler.scale_
     else:
-        if dataset.params['model'] == 'tukey':
+        if dataset.params['model'] == 'tukey' or dataset.params['model'] == 'trimmed':
             #raw_secret = model.fit(A, b).coef_
             expected_s, _, std_s = get_vector_distribution(dataset.params, dataset.params['secret_type'], dataset.params['hw'])
             start_params = np.random.normal(loc=expected_s, scale=std_s, size=A.shape[1])
@@ -448,6 +457,21 @@ def report(real_secret, guessed_secret):
     print("\nClassification Report:")
     print(classification_report(real_secret, guessed_secret, zero_division=0))
 
+def std_for_coverage(coverage):
+    """
+    Returns the number of standard deviations (z-score)
+    needed to capture the given coverage (symmetric two-tailed)
+    in a standard normal distribution.
+    
+    Parameters:
+        coverage (float): desired coverage, e.g. 0.95 for 95%
+    
+    Returns:
+        float: number of standard deviations
+    """
+    # Two-tailed symmetric interval → tail probability
+    alpha = (1 - coverage) / 2
+    return norm.ppf(1 - alpha)  # upper bound z-score
 
 def check_secret(guessed_secret, A, B, params):
     """
