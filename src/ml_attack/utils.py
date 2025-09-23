@@ -1034,6 +1034,7 @@ def parse_output_file(output_file):
         "block_sizes": defaultdict(list),
         "num_updates": defaultdict(list),
         "std_B": defaultdict(float),
+        "red_factor": None,
         "start_bkz": None,
         "total_time": 0,
         "total_train_samples": 0,
@@ -1080,6 +1081,11 @@ def parse_output_file(output_file):
             match_std_only = re.search(r"Mean std_B: ([\d.]+)", line)
             if match_std_only:
                 results['std_B'][current_tour] = float(match_std_only.group(1))
+
+            # Match Reduction Factor
+            match_reduction_factor = re.search(r"Reduction Factor: ([\d.]+)", line)
+            if match_reduction_factor:
+                results['red_factor'] = float(match_reduction_factor.group(1))
 
             # Start scanning lines until next block or BKZ
             counter += 1
